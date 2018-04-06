@@ -1,0 +1,118 @@
+<html>
+<head>
+<title>Fusion Evolution</title>
+<style>
+button {
+background-color: black;
+color: yellow;
+border: solid 4px yellow;
+font-size:24px;
+}
+p {
+background-color: black;
+color: aqua;
+}
+.code {
+background-color: black;
+color:lime;
+}
+</style>
+</head>
+<body>
+<h1>Fusion Evolution</h1>
+<table>
+<tr>
+<td>Fused Pokemon 1:</td>
+<td><input type="text" id="fuse1" title="Enter the base Pokemon of the fusion"></input></td>
+</tr>
+<tr>
+<td>Fused Pokemon 2:</td>
+<td><input type="text" id="fuse2"></input>
+</tr>
+<tr>
+<td>Fusion:</td> 
+<td><input type="text" id="fusion"></input> </td>
+</tr>
+<td>Types:</td>
+<td><input type="text" id="type"></input></td>
+<td><input type="text" id="type2" title="Secondary type goes here. Leave this blank if it's a monotyped fusion."></input></td>
+</tr>
+<tr>
+<td>HP:</td>
+<td><input type="text" id="hp"></input></td>
+</tr>
+<tr>
+<td>Atk:</td>
+<td><input type="text" id="atk"></input></td>
+</tr>
+<tr>
+<td>Def:</td>
+<td><input type="text" id="def"></input></td>
+</tr>
+<tr>
+<td>SpA:</td>
+<td><input type="text" id="spa"></input></td>
+</tr>
+<tr>
+<td>SpD:</td>
+<td><input type="text" id="spd"></input></td>
+</tr>
+<tr>
+<td>Spe:</td>
+<td><input type="text" id="spe"></input></td>
+</tr>
+<tr>
+<td>Ability:</td>
+<td><input type="text" id="abe"></input></td>
+</tr>
+<tr>
+<td>Weight:</td>
+<td><input type="text" id="wt"></input></td>
+</tr>
+</table>
+<br>
+<button onClick="post()">Generate</button>
+<br>
+<p id="xd"> </p>
+<script>
+function post ()
+{
+// Front and Part Back End
+let fuse1= document.getElementById("fuse1").value;
+let fuse2= document.getElementById("fuse2").value;
+let fusion = document.getElementById("fusion").value;
+let type= document.getElementById("type").value;
+let type2= document.getElementById("type2").value;
+let hp= document.getElementById("hp").value;
+let atk= document.getElementById("atk").value;
+let def= document.getElementById("def").value;
+let spa= document.getElementById("spa").value;
+let spd= document.getElementById("spd").value;
+let spe= document.getElementById("spe").value;
+let abe= document.getElementById("abe").value;
+let wt= document.getElementById("wt").value;
+
+// Back End
+let mon = fusion.toLowerCase();
+let f1 = fuse1.toLowerCase();
+let f2 = fuse2.toLowerCase(); 
+if (type2 === "") {
+type2 = "],";
+}
+else {
+type2 = ", &quot;"+type2+" &quot;],";
+}
+if (wt === "") {
+wt = "100";
+}
+
+document.getElementById("xd").innerHTML = "[IMG]http://play.pokemonshowdown.com/sprites/xyani/"+f1+".gif[/IMG][IMG]http://play.pokemonshowdown.com/sprites/xyani/"+f2+".gif[/IMG]<br>[hide="+fusion+"]<b>DNA Donors:</b> "+fuse1+" / "+fuse2+" <br> Offspring Name: "+fusion+" <br>[/hide]<div class=code><h3>Code</h3>[hide=Code]"+mon+": {<br>num: 75000###, <br> types:[&quot;"+type+"&quot;"+type2+"<br>species: &quot;"+fusion+"&quot;, <br> id: "+mon+", <br>baseStats: {hp:"+hp+", atk: "+atk+", def, "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} <br>abilities: {0: &quot;"+abe+"&quot;}, <br>weightkg: "+wt+", <br>fusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],<br>},[/hide]</div>";
+}
+
+</script>
+
+</body>
+</html> 
+
+
+
