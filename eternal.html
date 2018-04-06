@@ -1,0 +1,200 @@
+<html>
+
+<head>
+
+<title>Eternal Pokemon</title>
+
+<style>
+body, table {
+font-size: 24px;
+}
+button {
+background-color: black;
+color: yellow;
+border: solid 4px yellow;
+font-size:28px;
+}
+p {
+background-color: black;
+color: aqua;
+}
+.code {
+background-color: black;
+color:lime;
+}
+h1 {
+font-family: Jokerman;
+color:#FFA000;
+background-color:black;
+width: 40%;
+border: 4px solid #FFA000;
+text-align: center;
+}
+.mod {
+background-color: black;
+color: #FFA000;
+}
+</style>
+
+</head>
+
+<body>
+<center>
+ <h1>Eternal Pokemon</h1>
+Playable in <a href="http://dragonheaven.psim.us">Dragon Heaven!</a>
+</center>
+<table>
+<tr>
+<td>Pokemon: </td> 
+<td><input type="text" id="pokemon" title="Enter the base forme of the Eternal Pokemon. Example: Archen."></input></td>
+</tr>
+<tr>
+<td>Dex Number:</td> 
+<td><Input type="text" id="num"></input></td>
+</tr>
+<td>Types:</td> 
+<td><Input type="text" id="type"></input></td>
+<td><Input type="text" id="type2"></input></td>
+</tr>
+<tr>
+<td>HP:</td>
+<td><Input type="text" id="oldhp"></input></td>
+<td><Input type="text" id="hp"></input></td>
+</tr>
+<tr>
+<td>Atk:</td>
+<td><Input type="text" id="oldatk"></input></td>
+<td><Input type="text" id="atk"></input></td>
+<td id="modatk"></td>
+</tr>
+<td>Def:</td>
+<td><Input type="text" id="olddef"></input></td>
+<td><Input type="text" id="def"></input></td>
+</tr>
+<td>SpA:</td>
+<td><Input type="text" id="oldspa"></input></td>
+<td><Input type="text" id="spa"></input></td>
+</tr>
+<td>SpD:</td>
+<td><Input type="text" id="oldspd"></input></td>
+<td><Input type="text" id="spd"></input></td>
+</tr>
+<td>
+Spe:</td>
+<td><Input type="text" id="oldspe"></input></td>
+<td><Input type="text" id="spe"></input></td>
+</tr>
+<td>Ability:</td>
+<td><Input type="text" id="abe"></input></td>
+</tr>
+<td>Weight:</td>
+<td><Input type="text" id="wt"></input></td>
+</tr>
+<tr>
+<td>Signature Move Name</td>
+<td><Input type="text" id="newmove"></input></td></td>
+</tr>
+<tr>
+<td>Category</td>
+<td><Input type="text" id="category"></input></td></td>
+</tr>
+<tr>
+<td>Base Power</td>
+<td><Input type="text" id="power"></input></td></td>
+</tr>
+<td>Accuracy</td>
+<td><Input type="text" id="acc"></input></td></td>
+</tr>
+<tr>
+<td>Move Type</td>
+<td><Input type="text" id="movetype"></input></td></td>
+</tr>
+<tr>
+<td>Priority</td>
+<td><input id="priority"></input>
+</td>
+</tr>
+<tr>
+<td>Targets</td>
+<td><input id="target"></input></td>
+</tr>
+<tr>
+<td>Additional Effect</td>
+<td><input id="effect"></input></td>
+</tr>
+<td>Z-Move Base Power / Effect</td>
+<td><input id="zmove"></input></td>
+</tr>
+<tr>
+<td>Competitive Role</td>
+<td><textarea id="comp" style="width:650%;"></textarea></td>
+</tr>
+</table>
+<br>
+<button onClick="post()">Generate</button>
+<br>
+<p id="xd"> </p>
+
+<script>
+function post ()
+{
+// Front and Part Back End
+
+// Inputs
+let pokemon= document.getElementById("pokemon").value;
+let num= document.getElementById("num").value;
+let type= document.getElementById("type").value;
+let type2= document.getElementById("type2").value;
+let hp= document.getElementById("hp").value;
+let atk= document.getElementById("atk").value;
+let def= document.getElementById("def").value;
+let spa= document.getElementById("spa").value;
+let spd= document.getElementById("spd").value;
+let spe= document.getElementById("spe").value;
+let abe= document.getElementById("abe").value;
+let wt= document.getElementById("wt").value;
+let comp= document.getElementById("comp").value;
+let newmove= document.getElementById("newmove").value;
+let category= document.getElementById("category").value;
+let priority= document.getElementById("priority").value;
+let bp = document.getElementById("power").value;
+let acc = document.getElementById("acc").value;
+let movetype = document.getElementById("movetype").value;
+let target= document.getElementById("target").value;
+let effect= document.getElementById("effect").value;
+let zmove = document.getElementById("zmove").value;
+
+// Stat Modifer Regulator
+let oldhp= document.getElementById("oldhp").value;
+let oldatk= document.getElementById("oldatk").value;
+let olddef= document.getElementById("olddef").value;
+let oldspa= document.getElementById("oldspa").value;
+let oldspd= document.getElementById("oldspd").value;
+let oldspe= document.getElementById("oldspe").value;
+
+let modhp = atk - oldatk;
+let modatk = atk - oldatk;
+let moddef = def - olddef;
+let modspa = spa - oldspa;
+let modspd = spd - oldspd;
+let modspe = spe - oldspe;
+
+// Defaults and casing
+let poke = pokemon.toLowerCase();
+let t1 = type.toLowerCase();
+let t2 = type2.toLowerCase();
+if (type2 === "") {
+type2 = "],";
+}
+else {
+type2 = ", &quot;"+type2+" &quot;],";
+}
+if (wt === "") {
+wt = "100";
+}
+let movesmall = newmove.toLowerCase();
+document.getElementById("xd").innerHTML = "[IMG]http://play.pokemonshowdown.com/sprites/xyani/"+poke+".gif[/IMG]<br>[hide="+pokemon+"]<b>Pokemon:</b> "+pokemon+" <br> <b>Types:</b> "+t1+" "+t2+"<br><b>Stats:</b><br><b>HP:</b> "+oldhp+" ----> <b>"+hp+"</b> ("+modhp+") <br> <b>Atk:</b> "+oldatk+" ---> "+atk+" ("+modatk+") <br><b>Def:</b> "+olddef+" ---> "+def+" ("+moddef+") <br><b> SpA:</b> "+oldspa+" ---> "+spa+" ("+modspa+")<br> <b>SpD:</b> "+oldspd+" ---> "+spd+" ("+modspd+") <br> <b>Spe:</b> "+oldspe+" ---> "+spe+" ("+modspe+")<br><b>Ability:</b> "+abe+" <br> <b>Weight:</b> "+wt+"<br><b>Signature Move:</b> "+newmove+" | "+movetype+" | "+bp+" BP | Acc: "+acc+"% | "+category+" | Priority: "+priority+" | Additional Effect: "+effect+" | Z-Move: "+zmove+" | <br><b>Competitive Role:</b>  "+comp+"[/hide]<br><br><div class=code>[hide=Code]pokedex.js <br> "+poke+"eternal: {<br>num: "+num+", <br>types:[&quot;"+type+"&quot;"+type2+"<br>species: "+pokemon+"-Eternal, <br>baseSpecies: "+pokemon+", <br>forme: Eternal, <br> formeLetter: E, <br>baseStats: {hp:"+hp+", atk: "+atk+", def, "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} <br>abilities: {0: &quot;"+abe+"&quot;}, <br>weightkg: "+wt+", <br>}, <br> <br> moves.js <br>name: "+newmove+", <br> id: "+movesmall+", <br> basePower: "+bp+", <br> accuracy: "+acc+", <br>type: "+movetype+", <br> priority: "+priority+", <br> flags: {protect: 1, mirror: 1} <br> target: ,<br> // ZMove "+zmove+"},<br><br>formats-data.js<br>"+poke+": <br>tier: OU,<br>},<br>[/hide]</div>";
+}
+</script>
+</html>
+</body>
