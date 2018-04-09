@@ -217,6 +217,22 @@ let olddef= document.getElementById("olddef").value;
 let oldspa= document.getElementById("oldspa").value;
 let oldspd= document.getElementById("oldspd").value;
 let oldspe= document.getElementById("oldspe").value;
+ 
+if (atk === "") {
+ atk = oldatk
+}
+if (def === "") {
+ def = olddef
+}
+if (spa === "") {
+ spa = oldspa
+}
+if (spd === "") {
+ spd = oldspd
+}
+if (spe === "") {
+ spe = oldspe
+}
 
 let modatk = atk - oldatk;
 let moddef = def - olddef;
