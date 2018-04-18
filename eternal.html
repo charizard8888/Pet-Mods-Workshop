@@ -10,8 +10,8 @@ font-size: 24px;
 }
 button {
 background-color: black;
-color: yellow;
-border: solid 4px yellow;
+color: #FFA000;
+border: solid 4px #FFA000;
 font-size:28px;
 }
 p {
@@ -40,7 +40,7 @@ color: #FFA000;
 
 <body>
 <center>
- <h1>Eternal Pokemon</h1>
+<img scr="http://i.imgur.com/KwzUF9J.jpg" width="800" height="400"><br>
 Playable in <a href="http://dragonheaven.psim.us">Dragon Heaven!</a>
 </center>
 <table>
@@ -84,56 +84,88 @@ Spe:</td>
 <td><Input type="text" id="oldspe"></input></td>
 <td><Input type="text" id="spe"></input></td>
 </tr>
-<td>Ability:</td>
-<td><Input type="text" id="abe"></input></td>
-</tr>
 <td>Weight:</td>
 <td><Input type="text" id="wt"></input></td>
 </tr>
 <tr>
-<td>Signature Move Name</td>
+<td>Signature Move Name:</td>
 <td><Input type="text" id="newmove"></input></td></td>
 </tr>
 <tr>
-<td>Category</td>
-<td><Input type="text" id="category"></input></td></td>
+<td>Move Type:</td>
+<td><Input type="text" id="movetype" list="types"></input></td></td>
 </tr>
 <tr>
-<td>Base Power</td>
+<td>Category:</td>
+<td><Input type="text" id="category" list="categories"></input></td></td>
+</tr>
+<tr>
+<td>Base Power:</td>
 <td><Input type="text" id="power"></input></td></td>
 </tr>
-<td>Accuracy</td>
+<td>Accuracy:</td>
 <td><Input type="text" id="acc"></input></td></td>
 </tr>
 <tr>
-<td>Move Type</td>
-<td><Input type="text" id="movetype"></input></td></td>
-</tr>
-<tr>
-<td>Priority</td>
+<td>Priority:</td>
 <td><input id="priority"></input>
 </td>
 </tr>
 <tr>
-<td>Targets</td>
+<td>Targets:</td>
 <td><input id="target"></input></td>
 </tr>
 <tr>
-<td>Additional Effect</td>
+<td>Move Flavour/Description:</td>
+<td><input id="moveflavour"></input></td>
+</tr>
+<tr>
+<td>Additional Effect:</td>
 <td><input id="effect"></input></td>
 </tr>
-<td>Z-Move Base Power / Effect</td>
+<td>Z-Move Base Power/Effect:</td>
 <td><input id="zmove"></input></td>
 </tr>
 <tr>
-<td>Competitive Role</td>
+<td>Competitive Role:</td>
 <td><textarea id="comp" style="width:650%;"></textarea></td>
+</tr>
+<tr>
+<td>Design/Flavour:</td>
+<td><textarea id="flavour" style="width:650%;"></textarea></td>
 </tr>
 </table>
 <br>
-<button onClick="post()">Generate</button>
+<center><img src="http://play.pokemonshowdown.com/sprites/xyani/floette-eternal.gif" width="81" height="90"><button onClick="post()">Generate</button><img src="http://play.pokemonshowdown.com/sprites/xyani/floette-eternal.gif" width="81" height="90"></center>
 <br>
 <p id="xd"> </p>
+
+<datalist id="types">
+<option value="Fire">
+<option value="Water">
+<option value="Grass">
+<option value="Electric">
+<option value="Ground">
+<option value="Bug">
+<option value="Poison">
+<option value="Fighting">
+<option value="Steel">
+<option value="Dark">
+<option value="Flying">
+<option value="Dragon">
+<option value="Ice">
+<option value="Rock">
+<option value="Ghost">
+<option value="Psychic">
+<option value="Normal">
+<option value="Fairy">
+</datalist>
+
+<datalist id="categories">
+<option value="Physical">
+<option value="Special">
+<option value="Status">
+</datalist>
 
 <script>
 function post ()
@@ -151,7 +183,6 @@ let def= document.getElementById("def").value;
 let spa= document.getElementById("spa").value;
 let spd= document.getElementById("spd").value;
 let spe= document.getElementById("spe").value;
-let abe= document.getElementById("abe").value;
 let wt= document.getElementById("wt").value;
 let comp= document.getElementById("comp").value;
 let newmove= document.getElementById("newmove").value;
@@ -172,15 +203,35 @@ let oldspa= document.getElementById("oldspa").value;
 let oldspd= document.getElementById("oldspd").value;
 let oldspe= document.getElementById("oldspe").value;
 
-let modhp = atk - oldatk;
+let modhp = hp - oldhp;
 let modatk = atk - oldatk;
 let moddef = def - olddef;
 let modspa = spa - oldspa;
 let modspd = spd - oldspd;
 let modspe = spe - oldspe;
 
+if (hp > oldhp) {
+modhp = `&#43;${modhp}`;
+}
+if (atk > oldatk) {
+modatk = `&#43;${modatk}`;
+}
+if (def > olddef) {
+moddef = `&#43;${moddef}`;
+}
+if (spa > oldspa) {
+modspa = `&#43;${modspa}`;
+}
+if (spd > oldspd) {
+modspd = `&#43;${modspd}`;
+}
+if (spe > oldspe) {
+modspe = `&#43;${modspe}`;
+}
+
 // Defaults and casing
 let poke = pokemon.toLowerCase();
+let typeo2= document.getElementById("type2").value;
 let t1 = type.toLowerCase();
 let t2 = type2.toLowerCase();
 if (type2 === "") {
@@ -193,7 +244,11 @@ if (wt === "") {
 wt = "100";
 }
 let movesmall = newmove.toLowerCase();
-document.getElementById("xd").innerHTML = "[IMG]http://play.pokemonshowdown.com/sprites/xyani/"+poke+".gif[/IMG]<br>[hide="+pokemon+"]<b>Pokemon:</b> "+pokemon+" <br> <b>Types:</b> "+t1+" "+t2+"<br><b>Stats:</b><br><b>HP:</b> "+oldhp+" ----> <b>"+hp+"</b> ("+modhp+") <br> <b>Atk:</b> "+oldatk+" ---> "+atk+" ("+modatk+") <br><b>Def:</b> "+olddef+" ---> "+def+" ("+moddef+") <br><b> SpA:</b> "+oldspa+" ---> "+spa+" ("+modspa+")<br> <b>SpD:</b> "+oldspd+" ---> "+spd+" ("+modspd+") <br> <b>Spe:</b> "+oldspe+" ---> "+spe+" ("+modspe+")<br><b>Ability:</b> "+abe+" <br> <b>Weight:</b> "+wt+"<br><b>Signature Move:</b> "+newmove+" | "+movetype+" | "+bp+" BP | Acc: "+acc+"% | "+category+" | Priority: "+priority+" | Additional Effect: "+effect+" | Z-Move: "+zmove+" | <br><b>Competitive Role:</b>  "+comp+"[/hide]<br><br><div class=code>[hide=Code]pokedex.js <br> "+poke+"eternal: {<br>num: "+num+", <br>types:[&quot;"+type+"&quot;"+type2+"<br>species: "+pokemon+"-Eternal, <br>baseSpecies: "+pokemon+", <br>forme: Eternal, <br> formeLetter: E, <br>baseStats: {hp:"+hp+", atk: "+atk+", def, "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} <br>abilities: {0: &quot;"+abe+"&quot;}, <br>weightkg: "+wt+", <br>}, <br> <br> moves.js <br>name: "+newmove+", <br> id: "+movesmall+", <br> basePower: "+bp+", <br> accuracy: "+acc+", <br>type: "+movetype+", <br> priority: "+priority+", <br> flags: {protect: 1, mirror: 1} <br> target: ,<br> // ZMove "+zmove+"},<br><br>formats-data.js<br>"+poke+": <br>tier: OU,<br>},<br>[/hide]</div>";
+if (category === "Status") {
+bp = "0";
+}
+
+document.getElementById("xd").innerHTML = "[IMG]http://play.pokemonshowdown.com/sprites/xyani/"+poke+".gif[/IMG]<br>[B]Name:[/B] "+pokemon+" <br>[IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+typeo2+".png[/IMG]<br>[B]New Stats:[/B]<br>[B]HP:[/B] "+hp+" ("+modhp+") <br> [B]Atk:[/B] "+atk+" [SIZE=2][COLOR=rgb(128, 128, 128)]("+modatk+")[/COLOR][/SIZE] <br>[B]Def:[/B] "+def+" ("+moddef+") <br>[B] SpA:[/B] "+spa+" ("+modspa+")<br> [B]SpD:[/B] "+spd+" ("+modspd+") <br> [B]Spe:[/B] "+spe+" ("+modspe+")<br><br> [B]Weight:[/B] "+wt+" kg<br>[B]Signature Move:[/B] "+newmove+" | [IMG]https://play.pokemonshowdown.com/sprites/types/"+movetype+".png[/IMG] | [IMG]https://play.pokemonshowdown.com/sprites/categories/"+category+".png[/IMG] | "+bp+" BP | Acc: "+acc+"% | +pp+ PP | Priority: "+priority+" | +moveflavour+ |"+effect+" | Z-Move: "+zmove+" | <br>[B]Competitive Role:[/B]  "+comp+"<br><br><div class=code>[hide=Code][CODE=javascript]pokedex.js <br> "+poke+"eternal: {<br>num: "+num+", <br>types:[&quot;"+type+"&quot;"+type2+"<br>species: "+pokemon+"-Eternal, <br>baseSpecies: "+pokemon+", <br>forme: Eternal, <br> formeLetter: E, <br>baseStats: {hp:"+hp+", atk: "+atk+", def, "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} <br>abilities: {0: &quot;&quot;}, <br>weightkg: "+wt+", <br>}, [/CODE]<br> <br> moves.js <br>[CODE=javascript]name: "+newmove+", <br> id: "+movesmall+", <br> basePower: "+bp+", <br> accuracy: "+acc+", <br>type: "+movetype+", <br> priority: "+priority+", <br> flags: {protect: 1, mirror: 1} <br> target: ,<br> // ZMove "+zmove+"},[/CODE]<br><br>formats-data.js<br>[CODE=javascript]"+poke+": <br>tier: OU,<br>},<br><br> scripts.js <br>this.modData('Learnsets', '"+poke+"').learnset."+movesmall+" = ['7L1'];[/CODE]<br><br>EternalCalc pokedex.js [CODE=javascript]&quot;"+poke+"-Eternal&quot;: {  <br> &quot;t1&quot;: &quot;"+type+"&quot;, <br> &quot;t2&quot;: &quot;"+typeo2+"&quot;,<br> &quot;bs&quot;: { <br> &quot;hp&quot;: "+hp+", <br>&quot;at&quot;: "+atk+", <br>&quot;df&quot;: "+def+", <br>&quot;sa&quot;: "+spa+", <br>&quot;sd&quot;: "+spd+", <br>&quot;sp&quot;: "+spe+", <br>}, <br> &quot;w&quot;: "+wt+"<br>},[/CODE][/hide]</div>";
 }
 </script>
 </html>
