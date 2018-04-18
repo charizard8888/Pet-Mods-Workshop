@@ -41,7 +41,7 @@ color: #FFA000;
 <body>
 <center>
   <h1>Eternal Pokémon</h1>
-Playable in <a href="http://dragonheaven.psim.us">Dragon Heaven!!</a>
+Playable in <a href="http://dragonheaven.psim.us">Dragon Heaven!</a>
 </center>
 <table>
 <tr>
@@ -53,8 +53,8 @@ Playable in <a href="http://dragonheaven.psim.us">Dragon Heaven!!</a>
 <td><Input type="text" id="num"></input></td>
 </tr>
 <td>Types:</td> 
-<td><Input type="text" id="type"></input></td>
-<td><Input type="text" id="type2"></input></td>
+<td><Input type="text" id="type" list="types"></input></td>
+<td><Input type="text" id="type2" list="types"></input></td>
 </tr>
 <tr>
 <td>HP:</td>
@@ -117,11 +117,11 @@ Spe:</td>
 </tr>
 <tr>
 <td>Move Flavour/Description:</td>
-<td><input id="moveflavour"></input></td>
+<td><textarea id="moveflavour"></textarea></td>
 </tr>
 <tr>
 <td>Additional Effect:</td>
-<td><input id="effect"></input></td>
+<td><textarea id="effect"></textarea></td>
 </tr>
 <td>Z-Move Base Power/Effect:</td>
 <td><input id="zmove"></input></td>
@@ -248,7 +248,7 @@ if (category === "Status") {
 bp = "0";
 }
 
-document.getElementById("xd").innerHTML = "[IMG]http://play.pokemonshowdown.com/sprites/xyani/"+poke+".gif[/IMG]<br>[B]Name:[/B] "+pokemon+" <br>[IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+typeo2+".png[/IMG]<br>[B]New Stats:[/B]<br>[B]HP:[/B] "+hp+" ("+modhp+") <br> [B]Atk:[/B] "+atk+" [SIZE=2][COLOR=rgb(128, 128, 128)]("+modatk+")[/COLOR][/SIZE] <br>[B]Def:[/B] "+def+" ("+moddef+") <br>[B] SpA:[/B] "+spa+" ("+modspa+")<br> [B]SpD:[/B] "+spd+" ("+modspd+") <br> [B]Spe:[/B] "+spe+" ("+modspe+")<br><br> [B]Weight:[/B] "+wt+" kg<br>[B]Signature Move:[/B] "+newmove+" | [IMG]https://play.pokemonshowdown.com/sprites/types/"+movetype+".png[/IMG] | [IMG]https://play.pokemonshowdown.com/sprites/categories/"+category+".png[/IMG] | "+bp+" BP | Acc: "+acc+"% | +pp+ PP | Priority: "+priority+" | +moveflavour+ |"+effect+" | Z-Move: "+zmove+" | <br>[B]Competitive Role:[/B]  "+comp+"<br><br><div class=code>[hide=Code][CODE=javascript]pokedex.js <br> "+poke+"eternal: {<br>num: "+num+", <br>types:[&quot;"+type+"&quot;"+type2+"<br>species: "+pokemon+"-Eternal, <br>baseSpecies: "+pokemon+", <br>forme: Eternal, <br> formeLetter: E, <br>baseStats: {hp:"+hp+", atk: "+atk+", def, "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} <br>abilities: {0: &quot;&quot;}, <br>weightkg: "+wt+", <br>}, [/CODE]<br> <br> moves.js <br>[CODE=javascript]name: "+newmove+", <br> id: "+movesmall+", <br> basePower: "+bp+", <br> accuracy: "+acc+", <br>type: "+movetype+", <br> priority: "+priority+", <br> flags: {protect: 1, mirror: 1} <br> target: ,<br> // ZMove "+zmove+"},[/CODE]<br><br>formats-data.js<br>[CODE=javascript]"+poke+": <br>tier: OU,<br>},<br><br> scripts.js <br>this.modData('Learnsets', '"+poke+"').learnset."+movesmall+" = ['7L1'];[/CODE]<br><br>EternalCalc pokedex.js [CODE=javascript]&quot;"+poke+"-Eternal&quot;: {  <br> &quot;t1&quot;: &quot;"+type+"&quot;, <br> &quot;t2&quot;: &quot;"+typeo2+"&quot;,<br> &quot;bs&quot;: { <br> &quot;hp&quot;: "+hp+", <br>&quot;at&quot;: "+atk+", <br>&quot;df&quot;: "+def+", <br>&quot;sa&quot;: "+spa+", <br>&quot;sd&quot;: "+spd+", <br>&quot;sp&quot;: "+spe+", <br>}, <br> &quot;w&quot;: "+wt+"<br>},[/CODE][/hide]</div>";
+document.getElementById("xd").innerHTML = "[IMG]http://play.pokemonshowdown.com/sprites/xyani/"+poke+".gif[/IMG]<br>[B]Name:[/B] "+pokemon+" <br>[IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+typeo2+".png[/IMG]<br>[B]New Stats:[/B]<br>[B]HP:[/B] "+hp+" ("+modhp+") <br> [B]Atk:[/B] "+atk+" [SIZE=2][COLOR=rgb(128, 128, 128)]("+modatk+")[/COLOR][/SIZE] <br>[B]Def:[/B] "+def+" ("+moddef+") <br>[B] SpA:[/B] "+spa+" ("+modspa+")<br> [B]SpD:[/B] "+spd+" ("+modspd+") <br> [B]Spe:[/B] "+spe+" ("+modspe+")<br><br> [B]Weight:[/B] "+wt+" kg<br>[B]Signature Move:[/B] "+newmove+" | [IMG]https://play.pokemonshowdown.com/sprites/types/"+movetype+".png[/IMG] | [IMG]https://play.pokemonshowdown.com/sprites/categories/"+category+".png[/IMG] | "+bp+" BP | Acc: "+acc+"% | +pp+ PP | Priority: "+priority+" | +moveflavour+ |"+effect+" | Z-Move: "+zmove+" | <br>[B]Competitive Role:[/B]  "+comp+"<br><br><div class=code>[hide=Code][CODE=javascript]pokedex.js <br> "+poke+"eternal: {<br>num: "+num+", <br>types:[&quot;"+type+"&quot;"+type2+"<br>species: &quot;"+pokemon+"-Eternal&quot;, <br>baseSpecies: &quot;"+pokemon+"&quot;, <br>forme: &quot;Eternal&quot;, <br> formeLetter: &quot;E&quot;, <br>baseStats: {hp:"+hp+", atk: "+atk+", def, "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"}, <br>abilities: {0: &quot;&quot;}, <br>weightkg: "+wt+", <br>}, [/CODE]<br> <br> moves.js <br>[CODE=javascript]"+newmove+": {basePower: accuracy: "+acc+", <br> "+bp+", <br> category: &quot;"+category+"&quot;, <br> shortDesc: &quot;"+effect+"&quot;, <br> id: &quot;"+movesmall+"&quot;, <br> name: &quot;"+newmove+"&quot;, <br> pp: +pp+,<br> priority: "+priority+", <br> flags: {protect: 1, mirror: 1}, <br> target: &quot;"+target+"&quot;,<br>type: &quot;"+movetype+"&quot;, <br>  // ZMove "+zmove+"},[/CODE]<br><br>formats-data.js<br>[CODE=javascript]"+poke+": <br>tier: OU,<br>},<br><br> scripts.js <br>this.modData('Learnsets', '"+poke+"').learnset."+movesmall+" = ['7L1'];[/CODE]<br><br>EternalCalc pokedex.js [CODE=javascript]&quot;"+poke+"-Eternal&quot;: {  <br> &quot;t1&quot;: &quot;"+type+"&quot;, <br> &quot;t2&quot;: &quot;"+typeo2+"&quot;,<br> &quot;bs&quot;: { <br> &quot;hp&quot;: "+hp+", <br>&quot;at&quot;: "+atk+", <br>&quot;df&quot;: "+def+", <br>&quot;sa&quot;: "+spa+", <br>&quot;sd&quot;: "+spd+", <br>&quot;sp&quot;: "+spe+", <br>}, <br> &quot;w&quot;: "+wt+"<br>},[/CODE][/hide]</div>";
 }
 </script>
 </html>
