@@ -82,9 +82,10 @@ Playable in <a href="http://nexus.psim.us" target="_blank">Nexus!</a>
 </tr>
 <tr>
 <td>Ability Description</td>
-<td><textarea type="text" id="abedesc" placeholder="Leave this section blank if using an existing ability" style="width:700%;height:100px;"></textarea></td>
+<td><textarea type="text" id="abedesc" placeholder="Leave this section blank if using an existing ability" style="width:700%;height:80px;"></textarea></td>
 </tr>
 <td>Weight:</td>
+<td><textarea type="number" id="wt" onInput="post()"></textarea></td>
 <td><Input type="text" id="wt"></input></td>
 </tr>
 <tr>
@@ -105,7 +106,7 @@ Playable in <a href="http://nexus.psim.us" target="_blank">Nexus!</a>
 </tr>
 <tr>
 <td>Description / Competitive</td>
-<td><textarea id="comp" style="width:700%;"></textarea></td>
+<td><textarea id="comp" style="width:700%;height:80px;"></textarea></td>
 </tr>
 </table>
 <br>
@@ -162,6 +163,7 @@ let def= document.getElementById("def").value;
 let spa= document.getElementById("spa").value;
 let spd= document.getElementById("spd").value;
 let spe= document.getElementById("spe").value;
+let wt= document.getElementById("wt").value;
 let abe= document.getElementById("abe").value;
 let abedesc = document.getElementById("abedesc").value;
 let comp= document.getElementById("comp").value;
@@ -270,7 +272,9 @@ else {
 type2 = ", &quot;"+type2+" &quot;],";
 }
 let num = 0;
-let wt =100;
+if (wt === "") {
+	wt = 100;
+}
 if (newmove1 === "") {
 newmove1 = "N/A";
 }
