@@ -48,8 +48,8 @@ Playable in <a href="http://nexus.psim.us" target="_blank">Nexus!</a>
 </tr>
 <td>Types:</td> 
 <td>
-<Input type="text" id="type" list="types"></input></td>
-<td><Input type="text" id="type2" list="types"></input></td>
+<Input type="text" id="type" list="types" onInput="post()></input></td>
+<td><Input type="text" id="type2" list="types" onInput="post()></input></td>
 </tr>
 <td>HP:</td>
 <td><textarea type="number" id="hp" onInput="post()"></textarea></td>
@@ -78,34 +78,34 @@ Playable in <a href="http://nexus.psim.us" target="_blank">Nexus!</a>
 <td><Input type="number" id="spe" onInput="post()"></input></td>
 </tr>
 <td>Ability:</td>
-<td><Input type="text" id="abe" list="allabilities"></input></td>
+<td><Input type="text" id="abe" list="allabilities" onInput="post()></input></td>
 </tr>
 <tr>
 <td>Ability Description</td>
-<td><textarea type="text" id="abedesc" placeholder="Leave this section blank if using an existing ability" style="width:700%;height:100px;"></textarea></td>
+<td><textarea type="text" id="abedesc" onInput="post() placeholder="Leave this section blank if using an existing ability" style="width:700%;height:80px;"></textarea></td>
 </tr>
 <td>Weight:</td>
-<td><Input type="text" id="wt"></input></td>
+<td><Input type="text" id="wt" onInput="post()></input></td>
 </tr>
 <tr>
 <td>New Move:</td>
-<td><Input type="text" id="newmove1" list="allmoves"></input></td></td>
+<td><Input type="text" id="newmove1" list="allmoves" onInput="post()></input></td></td>
 </tr>
 <tr>
 <td>New Move:</td>
-<td><Input type="text" id="newmove2" list="allmoves"></input></td></td>
+<td><Input type="text" id="newmove2" list="allmoves" onInput="post()></input></td></td>
 </tr>
 <tr>
 <td>New Move:</td>
-<td><Input type="text" id="newmove3" list="allmoves"></input></td></td>
+<td><Input type="text" id="newmove3" list="allmoves" onInput="post()></input></td></td>
 </tr>
 <tr>
 <td>New Move:</td>
-<td><Input type="text" id="newmove4" list="allmoves"></input></td></td>
+<td><Input type="text" id="newmove4" list="allmoves" onInput="post()></input></td></td>
 </tr>
 <tr>
 <td>Description / Competitive</td>
-<td><textarea id="comp" style="width:700%;"></textarea></td>
+<td><textarea id="comp" style="width:700%;height:80px;" onInput="post()></textarea></td>
 </tr>
 </table>
 <br>
