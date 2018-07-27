@@ -1,0 +1,226 @@
+<html>
+<head>
+<title>Votes</title>
+<style>
+.wide {
+height:150px;
+width:700px;
+}
+</style>
+</head>
+<body>
+<textarea id="space" class="wide"></textarea><br>
+<button onClick="load()">Load</button><br>
+<textarea id="vote1"></textarea><br>
+<textarea id="vote2"></textarea><br>
+<textarea id="vote3"></textarea><br>
+<textarea id="vote4"></textarea><br>
+<textarea id="vote5"></textarea><br>
+<textarea id="vote6"></textarea><br>
+<textarea id="vote7"></textarea><br>
+<textarea id="vote8"></textarea><br>
+<textarea id="vote9"></textarea><br>
+<textarea id="vote10"></textarea><br>
+<textarea id="vote11"></textarea><br>
+<textarea id="vote12"></textarea><br>
+<textarea id="vote13"></textarea><br>
+<textarea id="vote14"></textarea><br>
+<textarea id="vote15"></textarea><br>
+
+<button onClick="votes()">Generate</button>
+<p id="votes"></p>
+<p id="voters"></p>
+
+<textarea id="numbers"></textarea>
+<button onClick="count()">Generate</button>
+<p id ="results"></p>
+
+</body>
+<script>
+function load()
+{
+let nospace=document.getElementById("space").value;
+let allvotes = nospace.split("\n");
+let count1 = allvotes[0];
+let count2 = allvotes[1];
+let count3 = allvotes[2];
+let count4 = allvotes[3];
+let count5 = allvotes[4];
+let count6 = allvotes[5];
+let count7 = allvotes[6];
+let count8 = allvotes[7];
+let count9 = allvotes[8];
+let count10 = allvotes[9];
+let count11 = allvotes[10];
+let count12 = allvotes[11];
+let count13 = allvotes[12];
+let count14 = allvotes[13];
+let count15 = allvotes[14];
+
+document.getElementById("vote1").innerHTML =""+count1+"";
+if (count2 != undefined) document.getElementById("vote2").innerHTML =""+count2+"";
+if (count3 != undefined) document.getElementById("vote3").innerHTML =""+count3+"";
+if (count4 != undefined) document.getElementById("vote4").innerHTML =""+count4+"";
+if (count5 != undefined) document.getElementById("vote5").innerHTML =""+count5+"";
+if (count6 != undefined) document.getElementById("vote6").innerHTML =""+count6+"";
+if (count7 != undefined) document.getElementById("vote7").innerHTML =""+count7+"";
+if (count8 != undefined) document.getElementById("vote8").innerHTML =""+count8+"";
+if (count9 != undefined) document.getElementById("vote9").innerHTML =""+count9+"";
+if (count10 != undefined) document.getElementById("vote10").innerHTML =""+count10+"";
+if (count11 != undefined) document.getElementById("vote11").innerHTML =""+count11+"";
+if (count12 != undefined) document.getElementById("vote12").innerHTML =""+count12+"";
+if (count13 != undefined) document.getElementById("vote13").innerHTML =""+count13+"";
+if (count14 != undefined) document.getElementById("vote14").innerHTML =""+count14+"";
+if (count15 != undefined) document.getElementById("vote15").innerHTML =""+count15+"";
+
+}
+function votes()
+{
+let vote1 = document.getElementById("vote1").value;
+let vote2 = document.getElementById("vote2").value;
+let vote3 = document.getElementById("vote3").value;
+let vote4 = document.getElementById("vote4").value;
+let vote5 = document.getElementById("vote5").value;
+let vote6 = document.getElementById("vote6").value;
+let vote7 = document.getElementById("vote7").value;
+let vote8 = document.getElementById("vote8").value;
+let vote9 = document.getElementById("vote9").value;
+let vote10 = document.getElementById("vote10").value;
+let vote11 = document.getElementById("vote11").value;
+let vote12 = document.getElementById("vote12").value;
+let vote13 = document.getElementById("vote13").value;
+let vote14 = document.getElementById("vote14").value;
+let vote15 = document.getElementById("vote15").value;
+
+let voter1 = vote1.split(",");
+
+let v1p3 = voter1[0];
+let v1p2 = voter1[1];
+let v1p1 = voter1[2];
+
+let voter2 = vote2.split(",");
+
+let v2p3 = voter2[0];
+let v2p2 = voter2[1];
+let v2p1 = voter2[2];
+
+let voter3 = vote3.split(",");
+
+let v3p3 = voter3[0];
+let v3p2 = voter3[1];
+let v3p1 = voter3[2];
+
+let voter4 = vote4.split(",");
+
+let v4p3 = voter4[0];
+let v4p2 = voter4[1];
+let v4p1 = voter4[2];
+
+let voter5 = vote5.split(",");
+
+let v5p3 = voter5[0];
+let v5p2 = voter5[1];
+let v5p1 = voter5[2];
+
+let voter6 = vote6.split(",");
+
+let v6p3 = voter6[0];
+let v6p2 = voter6[1];
+let v6p1 = voter6[2];
+
+let voter7 = vote7.split(",");
+
+let v7p3 = voter7[0];
+let v7p2 = voter7[1];
+let v7p1 = voter7[2];
+
+let voter8 = vote8.split(",");
+
+let v8p3 = voter8[0];
+let v8p2 = voter8[1];
+let v8p1 = voter8[2];
+
+let voter9 = vote9.split(",");
+
+let v9p3 = voter9[0];
+let v9p2 = voter9[1];
+let v9p1 = voter9[2];
+
+let voter10 = vote10.split(",");
+
+let v10p3 = voter10[0];
+let v10p2 = voter10[1];
+let v10p1 = voter10[2];
+
+let voter11 = vote11.split(",");
+
+let v11p3 = voter11[0];
+let v11p2 = voter11[1];
+let v11p1 = voter11[2];
+
+let voter12 = vote12.split(",");
+
+let v12p3 = voter12[0];
+let v12p2 = voter12[1];
+let v12p1 = voter12[2];
+
+let voter13 = vote13.split(",");
+
+let v13p3 = voter13[0];
+let v13p2 = voter13[1];
+let v13p1 = voter13[2];
+
+let voter14 = vote14.split(",");
+
+let v14p3 = voter14[0];
+let v14p2 = voter14[1];
+let v14p1 = voter14[2];
+
+let voter15 = vote15.split(",");
+
+let v15p3 = voter15[0];
+let v15p2 = voter15[1];
+let v15p1 = voter15[2];
+
+document.getElementById("votes").innerHTML = "&lt;p id=&quot;Zard xd&quot;&gt;&lt;/p&gt;<br>&lt;button onClick=&quot;count()&quot;&gt;Generate&lt;/button&gt;<br>&lt;script&gt;<br>function count()<br>{<br>";
+if (v1p3 !="") {
+document.getElementById("voters").innerHTML +="let "+v1p3+"=0<br>";
+}
+if (v1p2 !="" && v1p2 !=undefined && v1p2!=v1p3) {
+document.getElementById("voters").innerHTML +="let "+v1p2+"=0<br> ";
+}
+if (v1p1 !="" && v1p1 !=undefined && v1p1 !=v1p3 && v1p1 !=v1p2) {
+document.getElementById("voters").innerHTML +="let "+v1p1+"=0<br>";
+}
+if (v2p3 !="" && v2p3!=undefined && v2p3 !=v1p3 && v2p3 !=v1p2 && v2p3 !=v1p1) {
+document.getElementById("voters").innerHTML +="let "+v2p3+"=0<br>";
+}
+if (v2p2 !="" && v2p2 !=undefined && v2p2 !=v1p3 && v2p2 !=v1p2 && v2p2 !=v1p1 && v2p2 !=v2p3) {
+document.getElementById("voters").innerHTML +="let "+v2p2+"=0<br>";
+}
+if (v2p1 !="" && v2p1 !=undefined && v2p1 !=v1p3 && v2p1 !=v1p2 && v2p1 !=v1p1 && v2p1 !=v2p3 && v2p1 !=v2p2) {
+document.getElementById("voters").innerHTML +="let "+v2p1+"=0<br>";
+}
+if (v3p3 !="" && v3p3 !=undefined && v3p3 !=v1p3 && v3p3 !=v1p2 && v3p3 !=v1p1 && v3p3 !=v2p3 && v3p3 !=v2p2 && v3p3 !=v2p1) {
+document.getElementById("voters").innerHTML +="let "+v3p3+"=0<br>";
+}
+if (v3p2 !="" && v3p2 !=undefined && v3p2 !=v1p3 && v3p2 !=v1p2 && v3p2 !=v1p1 && v3p2 !=v2p3 && v3p2 !=v2p2 && v3p2 !=v2p1 && v3p2 !=v3p3) {
+document.getElementById("voters").innerHTML +="let "+v3p2+"=0<br>";
+}
+if (v3p1 !="" && v3p1 !=undefined && v3p1 !=v1p3 && v3p1 !=v1p2 && v3p1 !=v1p1 && v3p1 !=v2p3 && v3p1 !=v2p2 && v3p1 !=v2p1 && v3p1 !=v3p3 && v3p1 !=v3p2) {
+document.getElementById("voters").innerHTML +="let "+v3p1+"=0<br>";
+}
+if (v4p3 !="" && v4p3 !=undefined && v4p3 !=v1p3 && v4p3 !=v1p2 && v4p3 !=v1p1 && v4p3 !=v2p3 && v4p3 !=v2p2 && v4p3 !=v2p1 && v4p3 !=v3p3 && v4p3 !=v3p2 && v4p3 !=v3p1) {
+document.getElementById("voters").innerHTML +="let "+v4p3+"=0<br>";
+}
+if (v4p2 !="" && v4p2 !=undefined && v4p2 !=v1p3 && v4p2 !=v1p2 && v4p2 !=v1p1 && v4p2 !=v2p3 && v4p2 !=v2p2 && v4p2 !=v2p1 && v4p2 !=v3p3 && v4p2 !=v3p2 && v4p2!=v3p1 && v4p2 !=v4p3) {
+document.getElementById("voters").innerHTML +="let "+v4p2+"=0<br>";
+}
+if (v4p1 !="" && v4p1 !=undefined && v4p1 !=v1p3 && v4p3 !=v1p2 && v4p1 !=v1p1 && v4p1 !=v2p3 && v4p1 !=v2p2 && v4p1 !=v2p1 && v4p1 !=v3p3 && v4p1 !=v3p2 && v4p1 !=v3p1 && v4p1 !=v4p3 && v4p1 != v4p2) {
+document.getElementById("voters").innerHTML +="let "+v4p1+"=0<br>";
+if (v5p3 !="" &&v5p3 !=undefined && v5p3 !=v1p3 && v4p3 !=v1p2 && v5p3 !=v1p1 &&v5p3 !=v2p3 && v5p3 !=v2p2 && v5p3 !=v2p1 && v5p3 !=v3p3 && v5p3 !=v3p2 &&v5p3 !=v3p1 && v5p3 !=v4p3 &&v5p3 != v4p2 && v5p3 != v4p1) {
+document.getElementById("voters").innerHTML +="let "+v5p3+"=0<br>let "+v5p2+"=0<br>let "+v5p1+"=0<br>let "+v6p3+"=0<br>let "+v6p2+"=0<br>let "+v6p1+"=0<br>let "+v7p3+"=0<br>let "+v7p2+"=0<br>let "+v7p1+"=0<br>let "+v8p3+"=0<br>let "+v8p2+"=0<br>let "+v8p1+"=0<br>let "+v9p3+"=0<br>let "+v9p2+"=0<br>let "+v9p1+"=0<br>let "+v10p3+"=0<br>let "+v10p2+"=0<br>let "+v10p1+"=0<br>let "+v11p3+"=0<br>let "+v11p2+"=0<br>let "+v11p1+"=0<br>let "+v12p3+"=0<br>let "+v12p2+"=0<br>let "+v12p1+"=0<br>let "+v13p3+"=0<br>let "+v13p2+"=0<br>let "+v13p1+"=0<br>let "+v14p3+"=0<br>let "+v14p2+"=0<br>let "+v14p1+"=0<br>let "+v15p3+"=0<br>let "+v15p2+"=0<br>let "+v15p1+"=0<br>  "+v1p3+"+= 3<br> "+v1p2+"+=2<br>"+v1p1+"+=1<br>"+v2p3+"+=3<br>"+v2p2+"+=2<br>"+v2p1+"+=1<br>"+v3p3+"+= 3<br>"+v3p2+"+= 2<br> "+v3p1+"+= 1 <br> "+v4p3+"+= 3<br>"+v4p2+"+= 2<br>"+v4p1+"+= 1<br>"+v5p3+"+= 3<br>"+v5p2+"+= 2<br>"+v5p1+"+= 1<br>"+v6p3+"+= 3<br>"+v6p2+"+= 2<br>"+v6p1+"+= 1<br>"+v7p3+"+= 3<br>"+v7p2+"+= 2<br>"+v7p1+"+= 1<br>"+v8p3+"+= 3<br>"+v8p2+"+= 2<br>"+v8p1+"+= 1<br>"+v9p3+"+= 3<br>"+v9p2+"+= 2<br>"+v9p1+"+= 1<br>"+v10p3+"+= 3<br>"+v10p2+"+= 2<br>"+v10p1+"+= 1<br>"+v11p3+"+= 3<br>"+v11p2+"+= 2<br>"+v11p1+"+= 1<br>"+v12p3+"+= 3<br>"+v12p2+"+= 2<br>"+v12p1+"+= 1<br>"+v13p3+"+= 3<br>"+v13p2+"+= 2<br>"+v13p1+"+= 1<br>"+v14p3+"+= 3<br>"+v14p2+"+= 2<br>"+v14p1+"+= 1<br>"+v15p3+"+= 3<br>"+v15p2+"+= 2<br>"+v15p1+"+= 1<br><br>document.getElementById(&quot;Zard xd&quot;).innerHTML=&quot; "+v1p3+"= &quot;+"+v1p3+"+&quot;  &lt;br&gt;&quot;&quot; "+v2p3+"= &quot;+"+v2p3+"+&quot;  &quot;&quot; "+v3p3+"= &quot;+"+v3p3+"+&quot;  &quot;&quot; "+v4p3+"= &quot;+"+v4p3+"+&quot;  &quot;&quot; "+v5p3+"= &quot;+"+v5p3+"+&quot;  &quot;&quot; "+v6p3+"= &quot;+"+v6p3+"+&quot;  &quot;&quot; "+v8p3+"= &quot;+"+v8p3+"+&quot;  &quot;&quot; "+v9p3+"= &quot;+"+v9p3+"+&quot;  &quot;&quot; "+v10p3+"= &quot;+"+v10p3+"+&quot;  &quot;&quot; "+v11p3+"= &quot;+"+v11p3+"+&quot;  &quot;&quot; "+v12p3+"= &quot;+"+v12p3+"+&quot;  &quot;&quot; "+v13p3+"= &quot;+"+v13p3+"+&quot;  &quot;&quot; "+v14p3+"= &quot;+"+v14p3+"+&quot;  &quot;&quot; "+v15p3+"= &quot;+"+v15p3+"+&quot;  &quot;;<br>}<br>&lt;/script&gt;";
+}
+}
+</script>
+</html>
