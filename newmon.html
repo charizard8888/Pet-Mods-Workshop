@@ -1,0 +1,159 @@
+<html>
+<head>
+<title>New Pokemon Creator</title>
+<style>
+body, table {
+font-size: 24px;
+}
+button {
+background-color: black;
+color: aqua;
+border: solid 4px aqua;
+font-size:28px;
+cursor: url(http://www.pokestadium.com/assets/img/sprites/misc/icons/charizard-mega-x.png), auto;
+}
+.code {
+background-color: black;
+color:lime;
+}
+h1 {
+font-family: Jokerman;
+color:Aqua;
+background-color:black;
+width: 40%;
+border: 4px solid Aqua;
+text-align: center;
+}
+p {
+background-color: black;
+color: aqua;
+}
+.mod {
+background-color: black;
+color: #FFA000;
+}
+textarea {
+height: 20px;
+width: 173px;
+  }
+</style>
+</head>
+<body>
+<center>
+<h1>New Pokemon Creator</h1>
+</center>
+<table>
+<td>Pokemon: </td> 
+<td><input type="text" id="pokemon" onInput="post()"></td>
+</tr>
+<td>Types:</td> 
+<td>
+<input type="text" id="type" list="types" onInput="post()"></td>
+<td><input type="text" id="type2" list="types" onInput="post()"></td>
+</tr>
+<td>HP:</td>
+<td><input type="number" id="hp" onInput="post()"></td>
+</tr>
+<tr>
+<td>Atk:</td>
+<td><input type="number" id="atk" onInput="post()"></td>
+<td id="modatk"></td>
+</tr>
+<td>Def:</td>
+<td><input type="number" id="def" onInput="post()"></td>
+</tr>
+<td>SpA:</td>
+<td><input type="number" id="spa" onInput="post()"></td>
+</tr>
+<td>SpD:</td>
+<td><input type="number" id="spd" onInput="post()"></td>
+</tr>
+<tr>
+<td>Spe:</td>
+<td><input type="number" id="spe" onInput="post()"></td>
+</tr>
+<td>Ability:</td>
+<td><input type="text" id="abe" list="allabilities" onInput="post()"></td>
+</tr>
+<td>Ability:</td>
+<td><input type="text" id="abe2" list="allabilities" onInput="post()"></td>
+</tr>
+<td>Ability:</td>
+<td><input type="text" id="abe3" list="allabilities" onInput="post()"></td>
+</tr>
+<tr>
+<td>Ability Description</td>
+<td><textarea type="text" id="abedesc" onInput="post()" placeholder="Leave this section blank if using an existing ability" style="width:700%;height:80px;"></textarea></td>
+</tr>
+<tr>
+<td>Weight:</td>
+<td><textarea type="text" id="oldwt" onInput="post()"></textarea></td>
+<td><input type="text" id="wt" onInput="post()"></td>
+</tr>
+</table>
+<br>
+<center>
+<img src="https://play.pokemonshowdown.com/sprites/xyani/marshadow.gif" width="48" height="63"><button onClick="post()">Generate</button><img src="https://play.pokemonshowdown.com/sprites/xyani/marshadow.gif" width="48" height="63">
+</center>
+<br>
+<p id="xd"> </p>
+
+ <datalist id="types">
+    <option value="Fire">
+    <option value="Water">
+    <option value="Grass">
+    <option value="Electric">
+    <option value="Ground">
+<option value="Bug">
+<option value="Poison">
+<option value="Fighting">
+<option value="Steel">
+<option value="Dark">
+<option value="Flying">
+<option value="Dragon">
+<option value="Ice">
+<option value="Rock">
+<option value="Ghost">
+<option value="Psychic">
+<option value="Normal">
+<option value="Fairy">
+  </datalist>
+<datalist id="allabilities">
+<option value="Adaptability"><option value="Aftermath"><option value="Aerilate"><option value="Air Lock"><option value="Analytic"><option value="Anger Point"><option value="Anticipation"><option value="Arena Trap"><option value="Aroma Veil"><option value="Aura Break"><option value="Bad Dreams"><option value="Battery"><option value="Battle Armor"><option value="Battle Bond"><option value="Beast Boost"><option value="Berserk"><option value="Big Pecks"><option value="Blaze"><option value="Bulletproof"><option value="Cheek Pouch"><option value="Chlorophyll"><option value="Clear Body"><option value="Cloud Nine"><option value="Color Change"><option value="Comatose"><option value="Competitive"><option value="Compound Eyes"><option value="Contrary"><option value="Corrosion"><option value="Cursed Body"><option value="Cute Charm"><option value="Damp"><option value="Dancer"><option value="Dark Aura"><option value="Dazzling"><option value="Defeatist"><option value="Defiant"><option value="Delta Stream"><option value="Desolate Land"><option value="Disguise"><option value="Download"><option value="Drizzle"><option value="Drought"><option value="Dry Skin"><option value="Early Bird"><option value="Effect Spore"><option value="Electric Surge"><option value="Emergency Exit"><option value="Fairy Aura"><option value="Filter"><option value="Flame Body"><option value="Flare Boost"><option value="Flash Fire"><option value="Flower Gift"><option value="Flower Veil"><option value="Fluffy"><option value="Forecast"><option value="Forewarn"><option value="Friend Guard"><option value="Frisk"><option value="Full Metal Body"><option value="Fur Coat"><option value="Gale Wings"><option value="Galvanize"><option value="Gluttony"><option value="Gooey"><option value="Grass Pelt"><option value="Grassy Surge"><option value="Guts"><option value="Harvest"><option value="Healer"><option value="Heatproof"><option value="Heavy Metal"><option value="Honey Gather"><option value="Huge Power"><option value="Hustle"><option value="Hydration"><option value="Hyper Cutter"><option value="Ice Body"><option value="Illuminate"><option value="Illusion"><option value="Immunity"><option value="Imposter"><option value="Infiltrator"><option value="Innards Out"><option value="Inner Focus"><option value="Insomnia"><option value="Intimidate"><option value="Iron Barbs"><option value="Iron Fist"><option value="Justified"><option value="Keen Eye"><option value="Klutz"><option value="Leaf Guard"><option value="Levitate"><option value="Light Metal"><option value="Lightning Rod"><option value="Limber"><option value="Liquid Ooze"><option value="Liquid Voice"><option value="Long Reach"><option value="Magic Bounce"><option value="Magic Guard"><option value="Magician"><option value="Magma Armor"><option value="Magnet Pull"><option value="Marvel Scale"><option value="Mega Launcher"><option value="Merciless"><option value="Minus"><option value="Misty Surge"><option value="Mold Breaker"><option value="Moody"><option value="Motor Drive"><option value="Moxie"><option value="Multiscale"><option value="Multitype"><option value="Mummy"><option value="Natural Cure"><option value="Neuroforce"><option value="No Guard"><option value="Normalize"><option value="Oblivious"><option value="Overcoat"><option value="Overgrow"><option value="Own Tempo"><option value="Parental Bond"><option value="Pickup"><option value="Pickpocket"><option value="Pixilate"><option value="Plus"><option value="Poison Heal"><option value="Poison Point"><option value="Poison Touch"><option value="Power Construct"><option value="Power of Alchemy"><option value="Prankster"><option value="Pressure"><option value="Primordial Sea"><option value="Prism Armor"><option value="Protean"><option value="Psychic Surge"><option value="Pure Power"><option value="Queenly Majesty"><option value="Quick Feet"><option value="Rain Dish"><option value="Rattled"><option value="Receiver"><option value="Reckless"><option value="Refrigerate"><option value="Regenerator"><option value="Rivalry"><option value="RKS System"><option value="Rock Head"><option value="Rough Skin"><option value="Run Away"><option value="Sand Force"><option value="Sand Rush"><option value="Sand Stream"><option value="Sand Veil"><option value="Sap Sipper"><option value="Schooling"><option value="Scrappy"><option value="Serene Grace"><option value="Shadow Shield"><option value="Shadow Tag"><option value="Shed Skin"><option value="Sheer Force"><option value="Shell Armor"><option value="Shield Dust"><option value="Shields Down"><option value="Simple"><option value="Skill Link"><option value="Slow Start"><option value="Slush Rush"><option value="Sniper"><option value="Snow Cloak"><option value="Snow Warning"><option value="Solar Power"><option value="Solid Rock"><option value="Soul-Heart"><option value="Soundproof"><option value="Speed Boost"><option value="Stakeout"><option value="Stall"><option value="Stamina"><option value="Stance Change"><option value="Static"><option value="Steadfast"><option value="Steelworker"><option value="Stench"><option value="Sticky Hold"><option value="Storm Drain"><option value="Strong Jaw"><option value="Sturdy"><option value="Suction Cups"><option value="Super Luck"><option value="Surge Surfer"><option value="Swarm"><option value="Sweet Veil"><option value="Swift Swim"><option value="Symbiosis"><option value="Synchronize"><option value="Tangled Feet"><option value="Tangling Hair"><option value="Technician"><option value="Telepathy"><option value="Teravolt"><option value="Thick Fat"><option value="Tinted Lens"><option value="Torrent"><option value="Toxic Boost"><option value="Tough Claws"><option value="Trace"><option value="Triage"><option value="Truant"><option value="Turboblaze"><option value="Unaware"><option value="Unburden"><option value="Unnerve"><option value="Victory Star"><option value="Vital Spirit"><option value="Volt Absorb"><option value="Water Absorb"><option value="Water Bubble"><option value="Water Compaction"><option value="Water Veil"><option value="Weak Armor"><option value="White Smoke"><option value="Wimp Out"><option value="Wonder Guard"><option value="Wonder Skin"><option value="Zen Mode">
+</datalist>
+<script>
+function post ()
+{
+// Front and Back End
+// Inputs
+let pokemon= document.getElementById("pokemon").value;
+let type= document.getElementById("type").value;
+let type2= document.getElementById("type2").value;
+let hp= document.getElementById("hp").value;
+let atk= document.getElementById("atk").value;
+let def= document.getElementById("def").value;
+let spa= document.getElementById("spa").value;
+let spd= document.getElementById("spd").value;
+let spe= document.getElementById("spe").value;
+let wt= document.getElementById("wt").value;
+let abe= document.getElementById("abe").value;
+let abe2= document.getElementById("abe").value;
+let abe3= document.getElementById("abe").value;
+
+if (abe2 !="" && abe2 !=undefined) {
+let ab22=`, 1: "${abe2}"`;
+}
+else {
+let ab22="";
+}
+
+if (abe3 !="" && abe3 !=undefined) {
+let ab33=`, 1: "${abe3}"`;
+else {
+let ab33="";
+}
+document.getElementById("xd").innerHTML ="+poke+": {<br>num: "+num+", <br>species: &quot;"+pokemon+"&quot;,<br>types:[&quot;"+type+"&quot;"+type2+"<br> baseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"}, <br>abilities: {0: &quot;"+abe+"&quot;"+abe22+" "+abe33+"}, <br>weightkg: "+wt+",<br>},";
+}
+</script>
+</body>
+</html>
