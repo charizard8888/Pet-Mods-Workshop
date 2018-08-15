@@ -139,6 +139,13 @@ let wt= document.getElementById("wt").value;
 let abe= document.getElementById("abe").value;
 let abe2= document.getElementById("abe2").value;
 let abe3= document.getElementById("abe3").value;
+  
+if (type2 === "") {
+type2 ="],";
+}
+else {
+type2 = ", &quot;"+type2+" &quot;],";
+}
 
 document.getElementById("xd").innerHTML =" "+pokemon+": {<br>num: "+num+", <br>species: &quot;"+pokemon+"&quot;,<br>types:[&quot;"+type+"&quot;"+type2+"<br> baseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"}, <br>abilities: {0: &quot;"+abe+"&quot;, 1: &quot;"+abe2+"&quot;, H: &quot;"+abe3+"&quot;}, <br>weightkg: "+wt+",<br>},";
 }
