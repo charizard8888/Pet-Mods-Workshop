@@ -140,14 +140,14 @@ let abe= document.getElementById("abe").value;
 let abe2= document.getElementById("abe2").value;
 let abe3= document.getElementById("abe3").value;
 
-let abe22="";
-let abe33="";
-if (abe2 !="" && abe2 !=undefined) {
-ab22=`, 1: "${abe2}"`;
+let abe22="p";
+let abe33="q";
+if (abe2 !=="" && abe2 !== undefined) {
+ab22 =`, 1: &quot;${abe2}&quot;`;
 }
 
-if (abe3 !="" && abe3 !=undefined) {
-ab33=`, 1: "${abe3}"`;
+if (abe3 !=="" && abe3 !== undefined) {
+ab33=`, 1: &quot;${abe3}&quot;`;
 }
 
 document.getElementById("xd").innerHTML =" "+pokemon+": {<br>num: "+num+", <br>species: &quot;"+pokemon+"&quot;,<br>types:[&quot;"+type+"&quot;"+type2+"<br> baseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"}, <br>abilities: {0: &quot;"+abe+"&quot;"+abe22+" "+abe33+"}, <br>weightkg: "+wt+",<br>},";
