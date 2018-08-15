@@ -46,6 +46,9 @@ width: 173px;
 <td>Pokemon: </td> 
 <td><input type="text" id="pokemon" onInput="post()"></td>
 </tr>
+<td>Dex Number: </td> 
+<td><input type="text" id="num" onInput="post()"></td>
+</tr>
 <td>Types:</td> 
 <td>
 <input type="text" id="type" list="types" onInput="post()"></td>
@@ -82,9 +85,6 @@ width: 173px;
 <td><input type="text" id="abe3" list="allabilities" onInput="post()"></td>
 </tr>
 <tr>
-<td>Ability Description</td>
-<td><textarea type="text" id="abedesc" onInput="post()" placeholder="Leave this section blank if using an existing ability" style="width:700%;height:80px;"></textarea></td>
-</tr>
 <tr>
 <td>Weight:</td>
 <td><textarea type="text" id="oldwt" onInput="post()"></textarea></td>
@@ -127,6 +127,7 @@ function post ()
 // Front and Back End
 // Inputs
 let pokemon= document.getElementById("pokemon").value;
+let num= document.getElementById("num").value;
 let type= document.getElementById("type").value;
 let type2= document.getElementById("type2").value;
 let hp= document.getElementById("hp").value;
@@ -140,19 +141,17 @@ let abe= document.getElementById("abe").value;
 let abe2= document.getElementById("abe").value;
 let abe3= document.getElementById("abe").value;
 
+let abe22=""
+let abe33=""
 if (abe2 !="" && abe2 !=undefined) {
-let ab22=`, 1: "${abe2}"`;
-}
-else {
-let ab22="";
+ab22=`, 1: "${abe2}"`;
 }
 
 if (abe3 !="" && abe3 !=undefined) {
-let ab33=`, 1: "${abe3}"`;
-else {
-let ab33="";
+ab33=`, 1: "${abe3}"`;
 }
-document.getElementById("xd").innerHTML ="+poke+": {<br>num: "+num+", <br>species: &quot;"+pokemon+"&quot;,<br>types:[&quot;"+type+"&quot;"+type2+"<br> baseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"}, <br>abilities: {0: &quot;"+abe+"&quot;"+abe22+" "+abe33+"}, <br>weightkg: "+wt+",<br>},";
+
+document.getElementById("xd").innerHTML =" "+pokemon+": {<br>num: "+num+", <br>species: &quot;"+pokemon+"&quot;,<br>types:[&quot;"+type+"&quot;"+type2+"<br> baseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"}, <br>abilities: {0: &quot;"+abe+"&quot;"+abe22+" "+abe33+"}, <br>weightkg: "+wt+",<br>},";
 }
 </script>
 </body>
