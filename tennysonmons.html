@@ -158,7 +158,7 @@ let abe3= document.getElementById("abe3").value;
 let typeo2= document.getElementById("type2").value;
 let comp= document.getElementById("comp").value;
 let flavour= document.getElementById("flavour").value;
-
+let mon=pokemon.lower();
 let bst= +hp + +atk + +def + +spa + +spd + +spe;
 if (type2 === "") {
 type2 ="],";
@@ -170,19 +170,19 @@ let formeLetter="";
 let item=""
 if (forme==='Omni-Enchanced') {
  formeLetter="OE";
- item="Omnitrix"
+ item="omnitrix"
 }
 else if (forme==='Ultimate') {
   formeLetter="U";
-  item="Ultimatrix"
+  item="ultimatrix"
 }
 else if (forme==='Predator') {
    formeLetter="P";
-  item="Nemetrix"
+  item="nemetrix"
 }
 else {
 }
-document.getElementById("xd").innerHTML ="[B]Alien:[/B] "+pokemon+"<br>[IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+typeo2+".png[/IMG]<br>[I][B]HP:[/B][/I] "+hp+"<br>[I][B]Atk:[/B][/I] "+atk+"<br>[I][B]Def:[/B][/I] "+def+"<br>[I][B]SpA:[/B][/I] "+spa+"<br>[I][B]SpD:[/B][/I] "+spd+"<br>[I][B]Spe:[/B][/I] "+spe+"<br>[I][B]BST:[/B][/I] "+bst+"<br>[I][B]Weight:[/B][/I] "+wt+"<br>[B]Abilities:[/B] "+abe+" / "+abe2+" / [I]"+abe3+"[/I]<br>[B]Flavour/Design:[/B] "+flavour+"<br>[B]Competitive Analysis:[/B] "+comp+"[hide=Code]pokedex.js[CODE=javascript]"+pokemon+": {<br>num: "+num+", <br>species: &quot;"+pokemon+"&quot;,/*forme: &quot;"+forme+"&quot;,<br>formeLetter:&quot;"+formeLetter+",<br>baseSpecies: &quot;"+pokemon+",*<br><br>types:[&quot;"+type+"&quot;"+type2+"<br> baseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"}, <br>abilities: {0: &quot;"+abe+"&quot;, 1: &quot;"+abe2+"&quot;, H: &quot;"+abe3+"&quot;}, <br>weightkg: "+wt+",<br>},[/CODE]<br>formats-data.js[CODE=javascript]"+pokemon+":{<br>tier: &quot;OU&quot;,<br>},[/CODE]";
+document.getElementById("xd").innerHTML ="[B]Alien:[/B] "+pokemon+"<br>[IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+typeo2+".png[/IMG]<br>[I][B]HP:[/B][/I] "+hp+"<br>[I][B]Atk:[/B][/I] "+atk+"<br>[I][B]Def:[/B][/I] "+def+"<br>[I][B]SpA:[/B][/I] "+spa+"<br>[I][B]SpD:[/B][/I] "+spd+"<br>[I][B]Spe:[/B][/I] "+spe+"<br>[I][B]BST:[/B][/I] "+bst+"<br>[I][B]Weight:[/B][/I] "+wt+"<br>[B]Abilities:[/B] "+abe+" / "+abe2+" / [I]"+abe3+"[/I]<br>[B]Flavour/Design:[/B] "+flavour+"<br>[B]Competitive Analysis:[/B] "+comp+"[hide=Code]pokedex.js[CODE=javascript]"+pokemon+": {<br>num: "+num+", <br>species: &quot;"+pokemon+"&quot;,<br>/*forme: &quot;"+forme+"&quot;,<br>formeLetter:&quot;"+formeLetter+",<br>baseSpecies: &quot;"+pokemon+",*/<br><br>types:[&quot;"+type+"&quot;"+type2+"<br> baseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"}, <br>abilities: {0: &quot;"+abe+"&quot;, 1: &quot;"+abe2+"&quot;, H: &quot;"+abe3+"&quot;}, <br>weightkg: "+wt+",<br>},[/CODE]<br>formats-data.js[CODE=javascript]"+mon+":{<br>tier: &quot;OU&quot;,<br>},<br>//scripts.js[CODE=javascript]else if(pokemon.baseTemplate.baseSpecies ===&quot;"+pokemon+"&quot; && pokemon.getItem().id ===&quot;"+item+"&quot;) {<br>return //"+pokemon+" "+forme+";<br>}[/CODE]";
 }
 </script>
 </body>
