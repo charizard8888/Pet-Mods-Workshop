@@ -151,14 +151,14 @@ let typeo2= document.getElementById("type2").value;
 let comp= document.getElementById("comp").value;
 let flavour= document.getElementById("flavour").value;
 
-let bst= hp.valueAsNumber + atk.valueAsNumber + def.valueAsNumber + spa.valueAsNumber + spd.valueAsNumber + spe.valueAsNumber;
+let bst= +hp + +atk + +def + +spa + +spd + +spe;
 if (type2 === "") {
 type2 ="],";
 }
 else {
 type2 = ", &quot;"+type2+" &quot;],";
 }
-document.getElementById("xd").innerHTML ="[B]Alien:[/B] "+pokemon+"<br>[IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+typeo2+".png[/IMG]<br>[I][B]HP:[/B][/I] "+hp+"<br>[I][B]Atk:[/B][/I] "+atk+"<br>[I][B]Def:[/B][/I] "+def+"<br>[I][B]SpA:[/B][/I] "+spa+"<br>[I][B]SpD:[/B][/I] "+spd+"<br>[I][B]Spe:[/B][/I] "+spe+"<br>[I][B]BST:[/B][/I] "+bst+"<br>[I][B]Weight:[/B][/I] "+wt+"<br>[B]Abilities:[/B] "+abe+" / "+abe2+" / [I]"+abe+"[/I]<br>[B]Flavour/Design:[/B]"+flavour+"<br>[B]Competitive Analysis:[/B] "+comp+"[hide=Code]pokedex.js[CODE=javascript]"+pokemon+": {<br>num: "+num+", <br>species: &quot;"+pokemon+"&quot;,<br>types:[&quot;"+type+"&quot;"+type2+"<br> baseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"}, <br>abilities: {0: &quot;"+abe+"&quot;, 1: &quot;"+abe2+"&quot;, H: &quot;"+abe3+"&quot;}, <br>weightkg: "+wt+",<br>},[/CODE]<br>formats-data.js[CODE=javascript]+"pokemon+":{<br>tier: &quot;OU&quot;,<br>},[/CODE]";
+document.getElementById("xd").innerHTML ="[B]Alien:[/B] "+pokemon+"<br>[IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+typeo2+".png[/IMG]<br>[I][B]HP:[/B][/I] "+hp+"<br>[I][B]Atk:[/B][/I] "+atk+"<br>[I][B]Def:[/B][/I] "+def+"<br>[I][B]SpA:[/B][/I] "+spa+"<br>[I][B]SpD:[/B][/I] "+spd+"<br>[I][B]Spe:[/B][/I] "+spe+"<br>[I][B]BST:[/B][/I] "+bst+"<br>[I][B]Weight:[/B][/I] "+wt+"<br>[B]Abilities:[/B] "+abe+" / "+abe2+" / [I]"+abe+"[/I]<br>[B]Flavour/Design:[/B]"+flavour+"<br>[B]Competitive Analysis:[/B] "+comp+"[hide=Code]pokedex.js[CODE=javascript]"+pokemon+": {<br>num: "+num+", <br>species: &quot;"+pokemon+"&quot;,<br>types:[&quot;"+type+"&quot;"+type2+"<br> baseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"}, <br>abilities: {0: &quot;"+abe+"&quot;, 1: &quot;"+abe2+"&quot;, H: &quot;"+abe3+"&quot;}, <br>weightkg: "+wt+",<br>},[/CODE]<br>formats-data.js[CODE=javascript]"+pokemon+":{<br>tier: &quot;OU&quot;,<br>},[/CODE]";
 }
 </script>
 </body>
