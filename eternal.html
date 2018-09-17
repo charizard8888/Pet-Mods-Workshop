@@ -211,15 +211,15 @@ let oldspa= document.getElementById("oldspa").value;
 let oldspd= document.getElementById("oldspd").value;
 let oldspe= document.getElementById("oldspe").value;
 
-let modhp = hp - oldhp;
+let modhp = +hp - +oldhp;
 let modatk = atk - oldatk;
 let moddef = def - olddef;
 let modspa = spa - oldspa;
 let modspd = spd - oldspd;
 let modspe = spe - oldspe;
-let oldbst = oldhp + oldatk + olddef + oldspa + oldspd + oldspe;
-let newbst = hp + atk + def + spa + spd + spe;
-let modbst = newbst - oldbst;
+let oldbst = +oldhp + +oldatk + +olddef + +oldspa + +oldspd + +oldspe;
+let newbst = +hp + +atk + +def + +spa + +spd + +spe;
+let modbst = +newbst - +oldbst;
 
 if (hp > oldhp) {
 modhp = `&#43;${modhp}`;
