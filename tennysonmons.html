@@ -46,6 +46,9 @@ width: 173px;
 <td>Pokemon: </td> 
 <td><input type="text" id="pokemon" onInput="post()"></td>
 </tr>
+<td>Forme: </td> 
+<td><input type="text" id="forme" onInput="post()"></td>
+</tr>
 <td>Dex Number: </td> 
 <td><input type="text" id="num" onInput="post()"></td>
 </tr>
@@ -104,7 +107,11 @@ width: 173px;
 </center>
 <br>
 <p id="xd"> </p>
-
+<datalist id="forme">
+  <option value="Omni-Enhanced">
+    <option value="Ultimate">
+      <option value="Predator">
+  </datalist>
  <datalist id="types">
     <option value="Fire">
     <option value="Water">
@@ -134,6 +141,7 @@ function post ()
 // Front and Back End
 // Inputs
 let pokemon= document.getElementById("pokemon").value;
+let forme= document.getElementById("forme").value;
 let num= document.getElementById("num").value;
 let type= document.getElementById("type").value;
 let type2= document.getElementById("type2").value;
@@ -158,7 +166,22 @@ type2 ="],";
 else {
 type2 = ", &quot;"+type2+" &quot;],";
 }
-document.getElementById("xd").innerHTML ="[B]Alien:[/B] "+pokemon+"<br>[IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+typeo2+".png[/IMG]<br>[I][B]HP:[/B][/I] "+hp+"<br>[I][B]Atk:[/B][/I] "+atk+"<br>[I][B]Def:[/B][/I] "+def+"<br>[I][B]SpA:[/B][/I] "+spa+"<br>[I][B]SpD:[/B][/I] "+spd+"<br>[I][B]Spe:[/B][/I] "+spe+"<br>[I][B]BST:[/B][/I] "+bst+"<br>[I][B]Weight:[/B][/I] "+wt+"<br>[B]Abilities:[/B] "+abe+" / "+abe2+" / [I]"+abe+"[/I]<br>[B]Flavour/Design:[/B]"+flavour+"<br>[B]Competitive Analysis:[/B] "+comp+"[hide=Code]pokedex.js[CODE=javascript]"+pokemon+": {<br>num: "+num+", <br>species: &quot;"+pokemon+"&quot;,<br>types:[&quot;"+type+"&quot;"+type2+"<br> baseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"}, <br>abilities: {0: &quot;"+abe+"&quot;, 1: &quot;"+abe2+"&quot;, H: &quot;"+abe3+"&quot;}, <br>weightkg: "+wt+",<br>},[/CODE]<br>formats-data.js[CODE=javascript]"+pokemon+":{<br>tier: &quot;OU&quot;,<br>},[/CODE]";
+  
+if (forme==='Omni-Enchanced') {
+  let formeLetter="OE";
+  let item="Omnitrix"
+}
+else if (forme==='Ultimate') {
+   let formeLetter="U";
+  let item="Ultimatrix"
+}
+else if (forme==='Predator') {
+   let formeLetter="P";
+  let item="Nemetrix"
+}
+else {
+}
+document.getElementById("xd").innerHTML ="[B]Alien:[/B] "+pokemon+"<br>[IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+typeo2+".png[/IMG]<br>[I][B]HP:[/B][/I] "+hp+"<br>[I][B]Atk:[/B][/I] "+atk+"<br>[I][B]Def:[/B][/I] "+def+"<br>[I][B]SpA:[/B][/I] "+spa+"<br>[I][B]SpD:[/B][/I] "+spd+"<br>[I][B]Spe:[/B][/I] "+spe+"<br>[I][B]BST:[/B][/I] "+bst+"<br>[I][B]Weight:[/B][/I] "+wt+"<br>[B]Abilities:[/B] "+abe+" / "+abe2+" / [I]"+abe3+"[/I]<br>[B]Flavour/Design:[/B] "+flavour+"<br>[B]Competitive Analysis:[/B] "+comp+"[hide=Code]pokedex.js[CODE=javascript]"+pokemon+": {<br>num: "+num+", <br>species: &quot;"+pokemon+"&quot;,/*forme: &quot;"+forme+"&quot;,<br>formeLetter:&quot;"+formeLetter+",<br>baseSpecies: &quot;"+pokemon+",*<br><br>types:[&quot;"+type+"&quot;"+type2+"<br> baseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"}, <br>abilities: {0: &quot;"+abe+"&quot;, 1: &quot;"+abe2+"&quot;, H: &quot;"+abe3+"&quot;}, <br>weightkg: "+wt+",<br>},[/CODE]<br>formats-data.js[CODE=javascript]"+pokemon+":{<br>tier: &quot;OU&quot;,<br>},[/CODE]";
 }
 </script>
 </body>
