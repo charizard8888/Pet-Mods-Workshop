@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Votes!</title>
+<title>Votes</title>
 <style>
 .wide {
 height:150px;
@@ -57,65 +57,7 @@ let count13 = allvotes[12];
 let count14 = allvotes[13];
 let count15 = allvotes[14];
 
-let colonsplit1=count1.split(":")
-let mon1=colonsplit1[0]
-count1=count1.replace(mon1+":", "");
-
-let colonsplit2=count2.split(":")
-let mon2=colonsplit2[0]
-count2=count2.replace(mon2":", "");
-
-let colonsplit3=count3.split(":")
-let mon3=colonsplit3[0]
-count3=count3.replace(mon3":", "");
-
-let colonsplit4=count4.split(":")
-let mon4=colonsplit4[0]
-count4=count4.replace(mon4":", "");
-
-let colonsplit5=count5.split(":")
-let mon5=colonsplit5[0]
-count5=count5.replace(mon5":", "");
-
-let colonsplit6=count6.split(":")
-let mon6=colonsplit6[0]
-count6=count6.replace(mon6":", "");
-
-let colonsplit7=count7.split(":")
-let mon7=colonsplit7[0]
-count7=count7.replace(mon7":", "");
-
-let colonsplit8=count8.split(":")
-let mon8=colonsplit8[0]
-count8=count8.replace(mon8":", "");
-
-let colonsplit9=count9.split(":")
-let mon9=colonsplit9[0]
-count9=count9.replace(mon9":", "");
-
-let colonsplit10=count10.split(":")
-let mon10=colonsplit10[0]
-count10=count10.replace(mon10":", "");
-
-let colonsplit11=count11.split(":")
-let mon11=colonsplit11[0]
-count11=count11.replace(mon11":", "");
-
-let colonsplit12=count12.split(":")
-let mon12=colonsplit12[0]
-count12=count12.replace(mon12":", "");
-
-let colonsplit13=count13.split(":")
-let mon13=colonsplit13[0]
-count13=count13.replace(mon13":", "");
-
-let colonsplit14=count14.split(":")
-let mon14=colonsplit14[0]
-count14=count14.replace(mon14":", "");
-
-let colonsplit15=count15.split(":")
-let mon15=colonsplit15[0]
-count15=count15.replace(mon15":", "");
+//count1=count1.replace(/\s/g, "")
 
 document.getElementById("vote1").innerHTML =""+count1+"";
 if (count2 != undefined) {
@@ -334,102 +276,8 @@ if (v6p3 !="" &&v6p3 !=undefined && v6p3 !=v1p3 && v4p3 !=v1p2 && v6p3 !=v1p1 &&
 document.getElementById("voters").innerHTML +="let "+v6p3+"=0<br>";
 }
 if (v6p2 !="" &&v6p2 !=undefined && v6p2 !=v1p3 && v4p3 !=v1p2 && v6p2 !=v1p1 &&v6p2 !=v2p3 && v6p2 !=v2p2 && v6p2 !=v2p1 && v6p2 !=v3p3 && v6p2 !=v3p2 &&v6p2 !=v3p1 && v6p2 !=v4p3 &&v6p2 != v4p2 && v6p2 != v4p1 && v6p2 != v5p2 && v6p2 != v5p1 && v6p2 != v6p3) {
-document.getElementById("voters").innerHTML +="let "+v6p2+"=0<br>";
+document.getElementById("voters").innerHTML +="let "+v6p2+"=0<br>let "+v6p1+"=0<br>let "+v7p3+"=0<br>let "+v7p2+"=0<br>let "+v7p1+"=0<br>let "+v8p3+"=0<br>let "+v8p2+"=0<br>let "+v8p1+"=0<br>let "+v9p3+"=0<br>let "+v9p2+"=0<br>let "+v9p1+"=0<br>let "+v10p3+"=0<br>let "+v10p2+"=0<br>let "+v10p1+"=0<br>let "+v11p3+"=0<br>let "+v11p2+"=0<br>let "+v11p1+"=0<br>let "+v12p3+"=0<br>let "+v12p2+"=0<br>let "+v12p1+"=0<br>let "+v13p3+"=0<br>let "+v13p2+"=0<br>let "+v13p1+"=0<br>let "+v14p3+"=0<br>let "+v14p2+"=0<br>let "+v14p1+"=0<br>let "+v15p3+"=0<br>let "+v15p2+"=0<br>let "+v15p1+"=0<br>  "+v1p3+"+= 3<br> "+v1p2+"+=2<br>"+v1p1+"+=1<br>"+v2p3+"+=3<br>"+v2p2+"+=2<br>"+v2p1+"+=1<br>"+v3p3+"+= 3<br>"+v3p2+"+= 2<br> "+v3p1+"+= 1 <br> "+v4p3+"+= 3<br>"+v4p2+"+= 2<br>"+v4p1+"+= 1<br>"+v5p3+"+= 3<br>"+v5p2+"+= 2<br>"+v5p1+"+= 1<br>"+v6p3+"+= 3<br>"+v6p2+"+= 2<br>"+v6p1+"+= 1<br>"+v7p3+"+= 3<br>"+v7p2+"+= 2<br>"+v7p1+"+= 1<br>"+v8p3+"+= 3<br>"+v8p2+"+= 2<br>"+v8p1+"+= 1<br>"+v9p3+"+= 3<br>"+v9p2+"+= 2<br>"+v9p1+"+= 1<br>"+v10p3+"+= 3<br>"+v10p2+"+= 2<br>"+v10p1+"+= 1<br>"+v11p3+"+= 3<br>"+v11p2+"+= 2<br>"+v11p1+"+= 1<br>"+v12p3+"+= 3<br>"+v12p2+"+= 2<br>"+v12p1+"+= 1<br>"+v13p3+"+= 3<br>"+v13p2+"+= 2<br>"+v13p1+"+= 1<br>"+v14p3+"+= 3<br>"+v14p2+"+= 2<br>"+v14p1+"+= 1<br>"+v15p3+"+= 3<br>"+v15p2+"+= 2<br>"+v15p1+"+= 1<br><br>document.getElementById(&quot;Zard xd&quot;).innerHTML=&quot; "+v1p3+"= &quot;+"+v1p3+"+&quot;  &lt;br&gt;&quot;&quot; "+v2p3+"= &quot;+"+v2p3+"+&quot;  &quot;&quot; "+v3p3+"= &quot;+"+v3p3+"+&quot;  &quot;&quot; "+v4p3+"= &quot;+"+v4p3+"+&quot;  &quot;&quot; "+v5p3+"= &quot;+"+v5p3+"+&quot;  &quot;&quot; "+v6p3+"= &quot;+"+v6p3+"+&quot;  &quot;&quot; "+v8p3+"= &quot;+"+v8p3+"+&quot;  &quot;&quot; "+v9p3+"= &quot;+"+v9p3+"+&quot;  &quot;&quot; "+v10p3+"= &quot;+"+v10p3+"+&quot;  &quot;&quot; "+v11p3+"= &quot;+"+v11p3+"+&quot;  &quot;&quot; "+v12p3+"= &quot;+"+v12p3+"+&quot;  &quot;&quot; "+v13p3+"= &quot;+"+v13p3+"+&quot;  &quot;&quot; "+v14p3+"= &quot;+"+v14p3+"+&quot;  &quot;&quot; "+v15p3+"= &quot;+"+v15p3+"+&quot;  &quot;;<br>}<br>&lt;/script&gt;";
 }
-if (v6p1 !="" &&v6p1 !=undefined && v6p1 !=v1p3 && v4p3 !=v1p2 && v6p1 !=v1p1 &&v6p1 !=v2p3 && v6p1 !=v2p2 && v6p1 !=v2p1 && v6p1 !=v3p3 && v6p1 !=v3p2 &&v6p1 !=v3p1 && v6p1 !=v4p3 &&v6p1 != v4p2 && v6p1 != v4p1 && v6p1 != v5p2 && v6p1 != v5p1 && v6p1 != v6p3 && v6p1 != v6p2) {
-document.getElementById("voters").innerHTML +="let "+v6p1+"=0<br>";
-}
-if (v7p3 !="" &&v7p3 !=undefined && v7p3 !=v1p3 && v4p3 !=v1p2 && v7p3 !=v1p1 &&v7p3 !=v2p3 && v7p3 !=v2p2 && v7p3 !=v2p1 && v7p3 !=v3p3 && v7p3 !=v3p2 &&v7p3 !=v3p1 && v7p3 !=v4p3 &&v7p3 != v4p2 && v7p3 != v4p1 && v7p3 != v5p2 && v7p3 != v5p1 && v7p3 != v6p3 && v7p3 != v6p2 && v7p3 != v6p1) {
-document.getElementById("voters").innerHTML +="let "+v7p3+"=0<br>";
-}
-if (v7p2 !="" &&v7p2 !=undefined && v7p2 !=v1p3 && v4p3 !=v1p2 && v7p2 !=v1p1 &&v7p2 !=v2p3 && v7p2 !=v2p2 && v7p2 !=v2p1 && v7p2 !=v3p3 && v7p2 !=v3p2 &&v7p2 !=v3p1 && v7p2 !=v4p3 &&v7p2 != v4p2 && v7p2 != v4p1 && v7p2 != v5p2 && v7p2 != v5p1 && v7p2 != v6p3 && v7p2 != v6p2 && v7p2 != v6p1 && v7p2 != v7p3) {
-document.getElementById("voters").innerHTML +="let "+v7p2+"=0<br>";
-}
-if (v7p1 !="" &&v7p1 !=undefined && v7p1 !=v1p3 && v4p3 !=v1p2 && v7p1 !=v1p1 &&v7p1 !=v2p3 && v7p1 !=v2p2 && v7p1 !=v2p1 && v7p1 !=v3p3 && v7p1 !=v3p2 &&v7p1 !=v3p1 && v7p1 !=v4p3 &&v7p1 != v4p2 && v7p1 != v4p1 && v7p1 != v5p2 && v7p1 != v5p1 && v7p1 != v6p3 && v7p1 != v6p2 && v7p1 != v6p1 && v7p1 != v7p3 && v7p1 !=v7p2) {
-document.getElementById("voters").innerHTML +="let "+v7p1+"=0<br>";
-}
-if (v8p3 !="" &&v8p3 !=undefined && v8p3 !=v1p3 && v4p3 !=v1p2 && v8p3 !=v1p1 &&v8p3 !=v2p3 && v8p3 !=v2p2 && v8p3 !=v2p1 && v8p3 !=v3p3 && v8p3 !=v3p2 &&v8p3 !=v3p1 && v8p3 !=v4p3 &&v8p3 != v4p2 && v8p3 != v4p1 && v8p3 != v5p2 && v8p3 != v5p1 && v8p3 != v6p3 && v8p3 != v6p2 && v8p3 != v6p1 && v8p3 != v7p3 && v8p3 !=v7p2 && v8p3 != v7p1) {
-document.getElementById("voters").innerHTML +="let "+v8p3+"=0<br>";
-}
-if (v8p2 !="" &&v8p2 !=undefined && v8p2 !=v1p3 && v4p3 !=v1p2 && v8p2 !=v1p1 &&v8p2 !=v2p3 && v8p2 !=v2p2 && v8p2 !=v2p1 && v8p2 !=v3p3 && v8p2 !=v3p2 &&v8p2 !=v3p1 && v8p2 !=v4p3 &&v8p2 != v4p2 && v8p2 != v4p1 && v8p2 != v5p2 && v8p2 != v5p1 && v8p2 != v6p3 && v8p2 != v6p2 && v8p2 != v6p1 && v8p2 != v7p3 && v8p2 !=v7p2 && v8p2 != v7p1 && v8p2 != v8p3) {
-document.getElementById("voters").innerHTML +="let "+v8p2+"=0<br>";
-}
-if (v8p1 !="" &&v8p1 !=undefined && v8p1 !=v1p3 && v4p3 !=v1p2 && v8p1 !=v1p1 &&v8p1 !=v2p3 && v8p1 !=v2p2 && v8p1 !=v2p1 && v8p1 !=v3p3 && v8p1 !=v3p2 &&v8p1 !=v3p1 && v8p1 !=v4p3 &&v8p1 != v4p2 && v8p1 != v4p1 && v8p1 != v5p2 && v8p1 != v5p1 && v8p1 != v6p3 && v8p1 != v6p2 && v8p1 != v6p1 && v8p1 != v7p3 && v8p1 !=v7p2 && v8p1 != v7p1 && v8p1 != v8p3 && v8p1 != v8p2) {
-document.getElementById("voters").innerHTML +="let "+v8p1+"=0<br>";
-}
-if (v9p3 !="" &&v9p3 !=undefined && v9p3 !=v1p3 && v4p3 !=v1p2 && v9p3 !=v1p1 &&v9p3 !=v2p3 && v9p3 !=v2p2 && v9p3 !=v2p1 && v9p3 !=v3p3 && v9p3 !=v3p2 &&v9p3 !=v3p1 && v9p3 !=v4p3 &&v9p3 != v4p2 && v9p3 != v4p1 && v9p3 != v5p2 && v9p3 != v5p1 && v9p3 != v6p3 && v9p3 != v6p2 && v9p3 != v6p1 && v9p3 != v7p3 && v9p3 !=v7p2 && v9p3 != v7p1 && v9p3 != v8p3  && v9p3 != v8p2 && v9p3 != v8p1) {
-document.getElementById("voters").innerHTML +="let "+v9p3+"=0<br>";
-}
-if (v9p2 !="" &&v9p2 !=undefined && v9p2 !=v1p3 && v4p3 !=v1p2 && v9p2 !=v1p1 &&v9p2 !=v2p3 && v9p2 !=v2p2 && v9p2 !=v2p1 && v9p2 !=v3p3 && v9p2 !=v3p2 &&v9p2 !=v3p1 && v9p2 !=v4p3 &&v9p2 != v4p2 && v9p2 != v4p1 && v9p2 != v5p2 && v9p2 != v5p1 && v9p2 != v6p3 && v9p2 != v6p2 && v9p2 != v6p1 && v9p2 != v7p3 && v9p2 !=v7p2 && v9p2 != v7p1 && v9p2 != v8p3  && v9p2 != v8p2 && v9p2 != v8p1 && v9p2 != v9p3) {
-document.getElementById("voters").innerHTML +="let "+v9p2+"=0<br>";
-}
-if (v9p1 !="" &&v9p1 !=undefined && v9p1 !=v1p3 && v4p3 !=v1p2 && v9p1 !=v1p1 &&v9p1 !=v2p3 && v9p1 !=v2p2 && v9p1 !=v2p1 && v9p1 !=v3p3 && v9p1 !=v3p2 &&v9p1 !=v3p1 && v9p1 !=v4p3 &&v9p1 != v4p2 && v9p1 != v4p1 && v9p1 != v5p2 && v9p1 != v5p1 && v9p1 != v6p3 && v9p1 != v6p2 && v9p1 != v6p1 && v9p1 != v7p3 && v9p1 !=v7p2 && v9p1 != v7p1 && v9p1 != v8p3  && v9p1 != v8p2 && v9p1 != v8p1 && v9p1 != v9p3 && v9p1 != v9p2) {
-document.getElementById("voters").innerHTML +="let "+v9p1+"=0<br>";
-}
-if (v10p3 !="" &&v10p3 !=undefined && v10p3 !=v1p3 && v4p3 !=v1p2 && v10p3 !=v1p1 &&v10p3 !=v2p3 && v10p3 !=v2p2 && v10p3 !=v2p1 && v10p3 !=v3p3 && v10p3 !=v3p2 &&v10p3 !=v3p1 && v10p3 !=v4p3 &&v10p3 != v4p2 && v10p3 != v4p1 && v10p3 != v5p2 && v10p3 != v5p1 && v10p3 != v6p3 && v10p3 != v6p2 && v10p3 != v6p1 && v10p3 != v7p3 && v10p3 !=v7p2 && v10p3 != v7p1 && v10p3 != v8p3  && v10p3 != v8p2 && v10p3 != v8p1 && v10p3 != v9p3 && v10p3 != v9p2 && v10p3 != v9p1) {
-document.getElementById("voters").innerHTML +="let "+v10p3+"=0<br>";
-}
-if (v10p2 !="" &&v10p2 !=undefined && v10p2 !=v1p3 && v4p3 !=v1p2 && v10p2 !=v1p1 &&v10p2 !=v2p3 && v10p2 !=v2p2 && v10p2 !=v2p1 && v10p2 !=v3p3 && v10p2 !=v3p2 &&v10p2 !=v3p1 && v10p2 !=v4p3 &&v10p2 != v4p2 && v10p2 != v4p1 && v10p2 != v5p2 && v10p2 != v5p1 && v10p2 != v6p3 && v10p2 != v6p2 && v10p2 != v6p1 && v10p2 != v7p3 && v10p2 !=v7p2 && v10p2 != v7p1 && v10p2 != v8p3  && v10p2 != v8p2 && v10p2 != v8p1 && v10p2 != v9p3 && v10p2 != v9p2 && v10p2 != v9p1 && v10p2 != v10p3) {
-document.getElementById("voters").innerHTML +="let "+v10p2+"=0<br>";
-}
-if (v10p1 !="" &&v10p1 !=undefined && v10p1 !=v1p3 && v4p3 !=v1p2 && v10p1 !=v1p1 &&v10p1 !=v2p3 && v10p1 !=v2p2 && v10p1 !=v2p1 && v10p1 !=v3p3 && v10p1 !=v3p2 &&v10p1 !=v3p1 && v10p1 !=v4p3 &&v10p1 != v4p2 && v10p1 != v4p1 && v10p1 != v5p2 && v10p1 != v5p1 && v10p1 != v6p3 && v10p1 != v6p2 && v10p1 != v6p1 && v10p1 != v7p3 && v10p1 !=v7p2 && v10p1 != v7p1 && v10p1 != v8p3  && v10p1 != v8p2 && v10p1 != v8p1 && v10p1 != v9p3 && v10p1 != v9p2 && v10p1 != v9p1 && v10p1 != v10p3 && v10p1 != v10p2) {
-document.getElementById("voters").innerHTML +="let "+v10p1+"=0<br>";
-}
-if (v11p3 !="" &&v11p3 !=undefined && v11p3 !=v1p3 && v4p3 !=v1p2 && v11p3 !=v1p1 &&v11p3 !=v2p3 && v11p3 !=v2p2 && v11p3 !=v2p1 && v11p3 !=v3p3 && v11p3 !=v3p2 &&v11p3 !=v3p1 && v11p3 !=v4p3 &&v11p3 != v4p2 && v11p3 != v4p1 && v11p3 != v5p2 && v11p3 != v5p1 && v11p3 != v6p3 && v11p3 != v6p2 && v11p3 != v6p1 && v11p3 != v7p3 && v11p3 !=v7p2 && v11p3 != v7p1 && v11p3 != v8p3  && v11p3 != v8p2 && v11p3 != v8p1 && v11p3 != v9p3 && v11p3 != v9p2 && v11p3 != v9p1 && v11p3 != v10p3 && v11p3 != v10p2 && v11p3 != v10p1) {
-document.getElementById("voters").innerHTML +="let "+v11p3+"=0<br>";
-}
-if (v11p2 !="" &&v11p2 !=undefined && v11p2 !=v1p3 && v4p3 !=v1p2 && v11p2 !=v1p1 &&v11p2 !=v2p3 && v11p2 !=v2p2 && v11p2 !=v2p1 && v11p2 !=v3p3 && v11p2 !=v3p2 &&v11p2 !=v3p1 && v11p2 !=v4p3 &&v11p2 != v4p2 && v11p2 != v4p1 && v11p2 != v5p2 && v11p2 != v5p1 && v11p2 != v6p3 && v11p2 != v6p2 && v11p2 != v6p1 && v11p2 != v7p3 && v11p2 !=v7p2 && v11p2 != v7p1 && v11p2 != v8p3  && v11p2 != v8p2 && v11p2 != v8p1 && v11p2 != v9p3 && v11p2 != v9p2 && v11p2 != v9p1 && v11p2 != v10p3 && v11p2 != v10p2 && v11p2 != v10p1 && v11p2 != v11p3) {
-document.getElementById("voters").innerHTML +="let "+v11p2+"=0<br>";
-}
-if (v11p1 !="" &&v11p1 !=undefined && v11p1 !=v1p3 && v4p3 !=v1p2 && v11p1 !=v1p1 &&v11p1 !=v2p3 && v11p1 !=v2p2 && v11p1 !=v2p1 && v11p1 !=v3p3 && v11p1 !=v3p2 &&v11p1 !=v3p1 && v11p1 !=v4p3 &&v11p1 != v4p2 && v11p1 != v4p1 && v11p1 != v5p2 && v11p1 != v5p1 && v11p1 != v6p3 && v11p1 != v6p2 && v11p1 != v6p1 && v11p1 != v7p3 && v11p1 !=v7p2 && v11p1 != v7p1 && v11p1 != v8p3  && v11p1 != v8p2 && v11p1 != v8p1 && v11p1 != v9p3 && v11p1 != v9p2 && v11p1 != v9p1 && v11p1 != v10p3 && v11p1 != v10p2 && v11p1 != v10p1 && v11p1 != v11p3 && v11p1 != v11p2) {
-document.getElementById("voters").innerHTML +="let "+v11p1+"=0<br>";
-}
-if (v12p3 !="" &&v12p3 !=undefined && v12p3 !=v1p3 && v4p3 !=v1p2 && v12p3 !=v1p1 &&v12p3 !=v2p3 && v12p3 !=v2p2 && v12p3 !=v2p1 && v12p3 !=v3p3 && v12p3 !=v3p2 &&v12p3 !=v3p1 && v12p3 !=v4p3 &&v12p3 != v4p2 && v12p3 != v4p1 && v12p3 != v5p2 && v12p3 != v5p1 && v12p3 != v6p3 && v12p3 != v6p2 && v12p3 != v6p1 && v12p3 != v7p3 && v12p3 !=v7p2 && v12p3 != v7p1 && v12p3 != v8p3  && v12p3 != v8p2 && v12p3 != v8p1 && v12p3 != v9p3 && v12p3 != v9p2 && v12p3 != v9p1 && v12p3 != v10p3 && v12p3 != v10p2 && v12p3 != v10p1 && v12p3 != v11p3 && v12p3 != v11p2 && v12p3 != v11p1) {
-document.getElementById("voters").innerHTML +="let "+v12p3+"=0<br>";
-}
-if (v12p2 !="" &&v12p2 !=undefined && v12p2 !=v1p3 && v4p3 !=v1p2 && v12p2 !=v1p1 &&v12p2 !=v2p3 && v12p2 !=v2p2 && v12p2 !=v2p1 && v12p2 !=v3p3 && v12p2 !=v3p2 &&v12p2 !=v3p1 && v12p2 !=v4p3 &&v12p2 != v4p2 && v12p2 != v4p1 && v12p2 != v5p2 && v12p2 != v5p1 && v12p2 != v6p3 && v12p2 != v6p2 && v12p2 != v6p1 && v12p2 != v7p3 && v12p2 !=v7p2 && v12p2 != v7p1 && v12p2 != v8p3  && v12p2 != v8p2 && v12p2 != v8p1 && v12p2 != v9p3 && v12p2 != v9p2 && v12p2 != v9p1 && v12p2 != v10p3 && v12p2 != v10p2 && v12p2 != v10p1 && v12p2 != v11p3 && v12p2 != v11p2 && v12p2 != v11p1 && v12p2 != v12p3) {
-document.getElementById("voters").innerHTML +="let "+v12p2+"=0<br>";
-}
-if (v12p1 !="" &&v12p1 !=undefined && v12p1 !=v1p3 && v4p3 !=v1p2 && v12p1 !=v1p1 &&v12p1 !=v2p3 && v12p1 !=v2p2 && v12p1 !=v2p1 && v12p1 !=v3p3 && v12p1 !=v3p2 &&v12p1 !=v3p1 && v12p1 !=v4p3 &&v12p1 != v4p2 && v12p1 != v4p1 && v12p1 != v5p2 && v12p1 != v5p1 && v12p1 != v6p3 && v12p1 != v6p2 && v12p1 != v6p1 && v12p1 != v7p3 && v12p1 !=v7p2 && v12p1 != v7p1 && v12p1 != v8p3  && v12p1 != v8p2 && v12p1 != v8p1 && v12p1 != v9p3 && v12p1 != v9p2 && v12p1 != v9p1 && v12p1 != v10p3 && v12p1 != v10p2 && v12p1 != v10p1 && v12p1 != v11p3 && v12p1 != v11p2 && v12p1 != v11p1 && v12p1 != v12p3 && v12p1 != v12p2) {
-document.getElementById("voters").innerHTML +="let "+v12p1+"=0<br>";
-}
-if (v13p3 !="" &&v13p3 !=undefined && v13p3 !=v1p3 && v4p3 !=v1p2 && v13p3 !=v1p1 &&v13p3 !=v2p3 && v13p3 !=v2p2 && v13p3 !=v2p1 && v13p3 !=v3p3 && v13p3 !=v3p2 &&v13p3 !=v3p1 && v13p3 !=v4p3 &&v13p3 != v4p2 && v13p3 != v4p1 && v13p3 != v5p2 && v13p3 != v5p1 && v13p3 != v6p3 && v13p3 != v6p2 && v13p3 != v6p1 && v13p3 != v7p3 && v13p3 !=v7p2 && v13p3 != v7p1 && v13p3 != v8p3  && v13p3 != v8p2 && v13p3 != v8p1 && v13p3 != v9p3 && v13p3 != v9p2 && v13p3 != v9p1 && v13p3 != v10p3 && v13p3 != v10p2 && v13p3 != v10p1 && v13p3 != v11p3 && v13p3 != v11p2 && v13p3 != v11p1 && v13p3 != v12p3 && v13p3 != v12p2 && v13p3 != v12p1) {
-document.getElementById("voters").innerHTML +="let "+v13p3+"=0<br>";
-}
-if (v13p2 !="" &&v13p2 !=undefined && v13p2 !=v1p3 && v4p3 !=v1p2 && v13p2 !=v1p1 &&v13p2 !=v2p3 && v13p2 !=v2p2 && v13p2 !=v2p1 && v13p2 !=v3p3 && v13p2 !=v3p2 &&v13p2 !=v3p1 && v13p2 !=v4p3 &&v13p2 != v4p2 && v13p2 != v4p1 && v13p2 != v5p2 && v13p2 != v5p1 && v13p2 != v6p3 && v13p2 != v6p2 && v13p2 != v6p1 && v13p2 != v7p3 && v13p2 !=v7p2 && v13p2 != v7p1 && v13p2 != v8p3  && v13p2 != v8p2 && v13p2 != v8p1 && v13p2 != v9p3 && v13p2 != v9p2 && v13p2 != v9p1 && v13p2 != v10p3 && v13p2 != v10p2 && v13p2 != v10p1 && v13p2 != v11p3 && v13p2 != v11p2 && v13p2 != v11p1 && v13p2 != v12p3 && v13p2 != v12p2 && v13p2 != v12p1 && v13p2 != v13p3) {
-document.getElementById("voters").innerHTML +="let "+v13p2+"=0<br>";
-}
-if (v13p1 !="" &&v13p1 !=undefined && v13p1 !=v1p3 && v4p3 !=v1p2 && v13p1 !=v1p1 &&v13p1 !=v2p3 && v13p1 !=v2p2 && v13p1 !=v2p1 && v13p1 !=v3p3 && v13p1 !=v3p2 &&v13p1 !=v3p1 && v13p1 !=v4p3 &&v13p1 != v4p2 && v13p1 != v4p1 && v13p1 != v5p2 && v13p1 != v5p1 && v13p1 != v6p3 && v13p1 != v6p2 && v13p1 != v6p1 && v13p1 != v7p3 && v13p1 !=v7p2 && v13p1 != v7p1 && v13p1 != v8p3  && v13p1 != v8p2 && v13p1 != v8p1 && v13p1 != v9p3 && v13p1 != v9p2 && v13p1 != v9p1 && v13p1 != v10p3 && v13p1 != v10p2 && v13p1 != v10p1 && v13p1 != v11p3 && v13p1 != v11p2 && v13p1 != v11p1 && v13p1 != v12p3 && v13p1 != v12p2 && v13p1 != v12p1 && v13p1 != v13p3 && v13p1 != v13p2) {
-document.getElementById("voters").innerHTML +="let "+v13p1+"=0<br>";
-}
-if (v14p3 !="" &&v14p3 !=undefined && v14p3 !=v1p3 && v4p3 !=v1p2 && v14p3 !=v1p1 &&v14p3 !=v2p3 && v14p3 !=v2p2 && v14p3 !=v2p1 && v14p3 !=v3p3 && v14p3 !=v3p2 &&v14p3 !=v3p1 && v14p3 !=v4p3 &&v14p3 != v4p2 && v14p3 != v4p1 && v14p3 != v5p2 && v14p3 != v5p1 && v14p3 != v6p3 && v14p3 != v6p2 && v14p3 != v6p1 && v14p3 != v7p3 && v14p3 !=v7p2 && v14p3 != v7p1 && v14p3 != v8p3  && v14p3 != v8p2 && v14p3 != v8p1 && v14p3 != v9p3 && v14p3 != v9p2 && v14p3 != v9p1 && v14p3 != v10p3 && v14p3 != v10p2 && v14p3 != v10p1 && v14p3 != v11p3 && v14p3 != v11p2 && v14p3 != v11p1 && v14p3 != v12p3 && v14p3 != v12p2 && v14p3 != v12p1 && v14p3 != v13p3 && v14p3 != v13p2 && v14p3 != v13p3) {
-document.getElementById("voters").innerHTML +="let "+v14p3+"=0<br>";
-}
-if (v14p2 !="" &&v14p2 !=undefined && v14p2 !=v1p3 && v4p3 !=v1p2 && v14p2 !=v1p1 &&v14p2 !=v2p3 && v14p2 !=v2p2 && v14p2 !=v2p1 && v14p2 !=v3p3 && v14p2 !=v3p2 &&v14p2 !=v3p1 && v14p2 !=v4p3 &&v14p2 != v4p2 && v14p2 != v4p1 && v14p2 != v5p2 && v14p2 != v5p1 && v14p2 != v6p3 && v14p2 != v6p2 && v14p2 != v6p1 && v14p2 != v7p3 && v14p2 !=v7p2 && v14p2 != v7p1 && v14p2 != v8p3  && v14p2 != v8p2 && v14p2 != v8p1 && v14p2 != v9p3 && v14p2 != v9p2 && v14p2 != v9p1 && v14p2 != v10p3 && v14p2 != v10p2 && v14p2 != v10p1 && v14p2 != v11p3 && v14p2 != v11p2 && v14p2 != v11p1 && v14p2 != v12p3 && v14p2 != v12p2 && v14p2 != v12p1 && v14p2 != v13p3 && v14p2 != v13p2 && v14p2 != v13p3 && v14p2 != v14p3) {
-document.getElementById("voters").innerHTML +="let "+v14p2+"=0<br>";
-}
-if (v14p1 !="" &&v14p1 !=undefined && v14p1 !=v1p3 && v4p3 !=v1p2 && v14p1 !=v1p1 &&v14p1 !=v2p3 && v14p1 !=v2p2 && v14p1 !=v2p1 && v14p1 !=v3p3 && v14p1 !=v3p2 &&v14p1 !=v3p1 && v14p1 !=v4p3 &&v14p1 != v4p2 && v14p1 != v4p1 && v14p1 != v5p2 && v14p1 != v5p1 && v14p1 != v6p3 && v14p1 != v6p2 && v14p1 != v6p1 && v14p1 != v7p3 && v14p1 !=v7p2 && v14p1 != v7p1 && v14p1 != v8p3  && v14p1 != v8p2 && v14p1 != v8p1 && v14p1 != v9p3 && v14p1 != v9p2 && v14p1 != v9p1 && v14p1 != v10p3 && v14p1 != v10p2 && v14p1 != v10p1 && v14p1 != v11p3 && v14p1 != v11p2 && v14p1 != v11p1 && v14p1 != v12p3 && v14p1 != v12p2 && v14p1 != v12p1 && v14p1 != v13p3 && v14p1 != v13p2 && v14p1 != v13p3 && v14p1 != v14p3 && v14p1 != v14p2) {
-document.getElementById("voters").innerHTML +="let "+v14p1+"=0<br>";
-}
-if (v15p3 !="" &&v15p3 !=undefined && v15p3 !=v1p3 && v4p3 !=v1p2 && v15p3 !=v1p1 &&v15p3 !=v2p3 && v15p3 !=v2p2 && v15p3 !=v2p1 && v15p3 !=v3p3 && v15p3 !=v3p2 &&v15p3 !=v3p1 && v15p3 !=v4p3 &&v15p3 != v4p2 && v15p3 != v4p1 && v15p3 != v5p2 && v15p3 != v5p1 && v15p3 != v6p3 && v15p3 != v6p2 && v15p3 != v6p1 && v15p3 != v7p3 && v15p3 !=v7p2 && v15p3 != v7p1 && v15p3 != v8p3  && v15p3 != v8p2 && v15p3 != v8p1 && v15p3 != v9p3 && v15p3 != v9p2 && v15p3 != v9p1 && v15p3 != v10p3 && v15p3 != v10p2 && v15p3 != v10p1 && v15p3 != v11p3 && v15p3 != v11p2 && v15p3 != v11p1 && v15p3 != v12p3 && v15p3 != v12p2 && v15p3 != v12p1 && v15p3 != v13p3 && v15p3 != v13p2 && v15p3 != v13p3 && v15p3 != v14p3 && v15p3 != v14p2 && v15p3 != v14p1) {
-document.getElementById("voters").innerHTML +="let "+v15p3+"=0<br>";
-}
-if (v15p2 !="" &&v15p2 !=undefined && v15p2 !=v1p3 && v4p3 !=v1p2 && v15p2 !=v1p1 &&v15p2 !=v2p3 && v15p2 !=v2p2 && v15p2 !=v2p1 && v15p2 !=v3p3 && v15p2 !=v3p2 &&v15p2 !=v3p1 && v15p2 !=v4p3 &&v15p2 != v4p2 && v15p2 != v4p1 && v15p2 != v5p2 && v15p2 != v5p1 && v15p2 != v6p3 && v15p2 != v6p2 && v15p2 != v6p1 && v15p2 != v7p3 && v15p2 !=v7p2 && v15p2 != v7p1 && v15p2 != v8p3  && v15p2 != v8p2 && v15p2 != v8p1 && v15p2 != v9p3 && v15p2 != v9p2 && v15p2 != v9p1 && v15p2 != v10p3 && v15p2 != v10p2 && v15p2 != v10p1 && v15p2 != v11p3 && v15p2 != v11p2 && v15p2 != v11p1 && v15p2 != v12p3 && v15p2 != v12p2 && v15p2 != v12p1 && v15p2 != v13p3 && v15p2 != v13p2 && v15p2 != v13p3 && v15p2 != v14p3 && v15p2 != v14p2 && v15p2 != v14p1 && v15p2 != v15p3) {
-document.getElementById("voters").innerHTML +="let "+v15p2+"=0<br>";
-}
-if (v15p1 !="" &&v15p1 !=undefined && v15p1 !=v1p3 && v4p3 !=v1p2 && v15p1 !=v1p1 &&v15p1 !=v2p3 && v15p1 !=v2p2 && v15p1 !=v2p1 && v15p1 !=v3p3 && v15p1 !=v3p2 &&v15p1 !=v3p1 && v15p1 !=v4p3 &&v15p1 != v4p2 && v15p1 != v4p1 && v15p1 != v5p2 && v15p1 != v5p1 && v15p1 != v6p3 && v15p1 != v6p2 && v15p1 != v6p1 && v15p1 != v7p3 && v15p1 !=v7p2 && v15p1 != v7p1 && v15p1 != v8p3  && v15p1 != v8p2 && v15p1 != v8p1 && v15p1 != v9p3 && v15p1 != v9p2 && v15p1 != v9p1 && v15p1 != v10p3 && v15p1 != v10p2 && v15p1 != v10p1 && v15p1 != v11p3 && v15p1 != v11p2 && v15p1 != v11p1 && v15p1 != v12p3 && v15p1 != v12p2 && v15p1 != v12p1 && v15p1 != v13p3 && v15p1 != v13p2 && v15p1 != v13p3 && v15p1 != v14p3 && v15p1 != v14p2 && v15p1 != v14p1 && v15p1 != v15p3 && v15p1 != v15p2) {
-document.getElementById("voters").innerHTML +="let "+v15p1+"=0<br>";
-} 
- /*"+v1p3+"+= 3<br>";
-} "+v1p2+"+=2<br>"+v1p1+"+=1<br>"+v2p3+"+=3<br>"+v2p2+"+=2<br>"+v2p1+"+=1<br>"+v3p3+"+= 3<br>"+v3p2+"+= 2<br>";
-} "+v3p1+"+= 1 <br>";
-} "+v4p3+"+= 3<br>"+v4p2+"+= 2<br>"+v4p1+"+= 1<br>"+v5p3+"+= 3<br>"+v5p2+"+= 2<br>"+v5p1+"+= 1<br>"+v6p3+"+= 3<br>"+v6p2+"+= 2<br>"+v6p1+"+= 1<br>"+v7p3+"+= 3<br>"+v7p2+"+= 2<br>"+v7p1+"+= 1<br>"+v8p3+"+= 3<br>"+v8p2+"+= 2<br>"+v8p1+"+= 1<br>"+v9p3+"+= 3<br>"+v9p2+"+= 2<br>"+v9p1+"+= 1<br>"+v10p3+"+= 3<br>"+v10p2+"+= 2<br>"+v10p1+"+= 1<br>"+v11p3+"+= 3<br>"+v11p2+"+= 2<br>"+v11p1+"+= 1<br>"+v12p3+"+= 3<br>"+v12p2+"+= 2<br>"+v12p1+"+= 1<br>"+v13p3+"+= 3<br>"+v13p2+"+= 2<br>"+v13p1+"+= 1<br>"+v14p3+"+= 3<br>"+v14p2+"+= 2<br>"+v14p1+"+= 1<br>"+v15p3+"+= 3<br>"+v15p2+"+= 2<br>"+v15p1+"+= 1<br>";
-}<br>";
-}document.getElementById(&quot;Zard xd&quot;).innerHTML=&quot; "+v1p3+"= &quot;+"+v1p3+"+&quot;  &lt;br&gt;&quot;&quot; "+v2p3+"= &quot;+"+v2p3+"+&quot;  &quot;&quot; "+v3p3+"= &quot;+"+v3p3+"+&quot;  &quot;&quot; "+v4p3+"= &quot;+"+v4p3+"+&quot;  &quot;&quot; "+v5p3+"= &quot;+"+v5p3+"+&quot;  &quot;&quot; "+v6p3+"= &quot;+"+v6p3+"+&quot;  &quot;&quot; "+v8p3+"= &quot;+"+v8p3+"+&quot;  &quot;&quot; "+v9p3+"= &quot;+"+v9p3+"+&quot;  &quot;&quot; "+v10p3+"= &quot;+"+v10p3+"+&quot;  &quot;&quot; "+v11p3+"= &quot;+"+v11p3+"+&quot;  &quot;&quot; "+v12p3+"= &quot;+"+v12p3+"+&quot;  &quot;&quot; "+v13p3+"= &quot;+"+v13p3+"+&quot;  &quot;&quot; "+v14p3+"= &quot;+"+v14p3+"+&quot;  &quot;&quot; "+v15p3+"= &quot;+"+v15p3+"+&quot;  &quot;;<br>";
-}}<br>";
-}&lt;/script&gt;";
-}*/
-
 }
 </script>
 </html>
