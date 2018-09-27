@@ -41,7 +41,7 @@ function load()
 {
 let nospace=document.getElementById("space").value;
 let allvotes = nospace.split("\n");
-let count1 = allvotes[0];
+let count1 = allvotes[0].replace(/\s/g, "");
 let count2 = allvotes[1];
 let count3 = allvotes[2];
 let count4 = allvotes[3];
@@ -56,8 +56,6 @@ let count12 = allvotes[11];
 let count13 = allvotes[12];
 let count14 = allvotes[13];
 let count15 = allvotes[14];
-
-count2=count2.replace(/\s/g, "")
 
 document.getElementById("vote1").innerHTML =""+count1+"";
 if (count2 != undefined) count2=count2.replace(/\s/g, "") document.getElementById("vote2").innerHTML =""+count2+"";
