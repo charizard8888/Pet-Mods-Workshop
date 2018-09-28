@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Votes</title>
+<title>Votes!!!</title>
 <style>
 .wide {
 height:150px;
@@ -61,23 +61,8 @@ let colonsplit1=count1.split(":")
 let mon1=colonsplit1[0];
 count1=count1.replace(mon1+":", "");
 
-let colonsplit2=count2.split(":")
-let mon2=colonsplit2[0];
-count2=count2.replace(mon2+":", "");
 
-let colonsplit3=count3.split(":")
-let mon3=colonsplit3[0];
-count3=count3.replace(mon3+":", "");
-
-let colonsplit4=count4.split(":")
-let mon4=colonsplit4[0];
-count4=count4.replace(mon4+":", "");
-
-/*let colonsplit5=count5.split(":")
-let mon5=colonsplit5[0];
-count5=count5.replace(mon5+":", "");
-
-let colonsplit6=count6.split(":")
+/*let colonsplit6=count6.split(":")
 let mon6=colonsplit6[0];
 count6=count6.replace(mon6+":", "");
 
@@ -119,19 +104,33 @@ count15=count15.replace(mon15+":", "");*/
 
 
 document.getElementById("vote1").innerHTML =""+count1+"";
+
 if (count2 != undefined) {
+let colonsplit2=count2.split(":")
+let mon2=colonsplit2[0];
+count2=count2.replace(mon2+":", "");
 count2=count2.replace(/\s/g, ""); 
 document.getElementById("vote2").innerHTML =""+count2+"";
 }
 if (count3 != undefined) {
+let colonsplit3=count3.split(":")
+let mon3=colonsplit3[0];
+count3=count3.replace(mon3+":", "");
+
 count3=count3.replace(/\s/g, ""); 
 document.getElementById("vote3").innerHTML =""+count3+"";
 }
 if (count4 != undefined) {
+let colonsplit4=count4.split(":")
+let mon4=colonsplit4[0];
+count4=count4.replace(mon4+":", "");
 count4=count4.replace(/\s/g, ""); 
 document.getElementById("vote4").innerHTML =""+count4+"";
 }
 if (count5 != undefined) {
+let colonsplit5=count5.split(":")
+let mon5=colonsplit5[0];
+count5=count5.replace(mon5+":", "");
 count5=count5.replace(/\s/g, ""); 
 document.getElementById("vote5").innerHTML =""+count5+"";
 }
