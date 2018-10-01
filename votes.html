@@ -6,10 +6,7 @@
 height:150px;
 width:700px;
 }
-textarea {
-width:350px;
- }
-h1 {
+ h1 {
 font-family: Jokerman;
 color: Aqua;
 background-color:black;
@@ -17,13 +14,24 @@ width: 40%;
 border: 4px solid Aqua;
 text-align: center;
 }
+textarea {
+width:300px;
+height: 50px; 
+}
+button {
+background-color: black;
+color: aqua;
+border: solid 4px aqua;
+font-size:28px;
+cursor: url(http://www.pokestadium.com/assets/img/sprites/misc/icons/charizard-mega-x.png), auto;
+}
 </style>
 </head>
 <body>
 <center>
 <h1>Votes!</h1>
-<textarea id="space" class="wide"></textarea><br>
-<button onClick="load()">Load</button><br>
+<textarea id="space" class="wide"></textarea><br><br>
+<button onClick="load()">Load</button><br></center>
 <textarea id="vote1"></textarea><br>
 <textarea id="vote2"></textarea><br>
 <textarea id="vote3"></textarea><br>
@@ -40,7 +48,7 @@ text-align: center;
 <textarea id="vote14"></textarea><br>
 <textarea id="vote15"></textarea><br>
 
- <button onClick="votes()">Generate</button></center>
+ <button onClick="votes()">Generate</button>
 <p id="votes"></p>
 <p id="voters"></p>
 
