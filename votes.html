@@ -317,7 +317,7 @@ let greenv15p3= false;
 let greenv15p2= false;
 let greenv15p1= false;
 
-document.getElementById("votes").innerHTML = "&lt;p id=&quot;Zard xd&quot;&gt;&lt;/p&gt;<br>&lt;button onClick=&quot;count()&quot;&gt;Generate&lt;/button&gt;<br>&lt;script&gt;<br>function count()<br>{<br>";
+document.getElementById("votes").innerHTML = "&lt;button onClick=&quot;count()&quot;&gt;Generate&lt;/button&gt;<br>&lt;p id=&quot;Zard xd&quot;&gt;&lt;/p&gt;<br>&lt;script&gt;<br>function count()<br>{<br>";
 if (v1p3 !="") {
 document.getElementById("voters").innerHTML +="let "+v1p3+"=0<br>";
 }
@@ -498,7 +498,7 @@ greenv15p1= true;
 document.getElementById("voters").innerHTML +="let "+v15p1+"=0<br>"+v15p1+"="+v15p1+"+1<br>";
 }
 if (v1p3 != undefined && v1p3 !="") {
-document.getElementById("voters").innerHTML +=""+v1p3+"+=3<br>";
+document.getElementById("voters").innerHTML +="<br>"+v1p3+"+=3<br>";
 }
 if (v1p2 != undefined && v1p2 !="") {
 document.getElementById("voters").innerHTML +=""+v1p2+"+=2<br>";
