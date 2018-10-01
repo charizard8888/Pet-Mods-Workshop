@@ -54,6 +54,8 @@ font-size:28px;
 function load()
 {
 let nospace=document.getElementById("space").value;
+nospace = nospace.replace("(","");
+nospace = nospace.replace(")","");
 let allvotes = nospace.split("\n");
 let count1 = allvotes[0].replace(/\s/g, "");
 let count2 = allvotes[1];
@@ -71,6 +73,7 @@ let count13 = allvotes[12];
 let count14 = allvotes[13];
 let count15 = allvotes[14];
 
+ 
 let colonsplit1=count1.split(":")
 let mon1=colonsplit1[0];
 count1=count1.replace(mon1+":", "");
@@ -357,7 +360,7 @@ document.getElementById("voters").innerHTML +="let "+v1p1+"=0<br>";
 }
 if (v2p3 !="" && v2p3!=undefined && v2p3 !=v1p3 && v2p3 !=v1p2 && v2p3 !=v1p1) {
 greenv2p3= true;
-document.getElementById("voters").innerHTML +="let "+v2p3+"=0<br>"+v2p3+"="+v2p3+"+3<br>";
+document.getElementById("voters").innerHTML +="let "+v2p3+"=0<br>";
 }
 if (v2p2 !="" && v2p2 !=undefined && v2p2 !=v1p3 && v2p2 !=v1p2 && v2p2 !=v1p1 && v2p2 !=v2p3) {
  greenv2p2= true;
