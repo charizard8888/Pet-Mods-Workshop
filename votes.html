@@ -59,6 +59,7 @@ function load()
 let nospace=document.getElementById("space").value;
 nospace = nospace.replace("(","");
 nospace = nospace.replace(")","");
+ nospace = nospace.replace("-","");
 let allvotes = nospace.split("\n");
 let count1 = allvotes[0].replace(/\s/g, "");
 let count2 = allvotes[1];
