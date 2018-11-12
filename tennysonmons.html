@@ -145,8 +145,8 @@ function post ()
 // Front and Back End
 // Inputs
 let pokemon= document.getElementById("pokemon").value;
-let forme= document.getElementById("forme").value;
-let num= document.getElementById("num").value;
+//let forme= document.getElementById("forme").value;
+//let num= document.getElementById("num").value;
 let type= document.getElementById("type").value;
 let type2= document.getElementById("type2").value;
 let hp= document.getElementById("hp").value;
@@ -171,6 +171,8 @@ type2 ="],";
 else {
 type2 = ", &quot;"+type2+"&quot;],";
 }
+  let forme="";
+  let num="";
 let formeLetter="";
 let item=""
 if (forme==='Omni-Enchanced') {
