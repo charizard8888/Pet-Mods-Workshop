@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Fusion Evolution!!</title>
+<title>Fusion Evolution!!!</title>
 <style>
 button {
 background-color: black;
@@ -88,7 +88,7 @@ Object.values(mons).forEach(monster => {
 let monname = document.getElementById("monname").value;
 let bst=+monster.baseStats.hp + +monster.baseStats.atk + +monster.baseStats.def + +monster.baseStats.spa + +monster.baseStats.spe;
 if (monname === monster.species) {
-document.getElementById("info").innerHTML = `<h2>${monster.species}</h2><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[0]}.png" width="32" height="14" /><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[1]}.png" width="32" height="14" /><br /><h3>Stats</h3>HP: ${monster.baseStats.hp}<br>Atk: ${monster.baseStats.atk}<br>Def: ${monster.baseStats.def}<br>SpA: ${monster.baseStats.spa}<br>SpD: ${monster.baseStats.spe}<br>Spe: ${monster.baseStats.spe}<br>BST: ${bst}<br>Ability: {monster.abilities[0]}`;
+document.getElementById("info").innerHTML = `<h2>${monster.species}</h2><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[0]}.png" width="32" height="14" /><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[1]}.png" width="32" height="14" /><br /><h3>Stats</h3><table><tr><td>HP</dh><td>${monster.baseStats.hp}</td></tr><tr><td>Atk</td><td>${monster.baseStats.atk}</td></tr><tr><td>Def</td><td>${monster.baseStats.def}</td></tr><tr><td>SpA</td><td>${monster.baseStats.spa}</td></tr><tr><td>SpD</td><td>${monster.baseStats.spd}</td></tr><tr><td>Spe</td><td>${monster.baseStats.spe}</td></tr><tr><td>BST</td><td>${bst}</td></tr></table><br>Ability: ${monster.abilities[0]}`;
 
 }
 });
