@@ -29,15 +29,15 @@ background-color: black;
 color: lime;
 width: 60%;
 }
-table, td {
+table, tr, td {
 font-size: 20px;
-width: 30px;
+width: 50px;
 }
 </style>
 </head>
 <body>
 <center>
-<h1>Fusion Evolution!!</h1>
+<h1>Fusion Evolution!</h1>
 <input id="monname" list="allmons"/> <br />
 <br />
 <button onClick="go()">Go!</button></center>
@@ -107,12 +107,15 @@ let abilities = {
 		name: "Turnabout Torrent",
 	},
 };
-Object.values(mons, abilities).forEach(monster => {
+Object.values(mons).forEach(monster => {
 let monname = document.getElementById("monname").value;
+let p;
+for (p in abilities) {
+  let abe=p.shortDesc;
 let bst=+monster.baseStats.hp + +monster.baseStats.atk + +monster.baseStats.def + +monster.baseStats.spa + +monster.baseStats.spe;
 if (monname === monster.species) {
-document.getElementById("info").innerHTML = `<h2>${monster.species}</h2><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[0]}.png" width="32" height="14" /><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[1]}.png" width="32" height="14" /><br /><h3>Stats</h3><table><tr><td>HP</dh><td>${monster.baseStats.hp}</td></tr><tr><td>Atk</td><td>${monster.baseStats.atk}</td></tr><tr><td>Def</td><td>${monster.baseStats.def}</td></tr><tr><td>SpA</td><td>${monster.baseStats.spa}</td></tr><tr><td>SpD</td><td>${monster.baseStats.spd}</td></tr><tr><td>Spe</td><td>${monster.baseStats.spe}</td></tr><tr><td>BST</td><td>${bst}</td></tr></table><br>Ability: ${monster.abilities[0]}: ${monster.shortDesc}`;
-
+document.getElementById("info").innerHTML = `<h2>${monster.species}</h2><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[0]}.png" width="32" height="14" /><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[1]}.png" width="32" height="14" /><br /><h3>Stats</h3><table><tr><td><b>HP:</b></td><td>${monster.baseStats.hp}</td></tr><tr><td><<b>Atk:</b></td><td>${monster.baseStats.atk}</td></tr><tr><td><b>Def:</b></td><td>${monster.baseStats.def}</td></tr><tr><td><b>SpA:</b></td><td>${monster.baseStats.spa}</td></tr><tr><td><b>SpD:</b></td><td>${monster.baseStats.spd}</td></tr><tr><td><b>Spe:</b></td><td>${monster.baseStats.spe}</td></tr><tr><td><b>BST:</b></td><td>${bst}</td></tr></table><br>Ability: ${monster.abilities[0]}: ${abe}`;
+}
 }
 });
 }
