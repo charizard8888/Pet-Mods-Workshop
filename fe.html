@@ -37,7 +37,7 @@ width: 50px;
 </head>
 <body>
 <center>
-<h1>Fusion Evolution!</h1>
+<h1>Fusion Evolution!!!</h1>
 <input id="monname" list="allmons"/> <br />
 <br />
 <button onClick="go()">Go!</button></center>
@@ -80,6 +80,28 @@ swampamar: {
 	fusion: ["Swampert", "Malamar"],
 	eggGroups: ["Water 1"],
 },
+	gyarotic: {
+        num: 75002,
+        species: "Gyarotic",
+        types: ["Water"],
+        baseStats: {
+            hp: 105,
+            atk: 102,
+            def: 89,
+            spa: 90,
+            spd: 122,
+            spe: 91
+        },
+        abilities: {
+            0: "Intimidating Scales"
+        },
+        heightm: 6.35,
+        weightkg: 198.5,
+		  prevo: "feekarp",
+		  evoLevel: 20,
+        color: "Blue",
+        eggGroups: ["Dragon"],
+    },
 };
 let abilities = {
 	turnabouttorrent: {
@@ -106,15 +128,41 @@ let abilities = {
 		id: "turnabouttorrent",
 		name: "Turnabout Torrent",
 	},
+	"intimidatingscales": {
+		shortDesc: "Gains 1.5 defense when afflicted with status, and lowers the opponent's attack on switch in.",
+		onStart: function (pokemon) {
+			let activated = false;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !this.isAdjacent(target, pokemon)) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Intimidating Scales', 'boost');
+					activated = true;
+				}
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target, '[msg]');
+				} else {
+					this.boost({atk: -1}, target, pokemon);
+				}
+			}
+		},
+		onModifyDefPriority: 6,
+		onModifyDef: function(def, pokemon) {
+			if (pokemon.status) {
+				return this.chainModify(1.5);
+			}
+		},
+		id: "intimidatingscales",
+		name: "Intimidating Scales",
+	},
 };
 Object.values(mons).forEach(monster => {
 let monname = document.getElementById("monname").value;
+Object.values(abilities).forEach(abe => {
 let bst=+monster.baseStats.hp + +monster.baseStats.atk + +monster.baseStats.def + +monster.baseStats.spa + +monster.baseStats.spe;
-let abe=monster.abilities[0].toLowerCase();
-abe=abe.replace(" ","");
 if (monname === monster.species) {
-document.getElementById("info").innerHTML = `<h2>${monster.species}</h2><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[0]}.png" width="32" height="14" /><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[1]}.png" width="32" height="14" /><br /><br /><b>${monster.abilities[0]}:</b> ${abilities.abe.shortDesc}<br /><h3>Stats</h3><table><tr><td><b>HP:</b></td><td>${monster.baseStats.hp}</td></tr><tr><td><b>Atk:</b></td><td>${monster.baseStats.atk}</td></tr><tr><td><b>Def:</b></td><td>${monster.baseStats.def}</td></tr><tr><td><b>SpA:</b></td><td>${monster.baseStats.spa}</td></tr><tr><td><b>SpD:</b></td><td>${monster.baseStats.spd}</td></tr><tr><td><b>Spe:</b></td><td>${monster.baseStats.spe}</td></tr><tr><td><b>BST:</b></td><td>${bst}</td></tr></table><br /><b>Fusion:</b> ${monster.fusion[0]}, ${monster.fusion[1]} <br /><b>Weight:</b> ${monster.weightkg} kg`;
+document.getElementById("info").innerHTML = `<h2>${monster.species}</h2><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[0]}.png" width="32" height="14" /><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[1]}.png" width="32" height="14" /><br /><br /><b>${monster.abilities[0]}:</b> ${abe.shortDesc}<br /><h3>Stats</h3><table><tr><td><b>HP:</b></td><td>${monster.baseStats.hp}</td></tr><tr><td><b>Atk:</b></td><td>${monster.baseStats.atk}</td></tr><tr><td><b>Def:</b></td><td>${monster.baseStats.def}</td></tr><tr><td><b>SpA:</b></td><td>${monster.baseStats.spa}</td></tr><tr><td><b>SpD:</b></td><td>${monster.baseStats.spd}</td></tr><tr><td><b>Spe:</b></td><td>${monster.baseStats.spe}</td></tr><tr><td><b>BST:</b></td><td>${bst}</td></tr></table><br /><b>Fusion:</b> ${monster.fusion[0]}, ${monster.fusion[1]} <br /><b>Weight:</b> ${monster.weightkg}`;
 }
+});
 });
 }
 </script>
