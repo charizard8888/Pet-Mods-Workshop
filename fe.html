@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Fusion Evolution</title>
+<title>Fusion Evolution!</title>
 <style>
 button {
 background-color: black;
@@ -46,5 +46,52 @@ width: 60%;
 <option value="SubReversal Mega Lucario">
 </datalist>
 
-
+<script>
+function breakit()
+{
+let mons = {
+swampamar: {
+	num: 75001,
+	species: "Swampamar",
+	types: ["Dark", "Water"],
+	genderRatio: {
+		M: 0.75,
+		F: 0.25
+	},
+	baseStats: {
+		hp: 103,
+		atk: 111,
+		def: 99,
+		spa: 86,
+		spd: 92,
+		spe: 76
+	},
+	abilities: {
+		0: "Turnabout Torrent"
+	},
+	heightm: 1.5,
+	weightkg: 64.45,
+	color: "Blue",
+	prevo: "inkip",
+	evoLevel: 28,
+	fusion: ["Swampert", "Malamar"],
+	eggGroups: ["Water 1"],
+},
+/*subreversalmegalucario: {
+name: "SubReversal Mega Lucario",
+counters: [ "Scarf Garchomp", " Greninja", " Pheromosa", " Scarf Victini", " Scarf Darmanitan"],
+checks: ["Mega Charizard X", " Mega Gyarados", " Dragonite"],
+moveset: ["<div>Mega Lucario @ Lucarionite<br/>Ability: Inner Focus<br />252 Atk / 4 SpD / 252 Spe<br />Jolly Nature<br />- Substitute<br />- Reversal<br />- Meteor Mash / Rock Tomb<br />- Magnet Rise / Swords Dance</div>"],
+analysis: ["<a href=http://1v1.boards.net/thread/38/mega-lucario-qc-3 target=&quot;_blank&quot;>Read Analysis</a>"],
+},*/
+};
+Object.values(mons).forEach(monster => {
+let monname = document.getElementById("monname").value;
+if (monname === monster.species) {
+document.getElementById("breakhere").innerHTML = `<h2>${mons.species}</h2><img src="http://play.pokemonshowdown.com/sprites/types/${mons.types[0]}.png" width="32" height="14" /><img src="http://play.pokemonshowdown.com/sprites/types/${mons.types[1]}.png" width="32" height="14" /><br /><h3>Stats</h3>HP: ${mons.hp}`;
+//document.getElementById("breakhere").innerHTML = `${monster.moveset} <br> ${monname}`;
+}
+});
+}
+</script>
 </html>
