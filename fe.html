@@ -29,11 +29,18 @@ background-color: black;
 color: lime;
 width: 60%;
 }
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
 </style>
 </head>
 <body>
 <center>
-<h1>Fusion Evolution!</h1>
+<h1>Fusion Evolution!!!</h1>
 <input id="monname" list="allmons"/> <br />
 <br />
 <button onClick="go()">Go!</button></center>
@@ -76,19 +83,38 @@ swampamar: {
 	fusion: ["Swampert", "Malamar"],
 	eggGroups: ["Water 1"],
 },
-/*subreversalmegalucario: {
-name: "SubReversal Mega Lucario",
-counters: [ "Scarf Garchomp", " Greninja", " Pheromosa", " Scarf Victini", " Scarf Darmanitan"],
-checks: ["Mega Charizard X", " Mega Gyarados", " Dragonite"],
-moveset: ["<div>Mega Lucario @ Lucarionite<br/>Ability: Inner Focus<br />252 Atk / 4 SpD / 252 Spe<br />Jolly Nature<br />- Substitute<br />- Reversal<br />- Meteor Mash / Rock Tomb<br />- Magnet Rise / Swords Dance</div>"],
-analysis: ["<a href=http://1v1.boards.net/thread/38/mega-lucario-qc-3 target=&quot;_blank&quot;>Read Analysis</a>"],
-},*/
 };
-Object.values(mons).forEach(monster => {
+let abilities = {
+	"turnabouttorrent": {
+		shortDesc: "Water-type moves of the user is boosted by 50% as long as user is above 1/3 HP; the user's stat changes are reversed.",
+		onBoost: function(boost) {
+			for (var i in boost) {
+				boost[i] *= -1;
+			}
+		},
+		onModifyAtkPriority: 5,
+		onModifyAtk: function(atk, attacker, defender, move) {
+			if (move.type === 'Water' && attacker.hp >= attacker.maxhp / 3) {
+				this.debug('Turnabout Torrent boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function(atk, attacker, defender, move) {
+			if (move.type === 'Water' && attacker.hp >= attacker.maxhp / 3) {
+				this.debug('Turnabout Torrent boost');
+				return this.chainModify(1.5);
+			}
+		},
+		id: "turnabouttorrent",
+		name: "Turnabout Torrent",
+	},
+};
+Object.values(mons, abilities).forEach(monster => {
 let monname = document.getElementById("monname").value;
 let bst=+monster.baseStats.hp + +monster.baseStats.atk + +monster.baseStats.def + +monster.baseStats.spa + +monster.baseStats.spe;
 if (monname === monster.species) {
-document.getElementById("info").innerHTML = `<h2>${monster.species}</h2><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[0]}.png" width="32" height="14" /><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[1]}.png" width="32" height="14" /><br /><h3>Stats</h3><table><tr><td>HP</dh><td>${monster.baseStats.hp}</td></tr><tr><td>Atk</td><td>${monster.baseStats.atk}</td></tr><tr><td>Def</td><td>${monster.baseStats.def}</td></tr><tr><td>SpA</td><td>${monster.baseStats.spa}</td></tr><tr><td>SpD</td><td>${monster.baseStats.spd}</td></tr><tr><td>Spe</td><td>${monster.baseStats.spe}</td></tr><tr><td>BST</td><td>${bst}</td></tr></table><br>Ability: ${monster.abilities[0]}`;
+document.getElementById("info").innerHTML = `<h2>${monster.species}</h2><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[0]}.png" width="32" height="14" /><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[1]}.png" width="32" height="14" /><br /><h3>Stats</h3><table><tr><td>HP</dh><td>${monster.baseStats.hp}</td></tr><tr><td>Atk</td><td>${monster.baseStats.atk}</td></tr><tr><td>Def</td><td>${monster.baseStats.def}</td></tr><tr><td>SpA</td><td>${monster.baseStats.spa}</td></tr><tr><td>SpD</td><td>${monster.baseStats.spd}</td></tr><tr><td>Spe</td><td>${monster.baseStats.spe}</td></tr><tr><td>BST</td><td>${bst}</td></tr></table><br>Ability: ${monster.abilities[0]}: ${monster.shortDesc}`;
 
 }
 });
