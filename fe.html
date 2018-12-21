@@ -37,7 +37,7 @@ width: 50px;
 </head>
 <body>
 <center>
-<h1>Fusion Evolution</h1>
+<h1>Fusion Evolution!</h1>
 <input id="monname" list="allmons"/> <br />
 <br />
 <button onClick="go()">Go!</button></center>
@@ -113,7 +113,7 @@ let p;
 for (p in abilities) {
 let bst=+monster.baseStats.hp + +monster.baseStats.atk + +monster.baseStats.def + +monster.baseStats.spa + +monster.baseStats.spe;
 if (monname === monster.species) {
-document.getElementById("info").innerHTML = `<h2>${monster.species}</h2><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[0]}.png" width="32" height="14" /><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[1]}.png" width="32" height="14" /><br /><br /><b>Ability:</b> ${monster.abilities[0]}: ${p.shortDesc}<br /><h3>Stats</h3><table><tr><td><b>HP:</b></td><td>${monster.baseStats.hp}</td></tr><tr><td><b>Atk:</b></td><td>${monster.baseStats.atk}</td></tr><tr><td><b>Def:</b></td><td>${monster.baseStats.def}</td></tr><tr><td><b>SpA:</b></td><td>${monster.baseStats.spa}</td></tr><tr><td><b>SpD:</b></td><td>${monster.baseStats.spd}</td></tr><tr><td><b>Spe:</b></td><td>${monster.baseStats.spe}</td></tr><tr><td><b>BST:</b></td><td>${bst}</td></tr></table><br>`;
+document.getElementById("info").innerHTML = `<h2>${monster.species}</h2><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[0]}.png" width="32" height="14" /><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[1]}.png" width="32" height="14" /><br /><br /><b>Ability:</b> ${monster.abilities[0]}: ${p.name}<br /><h3>Stats</h3><table><tr><td><b>HP:</b></td><td>${monster.baseStats.hp}</td></tr><tr><td><b>Atk:</b></td><td>${monster.baseStats.atk}</td></tr><tr><td><b>Def:</b></td><td>${monster.baseStats.def}</td></tr><tr><td><b>SpA:</b></td><td>${monster.baseStats.spa}</td></tr><tr><td><b>SpD:</b></td><td>${monster.baseStats.spd}</td></tr><tr><td><b>Spe:</b></td><td>${monster.baseStats.spe}</td></tr><tr><td><b>BST:</b></td><td>${bst}</td></tr></table><br>`;
 }
 }
 });
