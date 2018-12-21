@@ -33,7 +33,7 @@ width: 60%;
 </head>
 <body>
 <center>
-<h1>Fusion Evolution</h1>
+<h1>Fusion Evolution!</h1>
 <input id="monname" list="allmons"/> <br />
 <br />
 <button onClick="go()">Go!</button></center>
@@ -43,7 +43,6 @@ width: 60%;
 
 <datalist id="allmons">
 <option value="Swampamar">
-<option value="SubReversal Mega Lucario">
 </datalist>
 
 <script>
@@ -87,9 +86,9 @@ analysis: ["<a href=http://1v1.boards.net/thread/38/mega-lucario-qc-3 target=&qu
 };
 Object.values(mons).forEach(monster => {
 let monname = document.getElementById("monname").value;
-let bst=+monster.hp + +monster.atk + +monster.def + +monster.spa + +monster.spe;
+let bst=+monster.baseStats.hp + +monster.baseStats.atk + +monster.baseStats.def + +monster.baseStats.spa + +monster.baseStats.spe;
 if (monname === monster.species) {
-document.getElementById("info").innerHTML = `<h2>${monster.species}</h2><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[0]}.png" width="32" height="14" /><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[1]}.png" width="32" height="14" /><br /><h3>Stats</h3>HP: ${monster.baseStats.hp}<br>Atk: ${monster.baseStats.atk}<br>Def: ${monster.baseStats.def}<br>SpA: ${monster.baseStats.spa}<br>SpD: ${monster.baseStats.spe}<br>Spe: ${monster.baseStats.spe}<br>BST: ${bst}<br>Ability: {monster.ability}`;
+document.getElementById("info").innerHTML = `<h2>${monster.species}</h2><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[0]}.png" width="32" height="14" /><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[1]}.png" width="32" height="14" /><br /><h3>Stats</h3>HP: ${monster.baseStats.hp}<br>Atk: ${monster.baseStats.atk}<br>Def: ${monster.baseStats.def}<br>SpA: ${monster.baseStats.spa}<br>SpD: ${monster.baseStats.spe}<br>Spe: ${monster.baseStats.spe}<br>BST: ${bst}<br>Ability: {monster.abilities[0]}`;
 
 }
 });
