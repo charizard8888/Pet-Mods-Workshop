@@ -31,7 +31,22 @@ width: 60%;
 }
 table, tr, td {
 font-size: 20px;
-width: 50px;
+width: 300px;
+}
+meter {
+width: 200px;
+color: #FFA000;
+border: none;
+height: 15px;
+}
+meter::-webkit-meter-optimum-value {
+  box-shadow: 0 5px 5px -5px #999 inset;
+  background-image: linear-gradient(
+    90deg, 
+    #094459 100%,
+    #094459 100%
+  );
+  background-size: 100% 100%;
 }
 </style>
 </head>
@@ -34773,7 +34788,7 @@ let abilitysmall=monster.abilities[0].toLowerCase();
 abilitysmall=abilitysmall.replace(" ","");
 if (monname === monster.species) {
 if (monster.abilities[0] === abe.name) {
-document.getElementById("info").innerHTML = `<img src="https://raw.githubusercontent.com/XpRienzo/Pokemon-Showdown-Client/master/data/sprites/xydex/${monsmall}.png" alt="${monsmall}" /><img src="https://raw.githubusercontent.com/XpRienzo/Pokemon-Showdown-Client/master/data/sprites/xydex-back/${monsmall}.png" alt="${monsmall}" /><img src="https://raw.githubusercontent.com/XpRienzo/Pokemon-Showdown-Client/master/data/sprites/xydex-shiny/${monsmall}.png" alt="${monsmall}" /><h2>${monster.species}</h2><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[0]}.png" width="32" height="14" /><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[1]}.png" width="32" height="14" /><br /><br /><b>${monster.abilities[0]}:</b> ${abe.shortDesc}<br /><h3>Stats</h3><table><tr><td><b>HP:</b></td><td>${monster.baseStats.hp}</td><td><meter value="${monster.baseStats.hp}" min="0" max="255"></td></tr><tr><td><b>Atk:</b></td><td>${monster.baseStats.atk}</td><td><meter value="${monster.baseStats.atk}" min="0" max="190"></td></tr><tr><td><b>Def:</b></td><td>${monster.baseStats.def}</td><td><meter value="${monster.baseStats.def}" min="0" max="230"></td></tr><tr><td><b>SpA:</b></td><td>${monster.baseStats.spa}</td><td><meter value="${monster.baseStats.spa}" min="0" max="194"></td></tr><tr><td><b>SpD:</b></td><td>${monster.baseStats.spd}</td><td><meter value="${monster.baseStats.spd}" min="0" max="230"></td></tr><tr><td><b>Spe:</b></td><td>${monster.baseStats.spe}</td><td><meter value="${monster.baseStats.spe}" min="0" max="180"></td></tr><tr><td><b>BST:</b></td><td>${bst}</td><td><meter value="${bst}" min="0" max="255"></td></tr></table><br /><b>Weight:</b> ${monster.weightkg} kg`;
+document.getElementById("info").innerHTML = `<img src="https://raw.githubusercontent.com/XpRienzo/Pokemon-Showdown-Client/master/data/sprites/xydex/${monsmall}.png" alt="${monsmall}" /><img src="https://raw.githubusercontent.com/XpRienzo/Pokemon-Showdown-Client/master/data/sprites/xydex-back/${monsmall}.png" alt="${monsmall}" /><img src="https://raw.githubusercontent.com/XpRienzo/Pokemon-Showdown-Client/master/data/sprites/xydex-shiny/${monsmall}.png" alt="${monsmall}" /><h2>${monster.species}</h2><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[0]}.png" width="32" height="14" /><img src="http://play.pokemonshowdown.com/sprites/types/${monster.types[1]}.png" width="32" height="14" /><br /><br /><b>${monster.abilities[0]}:</b> ${abe.shortDesc}<br /><h3>Stats</h3><table><tr><td><b>HP:</b></td><td>${monster.baseStats.hp}</td><td><meter value="${monster.baseStats.hp}" min="0" max="255" low="70" high="150"></td></tr><tr><td><b>Atk:</b></td><td>${monster.baseStats.atk}</td><td><meter value="${monster.baseStats.atk}" min="0" max="190" low="70" high="150"></td></tr><tr><td><b>Def:</b></td><td>${monster.baseStats.def}</td><td><meter value="${monster.baseStats.def}" min="0" max="230" low="70" high="150"></td></tr><tr><td><b>SpA:</b></td><td>${monster.baseStats.spa}</td><td><meter value="${monster.baseStats.spa}" min="0" max="194" low="70" high="150"></td></tr><tr><td><b>SpD:</b></td><td>${monster.baseStats.spd}</td><td><meter value="${monster.baseStats.spd}" min="0" max="230" low="70" high="150"></td></tr><tr><td><b>Spe:</b></td><td>${monster.baseStats.spe}</td><td><meter value="${monster.baseStats.spe}" min="0" max="180" low="70" high="150"></td></tr><tr><td><b>BST:</b></td><td>${bst}</td><td><meter value="${bst}" min="0" max="780" low="300" high="700"></td></tr></table><br /><b>Weight:</b> ${monster.weightkg} kg`;
 }
 }
 });
