@@ -22662,11 +22662,11 @@ let abilities = {
 };
 Object.values(mons).forEach(monster => {
 let monname = document.getElementById("monname").value;
-let speedtierplusscarf = (2.2 * monster.baseStats.spe + 108.9) * 1.5;
-let speedtierscarf = (2 * monster.baseStats.spe + 99) * 1.5;
-let speedtierplus = 2.2 * monster.baseStats.spe + 108.9;
-let speedtier = 2 * monster.baseStats.spe + 99;
-let speedtierzero = 2 * monster.baseStats.spe + 36;
+let speedtierplusscarf = Math.floor((2.2 * monster.baseStats.spe + 108.9) * 1.5);
+let speedtierscarf = Math.floor((2 * monster.baseStats.spe + 99) * 1.5);
+let speedtierplus = Math.floor(2.2 * monster.baseStats.spe + 108.9);
+let speedtier = Math.floor(2 * monster.baseStats.spe + 99);
+let speedtierzero = Math.floor(2 * monster.baseStats.spe + 36);
 Object.values(abilities).forEach(abe => {
 let bst=+monster.baseStats.hp + +monster.baseStats.atk + +monster.baseStats.def + +monster.baseStats.spa + +monster.baseStats.spd + +monster.baseStats.spe;
 let monsmall=monster.species.toLowerCase();
