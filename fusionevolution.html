@@ -39,6 +39,9 @@ textarea {
 height: 20px;
 width: 173px;
   }
+span {
+font-size:16px;
+}
 </style>
 
 </head>
@@ -51,11 +54,11 @@ Playable in <a href="http://dragonheaven.psim.us" target="_blank">Dragon Heaven!
 <table>
 <tr>
 <td>Fused Pokemon 1:</td>
-<td><input type="text" id="fuse1" title="Enter the base Pokemon of the fusion" list="allmons"></input></td>
+<td><input type="text" id="fuse1" title="Enter the base Pokemon of the fusion" list="allmons" onInput="post()"></input></td>
 </tr>
 <tr>
 <td>Fused Pokemon 2:</td>
-<td><input type="text" id="fuse2" list="allmons"></input>
+<td><input type="text" id="fuse2" list="allmons" onInput="post();load ()"></input>
 </tr>
 <tr>
 <td>Fusion:</td> 
@@ -67,45 +70,46 @@ Playable in <a href="http://dragonheaven.psim.us" target="_blank">Dragon Heaven!
 </tr>
 <tr>
 <td>HP:</td>
-<td><textarea type="number" id="oldhp1" onInput="post()"></textarea></td>
-<td><textarea type="number" id="oldhp" onInput="post()"></textarea></td>
 <td><input type="text" id="hp"></input></td>
+<td><textarea id="oldhp1"></textarea></td>
+<td><textarea id="oldhp"></textarea></td>
+<td><textarea id="avghp"></textarea></td>
 </tr>
 <tr>
 <td>Atk:</td>
-  <td><textarea type="number" id="oldatk1" onInput="post()"></textarea></td>
-  <td><textarea type="number" id="oldatk" onInput="post()"></textarea></td>
 <td><input type="text" id="atk"></input></td>
+<td><textarea id="oldatk1"></textarea></td>
+<td><textarea id="oldatk"></textarea></td>
 </tr>
 <tr>
 <td>Def:</td>
-<td><textarea type="number" id="olddef1" onInput="post()"></textarea></td>
-<td><textarea type="number" id="olddef" onInput="post()"></textarea></td>
 <td><input type="text" id="def"></input></td>
+<td><textarea id="olddef1"></textarea></td>
+<td><textarea id="olddef"></textarea></td>
 </tr>
 <tr>
 <td>SpA:</td>
-<td><textarea type="number" id="oldspa1" onInput="post()"></textarea></td>
-<td><textarea type="number" id="oldspa" onInput="post()"></textarea></td>
 <td><input type="text" id="spa"></input></td>
+<td><textarea id="oldspa1"></textarea></td>
+<td><textarea id="oldspa"></textarea></td>
 </tr>
 <tr>
 <td>SpD:</td>
-<td><textarea type="number" id="oldspd1" onInput="post()"></textarea></td>
-<td><textarea type="number" id="oldspd" onInput="post()"></textarea></td>
 <td><input type="text" id="spd"></input></td>
+<td><textarea id="oldspd1"></textarea></td>
+<td><textarea id="oldspd"></textarea></td>
 </tr>
 <tr>
 <td>Spe:</td>
-<td><textarea type="number" id="oldspe1" onInput="post()"></textarea></td>
-<td><textarea type="number" id="oldspe" onInput="post()"></textarea></td>
 <td><input type="text" id="spe"></input></td>
+<td><textarea id="oldspe1"></textarea></td>
+<td><textarea id="oldspe"></textarea></td>
 </tr>
 <tr>
 <td>Weight:</td>
-<td><textarea type="number" id="oldwt1" onInput="post()"></textarea></td>
-<td><textarea type="number" id="oldwt" onInput="post()"></textarea></td>
 <td><input type="text" id="wt"></input></td>
+<td><textarea id="oldwt1"></textarea></td>
+<td><textarea id="oldwt"></textarea></td>
 </tr>
 <tr>
 <td>Ability:</td>
@@ -113,7 +117,7 @@ Playable in <a href="http://dragonheaven.psim.us" target="_blank">Dragon Heaven!
 </tr>
 <tr></table>
 <br>
-<center><img src="http://play.pokemonshowdown.com/sprites/xyani/floette-eternal.gif" width="81" height="90"><button onClick="post()">Generate</button><img src="http://play.pokemonshowdown.com/sprites/xyani/floette-eternal.gif" width="81" height="90"></center>
+<center><img src="http://play.pokemonshowdown.com/sprites/xyani/floette-eternal.gif" width="81" height="90"><button onClick="load()">Generate</button><img src="http://play.pokemonshowdown.com/sprites/xyani/floette-eternal.gif" width="81" height="90"></center>
 <br>
 <p id="xd"> </p>
 
@@ -18831,6 +18835,13 @@ if (fuse2 === "Zeraora") {
 	document.getElementById("oldwt").innerHTML  = "44.5"; 
 }
 /*document.getElementById("xd").innerHTML = "[IMG]http://play.pokemonshowdown.com/sprites/xyani/"+f1+".gif[/IMG][IMG]http://play.pokemonshowdown.com/sprites/xyani/"+f2+".gif[/IMG]<br>[hide="+fusion+"]<b>DNA Donors:</b> "+fuse1+" / "+fuse2+" <br> Offspring Name: "+fusion+" <br>[/hide]<div class=code><h3>Code</h3>[hide=Code]"+mon+": {<br>num: 75000###, <br> types:[&quot;"+type+"&quot;"+type2+"<br>species: &quot;"+fusion+"&quot;, <br> id: "+mon+", <br>baseStats: {hp:"+hp+", atk: "+atk+", def, "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} <br>abilities: {0: &quot;"+abe+"&quot;}, <br>weightkg: "+wt+", <br>fusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],<br>},[/hide]</div>";*/
+}
+function load ()
+{
+let oldhp1 = document.getElementById("oldhp1").value;
+let oldhp = document.getElementById("oldhp").value;
+let avghp = Math.floor((+oldhp1 + +oldhp)/2);
+document.getElementById("avghp").innerHTML = ""+avghp+"";
 }
 </script>
 </html>
