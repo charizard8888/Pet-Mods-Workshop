@@ -39,9 +39,6 @@ textarea {
 height: 20px;
 width: 173px;
   }
-span {
-font-size:16px;
-}
 </style>
 
 </head>
@@ -54,7 +51,7 @@ Playable in <a href="http://dragonheaven.psim.us" target="_blank">Dragon Heaven!
 <table>
 <tr>
 <td>Fused Pokemon 1:</td>
-<td><input type="text" id="fuse1" title="Enter the base Pokemon of the fusion" list="allmons" onInput="post()"></input></td>
+<td><input type="text" id="fuse1" list="allmons" onInput="post()"></input></td>
 </tr>
 <tr>
 <td>Fused Pokemon 2:</td>
@@ -113,10 +110,9 @@ Playable in <a href="http://dragonheaven.psim.us" target="_blank">Dragon Heaven!
 </tr>
 <tr>
 <td>Weight:</td>
-<td><input type="text" id="wt"></input></td>
+<td><textarea type="text" id="wt"></textarea></td>
 <td><textarea id="oldwt1"></textarea></td>
 <td><textarea id="oldwt"></textarea></td>
-<td><textarea id="avgwt"></textarea></td>
 </tr>
 <tr>
 <td>Ability:</td>
@@ -124,7 +120,7 @@ Playable in <a href="http://dragonheaven.psim.us" target="_blank">Dragon Heaven!
 </tr>
 <tr></table>
 <br>
-<center><img src="http://play.pokemonshowdown.com/sprites/xyani/floette-eternal.gif" width="81" height="90"><button onClick="load()">Generate</button><img src="http://play.pokemonshowdown.com/sprites/xyani/floette-eternal.gif" width="81" height="90"></center>
+<center><img src="http://play.pokemonshowdown.com/sprites/xyani/floette-eternal.gif" width="81" height="90"><button onClick="post();load()">Generate</button><img src="http://play.pokemonshowdown.com/sprites/xyani/floette-eternal.gif" width="81" height="90"></center>
 <br>
 <p id="xd"> </p>
 
@@ -170,7 +166,7 @@ let spa= document.getElementById("spa").value;
 let spd= document.getElementById("spd").value;
 let spe= document.getElementById("spe").value;
 let abe= document.getElementById("abe").value;
-
+let wt=document.getElementById("wt").value;
 // Back End
 let mon = fusion.toLowerCase();
 let f1 = fuse1.toLowerCase();
@@ -18841,7 +18837,7 @@ if (fuse2 === "Zeraora") {
 	document.getElementById("oldspe").innerHTML = "143";
 	document.getElementById("oldwt").innerHTML  = "44.5"; 
 }
-/*document.getElementById("xd").innerHTML = "[IMG]http://play.pokemonshowdown.com/sprites/xyani/"+f1+".gif[/IMG][IMG]http://play.pokemonshowdown.com/sprites/xyani/"+f2+".gif[/IMG]<br>[hide="+fusion+"]<b>DNA Donors:</b> "+fuse1+" / "+fuse2+" <br> Offspring Name: "+fusion+" <br>[/hide]<div class=code><h3>Code</h3>[hide=Code]"+mon+": {<br>num: 75000###, <br> types:[&quot;"+type+"&quot;"+type2+"<br>species: &quot;"+fusion+"&quot;, <br> id: "+mon+", <br>baseStats: {hp:"+hp+", atk: "+atk+", def, "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} <br>abilities: {0: &quot;"+abe+"&quot;}, <br>weightkg: "+wt+", <br>fusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],<br>},[/hide]</div>";*/
+document.getElementById("xd").innerHTML = "[IMG]http://play.pokemonshowdown.com/sprites/xyani/"+f1+".gif[/IMG][IMG]http://play.pokemonshowdown.com/sprites/xyani/"+f2+".gif[/IMG]<br>[hide="+fusion+"]<b>DNA Donors:</b> "+fuse1+" / "+fuse2+" <br> Offspring Name: "+fusion+" <br>[/hide]<div class=code><h3>Code</h3>[hide=Code]"+mon+": {<br>num: 75000###, <br> types:[&quot;"+type+"&quot;"+type2+"<br>species: &quot;"+fusion+"&quot;, <br> id: "+mon+", <br>baseStats: {hp:"+hp+", atk: "+atk+", def, "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} <br>abilities: {0: &quot;"+abe+"&quot;}, <br>weightkg: "+wt+", <br>fusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],<br>},[/hide]</div>";
 }
 function load ()
 {
@@ -18878,7 +18874,7 @@ document.getElementById("avgspe").innerHTML = ""+avgspe+"";
 let oldwt1 = document.getElementById("oldwt1").value;
 let oldwt = document.getElementById("oldwt").value;
 let avgwt = (+oldwt1 + +oldwt)/2;
-document.getElementById("avgwt").innerHTML = ""+avgwt+"";
+document.getElementById("wt").innerHTML = ""+avgwt+"";
 }
 </script>
 </html>
