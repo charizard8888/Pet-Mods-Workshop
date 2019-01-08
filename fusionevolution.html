@@ -36,6 +36,9 @@ textarea {
 height: 20px;
 width: 173px;
   }
+textarea:disabled {
+background:none;
+  }
 </style>
 </head>
 <body>
@@ -53,7 +56,7 @@ width: 173px;
 </tr>
 <tr>
 <td>Fusion:</td> 
-<td><input type="text" id="fusion" onInput="post()"></input> </td>
+<td><textarea type="text" id="fusion" onInput="post()"></textarea> </td>
 </tr>
 <td>Types:</td>
 <td><input type="text" id="type" list="types" onInput="post()"></input></td>
@@ -62,45 +65,45 @@ width: 173px;
 <tr>
 <td>HP:</td>
 <td><textarea type="text" id="hp" onInput="post()"></textarea></td>
-<td><textarea id="oldhp1"></textarea></td>
-<td><textarea id="oldhp"></textarea></td>
-<td><textarea id="avghp"></textarea></td>
+<td><textarea id="oldhp1" disabled></textarea></td>
+<td><textarea id="oldhp" disabled></textarea></td>
+<td><textarea id="avghp" disabled></textarea></td>
 </tr>
 <tr>
 <td>Atk:</td>
 <td><textarea type="text" id="atk" onInput="post()"></textarea></td>
-<td><textarea id="oldatk1"></textarea></td>
-<td><textarea id="oldatk"></textarea></td>
-<td><textarea id="avgatk"></textarea></td>
+<td><textarea id="oldatk1" disabled></textarea></td>
+<td><textarea id="oldatk" disabled></textarea></td>
+<td><textarea id="avgatk" disabled></textarea></td>
 
 </tr>
 <tr>
 <td>Def:</td>
 <td><textarea type="text" id="def" onInput="post()"></textarea></td>
-<td><textarea id="olddef1"></textarea></td>
-<td><textarea id="olddef"></textarea></td>
-<td><textarea id="avgdef"></textarea></td>
+<td><textarea id="olddef1" disabled></textarea></td>
+<td><textarea id="olddef" disabled></textarea></td>
+<td><textarea id="avgdef" disabled></textarea></td>
 </tr>
 <tr>
 <td>SpA:</td>
 <td><textarea type="text" id="spa" onInput="post()"></textarea></td>
-<td><textarea id="oldspa1"></textarea></td>
-<td><textarea id="oldspa"></textarea></td>
-<td><textarea id="avgspa"></textarea></td>
+<td><textarea id="oldspa1" disabled></textarea></td>
+<td><textarea id="oldspa" disabled></textarea></td>
+<td><textarea id="avgspa" disabled></textarea></td>
 </tr>
 <tr>
 <td>SpD:</td>
 <td><textarea type="text" id="spd" onInput="post()"></textarea></td>
-<td><textarea id="oldspd1"></textarea></td>
-<td><textarea id="oldspd"></textarea></td>
-<td><textarea id="avgspd"></textarea></td>
+<td><textarea id="oldspd1" disabled></textarea></td>
+<td><textarea id="oldspd" disabled></textarea></td>
+<td><textarea id="avgspd" disabled></textarea></td>
 </tr>
 <tr>
 <td>Spe:</td>
 <td><textarea type="text" id="spe" onInput="post()"></textarea></td>
-<td><textarea id="oldspe1"></textarea></td>
-<td><textarea id="oldspe"></textarea></td>
-<td><textarea id="avgspe"></textarea></td>
+<td><textarea id="oldspe1" disabled></textarea></td>
+<td><textarea id="oldspe" disabled></textarea></td>
+<td><textarea id="avgspe" disabled></textarea></td>
 </tr>
 <tr>
 <td>Weight:</td>
