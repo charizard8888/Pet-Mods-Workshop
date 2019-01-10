@@ -1,5 +1,17 @@
-This README.md is a WIP
+Pet Mods Workshop
+========================================================================
 
-Pet Mods Workshop is a workshop (tools) for helping in Pet Mods submissions and coding.
+A workshop for making tools for Pet Mods.
 
-Anyone can help, for more info contact charizard8888 or Ludicrousity.
+Anyone can help, for more info contact charizard8888 on Pokemon Showdown, Dragon Heaven, Smogon or Discord.
+
+[Index]
+
+[Index]: https://charizard8888.github.io/Pet-Mods-Workshop/index.html
+
+Credits:
+- Spandan
+- XpRienzo
+- [Zarel's Pokemon Showdown Repository][1] 
+
+[1]: https://github.com/Zarel/Pokemon-Showdown
