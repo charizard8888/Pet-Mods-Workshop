@@ -52,7 +52,7 @@ meter::-webkit-meter-optimum-value {
 </head>
 <body>
 <center>
-<h1>Fusion Evolution!</h1>
+<h1>Fusion Evolution!!!</h1>
 <input id="monname" list="allfe"/> <br />
 <br />
 <button onClick="go()">Go</button></center>
@@ -62,14 +62,14 @@ meter::-webkit-meter-optimum-value {
 </body>
 <script>
 function go() {
-		let feDex = require('../mods/fe/pokedex.js').BattlePokedex;
+		let feDex = require('https://github.com/Spandamn/DH/blob/master/mods/fe/pokedex.js').BattlePokedex;
 		if (!feDex) return this.errorReply("Error Fetching FE Data.");
 		Object.values(feDex).forEach(mon => {
-			let separated = target.split(" ");
-			let fusionmon = (("" + separated[0]).trim());
+			let fusionmon = document.getElementById("monname").value;
 			if (mon.species === fusionmon) {
 			document.getElementById("info").innerHTML = `<strong>${mon.species}:</strong> <i>${mon.num}</i><br>`;
 			}
+			});
 }
 </script>
 </html>
