@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Megas For All</title>
+<title>Z-Moves Everywhere</title>
 <style>
 body, table {
 font-size: 24px;
@@ -41,7 +41,7 @@ width: 173px;
 <body>
 <center>
  <h1>Megas For All!</h1>
-Playable in <a href="http://nexus.psim.us" target="_blank">Nexus!</a>
+Playable in <a href="http://dragonheaven.psim.us" target="_blank">Dragon Heaven!</a>
 </center>
 <table>
 <tr>
@@ -59,6 +59,10 @@ Playable in <a href="http://nexus.psim.us" target="_blank">Nexus!</a>
 <td>Z-Move Type:</td> 
 <td>
 <input type="text" id="type" list="types" onInput="post()"></input></td>
+</tr>
+<td>Z-Move Category:</td> 
+<td>
+<input type="text" id="category" list="categories" onInput="post()"></input></td>
 </tr>
 <td>Z-Move Power:</td>
 <td><textarea type="number" id="bp" onInput="post()"></textarea></td>
@@ -84,7 +88,8 @@ Playable in <a href="http://nexus.psim.us" target="_blank">Nexus!</a>
 <br>
 <p id="xd"> </p>
 
- <datalist id="types">
+
+<datalist id="types">
     <option value="Fire">
     <option value="Water">
     <option value="Grass">
@@ -112,6 +117,13 @@ Playable in <a href="http://nexus.psim.us" target="_blank">Nexus!</a>
 <datalist id="allmoves">
 <option value="10,000,000 Volt Thunderbolt"><option value="Absorb"><option value="Accelerock"><option value="Acid"><option value="Acid Armor"><option value="Acid Downpour"><option value="Acid Spray"><option value="Acrobatics"><option value="Acupressure"><option value="Aerial Ace"><option value="Aeroblast"><option value="After You"><option value="Agility"><option value="Air Cutter"><option value="Air Slash"><option value="All-Out Pummeling"><option value="Ally Switch"><option value="Amnesia"><option value="Anchor Shot"><option value="Ancient Power"><option value="Aqua Jet"><option value="Aqua Ring"><option value="Aqua Tail"><option value="Arm Thrust"><option value="Aromatherapy"><option value="Aromatic Mist"><option value="Assist"><option value="Assurance"><option value="Astonish"><option value="Attack Order"><option value="Attract"><option value="Aura Sphere"><option value="Aurora Beam"><option value="Aurora Veil"><option value="Autotomize"><option value="Avalanche"><option value="Baby-Doll Eyes"><option value="Baneful Bunker"><option value="Barrage"><option value="Barrier"><option value="Baton Pass"><option value="Beak Blast"><option value="Beat Up"><option value="Belch"><option value="Belly Drum"><option value="Bestow"><option value="Bide"><option value="Bind"><option value="Bite"><option value="Black Hole Eclipse"><option value="Blast Burn"><option value="Blaze Kick"><option value="Blizzard"><option value="Block"><option value="Bloom Doom"><option value="Blue Flare"><option value="Body Slam"><option value="Bolt Strike"><option value="Bone Club"><option value="Bone Rush"><option value="Bonemerang"><option value="Boomburst"><option value="Bounce"><option value="Brave Bird"><option value="Breakneck Blitz"><option value="Brick Break"><option value="Brine"><option value="Brutal Swing"><option value="Bubble"><option value="Bubble Beam"><option value="Bug Bite"><option value="Bug Buzz"><option value="Bulk Up"><option value="Bulldoze"><option value="Bullet Punch"><option value="Bullet Seed"><option value="Burn Up"><option value="Calm Mind"><option value="Camouflage"><option value="Captivate"><option value="Catastropika"><option value="Celebrate"><option value="Charge"><option value="Charge Beam"><option value="Charm"><option value="Chatter"><option value="Chip Away"><option value="Circle Throw"><option value="Clamp"><option value="Clanging Scales"><option value="Clangorous Soulblaze"><option value="Clear Smog"><option value="Close Combat"><option value="Coil"><option value="Comet Punch"><option value="Confide"><option value="Confuse Ray"><option value="Confusion"><option value="Constrict"><option value="Continental Crush"><option value="Conversion"><option value="Conversion 2"><option value="Copycat"><option value="Core Enforcer"><option value="Corkscrew Crash"><option value="Cosmic Power"><option value="Cotton Guard"><option value="Cotton Spore"><option value="Counter"><option value="Covet"><option value="Crabhammer"><option value="Crafty Shield"><option value="Cross Chop"><option value="Cross Poison"><option value="Crunch"><option value="Crush Claw"><option value="Crush Grip"><option value="Curse"><option value="Cut"><option value="Dark Pulse"><option value="Dark Void"><option value="Darkest Lariat"><option value="Dazzling Gleam"><option value="Defend Order"><option value="Defense Curl"><option value="Defog"><option value="Destiny Bond"><option value="Detect"><option value="Devastating Drake"><option value="Diamond Storm"><option value="Dig"><option value="Disable"><option value="Disarming Voice"><option value="Discharge"><option value="Dive"><option value="Dizzy Punch"><option value="Doom Desire"><option value="Double-Edge"><option value="Double Hit"><option value="Double Kick"><option value="Double Slap"><option value="Double Team"><option value="Draco Meteor"><option value="Dragon Ascent"><option value="Dragon Breath"><option value="Dragon Claw"><option value="Dragon Dance"><option value="Dragon Hammer"><option value="Dragon Pulse"><option value="Dragon Rage"><option value="Dragon Rush"><option value="Dragon Tail"><option value="Draining Kiss"><option value="Drain Punch"><option value="Dream Eater"><option value="Drill Peck"><option value="Drill Run"><option value="Dual Chop"><option value="Dynamic Punch"><option value="Earth Power"><option value="Earthquake"><option value="Echoed Voice"><option value="Eerie Impulse"><option value="Egg Bomb"><option value="Electric Terrain"><option value="Electrify"><option value="Electro Ball"><option value="Electroweb"><option value="Embargo"><option value="Ember"><option value="Encore"><option value="Endeavor"><option value="Endure"><option value="Energy Ball"><option value="Entrainment"><option value="Eruption"><option value="Explosion"><option value="Extrasensory"><option value="Extreme Evoboost"><option value="Extreme Speed"><option value="Facade"><option value="Feint Attack"><option value="Fairy Lock"><option value="Fairy Wind"><option value="Fake Out"><option value="Fake Tears"><option value="False Swipe"><option value="Feather Dance"><option value="Feint"><option value="Fell Stinger"><option value="Fiery Dance"><option value="Final Gambit"><option value="Fire Blast"><option value="Fire Fang"><option value="Fire Lash"><option value="Fire Pledge"><option value="Fire Punch"><option value="Fire Spin"><option value="First Impression"><option value="Fissure"><option value="Flail"><option value="Flame Burst"><option value="Flame Charge"><option value="Flame Wheel"><option value="Flamethrower"><option value="Flare Blitz"><option value="Flash"><option value="Flash Cannon"><option value="Flatter"><option value="Fleur Cannon"><option value="Fling"><option value="Floral Healing"><option value="Flower Shield"><option value="Fly"><option value="Flying Press"><option value="Focus Blast"><option value="Focus Energy"><option value="Focus Punch"><option value="Follow Me"><option value="Force Palm"><option value="Foresight"><option value="Forest's Curse"><option value="Foul Play"><option value="Freeze-Dry"><option value="Freeze Shock"><option value="Frenzy Plant"><option value="Frost Breath"><option value="Frustration"><option value="Fury Attack"><option value="Fury Cutter"><option value="Fury Swipes"><option value="Fusion Bolt"><option value="Fusion Flare"><option value="Future Sight"><option value="Gastro Acid"><option value="Gear Grind"><option value="Gear Up"><option value="Genesis Supernova"><option value="Geomancy"><option value="Giga Drain"><option value="Giga Impact"><option value="Gigavolt Havoc"><option value="Glaciate"><option value="Glare"><option value="Grass Knot"><option value="Grass Pledge"><option value="Grass Whistle"><option value="Grassy Terrain"><option value="Gravity"><option value="Growl"><option value="Growth"><option value="Grudge"><option value="Guard Split"><option value="Guard Swap"><option value="Guardian of Alola"><option value="Guillotine"><option value="Gunk Shot"><option value="Gust"><option value="Gyro Ball"><option value="Hail"><option value="Hammer Arm"><option value="Happy Hour"><option value="Harden"><option value="Haze"><option value="Head Charge"><option value="Head Smash"><option value="Headbutt"><option value="Heal Bell"><option value="Heal Block"><option value="Heal Order"><option value="Heal Pulse"><option value="Healing Wish"><option value="Heart Stamp"><option value="Heart Swap"><option value="Heat Crash"><option value="Heat Wave"><option value="Heavy Slam"><option value="Helping Hand"><option value="Hex"><option value="Hidden Power"><option value="Hidden Power Bug"><option value="Hidden Power Dark"><option value="Hidden Power Dragon"><option value="Hidden Power Electric"><option value="Hidden Power Fighting"><option value="Hidden Power Fire"><option value="Hidden Power Flying"><option value="Hidden Power Ghost"><option value="Hidden Power Grass"><option value="Hidden Power Ground"><option value="Hidden Power Ice"><option value="Hidden Power Poison"><option value="Hidden Power Psychic"><option value="Hidden Power Rock"><option value="Hidden Power Steel"><option value="Hidden Power Water"><option value="High Horsepower"><option value="High Jump Kick"><option value="Hold Back"><option value="Hold Hands"><option value="Hone Claws"><option value="Horn Attack"><option value="Horn Drill"><option value="Horn Leech"><option value="Howl"><option value="Hurricane"><option value="Hydro Cannon"><option value="Hydro Pump"><option value="Hydro Vortex"><option value="Hyper Beam"><option value="Hyper Fang"><option value="Hyperspace Fury"><option value="Hyperspace Hole"><option value="Hyper Voice"><option value="Hypnosis"><option value="Ice Ball"><option value="Ice Beam"><option value="Ice Burn"><option value="Ice Fang"><option value="Ice Hammer"><option value="Ice Punch"><option value="Ice Shard"><option value="Icicle Crash"><option value="Icicle Spear"><option value="Icy Wind"><option value="Imprison"><option value="Incinerate"><option value="Inferno"><option value="Inferno Overdrive"><option value="Infestation"><option value="Ingrain"><option value="Instruct"><option value="Ion Deluge"><option value="Iron Defense"><option value="Iron Head"><option value="Iron Tail"><option value="Judgment"><option value="Jump Kick"><option value="Karate Chop"><option value="Kinesis"><option value="King's Shield"><option value="Knock Off"><option value="Land's Wrath"><option value="Laser Focus"><option value="Last Resort"><option value="Lava Plume"><option value="Leaf Blade"><option value="Leaf Storm"><option value="Leaf Tornado"><option value="Leafage"><option value="Leech Life"><option value="Leech Seed"><option value="Leer"><option value="Let's Snuggle Forever"><option value="Lick"><option value="Light of Ruin"><option value="Light Screen"><option value="Light That Burns the Sky"><option value="Liquidation"><option value="Lock-On"><option value="Lovely Kiss"><option value="Low Kick"><option value="Low Sweep"><option value="Lucky Chant"><option value="Lunar Dance"><option value="Lunge"><option value="Luster Purge"><option value="Mach Punch"><option value="Magic Coat"><option value="Magic Room"><option value="Magical Leaf"><option value="Magma Storm"><option value="Magnet Bomb"><option value="Magnetic Flux"><option value="Magnet Rise"><option value="Magnitude"><option value="Malicious Moonsault"><option value="Mat Block"><option value="Me First"><option value="Mean Look"><option value="Meditate"><option value="Mega Drain"><option value="Mega Kick"><option value="Mega Punch"><option value="Megahorn"><option value="Memento"><option value="Menacing Moonraze Maelstrom"><option value="Metal Burst"><option value="Metal Claw"><option value="Metal Sound"><option value="Meteor Mash"><option value="Metronome"><option value="Milk Drink"><option value="Mimic"><option value="Mind Blown"><option value="Mind Reader"><option value="Minimize"><option value="Miracle Eye"><option value="Mirror Coat"><option value="Mirror Move"><option value="Mirror Shot"><option value="Mist"><option value="Mist Ball"><option value="Misty Terrain"><option value="Moonblast"><option value="Moongeist Beam"><option value="Moonlight"><option value="Morning Sun"><option value="Mud-Slap"><option value="Mud Bomb"><option value="Mud Shot"><option value="Mud Sport"><option value="Muddy Water"><option value="Multi-Attack"><option value="Mystical Fire"><option value="Nasty Plot"><option value="Natural Gift"><option value="Nature Power"><option value="Nature's Madness"><option value="Needle Arm"><option value="Never-Ending Nightmare"><option value="Night Daze"><option value="Night Shade"><option value="Night Slash"><option value="Nightmare"><option value="Noble Roar"><option value="Nuzzle"><option value="Oblivion Wing"><option value="Oceanic Operetta"><option value="Octazooka"><option value="Odor Sleuth"><option value="Ominous Wind"><option value="Origin Pulse"><option value="Outrage"><option value="Overheat"><option value="Pain Split"><option value="Parabolic Charge"><option value="Parting Shot"><option value="Pay Day"><option value="Payback"><option value="Peck"><option value="Perish Song"><option value="Petal Blizzard"><option value="Petal Dance"><option value="Phantom Force"><option value="Photon Geyser"><option value="Pin Missile"><option value="Plasma Fists"><option value="Play Nice"><option value="Play Rough"><option value="Pluck"><option value="Poison Fang"><option value="Poison Gas"><option value="Poison Jab"><option value="Poison Powder"><option value="Poison Sting"><option value="Poison Tail"><option value="Pollen Puff"><option value="Pound"><option value="Powder"><option value="Powder Snow"><option value="Power Gem"><option value="Power Split"><option value="Power Swap"><option value="Power Trick"><option value="Power Trip"><option value="Power-Up Punch"><option value="Power Whip"><option value="Precipice Blades"><option value="Present"><option value="Prismatic Laser"><option value="Protect"><option value="Psybeam"><option value="Psych Up"><option value="Psychic"><option value="Psychic Fangs"><option value="Psychic Terrain"><option value="Psycho Boost"><option value="Psycho Cut"><option value="Psycho Shift"><option value="Psyshock"><option value="Psystrike"><option value="Psywave"><option value="Pulverizing Pancake"><option value="Punishment"><option value="Purify"><option value="Pursuit"><option value="Quash"><option value="Quick Attack"><option value="Quick Guard"><option value="Quiver Dance"><option value="Rage"><option value="Rage Powder"><option value="Rain Dance"><option value="Rapid Spin"><option value="Razor Leaf"><option value="Razor Shell"><option value="Razor Wind"><option value="Recover"><option value="Recycle"><option value="Reflect"><option value="Reflect Type"><option value="Refresh"><option value="Relic Song"><option value="Rest"><option value="Retaliate"><option value="Return"><option value="Revelation Dance"><option value="Revenge"><option value="Reversal"><option value="Roar"><option value="Roar of Time"><option value="Rock Blast"><option value="Rock Climb"><option value="Rock Polish"><option value="Rock Slide"><option value="Rock Smash"><option value="Rock Throw"><option value="Rock Tomb"><option value="Rock Wrecker"><option value="Role Play"><option value="Rolling Kick"><option value="Rollout"><option value="Roost"><option value="Rototiller"><option value="Round"><option value="Sacred Fire"><option value="Sacred Sword"><option value="Safeguard"><option value="Sand Attack"><option value="Sand Tomb"><option value="Sandstorm"><option value="Savage Spin-Out"><option value="Scald"><option value="Scary Face"><option value="Scratch"><option value="Screech"><option value="Searing Shot"><option value="Searing Sunraze Smash"><option value="Secret Power"><option value="Secret Sword"><option value="Seed Bomb"><option value="Seed Flare"><option value="Seismic Toss"><option value="Self-Destruct"><option value="Shadow Ball"><option value="Shadow Bone"><option value="Shadow Claw"><option value="Shadow Force"><option value="Shadow Punch"><option value="Shadow Sneak"><option value="Sharpen"><option value="Shattered Psyche"><option value="Sheer Cold"><option value="Shell Smash"><option value="Shell Trap"><option value="Shift Gear"><option value="Shock Wave"><option value="Shore Up"><option value="Signal Beam"><option value="Silver Wind"><option value="Simple Beam"><option value="Sing"><option value="Sinister Arrow Raid"><option value="Sketch"><option value="Skill Swap"><option value="Skull Bash"><option value="Sky Attack"><option value="Sky Drop"><option value="Sky Uppercut"><option value="Slack Off"><option value="Slam"><option value="Slash"><option value="Sleep Powder"><option value="Sleep Talk"><option value="Sludge"><option value="Sludge Bomb"><option value="Sludge Wave"><option value="Smack Down"><option value="Smart Strike"><option value="Smelling Salts"><option value="Smog"><option value="Smokescreen"><option value="Snarl"><option value="Snatch"><option value="Snore"><option value="Spectral Thief"><option value="Speed Swap"><option value="Spiky Shield"><option value="Spirit Shackle"><option value="Soak"><option value="Soft-Boiled"><option value="Solar Beam"><option value="Solar Blade"><option value="Sonic Boom"><option value="Soul-Stealing 7-Star Strike"><option value="Spacial Rend"><option value="Spark"><option value="Sparkling Aria"><option value="Spider Web"><option value="Spike Cannon"><option value="Spikes"><option value="Spit Up"><option value="Spite"><option value="Splash"><option value="Splintered Stormshards"><option value="Spore"><option value="Spotlight"><option value="Stealth Rock"><option value="Steam Eruption"><option value="Steel Wing"><option value="Sticky Web"><option value="Stockpile"><option value="Stoked Sparksurfer"><option value="Stomp"><option value="Stomping Tantrum"><option value="Stone Edge"><option value="Stored Power"><option value="Storm Throw"><option value="Steamroller"><option value="Strength"><option value="Strength Sap"><option value="String Shot"><option value="Struggle"><option value="Struggle Bug"><option value="Stun Spore"><option value="Submission"><option value="Substitute"><option value="Subzero Slammer"><option value="Sucker Punch"><option value="Sunny Day"><option value="Sunsteel Strike"><option value="Super Fang"><option value="Superpower"><option value="Supersonic"><option value="Supersonic Skystrike"><option value="Surf"><option value="Swagger"><option value="Swallow"><option value="Sweet Kiss"><option value="Sweet Scent"><option value="Swift"><option value="Switcheroo"><option value="Swords Dance"><option value="Synchronoise"><option value="Synthesis"><option value="Tackle"><option value="Tail Glow"><option value="Tail Slap"><option value="Tail Whip"><option value="Tailwind"><option value="Take Down"><option value="Taunt"><option value="Tearful Look"><option value="Techno Blast"><option value="Tectonic Rage"><option value="Teeter Dance"><option value="Telekinesis"><option value="Teleport"><option value="Thief"><option value="Thousand Arrows"><option value="Thousand Waves"><option value="Thrash"><option value="Throat Chop"><option value="Thunder"><option value="Thunder Fang"><option value="Thunder Punch"><option value="Thunder Shock"><option value="Thunder Wave"><option value="Thunderbolt"><option value="Tickle"><option value="Topsy-Turvy"><option value="Torment"><option value="Toxic"><option value="Toxic Spikes"><option value="Toxic Thread"><option value="Transform"><option value="Tri Attack"><option value="Trick"><option value="Trick-or-Treat"><option value="Trick Room"><option value="Triple Kick"><option value="Trop Kick"><option value="Trump Card"><option value="Twineedle"><option value="Twinkle Tackle"><option value="Twister"><option value="U-turn"><option value="Uproar"><option value="V-create"><option value="Vacuum Wave"><option value="Venom Drench"><option value="Venoshock"><option value="Vice Grip"><option value="Vine Whip"><option value="Vital Throw"><option value="Volt Switch"><option value="Volt Tackle"><option value="Wake-Up Slap"><option value="Water Gun"><option value="Water Pledge"><option value="Water Pulse"><option value="Water Sport"><option value="Water Spout"><option value="Waterfall"><option value="Water Shuriken"><option value="Weather Ball"><option value="Whirlpool"><option value="Whirlwind"><option value="Wide Guard"><option value="Wild Charge"><option value="Will-O-Wisp"><option value="Wing Attack"><option value="Wish"><option value="Withdraw"><option value="Wonder Room"><option value="Wood Hammer"><option value="Work Up"><option value="Worry Seed"><option value="Wrap"><option value="Wring Out"><option value="X-Scissor"><option value="Yawn"><option value="Zap Cannon"><option value="Zen Headbutt"><option value="Zing Zap"><option value="Paleo Wave"><option value="Shadow Strike"><option value="Magikarp's Revenge">
 </datalist>
+
+<datalist id="categories">
+<option value="Physical">
+<option value="Special">
+<option value="Status">
+</datalist>
+
 <script>
 function post ()
 {
@@ -126,124 +138,18 @@ let zcrystal= document.getElementById("zcrystal").value;
 let reqmove= document.getElementById("reqmove").value;
 let movedesc= document.getElementById("movedesc").value;
 let effect= document.getElementById("effect").value;
+let category= document.getElementById("category").value;
 
-let movesmall = move.replace(" ",");
-let movesmall = movesmall.replace("-",");
-let zcystalsmall = zcrystal.replace(" ",");
-let zcystalsmall = zcystalsmall.replace("-",");
+let movesmall = move.replace(" ","");
+movesmall = movesmall.replace("-","");
+
+let zcrystalsmall = zcrystal.replace(" ","");
+zcystalsmall = zcrystalsmall.replace("-","");
 
 // STAERTT
-if (pokemon === "Bulbasaur") {
-	num = "1";
-	document.getElementById("hp").innerHTML = "45";
-	document.getElementById("oldatk").innerHTML = "49";
-	document.getElementById("olddef").innerHTML = "49";
-	document.getElementById("oldspa").innerHTML = "65";
-	document.getElementById("oldspd").innerHTML = "65";
-	document.getElementById("oldspe").innerHTML = "45";
-	document.getElementById("oldwt").innerHTML = "6.9"; 
-}
-if (pokemon === "Ivysaur") {
-	num = "2";
-	document.getElementById("hp").innerHTML = "60";
-	document.getElementById("oldatk").innerHTML = "62";
-	document.getElementById("olddef").innerHTML = "63";
-	document.getElementById("oldspa").innerHTML = "80";
-	document.getElementById("oldspd").innerHTML = "80";
-	document.getElementById("oldspe").innerHTML = "60";
-	document.getElementById("oldwt").innerHTML = "13"; 
-}
-if (pokemon === "Venusaur") {
-	num = "3";
-	document.getElementById("hp").innerHTML = "80";
-	document.getElementById("oldatk").innerHTML = "82";
-	document.getElementById("olddef").innerHTML = "83";
-	document.getElementById("oldspa").innerHTML = "100";
-	document.getElementById("oldspd").innerHTML = "100";
-	document.getElementById("oldspe").innerHTML = "80";
-	document.getElementById("oldwt").innerHTML = "100"; 
-}
-if (pokemon === "Charmander") {
-	num = "4";
-	document.getElementById("hp").innerHTML = "39";
-	document.getElementById("oldatk").innerHTML = "52";
-	document.getElementById("olddef").innerHTML = "43";
-	document.getElementById("oldspa").innerHTML = "60";
-	document.getElementById("oldspd").innerHTML = "50";
-	document.getElementById("oldspe").innerHTML = "65";
-	document.getElementById("oldwt").innerHTML = "8.5"; 
-}
-if (pokemon === "Charmeleon") {
-	num = "5";
-	document.getElementById("hp").innerHTML = "58";
-	document.getElementById("oldatk").innerHTML = "64";
-	document.getElementById("olddef").innerHTML = "58";
-	document.getElementById("oldspa").innerHTML = "80";
-	document.getElementById("oldspd").innerHTML = "65";
-	document.getElementById("oldspe").innerHTML = "80";
-	document.getElementById("oldwt").innerHTML = "19"; 
-}
-if (pokemon === "Charizard") {
-	num = "6";
-	document.getElementById("hp").innerHTML = "78";
-	document.getElementById("oldatk").innerHTML = "84";
-	document.getElementById("olddef").innerHTML = "78";
-	document.getElementById("oldspa").innerHTML = "109";
-	document.getElementById("oldspd").innerHTML = "85";
-	document.getElementById("oldspe").innerHTML = "100";
-	document.getElementById("oldwt").innerHTML = "90.5"; 
-}
-if (pokemon === "Charizard-Mega-X") {
-	num = "6";
-	document.getElementById("hp").innerHTML = "78";
-	document.getElementById("oldatk").innerHTML = "130";
-	document.getElementById("olddef").innerHTML = "111";
-	document.getElementById("oldspa").innerHTML = "130";
-	document.getElementById("oldspd").innerHTML = "85";
-	document.getElementById("oldspe").innerHTML = "100";
-	document.getElementById("oldwt").innerHTML = "110.5"; 
-}
-if (pokemon === "Charizard-Mega-Y") {
-	num = "6";
-	document.getElementById("hp").innerHTML = "78";
-	document.getElementById("oldatk").innerHTML = "104";
-	document.getElementById("olddef").innerHTML = "78";
-	document.getElementById("oldspa").innerHTML = "159";
-	document.getElementById("oldspd").innerHTML = "115";
-	document.getElementById("oldspe").innerHTML = "100";
-	document.getElementById("oldwt").innerHTML = "100.5"; 
-}
-if (pokemon === "Squirtle") {
-	num = "7";
-	document.getElementById("hp").innerHTML = "44";
-	document.getElementById("oldatk").innerHTML = "48";
-	document.getElementById("olddef").innerHTML = "65";
-	document.getElementById("oldspa").innerHTML = "50";
-	document.getElementById("oldspd").innerHTML = "64";
-	document.getElementById("oldspe").innerHTML = "43";
-	document.getElementById("oldwt").innerHTML = "9"; 
-}
-if (pokemon === "Wartortle") {
-	num = "8";
-	document.getElementById("hp").innerHTML = "59";
-	document.getElementById("oldatk").innerHTML = "63";
-	document.getElementById("olddef").innerHTML = "80";
-	document.getElementById("oldspa").innerHTML = "65";
-	document.getElementById("oldspd").innerHTML = "80";
-	document.getElementById("oldspe").innerHTML = "58";
-	document.getElementById("oldwt").innerHTML = "22.5"; 
-}
-if (pokemon === "Blastoise") {
-	num = "9";
-	document.getElementById("hp").innerHTML = "79";
-	document.getElementById("oldatk").innerHTML = "83";
-	document.getElementById("olddef").innerHTML = "100";
-	document.getElementById("oldspa").innerHTML = "85";
-	document.getElementById("oldspd").innerHTML = "105";
-	document.getElementById("oldspe").innerHTML = "78";
-	document.getElementById("oldwt").innerHTML = "85.5"; 
-}
-if (pokemon === "Caterpie") {
+
+
+/*if (pokemon === "Caterpie") {
 	num = "10";
 	document.getElementById("hp").innerHTML = "45";
 	document.getElementById("oldatk").innerHTML = "30";
@@ -7857,10 +7763,10 @@ if (pokemon === "Aegislash-Blade") {
 	document.getElementById("oldspd").innerHTML = "50";
 	document.getElementById("oldspe").innerHTML = "60";
 	document.getElementById("oldwt").innerHTML = "53"; 
-}
+}*/
 
 
-document.getElementById("xd").innerHTML = "[IMG]http://play.pokemonshowdown.com/sprites/xyani/"+pokemon+".gif[/IMG]<br>[B]Z-Crystal Name[/B]: "+zcrystal+"<br>[B]Z-Move Name[/B]: "+move+"<br>[B]Z-Move Type[/B]: "+type+"<br>[B]Z-Move Power[/B]: "+bp+"<br>[B]Required Move[/B]: "+reqmove+"<br>[B]Z-Move Description[/B]: "+movedesc+"<br>[B]Z-Move Effect[/B]: "+effect+"<br><br><div class=code>[hide=Code]pokedex.js <br> <br>[CODE=javascript]"+movesmall+": {<br>basePower: "+bp+", <br> accuracy: true, <br> category: &quot;"+category+"&quot;, <br> shortDesc: &quot;"+effect+"&quot;, <br> id: &quot;"+movesmall+"&quot;, <br> name: &quot;"+move+"&quot;, <br> pp: 1,<br> priority: 0, <br> flags: {}, <br>onPrepareHit: function(target, source) {	this.attrLastMove('[still]');this.add('-anim', source, &quot;Revelation Dance&quot;, target);},<br> target: &quot;normal&quot;,<br>type: &quot;"+type+"&quot;, <br>isZ: "+zcrystalsmall+",},[/CODE]<br><br>[CODE]moves.js<br>&quot;"+zcrystalsmall+"&quot;:{<br>id:&quot;"+zcrystalsmall+",<br>name: &quot;"+zcrystal+"&quot;,<br>onTakeItem: false,<br>zMove: &quot;"+move+"&quot;,<br>zMoveFrom: &quot;"+reqmove+"&quot;,<br>zMoveUser: [&quot;"+pokemon+"&quot;],<br>desc: &quot;If the holder is a "+pokemon+" with the move "+reqmove+", it can use "+move+".&quot;,>br>},[/CODE]";
+document.getElementById("xd").innerHTML = "[IMG]http://play.pokemonshowdown.com/sprites/xyani/"+pokemon+".gif[/IMG]<br>[B]Z-Crystal Name[/B]: "+zcrystal+"<br>[B]Z-Move Name[/B]: "+move+"<br>[B]Z-Move Type[/B]: "+type+"<br>[B]Z-Move Power[/B]: "+bp+"<br>[B]Required Move[/B]: "+reqmove+"<br>[B]Z-Move Description[/B]: "+movedesc+"<br>[B]Z-Move Effect[/B]: "+effect+"<br><br><div class=code>[hide=Code]moves.js <br> <br>[CODE=javascript]"+movesmall+": {<br>basePower: "+bp+", <br> accuracy: true, <br> category: &quot;"+category+"&quot;, <br> shortDesc:&quot;"+effect+" &quot;, <br> id: &quot;"+movesmall+"&quot;, <br> name: &quot;"+move+"&quot;, <br> pp: 1,<br> priority: 0, <br> flags: {}, <br>onPrepareHit: function(target, source) {	this.attrLastMove('[still]');this.add('-anim', source, &quot;Revelation Dance&quot;, target);},<br> target: &quot;normal&quot;,<br>type: &quot;"+type+"&quot;, <br>isZ: "+zcrystalsmall+",<br>},[/CODE] <br><br>[CODE]moves.js<br>&quot;"+zcrystalsmall+"&quot;:{<br>id:&quot;"+zcrystalsmall+",<br>name: &quot;"+zcrystal+"&quot;,<br>onTakeItem: false,<br>zMove: &quot;"+move+"&quot;,<br>zMoveFrom: &quot;"+reqmove+"&quot;,<br>zMoveUser: [&quot;"+pokemon+"&quot;],<br>desc: &quot;If the holder is a "+pokemon+" with the move "+reqmove+", it can use "+move+".&quot;,>br>},[/CODE]";
 }
 </script>
 </body>
