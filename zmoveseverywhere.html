@@ -54,7 +54,7 @@ Playable in <a href="http://dragonheaven.psim.us" target="_blank">Dragon Heaven!
 </tr>
 <tr>
 <td>Z-Crystal: </td> 
-<td><input type="text" id="zcrystal" onInput="post()"></input></td>
+<td><textarea id="zcrystal" onInput="post()">ium Z</textarea></td>
 </tr>
 <td>Z-Move Type:</td> 
 <td>
@@ -148,6 +148,10 @@ movesmall = movesmall.toLowerCase();
 let zcrystalsmall = zcrystal.replace(" ","");
 zcrystalsmall = zcrystalsmall.replace("-","");
 zcrystalsmall = zcrystalsmall.toLowerCase();
+	
+if (category === "Special") {
+	document.getElementById("bp").innerHTML = "0";
+}
 
 // STAERTT
 
