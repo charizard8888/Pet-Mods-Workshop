@@ -67,6 +67,7 @@ cursor: pointer;
 <tr>
 <td>Fusion</td> 
 <td><textarea type="text" id="fusion" onInput="post()"></textarea> </td>
+<td><span id="ft"></span></td>
 </tr>
 <td>Types</td>
 <td><input type="text" id="type" list="types" onInput="post()"></input></td>
@@ -247,6 +248,13 @@ let bst=+hp + +atk + +def + +spa + +spd + +spe;
 document.getElementById("mon1stats").innerHTML=""+fuse1+"";
 document.getElementById("mon2stats").innerHTML=""+fuse2+"";
 document.getElementById("fusionstats").innerHTML=""+fusion+"";
+
+if (type != undefined && type !== "") {
+document.getElementById("ft").innerHTML="<img src=http://play.pokemonshowdown.com/sprites/types/"+type+".png>";
+}
+if (t2 != undefined && t2 !== "") {
+document.getElementById("ft").innerHTML+="<img src=http://play.pokemonshowdown.com/sprites/types/"+t2+".png>";
+}
 
 if (fuse1==="Bulbasaur") {num ="1";document.getElementById("oldhp1").innerHTML="45";document.getElementById("oldatk1").innerHTML="49";document.getElementById("olddef1").innerHTML="49";document.getElementById("oldspa1").innerHTML="65";document.getElementById("oldspd1").innerHTML="65";document.getElementById("oldspe1").innerHTML="45";document.getElementById("oldwt1").innerHTML="6.9"; 
 }if (fuse1==="Ivysaur") {num ="2";document.getElementById("oldhp1").innerHTML="60";document.getElementById("oldatk1").innerHTML="62";document.getElementById("olddef1").innerHTML="63";document.getElementById("oldspa1").innerHTML="80";document.getElementById("oldspd1").innerHTML="80";document.getElementById("oldspe1").innerHTML="60";document.getElementById("oldwt1").innerHTML="13"; 
