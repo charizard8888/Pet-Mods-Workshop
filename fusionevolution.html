@@ -81,6 +81,7 @@ cursor: pointer;
 </tr>
 <td>Modifiers</td>
 <td><button class="modifier" onClick="ten()">+10</button></td>
+<td><button class="modifier" onClick="five()">+5</button></td>
 </tr>
 <tr>
 <td>HP</td>
@@ -4270,6 +4271,23 @@ let def= +document.getElementById("def").value + 10;
 let spa= +document.getElementById("spa").value + 10;
 let spd= +document.getElementById("spd").value + 10;
 let spe= +document.getElementById("spe").value + 10;
+
+document.getElementById("hp").innerHTML=""+hp+"";
+document.getElementById("atk").innerHTML=""+atk+"";
+document.getElementById("def").innerHTML=""+def+"";
+document.getElementById("spa").innerHTML=""+spa+"";
+document.getElementById("spd").innerHTML=""+spd+"";
+document.getElementById("spe").innerHTML=""+spe+"";
+}
+
+function five () {
+
+let hp= +document.getElementById("hp").value + 5;
+let atk= +document.getElementById("atk").value + 5;
+let def= +document.getElementById("def").value + 5;
+let spa= +document.getElementById("spa").value + 5;
+let spd= +document.getElementById("spd").value + 5;
+let spe= +document.getElementById("spe").value + 5;
 
 document.getElementById("hp").innerHTML=""+hp+"";
 document.getElementById("atk").innerHTML=""+atk+"";
