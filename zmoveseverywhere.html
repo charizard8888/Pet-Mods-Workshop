@@ -141,17 +141,13 @@ let movedesc= document.getElementById("movedesc").value;
 let effect= document.getElementById("effect").value;
 let category= document.getElementById("category").value;
 
-let movesmall = move.replace(" ","");
-movesmall = move.replace(" ","");
-movesmall = move.replace(" ","");
+let movesmall = move.replace(/ /g,'').toLowerCase();
 movesmall = movesmall.replace("-","");
-movesmall = movesmall.toLowerCase();
 
-let zcrystalsmall = zcrystal.replace(" ","");
-zcrystalsmall = zcrystal.replace(" ","");
-zcrystalsmall = zcrystal.replace(" ","");
+
+let zcrystalsmall = zcrystal.replace(/ /g,'').toLowerCase();
 zcrystalsmall = zcrystalsmall.replace("-","");
-zcrystalsmall = zcrystalsmall.toLowerCase();
+
 	
 if (category === "Special") {
 	document.getElementById("bp").innerHTML = "0";
