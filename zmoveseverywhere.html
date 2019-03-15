@@ -142,10 +142,14 @@ let effect= document.getElementById("effect").value;
 let category= document.getElementById("category").value;
 
 let movesmall = move.replace(" ","");
+movesmall = move.replace(" ","");
+movesmall = move.replace(" ","");
 movesmall = movesmall.replace("-","");
 movesmall = movesmall.toLowerCase();
 
 let zcrystalsmall = zcrystal.replace(" ","");
+zcrystalsmall = zcrystal.replace(" ","");
+zcrystalsmall = zcrystal.replace(" ","");
 zcrystalsmall = zcrystalsmall.replace("-","");
 zcrystalsmall = zcrystalsmall.toLowerCase();
 	
@@ -5226,7 +5230,7 @@ if (pokemon === "Aegislash-Blade") {
 }*/
 
 
-document.getElementById("xd").innerHTML = "[IMG]http://play.pokemonshowdown.com/sprites/xyani/"+poke+".gif[/IMG]<br>[B]Z-Crystal Name[/B]: "+zcrystal+"<br>[B]Z-Move Name[/B]: "+move+"<br>[B]Z-Move Type[/B]: [IMG]http://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG]<br>[B]Z-Move Category[/B]: [IMG]http://play.pokemonshowdown.com/sprites/categories/"+category+".png[/IMG]<br>[B]Z-Move Power[/B]: "+bp+"<br>[B]Required Move[/B]: "+reqmove+"<br>[B]Z-Move Description[/B]: "+movedesc+"<br>[B]Z-Move Effect[/B]: "+effect+"<br><div class=code>[hide=Code]moves.js<br>[CODE=javascript]"+movesmall+": {<br>basePower: "+bp+", <br> accuracy: true, <br> category: &quot;"+category+"&quot;, <br> shortDesc: &quot;"+effect+"&quot;, <br> id: &quot;"+movesmall+"&quot;, <br> name: &quot;"+move+"&quot;, <br> pp: 1,<br> priority: 0, <br> flags: {}, <br>onPrepareHit: function(target, source) {	this.attrLastMove('[still]');this.add('-anim', source, &quot;Revelation Dance&quot;, target);},<br> target: &quot;normal&quot;,<br>type: &quot;"+type+"&quot;, <br>isZ: &quot;"+zcrystalsmall+"&quot;,<br>},[/CODE] <br>items.js<br>[CODE]&quot;"+zcrystalsmall+"&quot;:{<br>id: &quot;"+zcrystalsmall+"&quot;,<br>name: &quot;"+zcrystal+"&quot;,<br>onTakeItem: false,<br>zMove: &quot;"+move+"&quot;,<br>zMoveFrom: &quot;"+reqmove+"&quot;,<br>zMoveUser: [&quot;"+pokemon+"&quot;],<br>desc: &quot;If the holder is a "+pokemon+" with the move "+reqmove+", it can use "+move+".&quot;,<br>},[/CODE]";
+document.getElementById("xd").innerHTML = "[IMG]http://play.pokemonshowdown.com/sprites/xyani/"+poke+".gif[/IMG]<br>[B]Z-Crystal Name[/B]: &quot;"+zcrystal+"&quot;<br>[B]Z-Move Name[/B]: "+move+"<br>[B]Z-Move Type[/B]: [IMG]http://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG]<br>[B]Z-Move Category[/B]: [IMG]http://play.pokemonshowdown.com/sprites/categories/"+category+".png[/IMG]<br>[B]Z-Move Power[/B]: "+bp+"<br>[B]Required Move[/B]: "+reqmove+"<br>[B]Z-Move Description[/B]: "+movedesc+"<br>[B]Z-Move Effect[/B]: "+effect+"<br><div class=code>[hide=Code]moves.js<br>[CODE=javascript]&quot;"+movesmall+"&quot;: {<br>basePower: "+bp+", <br> accuracy: true, <br> category: &quot;"+category+"&quot;, <br> shortDesc: &quot;"+effect+"&quot;, <br> id: &quot;"+movesmall+"&quot;, <br> name: &quot;"+move+"&quot;, <br> pp: 1,<br> priority: 0, <br> flags: {}, <br>onPrepareHit: function(target, source) {	this.attrLastMove('[still]');this.add('-anim', source, &quot;Revelation Dance&quot;, target);},<br> target: &quot;normal&quot;,<br>type: &quot;"+type+"&quot;, <br>isZ: &quot;"+zcrystalsmall+"&quot;,<br>},[/CODE] <br>items.js<br>[CODE]&quot;"+zcrystalsmall+"&quot;:{<br>id: &quot;"+zcrystalsmall+"&quot;,<br>name: &quot;"+zcrystal+"&quot;,<br>onTakeItem: false,<br>zMove: &quot;"+move+"&quot;,<br>zMoveFrom: &quot;"+reqmove+"&quot;,<br>zMoveUser: [&quot;"+pokemon+"&quot;],<br>desc: &quot;If the holder is a "+pokemon+" with the move "+reqmove+", it can use "+move+".&quot;,<br>},[/CODE]";
 }
 </script>
 </body>
