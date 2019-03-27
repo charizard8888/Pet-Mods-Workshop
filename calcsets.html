@@ -27,8 +27,87 @@ font-size:28px;
 </style>
 </head>
 <body>
+  <center>
 <textarea id="moveset" class="wide"></textarea><br>
 <button onClick="exporto()">Export</button><br>
+      </center>
 <p id="copy"></p>
 </body>
+<script>
+function exporto ()
+{
+let set=document.getElementById("moveset").value;
+
+set = set.replace(/Set: /g,"");
+set = set.replace(/Set:/g,"");
+
+let lines=set.split("\n");
+
+let name = lines[0];
+
+
+let line2=lines[1];
+let line2details=line2.split(" @ ")
+let mon = line2details[0]
+let item = line2details[1]
+
+
+
+let line3=lines[2];
+let line3details=line3.split("Ability: ")
+let ability = line3details[1]
+
+let line4=lines[3];
+let line4details=line4.split("EVs: ")
+let evs = line4details[1]
+
+let statevs = evs.split(" / ");
+
+let evsfinal ="";
+
+
+
+let line5=lines[4];
+let line5details=line5.split(" Nature")
+let nature = line5details[0]
+
+let line6=lines[5];
+let line6details=line6.split("- ")
+let move1 = line6details[1]
+
+let line7=lines[6];
+let line7details=line7.split("- ")
+let move2 = line7details[1]
+
+let line8=lines[7];
+let line8details=line8.split("- ")
+let move3 = line8details[1]
+
+let line9=lines[8];
+let line9details=line9.split("- ")
+let move4 = line9details[1]
+
+
+document.getElementById("copy").innerHTML =`"${mon}": {<br> "CS ${name}": {"level": 100, "evs": {${evsfinal}}, "nature": "${nature}", "ability": "${ability}", "item": "${item}", "moves": ["${move1}", "${move2}", "${move3}", "${move4}"]},<br>},`;
+/*
+
+Set: Choice Band
+Metagross @ Choice Band
+Ability: Iron Fist
+EVs: 252 Atk / 4 SpD / 252 Spe
+Adamant Nature
+- Iron Head
+- Hammer Arm
+- Bullet Punch
+- Zen Headbutt / Trick
+
+
+"CS Special Wall": {"level": 100, "evs": {"hp": 248, "df": 8, "sd": 252}, "nature": "Calm", "ability": "Levitate", "item": "Black Sludge", "moves": ["Rapid Spin", "Recover", "Sludge Bomb", "Stealth Rock"]},
+	},
+};
+
+*/
+
+}
+</script>
 </html>
