@@ -22,7 +22,8 @@ border: solid 4px aqua;
 font-size:28px;
  }
  textarea {
-  width: 350px;
+  width: 100%;
+  height: 11%;
  }
 </style>
 </head>
@@ -31,7 +32,7 @@ font-size:28px;
 <textarea id="moveset" class="wide"></textarea><br>
 <button onClick="exporto()">Export</button><br>
       </center>
-<p id="copy"></p>
+<textarea id="copy"></textarea>
 </body>
 <script>
 function exporto ()
@@ -88,7 +89,7 @@ let line9details=line9.split("- ")
 let move4 = line9details[1]
 
 
-document.getElementById("copy").innerHTML =`"${mon}": {<br> "CS ${name}": {"level": 100, "evs": {"hp": 0, "at": 0, "df": 0, "sa": 0, "sd": 0, "sp": 0}, "nature": "${nature}", "ability": "${ability}", "item": "${item}", "moves": ["${move1}", "${move2}", "${move3}", "${move4}"]},<br>},`;
+document.getElementById("copy").innerHTML =`"${mon}": {\n "CS ${name}": {"level": 100, "evs": {"hp": 0, "at": 0, "df": 0, "sa": 0, "sd": 0, "sp": 0}, "nature": "${nature}", "ability": "${ability}", "item": "${item}", "moves": ["${move1}", "${move2}", "${move3}", "${move4}"]},\n},`;
 /*
 
 Set: Choice Band
