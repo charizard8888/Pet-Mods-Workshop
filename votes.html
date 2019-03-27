@@ -57,9 +57,10 @@ font-size:28px;
 function load()
 {
 let nospace=document.getElementById("space").value;
-nospace = nospace.replace("(","");
-nospace = nospace.replace(")","");
-nospace = nospace.replace("-","");
+nospace = nospace.replace(/(/g,"");
+nospace = nospace.replace(/)/g,"");
+nospace = nospace.replace(/-/g,"");
+nospace = nospace.replace(/./g,"");
 let allvotes = nospace.split("\n");
 let count1 = allvotes[0].replace(/\s/g, "");
 let count2 = allvotes[1];
@@ -82,6 +83,7 @@ let colonsplit1=count1.split(":")
 let mon1=colonsplit1[0];
 count1=count1.replace(mon1+":", "");
 count1=count1.toLowerCase();
+count1 = count1.replace("(","");
 count1 = count1.replace("(","");
 count1 = count1.replace(")","");
 count1 = count1.replace("-","");
