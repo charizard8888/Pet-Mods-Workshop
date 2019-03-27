@@ -88,7 +88,7 @@ let line9details=line9.split("- ")
 let move4 = line9details[1]
 
 
-document.getElementById("copy").innerHTML =`"${mon}": {<br> "CS ${name}": {"level": 100, "evs": {${evsfinal}}, "nature": "${nature}", "ability": "${ability}", "item": "${item}", "moves": ["${move1}", "${move2}", "${move3}", "${move4}"]},<br>},`;
+document.getElementById("copy").innerHTML =`"${mon}": {<br> "CS ${name}": {"level": 100, "evs": {"hp": 0, "at": 0, "df": 0, "sa": 0, "sd": 0, "sp": 0}, "nature": "${nature}", "ability": "${ability}", "item": "${item}", "moves": ["${move1}", "${move2}", "${move3}", "${move4}"]},<br>},`;
 /*
 
 Set: Choice Band
