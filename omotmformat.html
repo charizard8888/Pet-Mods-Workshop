@@ -2,6 +2,12 @@
   <head>
     <title>OMotM Format</title>
   </head>
+  <style>
+  hr {
+  border: 1px solid grey;
+  }
+}
+</style>
   <body>
     
 <input type="checkbox" id="c1" onClick="p1()">350 Cup<br>
@@ -73,6 +79,7 @@
 <p id="Pokébilities"></p>
 <p id="Reversed"></p>
 <p id="Scalemons"></p>
+<p id="Sketchmons"></p>
 <p id="STABmons"></p>
 <p id="Statattack"></p>
 <p id="Tier Shift"></p>
@@ -85,14 +92,14 @@
 function p1() {
 var checkBox = document.getElementById("c1");
   if (checkBox.checked == true){
-    document.getElementById("350cup").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3589641/'][B][SIZE=4]350 Cup[/SIZE][/B][/URL]<br><br>[SIZE=3]All Pokémon with a base stat total less than or equal to 350 have every base stat doubled. Ubers-based.[/SIZE][/CENTER]`;
+    document.getElementById("350cup").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3589641/'][B][SIZE=4]350 Cup[/SIZE][/B][/URL]<br><br>[SIZE=3]All Pokémon with a base stat total less than or equal to 350 have every base stat doubled. Ubers-based.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("350cup").innerHTML=``;
   }
   
   var checkBox2 = document.getElementById("c2");
   if (checkBox2.checked == true){
-    document.getElementById("Alphabet Cup").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3617977/'][B][SIZE=4]Alphabet Cup[/SIZE][/B][/URL]<br><br>[SIZE=3]A Pokémon can learn any move if it shares the first letter in its name.[/SIZE][/CENTER]`;
+    document.getElementById("Alphabet Cup").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3617977/'][B][SIZE=4]Alphabet Cup[/SIZE][/B][/URL]<br><br>[SIZE=3]A Pokémon can learn any move if it shares the first letter in its name.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Alphabet Cup").innerHTML=``;
   }
@@ -101,7 +108,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox3.checked == true){
     document.getElementById("Automagic").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3594333/'][B][SIZE=4]Automagic[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]When a secondary effect of a move activates, all the setup moves in the Pokémon's movepool automatically activates.[/SIZE][/CENTER]`;
+[SIZE=3]When a secondary effect of a move activates, all the setup moves in the Pokémon's movepool automatically activates.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Automagic").innerHTML=``;
   }
@@ -110,7 +117,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Averagemons").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3590605/'][B][SIZE=4]Averagemons[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]All Pokémon have a 100/100/100/100/100/100 stat spread.[/SIZE][/CENTER]`;
+[SIZE=3]All Pokémon have a 100/100/100/100/100/100 stat spread.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Averagemons").innerHTML=``;
   }
@@ -119,7 +126,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Benjamin Butterfree").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3605680/'][B][SIZE=4]Benjamin Butterfree[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Instead of fainting, all Pokémon that have a prior evolution will devolve into that Pokémon, only properly fainting once their lowest evolutions faint.[/SIZE][/CENTER]`;
+[SIZE=3]Instead of fainting, all Pokémon that have a prior evolution will devolve into that Pokémon, only properly fainting once their lowest evolutions faint.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Benjamin Butterfree").innerHTML=``;
   }
@@ -128,7 +135,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Camomons").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3598418/'][B][SIZE=4]Camomons[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Pokémon change their type to match the types of their first two moves in their moveslots.[/SIZE][/CENTER]`;
+[SIZE=3]Pokémon change their type to match the types of their first two moves in their moveslots.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Camomons").innerHTML=``;
   }
@@ -137,7 +144,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Chimera").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3607451/'][B][SIZE=4]Chimera[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]A 1v1-based metagame where a single Pokémon inherits specific traits from your entire 6-mon team, based on their order.[/SIZE][/CENTER]`;
+[SIZE=3]A 1v1-based metagame where a single Pokémon inherits specific traits from your entire 6-mon team, based on their order.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Chimera").innerHTML=``;
   }
@@ -146,7 +153,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Cross Evolution").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3594854/'][B][SIZE=4]Cross Evolution[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Pokémon that can evolve can be "cross evolve"d by naming them after the intended Pokémon.[/SIZE][/CENTER]`;
+[SIZE=3]Pokémon that can evolve can be "cross evolve"d by naming them after the intended Pokémon.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Cross Evolution").innerHTML=``;
   }
@@ -155,7 +162,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Dancerability").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3600658/'][B][SIZE=4]Dancerability[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Moves that would activate a Pokemon's ability get copied and used back at the opponent.[/SIZE][/CENTER]`;
+[SIZE=3]Moves that would activate a Pokemon's ability get copied and used back at the opponent.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Dancerability").innerHTML=``;
   }
@@ -164,7 +171,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Dual Wielding").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3608611/'][B][SIZE=4]Dual Wielding[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Pokémon can forgo their ability to equip a second item.[/SIZE][/CENTER]`;
+[SIZE=3]Pokémon can forgo their ability to equip a second item.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Dual Wielding").innerHTML=``;
   }
@@ -173,7 +180,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Follow The Leader").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3603860/'][B][SIZE=4]Follow The Leader[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]The first Pokémon provides the moves and abilities for all other Pokémon on the team.[/SIZE][/CENTER]`;
+[SIZE=3]The first Pokémon provides the moves and abilities for all other Pokémon on the team.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Follow The Leader").innerHTML=``;
   }
@@ -182,7 +189,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Fortemons").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3638520/'][B][SIZE=4]Fortemons[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Attacks can be put into item slots to grant their primary and secondary effects to the attacks in Pokémon's moveslots.[/SIZE][/CENTER]`;
+[SIZE=3]Attacks can be put into item slots to grant their primary and secondary effects to the attacks in Pokémon's moveslots.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Fortemons").innerHTML=``;
   }
@@ -191,7 +198,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Full Potential").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3596777/'][B][SIZE=4]Full Potential[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Attack damage is based on highest raw stat.[/SIZE][/CENTER]`;
+[SIZE=3]Attack damage is based on highest raw stat.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Full Potential").innerHTML=``;
   }
@@ -200,7 +207,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Godly Gift").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3597618/'][B][SIZE=4]Godly Gift[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Teams are allowed one Ubers tier 'God' Pokémon. The other teammates receive the base stat of the Uber Pokémon corresponding to their position on the team.[/SIZE][/CENTER]`;
+[SIZE=3]Teams are allowed one Ubers tier 'God' Pokémon. The other teammates receive the base stat of the Uber Pokémon corresponding to their position on the team.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Godly Gift").innerHTML=``;
   }
@@ -209,7 +216,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Gods and Followers").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3589187/'][B][SIZE=4]Gods and Followers[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]A Uber is selected to be "God" by placing on slot 1 and the rest of the team must share at least one of it's types. If the God faints, the rest of the team has a constant Embargo effect on it.[/SIZE][/CENTER]`;
+[SIZE=3]A Uber is selected to be "God" by placing on slot 1 and the rest of the team must share at least one of it's types. If the God faints, the rest of the team has a constant Embargo effect on it.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Gods and Followers").innerHTML=``;
   }
@@ -218,7 +225,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Hidden Type").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3591194/'][B][SIZE=4]Hidden Type[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Pokémon gain a new (secondary/tertiary) type that is the same as its hidden power type.[/SIZE][/CENTER]`;
+[SIZE=3]Pokémon gain a new (secondary/tertiary) type that is the same as its hidden power type.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Hidden Type").innerHTML=``;
   }
@@ -227,7 +234,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Hot Potato").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3643676/'][B][SIZE=4]Hot Potato[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Moves that deal direct damage to an opponent will 'pass' any hazard, status/volatile effects and stat debuffs currently on your side or Pokémon to your opponent's.[/SIZE][/CENTER]`;
+[SIZE=3]Moves that deal direct damage to an opponent will 'pass' any hazard, status/volatile effects and stat debuffs currently on your side or Pokémon to your opponent's.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Hot Potato").innerHTML=``;
   }
@@ -236,7 +243,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Inheritance").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3592844/'][B][SIZE=4]Inheritance[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Any Pokémon can inherit any Pokémon's movepool and abilities.[/SIZE][/CENTER]`;
+[SIZE=3]Any Pokémon can inherit any Pokémon's movepool and abilities.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Inheritance").innerHTML=``;
   }
@@ -245,7 +252,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Inverse").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3590154/'][B][SIZE=4]Inverse[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]The type chart is inversed.[/SIZE][/CENTER]`;
+[SIZE=3]The type chart is inversed.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Inverse").innerHTML=``;
   }
@@ -254,7 +261,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Last Will").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3601362/'][B][SIZE=4]Last Will[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Every Pokémon will use the move in their last moveslot before fainting in battle.[/SIZE][/CENTER]`;
+[SIZE=3]Every Pokémon will use the move in their last moveslot before fainting in battle.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Last Will").innerHTML=``;
   }
@@ -263,7 +270,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Linked").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3627804/'][B][SIZE=4]Linked[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]A Pokémon's first and second move can be used together in the same turn.[/SIZE][/CENTER]`;
+[SIZE=3]A Pokémon's first and second move can be used together in the same turn.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Linked").innerHTML=``;
   }
@@ -272,7 +279,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Megamons").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3646310/'][B][SIZE=4]Megamons[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Mega Evolutions can be used without Mega Stones, and with any item of their choice.[/SIZE][/CENTER]`;
+[SIZE=3]Mega Evolutions can be used without Mega Stones, and with any item of their choice.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Megamons").innerHTML=``;
   }
@@ -281,7 +288,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Mergemons").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3591780/'][B][SIZE=4]Mergemons[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]All Pokémon gain the movepool of the previous and next fully evolved Pokémon, according to the Pokedex. NFEs get the moves of their full evolutions.[/SIZE][/CENTER]`;
+[SIZE=3]All Pokémon gain the movepool of the previous and next fully evolved Pokémon, according to the Pokedex. NFEs get the moves of their full evolutions.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Mergemons").innerHTML=``;
   }
@@ -290,7 +297,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Metagamiate").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3604808/'][B][SIZE=4]Metagamiate[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]All Pokémon gain an -ate ability corresponding to their first type if not shiny, and second type if shiny.[/SIZE][/CENTER]`;
+[SIZE=3]All Pokémon gain an -ate ability corresponding to their first type if not shiny, and second type if shiny.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Metagamiate").innerHTML=``;
   }
@@ -299,7 +306,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Move Equality").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3599280/'][B][SIZE=4]Move Equality[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Almost all moves have the same base power of 100.[/SIZE][/CENTER]`;
+[SIZE=3]Almost all moves have the same base power of 100.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Move Equality").innerHTML=``;
   }
@@ -308,7 +315,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Nature Swap").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3612727/'][B][SIZE=4]Nature Swap[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Pokémon's base stats are swapped based on their nature.[/SIZE][/CENTER]`;
+[SIZE=3]Pokémon's base stats are swapped based on their nature.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Nature Swap").innerHTML=``;
   }
@@ -317,7 +324,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Partners in Crime").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3618488/'][B][SIZE=4]Partners in Crime[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Played in Doubles, each Pokémon shares moves and abilities with its partner.[/SIZE][/CENTER]`;
+[SIZE=3]Played in Doubles, each Pokémon shares moves and abilities with its partner.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Partners in Crime").innerHTML=``;
   }
@@ -326,7 +333,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Pokébilities").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3588652/'][B][SIZE=4]Pokébilities[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Pokémon have all their abilities active at once.[/SIZE][/CENTER]`;
+[SIZE=3]Pokémon have all their abilities active at once.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Pokébilities").innerHTML=``;
   }
@@ -335,7 +342,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Reversed").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3623871/'][B][SIZE=4]Reversed[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Every Pokémon has its base Physical and Special stats swapped.[/SIZE][/CENTER]`;
+[SIZE=3]Every Pokémon has its base Physical and Special stats swapped.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Reversed").innerHTML=``;
   }
@@ -344,7 +351,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Scalemons").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3607934/'][B][SIZE=4]Scalemons[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Every Pokémon's stats, barring HP, are scaled to give them a BST as close to 600 as possible.[/SIZE][/CENTER]`;
+[SIZE=3]Every Pokémon's stats, barring HP, are scaled to give them a BST as close to 600 as possible.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Scalemons").innerHTML=``;
   }
@@ -353,7 +360,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Sketchmons").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3587743/'][B][SIZE=4]Sketchmons[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Pokémon can each learn one extra move of your choosing.[/SIZE][/CENTER]`;
+[SIZE=3]Pokémon can each learn one extra move of your choosing.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Sketchmons").innerHTML=``;
   }
@@ -362,7 +369,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("STABmons").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3587949/'][B][SIZE=4]STABmons[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Pokémon gain access to nearly all moves they get STAB on.[/SIZE][/CENTER]`;
+[SIZE=3]Pokémon gain access to nearly all moves they get STAB on.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("STABmons").innerHTML=``;
   }
@@ -371,7 +378,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Statattack").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3613153/'][B][SIZE=4]Statattack[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3] Any Pokémon may replace one of it's moveslots with the name of a stat to get a +1 boost to that stat whenever it switches in.[/SIZE][/CENTER]`;
+[SIZE=3] Any Pokémon may replace one of it's moveslots with the name of a stat to get a +1 boost to that stat whenever it switches in.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Statattack").innerHTML=``;
   }
@@ -380,7 +387,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Tier Shift").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3610073/'][B][SIZE=4]Tier Shift[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Pokémon get a +10 boost to each stat per tier below OU they are in.[/SIZE][/CENTER]
+[SIZE=3]Pokémon get a +10 boost to each stat per tier below OU they are in.[/SIZE][/CENTER]<hr>
  `;
   } else {
      document.getElementById("Tier Shift").innerHTML=``;
@@ -390,7 +397,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Trademarked").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3647897/'][B][SIZE=4]Trademarked[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]A Pokémon's ability can be given up in place for a status move, which will take effect upon each switch-in.[/SIZE][/CENTER]`;
+[SIZE=3]A Pokémon's ability can be given up in place for a status move, which will take effect upon each switch-in.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Trademarked").innerHTML=``;
   }
@@ -399,7 +406,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Typemons").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3606351/'][B][SIZE=4]Typemons[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Teams gain access to all the moves of a single chosen type.[/SIZE][/CENTER]`;
+[SIZE=3]Teams gain access to all the moves of a single chosen type.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Typemons").innerHTML=``;
   }
@@ -408,7 +415,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Ultimate Z").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3609393/'][B][SIZE=4]Ultimate Z[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Any type of Z-Crystal may be used on any move and as many times per battle as desired.[/SIZE][/CENTER]`;
+[SIZE=3]Any type of Z-Crystal may be used on any move and as many times per battle as desired.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Ultimate Z").innerHTML=``;
   }
@@ -417,7 +424,7 @@ var checkBox = document.getElementById("c1");
   if (checkBox2.checked == true){
     document.getElementById("Z-Shift").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3602940/'][B][SIZE=4]Z-Shift[/SIZE][/B][/URL]<br><br>
  
-[SIZE=3]Z-Crystals can be used to shift the type, base power, and priority from one move to another one.[/SIZE][/CENTER]`;
+[SIZE=3]Z-Crystals can be used to shift the type, base power, and priority from one move to another one.[/SIZE][/CENTER]<hr>`;
   } else {
      document.getElementById("Z-Shift").innerHTML=``;
   }
