@@ -6,10 +6,6 @@
   hr {
   border: 1px solid grey;
   }
-  textarea{
-  width:0.00001px;
-  height:0.0001px;
-  }
 }
 </style>
   <body>
@@ -53,68 +49,58 @@
 <input type="checkbox" id="c37" onClick="p1()">Ultimate Z<br>
 <input type="checkbox" id="c38" onClick="p1()">Z-Shift<br>
 
-<textarea id="350cup"></textarea>
-<textarea id="Alphabet Cup"></textarea>
-<textarea id="Automagic"></textarea>
-<textarea id="Averagemons"></textarea>
-<textarea id="Benjamin Butterfree"></textarea>
-<textarea id="Camomons"></textarea>
-<textarea id="Chimera"></textarea>
-<textarea id="Cross Evolution"></textarea>
-<textarea id="Dancerability"></textarea>
-<textarea id="Dual Wielding"></textarea>
-<textarea id="Follow The Leader"></textarea>
-<textarea id="Fortemons"></textarea>
-<textarea id="Full Potential"></textarea>
-<textarea id="Godly Gift"></textarea>
-<textarea id="Gods and Followers"></textarea>
-<textarea id="Hidden Type"></textarea>
-<textarea id="Hot Potato"></textarea>
-<textarea id="Inheritance"></textarea>
-<textarea id="Inverse"></textarea>
-<textarea id="Last Will"></textarea>
-<textarea id="Linked"></textarea>
-<textarea id="Megamons"></textarea>
-<textarea id="Mergemons"></textarea>
-<textarea id="Metagamiate"></textarea>
-<textarea id="Move Equality"></textarea>
-<textarea id="Nature Swap"></textarea>
-<textarea id="Partners in Crime"></textarea>
-<textarea id="Pokébilities"></textarea>
-<textarea id="Reversed"></textarea>
-<textarea id="Scalemons"></textarea>
-<textarea id="Sketchmons"></textarea>
-<textarea id="STABmons"></textarea>
-<textarea id="Statattack"></textarea>
-<textarea id="Tier Shift"></textarea>
-<textarea id="Trademarked"></textarea>
-<textarea id="Typemons"></textarea>
-<textarea id="Ultimate Z"></textarea>
-<textarea id="Z-Shift"></textarea>
+<p id="350cup"></p>
+<p id="Alphabet Cup"></p>
+<p id="Automagic"></p>
+<p id="Averagemons"></p>
+<p id="Benjamin Butterfree"></p>
+<p id="Camomons"></p>
+<p id="Chimera"></p>
+<p id="Cross Evolution"></p>
+<p id="Dancerability"></p>
+<p id="Dual Wielding"></p>
+<p id="Follow The Leader"></p>
+<p id="Fortemons"></p>
+<p id="Full Potential"></p>
+<p id="Godly Gift"></p>
+<p id="Gods and Followers"></p>
+<p id="Hidden Type"></p>
+<p id="Hot Potato"></p>
+<p id="Inheritance"></p>
+<p id="Inverse"></p>
+<p id="Last Will"></p>
+<p id="Linked"></p>
+<p id="Megamons"></p>
+<p id="Mergemons"></p>
+<p id="Metagamiate"></p>
+<p id="Move Equality"></p>
+<p id="Nature Swap"></p>
+<p id="Partners in Crime"></p>
+<p id="Pokébilities"></p>
+<p id="Reversed"></p>
+<p id="Scalemons"></p>
+<p id="Sketchmons"></p>
+<p id="STABmons"></p>
+<p id="Statattack"></p>
+<p id="Tier Shift"></p>
+<p id="Trademarked"></p>
+<p id="Typemons"></p>
+<p id="Ultimate Z"></p>
+<p id="Z-Shift"></p>
  </body>
 <script>
 function p1() {
 var checkBox = document.getElementById("c1");
   if (checkBox.checked == true){
     document.getElementById("350cup").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3589641/'][B][SIZE=4]350 Cup[/SIZE][/B][/URL]<br><br>[SIZE=3]All Pokémon with a base stat total less than or equal to 350 have every base stat doubled. Ubers-based.[/SIZE][/CENTER]<hr>`;
-  var copyText = document.getElementById("350cup");
-  copyText.select();
-  document.execCommand("copy");
-  } 
-
- else {
+  } else {
      document.getElementById("350cup").innerHTML=``;
   }
   
   var checkBox2 = document.getElementById("c2");
   if (checkBox2.checked == true){
     document.getElementById("Alphabet Cup").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3617977/'][B][SIZE=4]Alphabet Cup[/SIZE][/B][/URL]<br><br>[SIZE=3]A Pokémon can learn any move if it shares the first letter in its name.[/SIZE][/CENTER]<hr>`;
-    var copyText = document.getElementById("Alphabet Cup");
-  copyText.select();
-  document.execCommand("copy");
-  } 
-
- else {
+  } else {
      document.getElementById("Alphabet Cup").innerHTML=``;
   }
   
@@ -123,14 +109,7 @@ var checkBox = document.getElementById("c1");
     document.getElementById("Automagic").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3594333/'][B][SIZE=4]Automagic[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]When a secondary effect of a move activates, all the setup moves in the Pokémon's movepool automatically activates.[/SIZE][/CENTER]<hr>`;
-  } 
-  var copyText = document.getElementById("Automagic");
-  copyText.select();
-  document.execCommand("copy");
-  
-  
-
- else {
+  } else {
      document.getElementById("Automagic").innerHTML=``;
   }
   
@@ -139,13 +118,7 @@ var checkBox = document.getElementById("c1");
     document.getElementById("Averagemons").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3590605/'][B][SIZE=4]Averagemons[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]All Pokémon have a 100/100/100/100/100/100 stat spread.[/SIZE][/CENTER]<hr>`;
-  } 
-  var copyText = document.getElementById("Averagemons");
-  copyText.select();
-  document.execCommand("copy");
-  
-
- else {
+  } else {
      document.getElementById("Averagemons").innerHTML=``;
   }
   
@@ -154,11 +127,7 @@ var checkBox = document.getElementById("c1");
     document.getElementById("Benjamin Butterfree").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3605680/'][B][SIZE=4]Benjamin Butterfree[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Instead of fainting, all Pokémon that have a prior evolution will devolve into that Pokémon, only properly fainting once their lowest evolutions faint.[/SIZE][/CENTER]<hr>`;
-  } 
- var copyText = document.getElementById("Benjamin Butterfree");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Benjamin Butterfree").innerHTML=``;
   }
   
@@ -167,11 +136,7 @@ var checkBox = document.getElementById("c1");
     document.getElementById("Camomons").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3598418/'][B][SIZE=4]Camomons[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Pokémon change their type to match the types of their first two moves in their moveslots.[/SIZE][/CENTER]<hr>`;
-  } 
- var copyText = document.getElementById("Camomons");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Camomons").innerHTML=``;
   }
   
@@ -180,11 +145,7 @@ var checkBox = document.getElementById("c1");
     document.getElementById("Chimera").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3607451/'][B][SIZE=4]Chimera[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]A 1v1-based metagame where a single Pokémon inherits specific traits from your entire 6-mon team, based on their order.[/SIZE][/CENTER]<hr>`;
-  } 
- var copyText = document.getElementById("Chimera");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Chimera").innerHTML=``;
   }
   
@@ -193,11 +154,7 @@ var checkBox = document.getElementById("c1");
     document.getElementById("Cross Evolution").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3594854/'][B][SIZE=4]Cross Evolution[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Pokémon that can evolve can be "cross evolve"d by naming them after the intended Pokémon.[/SIZE][/CENTER]<hr>`;
-  } 
- var copyText = document.getElementById("Cross Evolution");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Cross Evolution").innerHTML=``;
   }
   
@@ -206,11 +163,7 @@ var checkBox = document.getElementById("c1");
     document.getElementById("Dancerability").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3600658/'][B][SIZE=4]Dancerability[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Moves that would activate a Pokemon's ability get copied and used back at the opponent.[/SIZE][/CENTER]<hr>`;
-  } 
- var copyText = document.getElementById("Dancerability");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Dancerability").innerHTML=``;
   }
   
@@ -219,11 +172,7 @@ var checkBox = document.getElementById("c1");
     document.getElementById("Dual Wielding").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3608611/'][B][SIZE=4]Dual Wielding[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Pokémon can forgo their ability to equip a second item.[/SIZE][/CENTER]<hr>`;
-  } 
- var copyText = document.getElementById("Dual Wielding");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Dual Wielding").innerHTML=``;
   }
   
@@ -232,11 +181,7 @@ var checkBox = document.getElementById("c1");
     document.getElementById("Follow The Leader").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3603860/'][B][SIZE=4]Follow The Leader[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]The first Pokémon provides the moves and abilities for all other Pokémon on the team.[/SIZE][/CENTER]<hr>`;
-  } 
- var copyText = document.getElementById("Follow The Leader");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Follow The Leader").innerHTML=``;
   }
   
@@ -245,11 +190,7 @@ var checkBox = document.getElementById("c1");
     document.getElementById("Fortemons").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3638520/'][B][SIZE=4]Fortemons[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Attacks can be put into item slots to grant their primary and secondary effects to the attacks in Pokémon's moveslots.[/SIZE][/CENTER]<hr>`;
-  } 
- var copyText = document.getElementById("Fortemons");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Fortemons").innerHTML=``;
   }
   
@@ -258,11 +199,7 @@ var checkBox = document.getElementById("c1");
     document.getElementById("Full Potential").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3596777/'][B][SIZE=4]Full Potential[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Attack damage is based on highest raw stat.[/SIZE][/CENTER]<hr>`;
-  } 
- var copyText = document.getElementById("Full Potential");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Full Potential").innerHTML=``;
   }
   
@@ -271,11 +208,7 @@ var checkBox = document.getElementById("c1");
     document.getElementById("Godly Gift").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3597618/'][B][SIZE=4]Godly Gift[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Teams are allowed one Ubers tier 'God' Pokémon. The other teammates receive the base stat of the Uber Pokémon corresponding to their position on the team.[/SIZE][/CENTER]<hr>`;
-  } 
- var copyText = document.getElementById("Godly Gift");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Godly Gift").innerHTML=``;
   }
   
@@ -284,11 +217,7 @@ var checkBox = document.getElementById("c1");
     document.getElementById("Gods and Followers").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3589187/'][B][SIZE=4]Gods and Followers[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]A Uber is selected to be "God" by placing on slot 1 and the rest of the team must share at least one of it's types. If the God faints, the rest of the team has a constant Embargo effect on it.[/SIZE][/CENTER]<hr>`;
-  } 
- var copyText = document.getElementById("Gods and Followers");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Gods and Followers").innerHTML=``;
   }
   
@@ -297,11 +226,7 @@ var checkBox = document.getElementById("c1");
     document.getElementById("Hidden Type").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3591194/'][B][SIZE=4]Hidden Type[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Pokémon gain a new (secondary/tertiary) type that is the same as its hidden power type.[/SIZE][/CENTER]<hr>`;
-  } 
- var copyText = document.getElementById("Hidden Type");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Hidden Type").innerHTML=``;
   }
   
@@ -310,11 +235,7 @@ var checkBox = document.getElementById("c1");
     document.getElementById("Hot Potato").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3643676/'][B][SIZE=4]Hot Potato[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Moves that deal direct damage to an opponent will 'pass' any hazard, status/volatile effects and stat debuffs currently on your side or Pokémon to your opponent's.[/SIZE][/CENTER]<hr>`;
-  } 
-var copyText = document.getElementById("Hot Potato");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Hot Potato").innerHTML=``;
   }
   
@@ -323,11 +244,7 @@ var copyText = document.getElementById("Hot Potato");
     document.getElementById("Inheritance").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3592844/'][B][SIZE=4]Inheritance[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Any Pokémon can inherit any Pokémon's movepool and abilities.[/SIZE][/CENTER]<hr>`;
-  } 
-var copyText = document.getElementById("Inheritance");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Inheritance").innerHTML=``;
   }
   
@@ -336,11 +253,7 @@ var copyText = document.getElementById("Inheritance");
     document.getElementById("Inverse").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3590154/'][B][SIZE=4]Inverse[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]The type chart is inversed.[/SIZE][/CENTER]<hr>`;
-  } 
-var copyText = document.getElementById("Inverse");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Inverse").innerHTML=``;
   }
   
@@ -349,11 +262,7 @@ var copyText = document.getElementById("Inverse");
     document.getElementById("Last Will").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3601362/'][B][SIZE=4]Last Will[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Every Pokémon will use the move in their last moveslot before fainting in battle.[/SIZE][/CENTER]<hr>`;
-  } 
-var copyText = document.getElementById("Last Will");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Last Will").innerHTML=``;
   }
   
@@ -362,11 +271,7 @@ var copyText = document.getElementById("Last Will");
     document.getElementById("Linked").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3627804/'][B][SIZE=4]Linked[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]A Pokémon's first and second move can be used together in the same turn.[/SIZE][/CENTER]<hr>`;
-  } 
-var copyText = document.getElementById("Linked");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Linked").innerHTML=``;
   }
   
@@ -375,11 +280,7 @@ var copyText = document.getElementById("Linked");
     document.getElementById("Megamons").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3646310/'][B][SIZE=4]Megamons[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Mega Evolutions can be used without Mega Stones, and with any item of their choice.[/SIZE][/CENTER]<hr>`;
-  } 
-var copyText = document.getElementById("Megamons");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Megamons").innerHTML=``;
   }
   
@@ -388,11 +289,7 @@ var copyText = document.getElementById("Megamons");
     document.getElementById("Mergemons").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3591780/'][B][SIZE=4]Mergemons[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]All Pokémon gain the movepool of the previous and next fully evolved Pokémon, according to the Pokedex. NFEs get the moves of their full evolutions.[/SIZE][/CENTER]<hr>`;
-  } 
-var copyText = document.getElementById("Mergemons");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Mergemons").innerHTML=``;
   }
   
@@ -401,11 +298,7 @@ var copyText = document.getElementById("Mergemons");
     document.getElementById("Metagamiate").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3604808/'][B][SIZE=4]Metagamiate[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]All Pokémon gain an -ate ability corresponding to their first type if not shiny, and second type if shiny.[/SIZE][/CENTER]<hr>`;
-  } 
-var copyText = document.getElementById("Metagamiate");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Metagamiate").innerHTML=``;
   }
   
@@ -414,11 +307,7 @@ var copyText = document.getElementById("Metagamiate");
     document.getElementById("Move Equality").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3599280/'][B][SIZE=4]Move Equality[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Almost all moves have the same base power of 100.[/SIZE][/CENTER]<hr>`;
-  } 
-var copyText = document.getElementById("Move Equality");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Move Equality").innerHTML=``;
   }
   
@@ -427,11 +316,7 @@ var copyText = document.getElementById("Move Equality");
     document.getElementById("Nature Swap").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3612727/'][B][SIZE=4]Nature Swap[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Pokémon's base stats are swapped based on their nature.[/SIZE][/CENTER]<hr>`;
-  } 
-var copyText = document.getElementById("Nature Swap");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Nature Swap").innerHTML=``;
   }
   
@@ -440,11 +325,7 @@ var copyText = document.getElementById("Nature Swap");
     document.getElementById("Partners in Crime").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3618488/'][B][SIZE=4]Partners in Crime[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Played in Doubles, each Pokémon shares moves and abilities with its partner.[/SIZE][/CENTER]<hr>`;
-  } 
-var copyText = document.getElementById("Partners in Crime");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Partners in Crime").innerHTML=``;
   }
   
@@ -453,11 +334,7 @@ var copyText = document.getElementById("Partners in Crime");
     document.getElementById("Pokébilities").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3588652/'][B][SIZE=4]Pokébilities[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Pokémon have all their abilities active at once.[/SIZE][/CENTER]<hr>`;
-  } 
-var copyText = document.getElementById("Pokébilities");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Pokébilities").innerHTML=``;
   }
   
@@ -466,11 +343,7 @@ var copyText = document.getElementById("Pokébilities");
     document.getElementById("Reversed").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3623871/'][B][SIZE=4]Reversed[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Every Pokémon has its base Physical and Special stats swapped.[/SIZE][/CENTER]<hr>`;
-  } 
-var copyText = document.getElementById("Reversed");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Reversed").innerHTML=``;
   }
   
@@ -479,11 +352,7 @@ var copyText = document.getElementById("Reversed");
     document.getElementById("Scalemons").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3607934/'][B][SIZE=4]Scalemons[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Every Pokémon's stats, barring HP, are scaled to give them a BST as close to 600 as possible.[/SIZE][/CENTER]<hr>`;
-  } 
-var copyText = document.getElementById("Scalemons");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Scalemons").innerHTML=``;
   }
   
@@ -492,11 +361,7 @@ var copyText = document.getElementById("Scalemons");
     document.getElementById("Sketchmons").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3587743/'][B][SIZE=4]Sketchmons[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Pokémon can each learn one extra move of your choosing.[/SIZE][/CENTER]<hr>`;
-  } 
-var copyText = document.getElementById("Sketchmons");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Sketchmons").innerHTML=``;
   }
   
@@ -505,11 +370,7 @@ var copyText = document.getElementById("Sketchmons");
     document.getElementById("STABmons").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3587949/'][B][SIZE=4]STABmons[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Pokémon gain access to nearly all moves they get STAB on.[/SIZE][/CENTER]<hr>`;
-  } 
-var copyText = document.getElementById("STABmons");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("STABmons").innerHTML=``;
   }
   
@@ -518,11 +379,7 @@ var copyText = document.getElementById("STABmons");
     document.getElementById("Statattack").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3613153/'][B][SIZE=4]Statattack[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3] Any Pokémon may replace one of it's moveslots with the name of a stat to get a +1 boost to that stat whenever it switches in.[/SIZE][/CENTER]<hr>`;
-  } 
-var copyText = document.getElementById("Statattack");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Statattack").innerHTML=``;
   }
   
@@ -532,11 +389,7 @@ var copyText = document.getElementById("Statattack");
  
 [SIZE=3]Pokémon get a +10 boost to each stat per tier below OU they are in.[/SIZE][/CENTER]<hr>
  `;
-  } 
-var copyText = document.getElementById("Tier Shift");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Tier Shift").innerHTML=``;
   }
   
@@ -545,11 +398,7 @@ var copyText = document.getElementById("Tier Shift");
     document.getElementById("Trademarked").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3647897/'][B][SIZE=4]Trademarked[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]A Pokémon's ability can be given up in place for a status move, which will take effect upon each switch-in.[/SIZE][/CENTER]<hr>`;
-  } 
-var copyText = document.getElementById("Trademarked");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Trademarked").innerHTML=``;
   }
   
@@ -558,11 +407,7 @@ var copyText = document.getElementById("Trademarked");
     document.getElementById("Typemons").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3606351/'][B][SIZE=4]Typemons[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Teams gain access to all the moves of a single chosen type.[/SIZE][/CENTER]<hr>`;
-  } 
-var copyText = document.getElementById("Typemons");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Typemons").innerHTML=``;
   }
   
@@ -571,11 +416,7 @@ var copyText = document.getElementById("Typemons");
     document.getElementById("Ultimate Z").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3609393/'][B][SIZE=4]Ultimate Z[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Any type of Z-Crystal may be used on any move and as many times per battle as desired.[/SIZE][/CENTER]<hr>`;
-  } 
-var copyText = document.getElementById("Ultimate Z");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Ultimate Z").innerHTML=``;
   }
   
@@ -584,11 +425,7 @@ var copyText = document.getElementById("Ultimate Z");
     document.getElementById("Z-Shift").innerHTML=`[CENTER][URL='http://www.smogon.com/forums/threads/3602940/'][B][SIZE=4]Z-Shift[/SIZE][/B][/URL]<br><br>
  
 [SIZE=3]Z-Crystals can be used to shift the type, base power, and priority from one move to another one.[/SIZE][/CENTER]<hr>`;
-  } 
-var copyText = document.getElementById("Z-Shift");
-  copyText.select();
-  document.execCommand("copy");
- else {
+  } else {
      document.getElementById("Z-Shift").innerHTML=``;
   }
   
