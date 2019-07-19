@@ -223,10 +223,8 @@ if (spe === '') {
 spe = oldspe;
 modspe = 0;
 }
-let zcategory = 'zMovePower:';
-if (category === 'Status') {
-zcategory = 'zMoveBoost:';
-}
+
+
 // Defaults and casing
 let poke = pokemon.toLowerCase();
 let typeo2= document.getElementById("type2").value;
@@ -238,18 +236,10 @@ type2 = "],";
 else {
 type2 = ", &quot;"+type2+"&quot;],";
 }
-let movesmall = newmove.toLowerCase();
-if (category === "Status") {
-bp = "0";
-}
+
 let wt =100;
 let num = 0;
-if (movetype === '') {
-movetype = type;
-}
-if (acc === '') {
-acc = 'true';
-}
+
 let formeLetter = "";
 if (formename === "Kantonian") {
 	formeLetter="K";
