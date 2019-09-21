@@ -175,6 +175,13 @@ movetype = type;
 if (acc === '') {
 acc = 'true';
 }
+movesmall = movesmall.replace("-","");
+movesmall = movesmall.replace("-","");
+movesmall = movesmall.replace(" ","");
+movesmall = movesmall.replace(" ","");
+movesmall = movesmall.replace(",","");
+movesmall = movesmall.replace("|","");
+
 /*if (pokemon === "Bulbasaur") {
 	num = "1";
 	document.getElementById("oldhp").innerHTML = "45";
@@ -6278,7 +6285,7 @@ if (pokemon === "Carracosta") {
 
 }*/
 
-document.getElementById("xd").innerHTML = "[B]Signature Move:[/B] "+movesmall+" | [IMG]https://play.pokemonshowdown.com/sprites/types/"+movetype+".png[/IMG] | [IMG]https://play.pokemonshowdown.com/sprites/categories/"+category+".png[/IMG] | "+bp+" BP | "+acc+"% Accuracy | "+pp+" PP | Priority: "+priority+" | "+moveflavour+" | "+effect+" | Z-Move: "+zmove+" | <br>[B]Design/Flavor:[/B] "+design+"<br>[B]Competitive Analysis:[/B]  "+comp+"<br><br><div class=code>[hide=Code]moves.js <br>[CODE=javascript]"+newmove+": {<br>basePower: "+bp+", <br> accuracy: "+acc+", <br> category: &quot;"+category+"&quot;, <br> shortDesc: &quot;"+effect+"&quot;, <br> id: &quot;"+movesmall+"&quot;, <br> name: &quot;"+newmove+"&quot;, <br> pp: "+pp+",<br> priority: "+priority+", <br> flags: {protect: 1, mirror: 1}, <br> target: &quot;"+target+"&quot;,<br>type: &quot;"+movetype+"&quot;, <br>"+zcategory+" "+zmove+"},[/CODE][/hide]</div>";
+document.getElementById("xd").innerHTML = "[B]Signature Move:[/B] "+newmove+" | [IMG]https://play.pokemonshowdown.com/sprites/types/"+movetype+".png[/IMG] | [IMG]https://play.pokemonshowdown.com/sprites/categories/"+category+".png[/IMG] | "+bp+" BP | "+acc+"% Accuracy | "+pp+" PP | Priority: "+priority+" | "+moveflavour+" | "+effect+" | Z-Move: "+zmove+" | <br>[B]Design/Flavor:[/B] "+design+"<br>[B]Competitive Analysis:[/B]  "+comp+"<br><br><div class=code>[hide=Code]moves.js <br>[CODE=javascript]"+movesmall+": {<br>basePower: "+bp+", <br> accuracy: "+acc+", <br> category: &quot;"+category+"&quot;, <br> shortDesc: &quot;"+effect+"&quot;, <br> id: &quot;"+movesmall+"&quot;, <br> name: &quot;"+newmove+"&quot;, <br> pp: "+pp+",<br> priority: "+priority+", <br> flags: {protect: 1, mirror: 1}, <br> target: &quot;"+target+"&quot;,<br>type: &quot;"+movetype+"&quot;, <br>"+zcategory+" "+zmove+"},[/CODE][/hide]</div>";
 }
 </script>
 </html>
