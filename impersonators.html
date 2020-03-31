@@ -66,8 +66,9 @@ cursor: pointer;
 <td><span id="typearea"></span></td>
 </tr>
 <td>Types</td>
-<td><input type="text" id="type" list="types" onInput="post()"></input></td>
-<td><input type="text" id="type2" list="types" onInput="post()"></input></td>
+<td><input id="type" list="types" onInput="post()"></input></td>
+<td><input id="type2" list="types" onInput="post()"></input></td>
+<td><span id="ft"></span></td>
 </tr>
 <td>Stats</td>
 <td><span id="fusionstats"></span></td>
@@ -140,14 +141,7 @@ cursor: pointer;
 <td>Ability</td>
 <td><textarea type="text" id="abe" onInput="post()"></textarea></td>
 </tr>
-<tr>
-<td>Ability<br> Description</td>
-<td colspan="4"><textarea type="text" id="abedesc" onInput="post()" style="width:700px;height:80px;"></textarea></td>
-</tr>
-<td>Text</td>
-<td colspan="4"><textarea type="text" id="text" onInput="post()" style="width:700px;height:30px;"></textarea></td>
-</tr>
-<tr></table>
+</table>
 <br>
 <center><img src="https://play.pokemonshowdown.com/sprites/xyani/venusaur.gif" width="106" height="77"><button onClick="post()">Generate</button><img src="https://play.pokemonshowdown.com/sprites/xyani/blastoise.gif" width="88" height="83"></center>
 <br>
@@ -183,17 +177,15 @@ let spe= document.getElementById("spe").value;
 let abe= document.getElementById("abe").value;
 let abe1= document.getElementById("abe1").value;
 let abe2= document.getElementById("abe2").value;
-let abedesc= document.getElementById("abedesc").value;
 let wt=document.getElementById("wt").value;
-let text=document.getElementById("text").value;
 // Back End
 let mon = fuse2.toLowerCase();
 let f1 = fuse1.toLowerCase();
 let f2 = fuse2.toLowerCase();
 f1 = f1.replace(" ","");
 f2 = f2.replace(" ","");
-let t2=type2;
-if (type2==="") {type2 = "],";
+let t2 = type2;
+if (type2 === "") {type2 = "],";
 }
 else {
 type2 = ", &quot;"+type2+"&quot;],";
@@ -4689,7 +4681,7 @@ if (fuse2==="Bulbasaur") {num ="1";document.getElementById("oldhp").innerHTML="4
 }if (fuse2==="Pokestar Black Belt") {document.getElementById("typearea").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Fighting.png>";
 }if (fuse2==="Pokestar UFO-PropU2") {document.getElementById("typearea").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Psychic.png><img src=https://play.pokemonshowdown.com/sprites/types/Electric.png>";
 }
-document.getElementById("xd").innerHTML="[IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f1+".gif[/IMG][IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f2+".gif[/IMG]<br>[I]"+text+"[/I][hide="+fuse2+"][B]Pokemon Being Impersonated[/B]: "+fuse1+" <br>[B]Impersonator[/B]: "+fuse2+" <br>[B]Types:[/B][IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]<br>[B]Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"]<br>[B]Abilites[/B]: "+abe1+" / "+abe2+"<br>[B]Move Changes[/B]: <br>[B]Overview[/B]: <br>: <br>[hide=Code]"+f2+": {<br>num: 99900###, <br> types:[&quot;"+type+"&quot;"+type2+"<br>species: &quot;"+fuse2+"&quot;, <br> id: &quot;"+mon+"&quot;, <br>baseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} <br>//abilities: {0: &quot;"+abe1+"&quot;, H: &quot;"+abe2+"&quot;}, <br>weightkg: "+wt+", <br>//fusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],<br>},[/hide][/hide]</div>";
+document.getElementById("xd").innerHTML="[IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f1+".gif[/IMG][IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f2+".gif[/IMG]<br>[hide="+fuse2+"][B]Pokemon Being Impersonated[/B]: "+fuse1+" <br>[B]Impersonator[/B]: "+fuse2+" <br>[B]Types:[/B][IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]<br>[B]Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"]<br>[B]Abilites[/B]: "+abe1+" / "+abe2+"<br>[B]Move Changes[/B]: <br>[B]Overview[/B]: <br>: <br>[hide=Code]"+f2+": {<br>num: 99900###, <br> types:[&quot;"+type+"&quot;"+type2+"<br>species: &quot;"+fuse2+"&quot;, <br> id: &quot;"+mon+"&quot;, <br>baseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} <br>//abilities: {0: &quot;"+abe1+"&quot;, H: &quot;"+abe2+"&quot;}, <br>weightkg: "+wt+", <br>//fusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],<br>},[/hide][/hide]</div>";
 }
 function ten () {
 
