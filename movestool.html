@@ -29,7 +29,7 @@ font-size:28px;
 <h1>Moves Tool!</h1>
 
 <textarea id="space" ></textarea><br><br>
-<button onClick="load();load2();go3()">Load</button><br></center>
+<button onClick="load();load2();go3();clearit()">Load</button><br></center>
 
 <textarea id="status" onclick="copy3()"></textarea><br>
 <textarea id="special" onclick="copy2()"></textarea><br>
@@ -1666,6 +1666,114 @@ function copy3() {
   let status = document.getElementById("status");
   status.select();
   document.execCommand("copy");
+}
+
+function clearit() {
+let physical=document.getElementById("physical").value;
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(", ,",",");
+physical=physical.replace(" | ,"," |");
+
+document.getElementById("physical").innerHTML=""+physical+"";
+
+let special=document.getElementById("special").value;
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(", ,",",");
+special=special.replace(" | ,"," |");
+
+document.getElementById("special").innerHTML=""+special+"";
+
+let status=document.getElementById("status").value;
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(", ,",",");
+status=status.replace(" | ,"," |");
+
+document.getElementById("status").innerHTML=""+status+"";
+
 }
 
 </script>
