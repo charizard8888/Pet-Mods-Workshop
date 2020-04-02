@@ -31,9 +31,9 @@ font-size:28px;
 <textarea id="space" ></textarea><br><br>
 <button onClick="load();load2();go3()">Load</button><br></center>
 
-<textarea id="status"></textarea><br>
-<textarea id="special"></textarea><br>
-<textarea id="physical"></textarea><br>
+<textarea id="status" onclick="copy3()"></textarea><br>
+<textarea id="special" onclick="copy2()"></textarea><br>
+<textarea id="physical" onclick="copy1()"></textarea>
 
 <br/>
  <button onClick="votes()">Generate</button>
@@ -1644,6 +1644,24 @@ special=special.replace("Zap Cannon","");
 
 document.getElementById("status").innerHTML=""+special+"";
 
+}
+
+function copy1() {
+  let physical = document.getElementById("physical");
+  physical.select();
+  document.execCommand("copy");
+}
+
+function copy2() {
+  let special = document.getElementById("special");
+  special.select();
+  document.execCommand("copy");
+}
+
+function copy3() {
+  let status = document.getElementById("status");
+  status.select();
+  document.execCommand("copy");
 }
 
 </script>
