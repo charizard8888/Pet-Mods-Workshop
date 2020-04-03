@@ -6,14 +6,14 @@ a {
 color: #d1d6c9;
 }
 body, table {
-font-size: 24px;
-background-color:#3d424a;
+font-size: 18px;
+background-color: #232a30;
 color: #d1d6c9;
 }
 button {
 background-color: black;
-color: #FFA000;
-border: solid 4px #FFA000;
+color: #d1d6c9;
+border: solid 4px #d1d6c9;
 font-size:28px;
 cursor: pointer;
 }
@@ -40,7 +40,7 @@ color: #FFA000;
 textarea {
 height: 20px;
 width: 173px;
-background-color:#3d424a;
+background-color: #232a30;
 color: #d1d6c9;
   }
 textarea:disabled {
@@ -57,9 +57,18 @@ font-size:16px;
 cursor: pointer;
 }
 input {
-background-color:#3d424a;
+height: 20px;
+width: 173px;
+background-color:#232a30;
 color: #d1d6c9;
 border: solid 1px;
+}
+.basestat {
+text-align: right;
+}
+.xd {
+width: 500px;
+height: 500px;
 }
 </style>
 </head>
@@ -96,14 +105,14 @@ border: solid 1px;
 <td><button class="modifier" onClick="five()">+5</button></td>
 </tr> --->
 <tr>
-<td>HP</td>
+<td class="basestat">HP</td>
 <td><textarea type="text" id="hp" onInput="post()"></textarea></td>
 <td><textarea id="oldhp1" disabled></textarea></td>
 <td><textarea id="oldhp" disabled></textarea></td>
 <td><textarea id="avghp" disabled></textarea></td>
 </tr>
 <tr>
-<td>Atk</td>
+<td class="basestat">Atk</td>
 <td><textarea type="text" id="atk" onInput="post()"></textarea></td>
 <td><textarea id="oldatk1" disabled></textarea></td>
 <td><textarea id="oldatk" disabled></textarea></td>
@@ -111,28 +120,28 @@ border: solid 1px;
 
 </tr>
 <tr>
-<td>Def</td>
+<td class="basestat">Def</td>
 <td><textarea type="text" id="def" onInput="post()"></textarea></td>
 <td><textarea id="olddef1" disabled></textarea></td>
 <td><textarea id="olddef" disabled></textarea></td>
 <td><textarea id="avgdef" disabled></textarea></td>
 </tr>
 <tr>
-<td>SpA</td>
+<td class="basestat">SpA</td>
 <td><textarea type="text" id="spa" onInput="post()"></textarea></td>
 <td><textarea id="oldspa1" disabled></textarea></td>
 <td><textarea id="oldspa" disabled></textarea></td>
 <td><textarea id="avgspa" disabled></textarea></td>
 </tr>
 <tr>
-<td>SpD</td>
+<td class="basestat">SpD</td>
 <td><textarea type="text" id="spd" onInput="post()"></textarea></td>
 <td><textarea id="oldspd1" disabled></textarea></td>
 <td><textarea id="oldspd" disabled></textarea></td>
 <td><textarea id="avgspd" disabled></textarea></td>
 </tr>
 <tr>
-<td>Spe</td>
+<td class="basestat">Spe</td>
 <td><textarea type="text" id="spe" onInput="post()"></textarea></td>
 <td><textarea id="oldspe1" disabled></textarea></td>
 <td><textarea id="oldspe" disabled></textarea></td>
@@ -166,9 +175,9 @@ border: solid 1px;
 <br>
 <center><img src="https://play.pokemonshowdown.com/sprites/xyani/venusaur.gif" width="106" height="77"><button onClick="post()">Generate</button><img src="https://play.pokemonshowdown.com/sprites/xyani/blastoise.gif" width="88" height="83"></center>
 <br>
-<p id="xd"> </p>
+<button onClick="copy()">Copy</button><br><br><br>
+<textarea id="xd" class="xd"> </textarea>
 <p id="fusionarea"></p>
-
 <datalist id="types">
 <option value="Fire"><option value="Water"><option value="Grass"><option value="Electric"><option value="Ground"><option value="Bug"><option value="Poison"><option value="Fighting"><option value="Steel"><option value="Dark"><option value="Flying"><option value="Dragon"><option value="Ice"><option value="Rock"><option value="Ghost"><option value="Psychic"><option value="Normal"><option value="Fairy">
 </datalist>
@@ -4689,7 +4698,7 @@ if (fuse2==="Bulbasaur") {num ="1";document.getElementById("oldhp").innerHTML="4
 }if (fuse2==="Pokestar Black Belt") {document.getElementById("typearea").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Fighting.png>";
 }if (fuse2==="Pokestar UFO-PropU2") {document.getElementById("typearea").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Psychic.png><img src=https://play.pokemonshowdown.com/sprites/types/Electric.png>";
 }
-document.getElementById("xd").innerHTML="[IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f1+".gif[/IMG][IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f2+".gif[/IMG]<br>[I]"+text+"[/I][hide="+fusion+"][B]DNA Donors/ Parents[/B]: "+fuse1+" / "+fuse2+" <br>[B]Shared Egg Group[/B]: <br> [B]Offspring Name[/B]: "+fusion+" <br>[B]New Types:[/B][IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]<br>[B]New Base Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"] (+"+modhp+" HP / +"+modatk+" Atk / +"+moddef+" Def / +"+modspa+" SpA / +"+modspd+" SpD / +"+modspe+" Spe)<br>[B]New Ability and Desc[/B]: "+abe1+" + "+abe2+" = [I]"+abe+"[/I]: "+abedesc+"<br>[B]Notable Moves[/B]: <br>[IMG]https://play.pokemonshowdown.com/sprites/categories/Physical.png[/IMG] <br>[IMG]https://play.pokemonshowdown.com/sprites/categories/Special.png[/IMG] <br>[IMG]https://play.pokemonshowdown.com/sprites/categories/Status.png[/IMG] <br>[B]Role Identification[/B]: <br>[hide=Code]"+mon+": {<br>num: 75000###, <br> types:[&quot;"+type+"&quot;"+type2+"<br>species: &quot;"+fusion+"&quot;, <br> id: &quot;"+mon+"&quot;, <br>baseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} <br>abilities: {0: &quot;"+abe+"&quot;}, <br>weightkg: "+wt+", <br>fusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],<br>},[/hide][/hide]</div>";
+document.getElementById("xd").innerHTML="[IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f1+".gif[/IMG][IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f2+".gif[/IMG]\n[I]"+text+"[/I][hide="+fusion+"][B]DNA Donors/ Parents[/B]: "+fuse1+" / "+fuse2+" \n[B]Shared Egg Group[/B]: \n [B]Offspring Name[/B]: "+fusion+" \n[B]New Types:[/B][IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]New Base Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"] (+"+modhp+" HP / +"+modatk+" Atk / +"+moddef+" Def / +"+modspa+" SpA / +"+modspd+" SpD / +"+modspe+" Spe)\n[B]New Ability and Desc[/B]: "+abe1+" + "+abe2+" = [I]"+abe+"[/I]: "+abedesc+"\n[B]Notable Moves[/B]: \n[IMG]https://play.pokemonshowdown.com/sprites/categories/Physical.png[/IMG] \n[IMG]https://play.pokemonshowdown.com/sprites/categories/Special.png[/IMG] \n[IMG]https://play.pokemonshowdown.com/sprites/categories/Status.png[/IMG] \n[B]Role Identification[/B]: \n[hide=Code]"+mon+": {\nnum: 75000###, \n types:[&quot;"+type+"&quot;"+type2+"\nspecies: &quot;"+fusion+"&quot;, \n id: &quot;"+mon+"&quot;, \nbaseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} \nabilities: {0: &quot;"+abe+"&quot;}, \nweightkg: "+wt+", \nfusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],\n},[/hide][/hide]";
 }
 function ten () {
 
@@ -4723,6 +4732,12 @@ document.getElementById("def").innerHTML=""+def+"";
 document.getElementById("spa").innerHTML=""+spa+"";
 document.getElementById("spd").innerHTML=""+spd+"";
 document.getElementById("spe").innerHTML=""+spe+"";
+}
+
+function copy() {
+  let xd = document.getElementById("xd");
+  xd.select();
+  document.execCommand("copy");
 }
 </script>
 </html>
