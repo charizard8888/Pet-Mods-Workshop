@@ -99,6 +99,7 @@ height: 500px;
 <td><span id="mon1stats"></span></td>
 <td><span id="mon2stats"></span></td>
 <td><span id="avgstats">Average</span></td>
+<td><span>Difference</span></td>
 </tr>
 <!--<td>Modifiers</td>
 <td><button class="modifier" onClick="ten()">+10</button></td>
@@ -110,6 +111,7 @@ height: 500px;
 <td><textarea id="oldhp1" disabled></textarea></td>
 <td><textarea id="oldhp" disabled></textarea></td>
 <td><textarea id="avghp" disabled></textarea></td>
+<td><textarea id="modhp" disabled></textarea></td>
 </tr>
 <tr>
 <td class="basestat">Atk</td>
@@ -117,6 +119,7 @@ height: 500px;
 <td><textarea id="oldatk1" disabled></textarea></td>
 <td><textarea id="oldatk" disabled></textarea></td>
 <td><textarea id="avgatk" disabled></textarea></td>
+<td><textarea id="modatk" disabled></textarea></td>
 
 </tr>
 <tr>
@@ -125,6 +128,7 @@ height: 500px;
 <td><textarea id="olddef1" disabled></textarea></td>
 <td><textarea id="olddef" disabled></textarea></td>
 <td><textarea id="avgdef" disabled></textarea></td>
+<td><textarea id="moddef" disabled></textarea></td>
 </tr>
 <tr>
 <td class="basestat">SpA</td>
@@ -132,6 +136,7 @@ height: 500px;
 <td><textarea id="oldspa1" disabled></textarea></td>
 <td><textarea id="oldspa" disabled></textarea></td>
 <td><textarea id="avgspa" disabled></textarea></td>
+<td><textarea id="modspa" disabled></textarea></td>
 </tr>
 <tr>
 <td class="basestat">SpD</td>
@@ -139,6 +144,7 @@ height: 500px;
 <td><textarea id="oldspd1" disabled></textarea></td>
 <td><textarea id="oldspd" disabled></textarea></td>
 <td><textarea id="avgspd" disabled></textarea></td>
+<td><textarea id="modspd" disabled></textarea></td>
 </tr>
 <tr>
 <td class="basestat">Spe</td>
@@ -146,6 +152,16 @@ height: 500px;
 <td><textarea id="oldspe1" disabled></textarea></td>
 <td><textarea id="oldspe" disabled></textarea></td>
 <td><textarea id="avgspe" disabled></textarea></td>
+<td><textarea id="modspe" disabled></textarea></td>
+</tr>
+<tr>
+<tr>
+<td class="basestat">BST</td>
+<td><textarea type="text" id="bst" onInput="post()"></textarea></td>
+<td><textarea id="oldbst1" disabled></textarea></td>
+<td><textarea id="oldbst" disabled></textarea></td>
+<td><textarea id="avgbst" disabled></textarea></td>
+<td><textarea id="modbst" disabled></textarea></td>
 </tr>
 <tr>
 <td>Weight</td>
@@ -271,6 +287,24 @@ let modspa = +spa - +avgspa;
 let modspd = +spd - +avgspd;
 let modspe = +spe - +avgspe;
 let bst=+hp + +atk + +def + +spa + +spd + +spe;
+let modbst =+modhp + +modatk + +moddef + +modspa + +modspd + +modspe
+document.getElementById("bst").innerHTML=""+bst+"";
+let oldbst =+oldhp + +oldatk + +olddef + +oldspa + +oldspd + +oldspe;
+document.getElementById("oldbst").innerHTML=""+oldbst+"";
+
+let oldbst1 =+oldhp1 + +oldatk1 + +olddef1 + +oldspa1 + +oldspd1 + +oldspe1;
+document.getElementById("oldbst1").innerHTML=""+oldbst1+"";
+
+let avgbst =+avghp + +avgatk + +avgdef + +avgspa + +avgspd + +avgspe;
+document.getElementById("avgbst").innerHTML=""+avgbst+"";
+
+document.getElementById("modhp").innerHTML=""+modhp+"";
+document.getElementById("modatk").innerHTML=""+modatk+"";
+document.getElementById("moddef").innerHTML=""+moddef+"";
+document.getElementById("modspa").innerHTML=""+modspa+"";
+document.getElementById("modspd").innerHTML=""+modspd+"";
+document.getElementById("modspe").innerHTML=""+modspe+"";
+document.getElementById("modbst").innerHTML=""+modbst+"";
 
 document.getElementById("mon1stats").innerHTML=""+fuse1+"";
 document.getElementById("mon2stats").innerHTML=""+fuse2+"";
@@ -4698,7 +4732,7 @@ if (fuse2==="Bulbasaur") {num ="1";document.getElementById("oldhp").innerHTML="4
 }if (fuse2==="Pokestar Black Belt") {document.getElementById("typearea").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Fighting.png>";
 }if (fuse2==="Pokestar UFO-PropU2") {document.getElementById("typearea").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Psychic.png><img src=https://play.pokemonshowdown.com/sprites/types/Electric.png>";
 }
-document.getElementById("xd").innerHTML="[IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f1+".gif[/IMG][IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f2+".gif[/IMG]\n[I]"+text+"[/I][hide="+fusion+"][B]DNA Donors/ Parents[/B]: "+fuse1+" / "+fuse2+" \n[B]Shared Egg Group[/B]: \n [B]Offspring Name[/B]: "+fusion+" \n[B]New Types:[/B][IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]New Base Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"] (+"+modhp+" HP / +"+modatk+" Atk / +"+moddef+" Def / +"+modspa+" SpA / +"+modspd+" SpD / +"+modspe+" Spe)\n[B]New Ability and Desc[/B]: "+abe1+" + "+abe2+" = [I]"+abe+"[/I]: "+abedesc+"\n[B]Notable Moves[/B]: \n[IMG]https://play.pokemonshowdown.com/sprites/categories/Physical.png[/IMG] \n[IMG]https://play.pokemonshowdown.com/sprites/categories/Special.png[/IMG] \n[IMG]https://play.pokemonshowdown.com/sprites/categories/Status.png[/IMG] \n[B]Role Identification[/B]: \n[hide=Code][CODE=javascript]"+mon+": {\n\tnum: 75000###, \n\ttypes:[&quot;"+type+"&quot;"+type2+"\n\tspecies: &quot;"+fusion+"&quot;, \n\tid: &quot;"+mon+"&quot;, \n\tbaseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} \n\tabilities: {0: &quot;"+abe+"&quot;}, \n\tweightkg: "+wt+", \n\tfusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],\n},[/CODE][/hide][/hide]";
+document.getElementById("xd").innerHTML="[IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f1+".gif[/IMG][IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f2+".gif[/IMG]\n[I]"+text+"[/I][hide="+fusion+"][B]DNA Donors/ Parents[/B]: "+fuse1+" / "+fuse2+" \n[B]Shared Egg Group[/B]: \n [B]Offspring Name[/B]: "+fusion+" \n[B]New Types:[/B][IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]New Base Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"] (+"+modhp+" HP / +"+modatk+" Atk / +"+moddef+" Def / +"+modspa+" SpA / +"+modspd+" SpD / +"+modspe+" Spe)\n[B]New Ability and Desc[/B]: "+abe1+" + "+abe2+" = [I]"+abe+"[/I]- "+abedesc+"\n[B]Notable Moves[/B]: \n[IMG]https://play.pokemonshowdown.com/sprites/categories/Physical.png[/IMG] \n[IMG]https://play.pokemonshowdown.com/sprites/categories/Special.png[/IMG] \n[IMG]https://play.pokemonshowdown.com/sprites/categories/Status.png[/IMG] \n[B]Role Identification[/B]: \n[hide=Code][CODE=javascript]"+mon+": {\n\tnum: 75000###, \n\ttypes:[&quot;"+type+"&quot;"+type2+"\n\tspecies: &quot;"+fusion+"&quot;, \n\tid: &quot;"+mon+"&quot;, \n\tbaseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} \n\tabilities: {0: &quot;"+abe+"&quot;}, \n\tweightkg: "+wt+", \n\tfusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],\n},[/CODE][/hide][/hide]";
 }
 function ten () {
 
