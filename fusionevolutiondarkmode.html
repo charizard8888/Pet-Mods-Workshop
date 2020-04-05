@@ -191,9 +191,24 @@ height: 500px;
 <br>
 <center><img src="https://play.pokemonshowdown.com/sprites/xyani/venusaur.gif" width="106" height="77"><button onClick="post()">Generate</button><img src="https://play.pokemonshowdown.com/sprites/xyani/blastoise.gif" width="88" height="83"></center>
 <br>
-<button onClick="copy()">Copy</button><br><br><br>
+<table>
+<tr>
+<td>
+<button onClick="copy()">Copy</button> (Just hit Copy, no need to Ctrl + C thereafter)
+</td>
+<td>
+<button onClick="copy2()">Copy</button> For sharing fusion ideas
+</td>
+</tr>
+<tr>
+<td style="width:80%;">
 <textarea id="xd" class="xd"> </textarea>
-<p id="fusionarea"></p>
+</td>
+<td>
+<textarea id="xd2" class="xd"> </textarea>
+</td>
+</tr>
+</table>
 <datalist id="types">
 <option value="Fire"><option value="Water"><option value="Grass"><option value="Electric"><option value="Ground"><option value="Bug"><option value="Poison"><option value="Fighting"><option value="Steel"><option value="Dark"><option value="Flying"><option value="Dragon"><option value="Ice"><option value="Rock"><option value="Ghost"><option value="Psychic"><option value="Normal"><option value="Fairy">
 </datalist>
@@ -4733,6 +4748,8 @@ if (fuse2==="Bulbasaur") {num ="1";document.getElementById("oldhp").innerHTML="4
 }if (fuse2==="Pokestar UFO-PropU2") {document.getElementById("typearea").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Psychic.png><img src=https://play.pokemonshowdown.com/sprites/types/Electric.png>";
 }
 document.getElementById("xd").innerHTML="[IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f1+".gif[/IMG][IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f2+".gif[/IMG]\n[I]"+text+"[/I][hide="+fusion+"][B]DNA Donors/ Parents[/B]: "+fuse1+" / "+fuse2+" \n[B]Shared Egg Group[/B]: \n [B]Offspring Name[/B]: "+fusion+" \n[B]New Types:[/B][IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]New Base Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"] (+"+modhp+" HP / +"+modatk+" Atk / +"+moddef+" Def / +"+modspa+" SpA / +"+modspd+" SpD / +"+modspe+" Spe)\n[B]New Ability and Desc[/B]: "+abe1+" + "+abe2+" = [I]"+abe+"[/I]- "+abedesc+"\n[B]Notable Moves[/B]: \n[IMG]https://play.pokemonshowdown.com/sprites/categories/Physical.png[/IMG] \n[IMG]https://play.pokemonshowdown.com/sprites/categories/Special.png[/IMG] \n[IMG]https://play.pokemonshowdown.com/sprites/categories/Status.png[/IMG] \n[B]Role Identification[/B]: \n[hide=Code][CODE=javascript]"+mon+": {\n\tnum: 75000###, \n\ttypes:[&quot;"+type+"&quot;"+type2+"\n\tspecies: &quot;"+fusion+"&quot;, \n\tid: &quot;"+mon+"&quot;, \n\tbaseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} \n\tabilities: {0: &quot;"+abe+"&quot;}, \n\tweightkg: "+wt+", \n\tfusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],\n},[/CODE][/hide][/hide]";
+
+document.getElementById("xd2").innerHTML="\`\`\`"+fusion+" = "+fuse1+" + "+fuse2+"\n"+type+"/"+t2+"\n\nHP : "+hp+"\nAtk: "+atk+"\nDef: "+def+"\nSpA: "+spa+"\nSpD: "+spd+"\nSpe: "+spe+"\nBST: "+bst+"\n\n"+abe+" = "+abe1+" + "+abe2+"\n"+abedesc+"\`\`\`";
 }
 function ten () {
 
@@ -4771,6 +4788,11 @@ document.getElementById("spe").innerHTML=""+spe+"";
 function copy() {
   let xd = document.getElementById("xd");
   xd.select();
+  document.execCommand("copy");
+}
+function copy2() {
+  let xd2 = document.getElementById("xd2");
+  xd2.select();
   document.execCommand("copy");
 }
 </script>
