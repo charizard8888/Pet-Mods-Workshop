@@ -12,26 +12,6 @@ border: solid 4px #FFA000;
 font-size:150%;
 cursor: pointer;
 }
-p {
-background-color: black;
-color: aqua;
-}
-.code {
-background-color: black;
-color:lime;
-}
-h1 {
-font-family: Jokerman;
-color:#FFA000;
-background-color:black;
-width: 40%;
-border: 4px solid #FFA000;
-text-align: center;
-}
-.mod {
-background-color: black;
-color: #FFA000;
-}
 textarea {
 height: 20px;
 width: 173px;
@@ -39,16 +19,6 @@ width: 173px;
 textarea:disabled {
 background:none;
   }
-span {
-	font-size:20px;
-    }
-.modifier {
-background-color: black;
-color: #FFA000;
-border: solid 4px #FFA000;
-font-size:16px;
-cursor: pointer;
-}
 input {
 height: 20px;
 width: 173px;
@@ -93,12 +63,8 @@ Playable in <a href="https://dragonheaven.psim.us" target="_blank">Dragon Heaven
 <td><span id="mon1stats"></span></td>
 <td><span id="mon2stats"></span></td>
 <td><span id="avgstats">Average</span></td>
-<td><span>Difference</span></td>
+<td>Difference</td>
 </tr>
-<!--<td>Modifiers</td>
-<td><button class="modifier" onClick="ten()">+10</button></td>
-<td><button class="modifier" onClick="five()">+5</button></td>
-</tr> --->
 <tr>
 <td class="basestat">HP</td>
 <td><textarea type="text" id="hp" onInput="post()"></textarea></td>
@@ -189,6 +155,8 @@ Playable in <a href="https://dragonheaven.psim.us" target="_blank">Dragon Heaven
 <br>
 <button onClick="copy()">Copy Submission</button><br><br>
 <button onClick="copy2()">Copy</button> For sharing fusion ideas<br><br>
+<a href="https://www.smogon.com/forums/threads/3657461/" target="_blank">Fusion Evolution</a><br>
+<a href="https://discord.gg/fG8ysMV" target="_blank">Discord</a>
 <datalist id="types">
 <option value="Fire"><option value="Water"><option value="Grass"><option value="Electric"><option value="Ground"><option value="Bug"><option value="Poison"><option value="Fighting"><option value="Steel"><option value="Dark"><option value="Flying"><option value="Dragon"><option value="Ice"><option value="Rock"><option value="Ghost"><option value="Psychic"><option value="Normal"><option value="Fairy">
 </datalist>
@@ -4730,39 +4698,6 @@ if (fuse2==="Bulbasaur") {num ="1";document.getElementById("oldhp").innerHTML="4
 document.getElementById("xd").innerHTML="[IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f1+".gif[/IMG][IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f2+".gif[/IMG]\n[I]"+text+"[/I][hide="+fusion+"][B]DNA Donors/ Parents[/B]: "+fuse1+" / "+fuse2+" \n[B]Shared Egg Group[/B]: \n [B]Offspring Name[/B]: "+fusion+" \n[B]New Types:[/B][IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]New Base Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"] (+"+modhp+" HP / +"+modatk+" Atk / +"+moddef+" Def / +"+modspa+" SpA / +"+modspd+" SpD / +"+modspe+" Spe)\n[B]New Ability and Desc[/B]: "+abe1+" + "+abe2+" = [I]"+abe+"[/I]- "+abedesc+"\n[B]Notable Moves[/B]: \n[IMG]https://play.pokemonshowdown.com/sprites/categories/Physical.png[/IMG] \n[IMG]https://play.pokemonshowdown.com/sprites/categories/Special.png[/IMG] \n[IMG]https://play.pokemonshowdown.com/sprites/categories/Status.png[/IMG] \n[B]Role Identification[/B]: \n[hide=Code][CODE=javascript]"+mon+": {\n\tnum: 75000###, \n\ttypes:[&quot;"+type+"&quot;"+type2+"\n\tspecies: &quot;"+fusion+"&quot;, \n\tid: &quot;"+mon+"&quot;, \n\tbaseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} \n\tabilities: {0: &quot;"+abe+"&quot;}, \n\tweightkg: "+wt+", \n\tfusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],\n},[/CODE][/hide][/hide]";
 
 document.getElementById("xd2").innerHTML="\`\`\`"+fusion+" = "+fuse1+" + "+fuse2+"\n"+type+"/"+t2+"\n\nHP : "+hp+"\nAtk: "+atk+"\nDef: "+def+"\nSpA: "+spa+"\nSpD: "+spd+"\nSpe: "+spe+"\nBST: "+bst+"\n\n"+abe+" = "+abe1+" + "+abe2+"\n"+abedesc+"\`\`\`";
-}
-function ten () {
-
-let hp= +document.getElementById("hp").value + 10;
-let atk= +document.getElementById("atk").value + 10;
-let def= +document.getElementById("def").value + 10;
-let spa= +document.getElementById("spa").value + 10;
-let spd= +document.getElementById("spd").value + 10;
-let spe= +document.getElementById("spe").value + 10;
-
-document.getElementById("hp").innerHTML=""+hp+"";
-document.getElementById("atk").innerHTML=""+atk+"";
-document.getElementById("def").innerHTML=""+def+"";
-document.getElementById("spa").innerHTML=""+spa+"";
-document.getElementById("spd").innerHTML=""+spd+"";
-document.getElementById("spe").innerHTML=""+spe+"";
-}
-
-function five () {
-
-let hp= +document.getElementById("hp").value + 5;
-let atk= +document.getElementById("atk").value + 5;
-let def= +document.getElementById("def").value + 5;
-let spa= +document.getElementById("spa").value + 5;
-let spd= +document.getElementById("spd").value + 5;
-let spe= +document.getElementById("spe").value + 5;
-
-document.getElementById("hp").innerHTML=""+hp+"";
-document.getElementById("atk").innerHTML=""+atk+"";
-document.getElementById("def").innerHTML=""+def+"";
-document.getElementById("spa").innerHTML=""+spa+"";
-document.getElementById("spd").innerHTML=""+spd+"";
-document.getElementById("spe").innerHTML=""+spe+"";
 }
 
 function copy() {
