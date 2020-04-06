@@ -55,13 +55,14 @@ width: 700px;
 height: 80px;
 }
 .xd {
-width: 500px;
-height: 500px;
+width: 1px;
+height: 1px;
+border:none;
 }
 </style>
 </head>
 <body>
-<center><img src="https://www.smogon.com/forums/attachments/sylveon-impersonating-zygarde-png.219813/" width="96" height="96" alt="Impersonators" /><br><br>Art by <a href="https://www.smogon.com/forums/members/274773/" target="_blank">KeeganSkymin4444</a><br>(Will be) Playable in <a href="https://dragonheaven.psim.us" target="_blank">Dragon Heaven</a><br/><a href="https://charizard8888.github.io/Pet-Mods-Workshop/impersonatorsdarkmode.html" target="_blank">Dark Mode</a></center>
+<center><img src="https://www.smogon.com/forums/attachments/sylveon-impersonating-zygarde-png.219813/" width="96" height="96" alt="Impersonators" /><br><br>Art by <a href="https://www.smogon.com/forums/members/274773/" target="_blank">KeeganSkymin4444</a><br>(Will be) Playable in <a href="https://dragonheaven.psim.us" target="_blank">Dragon Heaven</a><br/></center>
 <table>
 <tr>
 <td>Impersonated</td>
@@ -139,31 +140,23 @@ height: 500px;
 <td><textarea id="oldwt" disabled></textarea></td>
 </tr>
 <tr>
-<td>Ability 1</td>
-<td><input type="text" id="abe1" onInput="post()" list="allabilities"></input></td>
-</tr><tr>
-<td>Ability 2</td>
-<td><input type="text" id="abe2" onInput="post()" list="allabilities"></input></td>
-</tr>
-<tr>
-<td>Ability</td>
-<td><textarea type="text" id="abe" onInput="post()"></textarea></td>
+<td>Abilities</td>
+<td colspan="4"><textarea type="text" id="abe" onInput="post()" class="wide" placeholder="Type all info about abilities here like Blaze/Solar Power or Blaze Power (Ability Description)"></textarea></td>
 </tr>
 <tr>
 <td>Move Changes</td>
 <td colspan="4"><textarea type="text" id="movechanges" onInput="post()" class="wide"></textarea></td>
 </tr>
 <td>Overview</td>
-<td colspan="4"><textarea type="text" id="overview" onInput="post()" class="wide"></textarea></td>
+<td colspan="4"><textarea type="text" id="overview" onInput="post()" class="wide"></textarea><textarea id="xd" class="xd"> </textarea></td>
 </tr>
 </table>
 <br>
 <center><img src="https://play.pokemonshowdown.com/sprites/xyani/venusaur.gif" width="106" height="77"><button onClick="post()">Generate</button><img src="https://play.pokemonshowdown.com/sprites/xyani/blastoise.gif" width="88" height="83"></center>
 <br>
 
-<button onClick="copy()">Copy</button><br><br><br>
-<textarea id="xd" class="xd"> </textarea>
-<p id="fusionarea"></p>
+<button onClick="post();copy()">Copy</button><br><br><br>
+
 
 <datalist id="types">
 <option value="Fire"><option value="Water"><option value="Grass"><option value="Electric"><option value="Ground"><option value="Bug"><option value="Poison"><option value="Fighting"><option value="Steel"><option value="Dark"><option value="Flying"><option value="Dragon"><option value="Ice"><option value="Rock"><option value="Ghost"><option value="Psychic"><option value="Normal"><option value="Fairy">
@@ -192,8 +185,6 @@ let spa= document.getElementById("spa").value;
 let spd= document.getElementById("spd").value;
 let spe= document.getElementById("spe").value;
 let abe= document.getElementById("abe").value;
-let abe1= document.getElementById("abe1").value;
-let abe2= document.getElementById("abe2").value;
 let wt=document.getElementById("wt").value;
 let movechanges=document.getElementById("movechanges").value;
 let overview=document.getElementById("overview").value;
@@ -209,6 +200,7 @@ if (type2 === "") {type2 = "],";
 else {
 type2 = ", &quot;"+type2+"&quot;],";
 }
+
 
 let oldhp1 = document.getElementById("oldhp1").value;
 let oldhp = document.getElementById("oldhp").value;
@@ -4700,7 +4692,7 @@ if (fuse2==="Bulbasaur") {num ="1";document.getElementById("oldhp").innerHTML="4
 }if (fuse2==="Pokestar Black Belt") {document.getElementById("typearea").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Fighting.png>";
 }if (fuse2==="Pokestar UFO-PropU2") {document.getElementById("typearea").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Psychic.png><img src=https://play.pokemonshowdown.com/sprites/types/Electric.png>";
 }
-document.getElementById("xd").innerHTML="[IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f1+".gif[/IMG][IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f2+".gif[/IMG]<br>[hide="+fuse2+"][B]Pokemon Being Impersonated[/B]: "+fuse1+" <br>[B]Impersonator[/B]: "+fuse2+" <br>[B]Types:[/B][IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]<br>[B]Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"]<br>[B]Abilites[/B]: "+abe1+" / "+abe2+"<br>[B]Move Changes[/B]: "+movechanges+"<br>[B]Overview[/B]: "+overview+" <br> <br>[hide=Code]"+f2+": {<br>num: 99900###, <br> types:[&quot;"+type+"&quot;"+type2+"<br>species: &quot;"+fuse2+"&quot;, <br> id: &quot;"+mon+"&quot;, <br>baseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} <br>//abilities: {0: &quot;"+abe1+"&quot;, H: &quot;"+abe2+"&quot;}, <br>weightkg: "+wt+", <br>//fusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],<br>},[/hide][/hide]</div>";
+document.getElementById("xd").innerHTML="[IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f1+".gif[/IMG][IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f2+".gif[/IMG]\n[hide="+fuse2+"][B]Pokemon Being Impersonated[/B]: "+fuse1+" \n[B]Impersonator[/B]: "+fuse2+" \n[B]Types:[/B][IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"]\n[B]Abilites[/B]: "+abe+"\n[B]Move Changes[/B]: "+movechanges+"\n[B]Overview[/B]: "+overview+" \n[/hide]";
 }
 function ten () {
 
