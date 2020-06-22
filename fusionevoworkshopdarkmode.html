@@ -37,8 +37,8 @@ border: solid 1px;
 text-align: right;
 }
 .xd {
-width: 0px;
-height: 0px;
+width: 4px;
+height: 4px;
 border: none;
 
 }
@@ -46,30 +46,28 @@ border: none;
 </head>
 <body>
 <center><img src="https://i.imgur.com/Y64ZCvH.png" width="502" height="281" alt="Fusion Evolution" /><br><br>
-Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_blank">imas</a><br>
-Playable in <a href="https://dragonheaven.psim.us" target="_blank">Dragon Heaven</a><br/>
-<a href="https://charizard8888.github.io/Pet-Mods-Workshop/fusionevoworkshop.html" target="_blank">Light Mode</a></center>
+Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_blank">imas</a> • • • Switch to <a href="https://charizard8888.github.io/Pet-Mods-Workshop/fusionevoworkshop.html" target="_blank" style="color:green;">Light Mode</a> • • • Playable in <a href="https://dragonheaven.psim.us" target="_blank">Dragon Heaven</a></center>
 <table>
 <tr>
-<td>Pokemon 1</td>
-<td><input type="text" id="fuse1" list="allmons" onInput="post()"></input></td>
+<td>Pkmn 1</td>
+<td><input type="text" id="fuse1" list="allmons" onInput="post()" style="width:134px;"></input></td>
 <td><span id="typearea1"></span></td>
 </tr>
 <tr>
-<td>Pokemon 2</td>
-<td><input type="text" id="fuse2" list="allmons" onInput="post();post();post()"></input>
+<td>Pkmn 2</td>
+<td><input type="text" id="fuse2" list="allmons" onInput="post();post();post()" style="width:134px;"></input>
 <td><span id="typearea"></span></td>
 </tr>
 <tr>
 <td>Fusion</td>
-<td><textarea type="text" id="fusion" onInput="post()"></textarea> </td>
+<td><textarea type="text" id="fusion" onInput="post()" style="width:134px;"></textarea></td>
 <td><span id="ft"></span></td>
 </tr>
 <td>Types</td>
-<td><input type="text" id="type" list="types" onInput="post()"></input></td>
-<td><input type="text" id="type2" list="types" onInput="post()"></input></td>
+<td><input type="text" id="type" list="types" onInput="post()" style="width:134px;"></input></td>
+<td><input type="text" id="type2" list="types" onInput="post()" style="width:64px;"></input></td>
 </tr>
-<td>Stats</td>
+<td>Stats…</td>
 <td><span id="fusionstats"></span></td>
 <td><span id="mon1stats"></span></td>
 <td><span id="mon2stats"></span></td>
@@ -78,94 +76,94 @@ Playable in <a href="https://dragonheaven.psim.us" target="_blank">Dragon Heaven
 </tr>
 <tr>
 <td class="basestat">HP</td>
-<td><textarea type="text" id="hp" onInput="post()"></textarea></td>
-<td><textarea id="oldhp1" disabled></textarea></td>
-<td><textarea id="oldhp" disabled></textarea></td>
-<td><textarea id="avghp" disabled></textarea></td>
-<td><textarea id="modhp" disabled></textarea></td>
+<td><textarea type="text" id="hp" onInput="post()" style="width:134px;"></textarea></td>
+<td><textarea id="oldhp1" style="width:64px;" disabled></textarea></td>
+<td><textarea id="oldhp" style="width:64px;" disabled></textarea></td>
+<td><textarea id="avghp" style="width:64px;" disabled></textarea></td>
+<td><textarea id="modhp" style="width:64px;" disabled></textarea></td>
 </tr>
 <tr>
 <td class="basestat">Atk</td>
-<td><textarea type="text" id="atk" onInput="post()"></textarea></td>
-<td><textarea id="oldatk1" disabled></textarea></td>
-<td><textarea id="oldatk" disabled></textarea></td>
-<td><textarea id="avgatk" disabled></textarea></td>
-<td><textarea id="modatk" disabled></textarea></td>
+<td><textarea type="text" id="atk" onInput="post()" style="width:134px;"></textarea></td>
+<td><textarea id="oldatk1" style="width:64px;" disabled></textarea></td>
+<td><textarea id="oldatk" style="width:64px;" disabled></textarea></td>
+<td><textarea id="avgatk" style="width:64px;" disabled></textarea></td>
+<td><textarea id="modatk" style="width:64px;" disabled></textarea></td>
 
 </tr>
 <tr>
 <td class="basestat">Def</td>
-<td><textarea type="text" id="def" onInput="post()"></textarea></td>
-<td><textarea id="olddef1" disabled></textarea></td>
-<td><textarea id="olddef" disabled></textarea></td>
-<td><textarea id="avgdef" disabled></textarea></td>
-<td><textarea id="moddef" disabled></textarea></td>
+<td><textarea type="text" id="def" onInput="post()" style="width:134px;"></textarea></td>
+<td><textarea id="olddef1" style="width:64px;" disabled></textarea></td>
+<td><textarea id="olddef" style="width:64px;" disabled></textarea></td>
+<td><textarea id="avgdef" style="width:64px;" disabled></textarea></td>
+<td><textarea id="moddef" style="width:64px;" disabled></textarea></td>
 </tr>
 <tr>
 <td class="basestat">SpA</td>
-<td><textarea type="text" id="spa" onInput="post()"></textarea></td>
-<td><textarea id="oldspa1" disabled></textarea></td>
-<td><textarea id="oldspa" disabled></textarea></td>
-<td><textarea id="avgspa" disabled></textarea></td>
-<td><textarea id="modspa" disabled></textarea></td>
+<td><textarea type="text" id="spa" onInput="post()" style="width:134px;"></textarea></td>
+<td><textarea id="oldspa1" style="width:64px;" disabled></textarea></td>
+<td><textarea id="oldspa" style="width:64px;" disabled></textarea></td>
+<td><textarea id="avgspa" style="width:64px;" disabled></textarea></td>
+<td><textarea id="modspa" style="width:64px;" disabled></textarea></td>
 </tr>
 <tr>
 <td class="basestat">SpD</td>
-<td><textarea type="text" id="spd" onInput="post()"></textarea></td>
-<td><textarea id="oldspd1" disabled></textarea></td>
-<td><textarea id="oldspd" disabled></textarea></td>
-<td><textarea id="avgspd" disabled></textarea></td>
-<td><textarea id="modspd" disabled></textarea></td>
+<td><textarea type="text" id="spd" onInput="post()" style="width:134px;"></textarea></td>
+<td><textarea id="oldspd1" style="width:64px;" disabled></textarea></td>
+<td><textarea id="oldspd" style="width:64px;" disabled></textarea></td>
+<td><textarea id="avgspd" style="width:64px;" disabled></textarea></td>
+<td><textarea id="modspd" style="width:64px;" disabled></textarea></td>
 </tr>
 <tr>
 <td class="basestat">Spe</td>
-<td><textarea type="text" id="spe" onInput="post()"></textarea></td>
-<td><textarea id="oldspe1" disabled></textarea></td>
-<td><textarea id="oldspe" disabled></textarea></td>
-<td><textarea id="avgspe" disabled></textarea></td>
-<td><textarea id="modspe" disabled></textarea></td>
+<td><textarea type="text" id="spe" onInput="post()" style="width:134px;"></textarea></td>
+<td><textarea id="oldspe1" style="width:64px;" disabled></textarea></td>
+<td><textarea id="oldspe" style="width:64px;" disabled></textarea></td>
+<td><textarea id="avgspe" style="width:64px;" disabled></textarea></td>
+<td><textarea id="modspe" style="width:64px;" disabled></textarea></td>
 </tr>
 <tr>
 <tr>
 <td class="basestat">BST</td>
-<td><textarea type="text" id="bst" onInput="post()"></textarea></td>
-<td><textarea id="oldbst1" disabled></textarea></td>
-<td><textarea id="oldbst" disabled></textarea></td>
-<td><textarea id="avgbst" disabled></textarea></td>
-<td><textarea id="modbst" disabled></textarea></td>
+<td><textarea type="text" id="bst" onInput="post()" style="width:134px;"></textarea></td>
+<td><textarea id="oldbst1" style="width:64px;" disabled></textarea></td>
+<td><textarea id="oldbst" style="width:64px;" disabled></textarea></td>
+<td><textarea id="avgbst" style="width:64px;" disabled></textarea></td>
+<td><textarea id="modbst" style="width:64px;" disabled></textarea></td>
 </tr>
 <tr>
 <td>Weight</td>
-<td><textarea type="text" id="wt" disabled></textarea></td>
-<td><textarea id="oldwt1" disabled></textarea></td>
-<td><textarea id="oldwt" disabled></textarea></td>
+<td><textarea type="text" id="wt" style="width:134px;" disabled></textarea></td>
+<td><textarea id="oldwt1" style="width:64px;" disabled></textarea></td>
+<td><textarea id="oldwt" style="width:64px;" disabled></textarea></td>
 </tr>
 <tr>
 <td>Ability 1</td>
-<td><input type="text" id="abe1" onInput="post()" list="allabilities"></input></td>
+<td><input type="text" id="abe1" onInput="post()" list="allabilities" style="width:118px;"></input></td>
 </tr><tr>
 <td>Ability 2</td>
-<td><input type="text" id="abe2" onInput="post()" list="allabilities"></input></td>
+<td><input type="text" id="abe2" onInput="post()" list="allabilities" style="width:118px;"></input></td>
 </tr>
 <tr>
 <td>Ability</td>
-<td><textarea type="text" id="abe" onInput="post()"></textarea></td>
+<td><textarea type="text" id="abe" onInput="post()" style="width:134px;"></textarea></td>
 </tr>
 <tr>
-<td>Ability<br> Description</td>
-<td colspan="4"><textarea type="text" id="abedesc" onInput="post()" style="width:700px;height:80px;"></textarea></td>
+<td>Ability<br> Desc.</td>
+<td colspan="5"><textarea type="text" id="abedesc" onInput="post()" style="width:500;height:74px;"></textarea></td>
 </tr>
-<td>Flavorful Text</td>
-<td colspan="4"><textarea type="text" id="text" onInput="post()" style="width:700px;height:30px;" placeholder="Italic text below the fusion"></textarea>
+<td>Battlecry</td>
+<td colspan="3"><textarea type="text" id="text" onInput="post()" style="width:330px;height:34px;" placeholder="Italic text below the fusion"></textarea>
 <div class="xd"><textarea id="xd" class="xd"> </textarea><textarea id="xd2" class="xd"> </div></textarea>
 </td>
 </tr>
 <tr></table>
 <br>
-<center><img src="https://play.pokemonshowdown.com/sprites/xyani/venusaur.gif" width="106" height="77"><button onClick="post()">Generate</button><img src="https://play.pokemonshowdown.com/sprites/xyani/blastoise.gif" width="88" height="83"></center>
+<center><img src="https://play.pokemonshowdown.com/sprites/xyani/venusaur.gif" width="106" height="77"><button onClick="post()">Generate!</button><img src="https://play.pokemonshowdown.com/sprites/xyani/blastoise.gif" width="88" height="83"></center>
 <br>
 <button onClick="copy()">Copy Submission</button><br><br>
-<button onClick="copy2()">Copy</button> (For sharing fusions on Discord)<br><br>
+<button onClick="copy2()">Copy</button> (For sharing fusion ideas on the Discord server)<br><br>
 <datalist id="types">
 <option value="Fire"><option value="Water"><option value="Grass"><option value="Electric"><option value="Ground"><option value="Bug"><option value="Poison"><option value="Fighting"><option value="Steel"><option value="Dark"><option value="Flying"><option value="Dragon"><option value="Ice"><option value="Rock"><option value="Ghost"><option value="Psychic"><option value="Normal"><option value="Fairy">
 </datalist>
@@ -249,7 +247,7 @@ document.getElementById("spe").innerHTML=""+avgspe+"";
 
 let oldwt1 = document.getElementById("oldwt1").value;
 let oldwt = document.getElementById("oldwt").value;
-let avgwt = (+oldwt1 + +oldwt)/2;
+let avgwt = (Math.round(((+oldwt1 + +oldwt)/2)*100))/100;
 document.getElementById("wt").innerHTML=""+avgwt+"";
 
 let modhp = +hp - +avghp;
@@ -3211,7 +3209,7 @@ if (fuse2==="Bulbasaur") {num ="1";document.getElementById("oldhp").innerHTML="4
 }if (fuse1==="Vivillon-Pokeball") {document.getElementById("typearea1").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Bug.png><img src=https://play.pokemonshowdown.com/sprites/types/Flying.png>";
 }if (fuse1==="Litleo") {document.getElementById("typearea1").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Fire.png><img src=https://play.pokemonshowdown.com/sprites/types/Normal.png>";
 }if (fuse1==="Pyroar") {document.getElementById("typearea1").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Fire.png><img src=https://play.pokemonshowdown.com/sprites/types/Normal.png>";
-}if (fuse1==="Flabe´be´") {document.getElementById("typearea1").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Fairy.png>";
+}if (fuse1==="Flabébé") {document.getElementById("typearea1").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Fairy.png>";
 }if (fuse1==="Floette") {document.getElementById("typearea1").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Fairy.png>";
 }if (fuse1==="Floette-Eternal") {document.getElementById("typearea1").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Fairy.png>";
 }if (fuse1==="Florges") {document.getElementById("typearea1").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Fairy.png>";
@@ -4385,7 +4383,7 @@ if (fuse2==="Bulbasaur") {num ="1";document.getElementById("oldhp").innerHTML="4
 }if (fuse2==="Vivillon-Pokeball") {document.getElementById("typearea").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Bug.png><img src=https://play.pokemonshowdown.com/sprites/types/Flying.png>";
 }if (fuse2==="Litleo") {document.getElementById("typearea").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Fire.png><img src=https://play.pokemonshowdown.com/sprites/types/Normal.png>";
 }if (fuse2==="Pyroar") {document.getElementById("typearea").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Fire.png><img src=https://play.pokemonshowdown.com/sprites/types/Normal.png>";
-}if (fuse2==="Flabe´be´") {document.getElementById("typearea").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Fairy.png>";
+}if (fuse2==="Flabébé") {document.getElementById("typearea").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Fairy.png>";
 }if (fuse2==="Floette") {document.getElementById("typearea").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Fairy.png>";
 }if (fuse2==="Floette-Eternal") {document.getElementById("typearea").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Fairy.png>";
 }if (fuse2==="Florges") {document.getElementById("typearea").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Fairy.png>";
@@ -4737,8 +4735,10 @@ if (fuse2==="Bulbasaur") {num ="1";document.getElementById("oldhp").innerHTML="4
 }if (fuse2==="Pokestar White Door") {document.getElementById("typearea").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Fire.png>";
 }if (fuse2==="Pokestar Black Belt") {document.getElementById("typearea").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Fighting.png>";
 }if (fuse2==="Pokestar UFO-PropU2") {document.getElementById("typearea").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Psychic.png><img src=https://play.pokemonshowdown.com/sprites/types/Electric.png>";
+}if (abe2==="Doubility") {document.getElementById("abe").innerHTML=""+abe1+"";
+}if (abe1==="Doubility") {document.getElementById("abe").innerHTML=""+abe2+"";
 }
-document.getElementById("xd").innerHTML=":swsh/"+f1+":swsh/"+f2+":\n[I]"+text+"[/I][hide="+fusion+"][B]DNA Donors/ Parents[/B]: "+fuse1+" / "+fuse2+"\n[B]Shared Egg Group[/B]: \n[B]Offspring Name[/B]: "+fusion+"\n[B]New Types[/B]: [IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]Base Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"] (+"+modhp+" HP / +"+modatk+" Atk / +"+moddef+" Def / +"+modspa+" SpA / +"+modspd+" SpD / +"+modspe+" Spe)\n[B]New Ability and Desc[/B]: "+abe1+" + "+abe2+" = [I]"+abe+"[/I]- "+abedesc+"\n[B]Notable Moves[/B]:\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Physical.png[/IMG] \n[IMG]https://play.pokemonshowdown.com/sprites/categories/Special.png[/IMG] \n[IMG]https://play.pokemonshowdown.com/sprites/categories/Status.png[/IMG] \n[B]Role Justification[/B]: \n[hide=Code][CODE=javascript]"+mon+": {\n\tnum: 75000###, \n\ttypes:[&quot;"+type+"&quot;"+type2+"\n\tspecies: &quot;"+fusion+"&quot;, \n\tid: &quot;"+mon+"&quot;, \n\tbaseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} \n\tabilities: {0: &quot;"+abe+"&quot;}, \n\tweightkg: "+wt+", \n\tfusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],\n},[/CODE][/hide][/hide]";
+document.getElementById("xd").innerHTML=":swsh/"+f1+":swsh/"+f2+":\n[I]"+text+"[/I][hide="+fusion+"][B]DNA Donors/ Parents[/B]: "+fuse1+" / "+fuse2+"\n[B]Shared Egg Group[/B]: \n[B]Offspring Name[/B]: "+fusion+"\n[B]New Types[/B]: [IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]Base Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"] (+"+modhp+" HP / +"+modatk+" Atk / +"+moddef+" Def / +"+modspa+" SpA / +"+modspd+" SpD / +"+modspe+" Spe)\n[B]New Ability[/B]:[I] "+abe+"[/I] ("+abe1+" + "+abe2+")\n[B]Ability Description[/B]: "+abedesc+"\n[B]Notable/Relevant/Useful Moves[/B]:\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Physical.png[/IMG]…\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Special.png[/IMG]…\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Status.png[/IMG]…\n[B]Role Justification[/B]: \n[hide=Code][CODE=javascript]"+mon+": {\n\tnum: 75000###, \n\ttypes:[&quot;"+type+"&quot;"+type2+"\n\tspecies: &quot;"+fusion+"&quot;, \n\tid: &quot;"+mon+"&quot;, \n\tbaseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} \n\tabilities: {0: &quot;"+abe+"&quot;}, \n\tweightkg: "+wt+", \n\tfusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],\n},[/CODE][/hide][/hide]";
 
 document.getElementById("xd2").innerHTML="\`\`\`"+fusion+" = "+fuse1+" + "+fuse2+"\n"+type+"/"+t2+"\n\nHP : "+hp+" \t\t+"+modhp+"\nAtk: "+atk+"\t\t+"+modatk+"\nDef: "+def+"\t\t+"+moddef+"\nSpA: "+spa+"\t\t+"+modspa+"\nSpD: "+spd+"\t\t+"+modspd+"\nSpe: "+spe+"\t\t+"+modspe+"\nBST: "+bst+"\t\t+"+modbst+"\n\n"+abe+" = "+abe1+" + "+abe2+"\n"+abedesc+"\`\`\`";
 }
