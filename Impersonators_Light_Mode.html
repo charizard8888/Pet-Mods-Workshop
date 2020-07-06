@@ -148,7 +148,15 @@ border:none;
 <td colspan="4"><textarea type="text" id="movechanges" oninput="post()" class="wide"></textarea></td>
 </tr>
 <tr><td>Overview</td>
-<td colspan="4"><textarea type="text" id="overview" oninput="post()" class="wide"></textarea><textarea id="xd" class="xd"> </textarea></td>
+<td colspan="4"><textarea type="text" id="overview" oninput="post()" class="wide"></textarea><textarea id="xd" class="xd">[IMG]https://play.pokemonshowdown.com/sprites/xyani/.gif[/IMG][IMG]https://play.pokemonshowdown.com/sprites/xyani/.gif[/IMG]
+[hide=][B]Pokémon Being Impersonated[/B]:
+[B]Impersonator[/B]:
+[B]Types:[/B][IMG]https://play.pokemonshowdown.com/sprites/types/.png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/.png[/IMG]
+[B]Stats[/B]:  /  /  /  /  /  [BST: 0]
+[B]Abilites[/B]:
+[B]Move Changes[/B]:
+[B]Overview[/B]:
+[/hide]</textarea></td>
 </tr>
 </tbody></table>
 <br>
@@ -174,27 +182,27 @@ border:none;
 function post ()
 {
 // Front and Part Back End
-let fuse1= document.getElementById("fuse1").value;
-let fuse2= document.getElementById("fuse2").value;
-let type= document.getElementById("type").value;
-let type2= document.getElementById("type2").value;
-let hp= document.getElementById("hp").value;
-let atk= document.getElementById("atk").value;
-let def= document.getElementById("def").value;
-let spa= document.getElementById("spa").value;
-let spd= document.getElementById("spd").value;
-let spe= document.getElementById("spe").value;
-let abe= document.getElementById("abe").value;
-let wt=document.getElementById("wt").value;
-let movechanges=document.getElementById("movechanges").value;
-let overview=document.getElementById("overview").value;
+let fuse1 =document.getElementById("fuse1").value;
+let fuse2 =document.getElementById("fuse2").value;
+let type =document.getElementById("type").value;
+let type2 =document.getElementById("type2").value;
+let hp =document.getElementById("hp").value;
+let atk =document.getElementById("atk").value;
+let def =document.getElementById("def").value;
+let spa =document.getElementById("spa").value;
+let spd =document.getElementById("spd").value;
+let spe =document.getElementById("spe").value;
+let abe =document.getElementById("abe").value;
+let wt =document.getElementById("wt").value;
+let movechanges =document.getElementById("movechanges").value;
+let overview =document.getElementById("overview").value;
 // Back End
-let mon = fuse2.toLowerCase();
-let f1 = fuse1.toLowerCase();
-let f2 = fuse2.toLowerCase();
-f1 = f1.replace(" ","");
-f2 = f2.replace(" ","");
-let t2 = type2;
+let mon =fuse2.toLowerCase();
+let f1 =fuse1.toLowerCase();
+let f2 =fuse2.toLowerCase();
+f1 =f1.replace(" ","");
+f2 =f2.replace(" ","");
+let t2 =type2;
 if (type2 === "") {type2 = "],";
 }
 else {
@@ -202,41 +210,41 @@ type2 = ", &quot;"+type2+"&quot;],";
 }
 
 
-let oldhp1 = document.getElementById("oldhp1").value;
-let oldhp = document.getElementById("oldhp").value;
+let oldhp1 =document.getElementById("oldhp1").value;
+let oldhp =document.getElementById("oldhp").value;
 
 
-let oldatk1 = document.getElementById("oldatk1").value;
-let oldatk = document.getElementById("oldatk").value;
+let oldatk1 =document.getElementById("oldatk1").value;
+let oldatk =document.getElementById("oldatk").value;
 
 
-let olddef1 = document.getElementById("olddef1").value;
-let olddef = document.getElementById("olddef").value;
-
-
-
-let oldspa1 = document.getElementById("oldspa1").value;
-let oldspa = document.getElementById("oldspa").value;
+let olddef1 =document.getElementById("olddef1").value;
+let olddef =document.getElementById("olddef").value;
 
 
 
-let oldspd1 = document.getElementById("oldspd1").value;
-let oldspd = document.getElementById("oldspd").value;
+let oldspa1 =document.getElementById("oldspa1").value;
+let oldspa =document.getElementById("oldspa").value;
 
 
 
-let oldspe1 = document.getElementById("oldspe1").value;
-let oldspe = document.getElementById("oldspe").value;
-
-
-let oldwt1 = document.getElementById("oldwt1").value;
-let oldwt = document.getElementById("oldwt").value;
+let oldspd1 =document.getElementById("oldspd1").value;
+let oldspd =document.getElementById("oldspd").value;
 
 
 
-let bst=+hp + +atk + +def + +spa + +spd + +spe;
-let oldbst1=+oldhp1 + +oldatk1 + +olddef1 + +oldspa1 + +oldspd1 + +oldspe1;
-let oldbst=+oldhp + +oldatk + +olddef + +oldspa + +oldspd + +oldspe;
+let oldspe1 =document.getElementById("oldspe1").value;
+let oldspe =document.getElementById("oldspe").value;
+
+
+let oldwt1 =document.getElementById("oldwt1").value;
+let oldwt =document.getElementById("oldwt").value;
+
+
+
+let bst =+hp + +atk + +def + +spa + +spd + +spe;
+let oldbst1 =+oldhp1 + +oldatk1 + +olddef1 + +oldspa1 + +oldspd1 + +oldspe1;
+let oldbst =+oldhp + +oldatk + +olddef + +oldspa + +oldspd + +oldspe;
 document.getElementById("oldbst1").innerHTML=""+oldbst1+"";
 document.getElementById("oldbst").innerHTML=""+oldbst+"";
 document.getElementById("bst").innerHTML=""+bst+"";
@@ -263,7 +271,7 @@ document.getElementById("avgspe").innerHTML=""+avgspe+"";
 let avgwt =(Math.round(oldwt*(oldbst1/oldbst)*100))/100;
 document.getElementById("wt").innerHTML=""+avgwt+"";
 
-let avgbst=+avghp + +avgatk + +avgdef + +avgspa + +avgspd + +avgspe;
+let avgbst =+avghp + +avgatk + +avgdef + +avgspa + +avgspd + +avgspe;
 document.getElementById("avgbst").innerHTML=""+avgbst+"";
 
 document.getElementById("mon1stats").innerHTML=""+fuse1+"";
@@ -4712,7 +4720,7 @@ if (fuse2==="Bulbasaur") {num ="1";document.getElementById("oldhp").innerHTML="4
 }if (fuse2==="Pokestar Black Belt") {document.getElementById("typearea").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Fighting.png>";
 }if (fuse2==="Pokestar UFO-PropU2") {document.getElementById("typearea").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/Psychic.png><img src=https://play.pokemonshowdown.com/sprites/types/Electric.png>";
 }
-document.getElementById("xd").innerHTML="[IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f1+".gif[/IMG][IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f2+".gif[/IMG]\n[hide="+fuse2+"][B]Pokemon Being Impersonated[/B]: "+fuse1+" \n[B]Impersonator[/B]: "+fuse2+" \n[B]Types:[/B][IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"]\n[B]Abilites[/B]: "+abe+"\n[B]Move Changes[/B]: "+movechanges+"\n[B]Overview[/B]: "+overview+" \n[/hide]";
+document.getElementById("xd").innerHTML="[IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f1+".gif[/IMG][IMG]https://play.pokemonshowdown.com/sprites/xyani/"+f2+".gif[/IMG]\n[hide="+fuse2+"][B]Pokémon Being Impersonated[/B]: "+fuse1+"\n[B]Impersonator[/B]: "+fuse2+"\n[B]Types:[/B][IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"]\n[B]Abilites[/B]: "+abe+"\n[B]Move Changes[/B]: "+movechanges+"\n[B]Overview[/B]: "+overview+"\n[/hide]";
 }
 function ten () {
 
