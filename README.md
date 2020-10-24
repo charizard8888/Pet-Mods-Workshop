@@ -3,7 +3,7 @@ Pet Mods Workshop
 
 A workshop for making tools for Pet Mods.
 
-Anyone can help, for more info contact charizard8888 on Pokemon Showdown, Dragon Heaven, Smogon or Discord.
+Anyone can help, for more info contact ~~charizard8888~~ Scoopapa, KirbyRider1337, OPStellar (Sir Vyre the Lone) on Pokemon Showdown, Dragon Heaven, Smogon or Discord.
 
 [Index]
 
