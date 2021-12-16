@@ -73,7 +73,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </tr>
 <td>Types</td>
 <td><input type="text" id="type" list="types" onInput="post()" style="width:134px;"></input></td>
-<td><input type="text" id="type2" list="types" onInput="post()" style="width:64px;"></input></td>
+<td><input type="text" id="type2" list="types" onInput="post()" style="width:64px;font-size:12px;"></input></td>
 </tr>
 <td>Stats…</td>
 <td><span id="fusionstats"></span></td>
@@ -157,36 +157,38 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td>Ability</td>
 <td><textarea type="text" id="abe" onInput="post()" style="width:134px;"></textarea></td>
 </tr>
+</table>
+<table>
 <tr>
 <td>Ability<br> Desc.</td>
-<td colspan="5"><textarea type="text" id="abedesc" onInput="post()" style="width:370;height:68px;"></textarea></td>
+<td colspan="5"><textarea type="text" id="abedesc" onInput="post()" style="width:550;height:40px;"></textarea></td>
 </tr>
 <tr>
-<td>Physical<br> Moves</td>
-<td colspan="5"><textarea type="text" id="physicalmoves" onInput="post()" style="width:370;height:40px;"></textarea></td>
+<td style="font-size:18px;">Physical<br> Moves</td>
+<td colspan="5"><textarea type="text" id="physicalmoves" onInput="post()" style="width:550;height:40px;"></textarea></td>
 </tr>
 <tr>
 <td>Special<br> Moves</td>
-<td colspan="5"><textarea type="text" id="specialmoves" onInput="post()" style="width:370;height:40px;"></textarea></td>
+<td colspan="5"><textarea type="text" id="specialmoves" onInput="post()" style="width:550;height:40px;"></textarea></td>
 </tr>
 <tr>
 <td>Status<br> Moves</td>
-<td colspan="5"><textarea type="text" id="statusmoves" onInput="post()" style="width:370;height:40px;"></textarea></td>
+<td colspan="5"><textarea type="text" id="statusmoves" onInput="post()" style="width:550;height:40px;"></textarea></td>
 </tr>
 <tr>
-<td>Intended<br> Role</td>
-<td colspan="5"><textarea type="text" id="intendedrole" onInput="post()" style="width:370;height:68px;"></textarea></td>
+<td style="font-size:18px;">Intended<br> Role</td>
+<td colspan="5"><textarea type="text" id="intendedrole" onInput="post()" style="width:550;height:40px;"></textarea></td>
 </tr>
 <tr>
-<td>Role<br> Justifcation</td>
-<td colspan="5"><textarea type="text" id="rolejustification" onInput="post()" style="width:370;height:68px;"></textarea></td>
+<td>Role<br> Justify</td>
+<td colspan="5"><textarea type="text" id="rolejustification" onInput="post()" style="width:650;height:150px;"></textarea></td>
 </tr>
-<td>Battlecry</td>
+<td style="font-size:18px;">Battlecry</td>
 <td colspan="5"><textarea type="text" id="text" onInput="post()" style="width:330px;height:34px;" placeholder="Italic text below the fusion"></textarea>
 <div class="xd"><textarea id="xd" class="xd"> </textarea><textarea id="xd2" class="xd"> </div></textarea>
 </td>
 </tr>
-<tr></table>
+</table>
 <br>
 <center><img src="https://play.pokemonshowdown.com/sprites/xyani/venusaur.gif" width="106" height="77"><img src="https://play.pokemonshowdown.com/sprites/xyani/blastoise.gif" width="88" height="83"></center>
 <br>
@@ -4827,7 +4829,7 @@ function copy2() {
   document.execCommand("copy");
 }
 function clearallz(){
-    document.getElementById('fuse1').value = '';
+	document.getElementById('fuse1').value = '';
     document.getElementById('fuse2').value = '';
     document.getElementById('fusion').value = '';
     document.getElementById('type').value = '';
