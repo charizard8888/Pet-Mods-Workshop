@@ -43,6 +43,20 @@ border: solid 1px;
 .basestat {
 text-align: right;
 }
+.textarea2 {
+  display: block;
+  width: 550px;
+  overflow: hidden;
+  resize: both;
+  min-height: 40px;
+  line-height: 20px;
+  border: 1px solid;
+}
+
+.textarea2[contenteditable]:empty::before {
+  content: "You can copy in this box, you can paste in this box but can't c/p FROM and INTO it";
+  color: gray;
+}
 .xd {
 width: 4px;
 height: 4px;
@@ -181,7 +195,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </tr>
 <tr>
 <td>Role<br> Justify</td>
-<td colspan="5"><textarea type="text" id="rolejustification" onInput="post()" style="width:650;height:150px;"></textarea></td>
+<td colspan="5"><span class="textarea2" role="textbox" id="rolejustification" contenteditable onInput="post()"></span></td>
 </tr>
 <td style="font-size:18px;">Battlecry</td>
 <td colspan="5"><textarea type="text" id="text" onInput="post()" style="width:330px;height:34px;" placeholder="Italic text below the fusion"></textarea>
@@ -228,7 +242,9 @@ let abedesc= document.getElementById("abedesc").value;
 let physicalmoves= document.getElementById("physicalmoves").value;
 let specialmoves= document.getElementById("specialmoves").value;
 let statusmoves= document.getElementById("statusmoves").value;
-let rolejustification= document.getElementById("rolejustification").value;
+
+let rolejustification= document.getElementById("rolejustification").innerHTML;
+
 let intendedrole= document.getElementById("intendedrole").value;
 let wt=document.getElementById("wt").value;
 let text=document.getElementById("text").value;
