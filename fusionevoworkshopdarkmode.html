@@ -161,6 +161,26 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td>Ability<br> Desc.</td>
 <td colspan="5"><textarea type="text" id="abedesc" onInput="post()" style="width:370;height:68px;"></textarea></td>
 </tr>
+<tr>
+<td>Physical<br> Moves</td>
+<td colspan="5"><textarea type="text" id="physicalmoves" onInput="post()" style="width:370;height:40px;"></textarea></td>
+</tr>
+<tr>
+<td>Special<br> Moves</td>
+<td colspan="5"><textarea type="text" id="specialmoves" onInput="post()" style="width:370;height:40px;"></textarea></td>
+</tr>
+<tr>
+<td>Status<br> Moves</td>
+<td colspan="5"><textarea type="text" id="statusmoves" onInput="post()" style="width:370;height:40px;"></textarea></td>
+</tr>
+<tr>
+<td>Intended<br> Role</td>
+<td colspan="5"><textarea type="text" id="intendedrole" onInput="post()" style="width:370;height:68px;"></textarea></td>
+</tr>
+<tr>
+<td>Role<br> Justifcation</td>
+<td colspan="5"><textarea type="text" id="rolejustification" onInput="post()" style="width:370;height:68px;"></textarea></td>
+</tr>
 <td>Battlecry</td>
 <td colspan="5"><textarea type="text" id="text" onInput="post()" style="width:330px;height:34px;" placeholder="Italic text below the fusion"></textarea>
 <div class="xd"><textarea id="xd" class="xd"> </textarea><textarea id="xd2" class="xd"> </div></textarea>
@@ -203,6 +223,11 @@ let abe= document.getElementById("abe").value;
 let abe1= document.getElementById("abe1").value;
 let abe2= document.getElementById("abe2").value;
 let abedesc= document.getElementById("abedesc").value;
+let physicalmoves= document.getElementById("physicalmoves").value;
+let specialmoves= document.getElementById("specialmoves").value;
+let statusmoves= document.getElementById("statusmoves").value;
+let rolejustification= document.getElementById("rolejustification").value;
+let intendedrole= document.getElementById("intendedrole").value;
 let wt=document.getElementById("wt").value;
 let text=document.getElementById("text").value;
 // Back End
@@ -4786,7 +4811,7 @@ if (fuse2==="Bulbasaur") {num ="1";document.getElementById("oldhp").innerHTML="4
 }if (abe2==="Doubility") {document.getElementById("abe").innerHTML=""+abe1+"";
 }if (abe1==="Doubility") {document.getElementById("abe").innerHTML=""+abe2+"";
 }
-document.getElementById("xd").innerHTML=":swsh/"+f1+"::swsh/"+f2+":\n[I]"+text+"[/I][hide="+fusion+"][B]DNA Donors[/B]: "+fuse1+" / "+fuse2+"\n[B]Fusion Name[/B]: "+fusion+"\n[B]New Types[/B]: [IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]Base Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"] (+"+modhp+" HP / +"+modatk+" Atk / +"+moddef+" Def / +"+modspa+" SpA / +"+modspd+" SpD / +"+modspe+" Spe)\n[B]New Ability[/B]: [I]"+abe+"[/I] = ("+abe1+" + "+abe2+")\n[B]Ability Description[/B]: "+abedesc+"\n[B]Notable Moves[/B]:\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Physical.png[/IMG]…\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Special.png[/IMG]…\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Status.png[/IMG]…\n[B]Intended Role[/B]: \n[B]Role Justification[/B]: \n[hide=Code][CODE=javascript]"+mon+": {\n\tnum: 75000###, \n\ttypes:[&quot;"+type+"&quot;"+type2+"\n\tspecies: &quot;"+fusion+"&quot;, \n\tid: &quot;"+mon+"&quot;, \n\tbaseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} \n\tabilities: {0: &quot;"+abe+"&quot;}, \n\tweightkg: "+wt+", \n\tfusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],\n},[/CODE][/hide][/hide]";
+document.getElementById("xd").innerHTML=":swsh/"+f1+"::swsh/"+f2+":\n[I]"+text+"[/I][hide="+fusion+"][B]DNA Donors[/B]: "+fuse1+" / "+fuse2+"\n[B]Fusion Name[/B]: "+fusion+"\n[B]New Types[/B]: [IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]Base Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"] (+"+modhp+" HP / +"+modatk+" Atk / +"+moddef+" Def / +"+modspa+" SpA / +"+modspd+" SpD / +"+modspe+" Spe)\n[B]New Ability[/B]: [I]"+abe+"[/I] = ("+abe1+" + "+abe2+")\n[B]Ability Description[/B]: "+abedesc+"\n[B]Notable Moves[/B]:\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Physical.png[/IMG] "+physicalmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Special.png[/IMG] "+specialmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Status.png[/IMG] "+statusmoves+"\n[B]Intended Role[/B]: "+intendedrole+"\n[B]Role Justification[/B]: "+rolejustification+"\n[hide=Code][CODE=javascript]"+mon+": {\n\tnum: 75000###, \n\ttypes:[&quot;"+type+"&quot;"+type2+"\n\tspecies: &quot;"+fusion+"&quot;, \n\tid: &quot;"+mon+"&quot;, \n\tbaseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} \n\tabilities: {0: &quot;"+abe+"&quot;}, \n\tweightkg: "+wt+", \n\tfusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],\n},[/CODE][/hide][/hide]";
 
 document.getElementById("xd2").innerHTML="\`\`\`"+fusion+" = "+fuse1+" + "+fuse2+"\n"+type+"/"+t2+"\n\nHPs: "+hp+" \t\t+"+modhp+"\nAtk: "+atk+"\t\t+"+modatk+"\nDef: "+def+"\t\t+"+moddef+"\nSpA: "+spa+"\t\t+"+modspa+"\nSpD: "+spd+"\t\t+"+modspd+"\nSpe: "+spe+"\t\t+"+modspe+"\nBST: "+bst+"\t\t+"+modbst+"\n\n"+abe+" = "+abe1+" + "+abe2+"\n"+abedesc+"\`\`\`";
 }
@@ -4802,7 +4827,7 @@ function copy2() {
   document.execCommand("copy");
 }
 function clearallz(){
-	document.getElementById('fuse1').value = '';
+    document.getElementById('fuse1').value = '';
     document.getElementById('fuse2').value = '';
     document.getElementById('fusion').value = '';
     document.getElementById('type').value = '';
