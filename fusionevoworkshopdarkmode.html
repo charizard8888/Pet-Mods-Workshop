@@ -200,28 +200,38 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <table>
 <tr>
 <td>Ability<br> Desc.</td>
-<td colspan="5"><span class="textarea3" role="textbox" id="abedesc" contenteditable onInput="post()"></span></td>
+<td colspan="2"><span class="textarea3" role="textbox" id="abedesc" contenteditable onInput="post()"></span></td>
+<td colspan="2"></td>
+<td colspan="3"></td>
 </tr>
 <tr>
 <td style="font-size:18px;">Phy<br> Moves</td>
-<td colspan="5"><span class="textarea3" role="textbox" id="physicalmoves" contenteditable onInput="post()"></span></td>
+<td colspan="2"><span class="textarea3" role="textbox" id="physicalmoves" contenteditable onInput="post()"></td>
+<td colspan="3"><span id="phycalc" onInput="post()"></span></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;252+ Atk (100 BP STAB) Vs 252 / 252 Mew </td>
 </tr>
 <tr>
 <td>Spec<br> Moves</td>
-<td colspan="5"><span class="textarea3" role="textbox" id="specialmoves" contenteditable onInput="post()"></span></td>
+<td colspan="2"><span class="textarea3" role="textbox" id="specialmoves" contenteditable onInput="post()"></span></td>
+<td colspan="3"><span id="specialcalc" onInput="post()"></span></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;252+ SpA (100 BP STAB) Vs 252 / 252 Mew </td>
 </tr>
 <tr>
 <td>Status<br> Moves</td>
-<td colspan="5"><span class="textarea3" role="textbox" id="statusmoves" contenteditable onInput="post()"></span></td>
+<td colspan="2"><span class="textarea3" role="textbox" id="statusmoves" contenteditable onInput="post()"></span></td>
 </tr>
 <tr>
 <td style="font-size:18px;">Intended<br> Role</td>
-<td colspan="5"><span class="textarea3" role="textbox" id="intendedrole" contenteditable onInput="post()"></span></td>
+<td colspan="2"><span class="textarea3" role="textbox" id="intendedrole" contenteditable onInput="post()"></span></td>
 </tr>
+</table>
+<table>
 <tr>
 <td>Role<br> Justify</td>
 <td colspan="5"><span class="textarea2" role="textbox" id="rolejustification" contenteditable onInput="post()"></span></td>
 </tr>
+</table>
+<table>
 <td style="font-size:18px;">Battlecry</td>
 <td colspan="5"><textarea type="text" id="text" onInput="post()" style="width:330px;height:34px;" placeholder="Italic text below the fusion"></textarea>
 <div class="xd"><textarea id="xd" class="xd"> </textarea><textarea id="xd2" class="xd"> </textarea><textarea id="xd3" class="xd"></textarea></div>
@@ -21944,14 +21954,33 @@ if (pk2ab3 != 'undefined') {
 document.getElementById("ability2area3").innerHTML = `${pk2ab3}`;
 }
 
-
+let atkcalc= (((42 * 100 * Math.floor(((atk * 2 + 99) * 1.1)) / 299)/50 + 2) * 1.5 * 100 / 404 * 0.85).toFixed(1) + "% - " + (((42 * 100 * Math.floor(((atk * 2 + 99) * 1.1)) / 299)/50 + 2) * 1.5 * 100 / 404).toFixed(1) + "%";
+let spacalc = (((42 * 100 * Math.floor(((spa * 2 + 99) * 1.1)) / 299)/50 + 2) * 1.5 * 100 / 404 * 0.85).toFixed(1) + "% - " + (((42 * 100 * Math.floor(((spa * 2 + 99) * 1.1)) / 299)/50 + 2) * 1.5 * 100 / 404).toFixed(1) + "%";
 
 document.getElementById("xd").innerHTML=":swsh/"+f1+"::swsh/"+f2+":\n[I]"+text+"[/I][hide="+fusion+"][B]DNA Donors[/B]: "+fuse1+" / "+fuse2+"\n[B]Fusion Name[/B]: "+fusion+"\n[B]New Types[/B]: [IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]Base Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"] (+"+modhp+" HP / +"+modatk+" Atk / +"+moddef+" Def / +"+modspa+" SpA / +"+modspd+" SpD / +"+modspe+" Spe)\n[B]New Ability[/B]: [I]"+abe+"[/I] = ("+abe1+" + "+abe2+")\n[B]Ability Description[/B]: "+abedesc+"\n[B]Notable Moves[/B]:\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Physical.png[/IMG] "+physicalmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Special.png[/IMG] "+specialmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Status.png[/IMG] "+statusmoves+"\n[B]Intended Role[/B]: "+intendedrole+"\n[B]Role Justification[/B]: "+rolejustification+"[/hide]";
 
-document.getElementById("xd2").innerHTML="\`\`\`"+fusion+" = "+fuse1+" + "+fuse2+"\n"+type+"/"+t2+"\n\nHPs: "+hp+" \t\t+"+modhp+"\nAtk: "+atk+"\t\t+"+modatk+"\nDef: "+def+"\t\t+"+moddef+"\nSpA: "+spa+"\t\t+"+modspa+"\nSpD: "+spd+"\t\t+"+modspd+"\nSpe: "+spe+"\t\t+"+modspe+"\nBST: "+bst+"\t\t+"+modbst+"\n\n"+abe+" = "+abe1+" + "+abe2+"\n"+abedesc+"\`\`\`";
+document.getElementById("xd2").innerHTML="\`\`\`"+fusion+" = "+fuse1+" + "+fuse2+"\n"+type+"/"+t2+"\n\nHPs: "+hp+" \t\t+"+modhp+"\nAtk: "+atk+"\t\t+"+modatk+"\nDef: "+def+"\t\t+"+moddef+"\nSpA: "+spa+"\t\t+"+modspa+"\nSpD: "+spd+"\t\t+"+modspd+"\nSpe: "+spe+"\t\t+"+modspe+"\nBST: "+bst+"\t\t+"+modbst+"\n\n"+abe+" = "+abe1+" + "+abe2+"\n"+abedesc+"\n" + atkcalc +"\t\t 252+ Atk (100 BP STAB) Vs 252 / 252 Mew\n" + spacalc +"\t\t 252+ SpA (100 BP STAB) Vs 252 / 252 Mew \`\`\`";
 
 document.getElementById("xd3").innerHTML=""+mon+": {\n\tnum: 75000###, \n\ttypes:[&quot;"+type+"&quot;"+type2+"\n\tspecies: &quot;"+fusion+"&quot;, \n\tid: &quot;"+mon+"&quot;, \n\tbaseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} \n\tabilities: {0: &quot;"+abe+"&quot;}, \n\tweightkg: "+wt+", \n\tfusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],\n},";
+
+
+if (atk != 0) {
+document.getElementById("phycalc").innerHTML=`${atkcalc}`;
 }
+
+
+if (spa != 0) {
+document.getElementById("specialcalc").innerHTML=`${spacalc}`;
+}
+
+
+}
+
+
+/* \left(\left(\frac{\left(42\:\cdot \:BP\:\cdot \left(\frac{Atk}{299}\right)\:\right)}{\:50}\:+\:2\right)\:\cdot \:1.5\:\right)\cdot \frac{100}{404}
+*/
+
+
 
 function copy() {
   let xd = document.getElementById("xd");
