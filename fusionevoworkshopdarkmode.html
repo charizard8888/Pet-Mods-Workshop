@@ -214,7 +214,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </tr>
 <td style="font-size:18px;">Battlecry</td>
 <td colspan="5"><textarea type="text" id="text" onInput="post()" style="width:330px;height:34px;" placeholder="Italic text below the fusion"></textarea>
-<div class="xd"><textarea id="xd" class="xd"> </textarea><textarea id="xd2" class="xd"> </div></textarea>
+<div class="xd"><textarea id="xd" class="xd"> </textarea><textarea id="xd2" class="xd"> </textarea><textarea id="xd3" class="xd"></textarea></div>
 </td>
 </tr>
 </table>
@@ -223,6 +223,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <br>
 <button onClick="copy()">Copy Submission</button><br><br>
 <button onClick="copy2()">Copy</button> (For sharing fusion ideas on the Discord server)<br><br>
+<button onClick="copy3()">Copy Code</button><br><br>
 <datalist id="types">
 <option value="Fire"><option value="Water"><option value="Grass"><option value="Electric"><option value="Ground"><option value="Bug"><option value="Poison"><option value="Fighting"><option value="Steel"><option value="Dark"><option value="Flying"><option value="Dragon"><option value="Ice"><option value="Rock"><option value="Ghost"><option value="Psychic"><option value="Normal"><option value="Fairy">
 </datalist>
@@ -4844,9 +4845,11 @@ if (fuse2==="Bulbasaur") {num ="1";document.getElementById("oldhp").innerHTML="4
 }if (abe2==="Doubility") {document.getElementById("abe").innerHTML=""+abe1+"";
 }if (abe1==="Doubility") {document.getElementById("abe").innerHTML=""+abe2+"";
 }
-document.getElementById("xd").innerHTML=":swsh/"+f1+"::swsh/"+f2+":\n[I]"+text+"[/I][hide="+fusion+"][B]DNA Donors[/B]: "+fuse1+" / "+fuse2+"\n[B]Fusion Name[/B]: "+fusion+"\n[B]New Types[/B]: [IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]Base Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"] (+"+modhp+" HP / +"+modatk+" Atk / +"+moddef+" Def / +"+modspa+" SpA / +"+modspd+" SpD / +"+modspe+" Spe)\n[B]New Ability[/B]: [I]"+abe+"[/I] = ("+abe1+" + "+abe2+")\n[B]Ability Description[/B]: "+abedesc+"\n[B]Notable Moves[/B]:\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Physical.png[/IMG] "+physicalmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Special.png[/IMG] "+specialmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Status.png[/IMG] "+statusmoves+"\n[B]Intended Role[/B]: "+intendedrole+"\n[B]Role Justification[/B]: "+rolejustification+"\n[hide=Code][CODE=javascript]"+mon+": {\n\tnum: 75000###, \n\ttypes:[&quot;"+type+"&quot;"+type2+"\n\tspecies: &quot;"+fusion+"&quot;, \n\tid: &quot;"+mon+"&quot;, \n\tbaseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} \n\tabilities: {0: &quot;"+abe+"&quot;}, \n\tweightkg: "+wt+", \n\tfusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],\n},[/CODE][/hide][/hide]";
+document.getElementById("xd").innerHTML=":swsh/"+f1+"::swsh/"+f2+":\n[I]"+text+"[/I][hide="+fusion+"][B]DNA Donors[/B]: "+fuse1+" / "+fuse2+"\n[B]Fusion Name[/B]: "+fusion+"\n[B]New Types[/B]: [IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]Base Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"] (+"+modhp+" HP / +"+modatk+" Atk / +"+moddef+" Def / +"+modspa+" SpA / +"+modspd+" SpD / +"+modspe+" Spe)\n[B]New Ability[/B]: [I]"+abe+"[/I] = ("+abe1+" + "+abe2+")\n[B]Ability Description[/B]: "+abedesc+"\n[B]Notable Moves[/B]:\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Physical.png[/IMG] "+physicalmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Special.png[/IMG] "+specialmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Status.png[/IMG] "+statusmoves+"\n[B]Intended Role[/B]: "+intendedrole+"\n[B]Role Justification[/B]: "+rolejustification+"[/hide]";
 
 document.getElementById("xd2").innerHTML="\`\`\`"+fusion+" = "+fuse1+" + "+fuse2+"\n"+type+"/"+t2+"\n\nHPs: "+hp+" \t\t+"+modhp+"\nAtk: "+atk+"\t\t+"+modatk+"\nDef: "+def+"\t\t+"+moddef+"\nSpA: "+spa+"\t\t+"+modspa+"\nSpD: "+spd+"\t\t+"+modspd+"\nSpe: "+spe+"\t\t+"+modspe+"\nBST: "+bst+"\t\t+"+modbst+"\n\n"+abe+" = "+abe1+" + "+abe2+"\n"+abedesc+"\`\`\`";
+
+document.getElementById("xd3").innerHTML=""+mon+": {\n\tnum: 75000###, \n\ttypes:[&quot;"+type+"&quot;"+type2+"\n\tspecies: &quot;"+fusion+"&quot;, \n\tid: &quot;"+mon+"&quot;, \n\tbaseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} \n\tabilities: {0: &quot;"+abe+"&quot;}, \n\tweightkg: "+wt+", \n\tfusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],\n},";
 }
 
 function copy() {
@@ -4857,6 +4860,11 @@ function copy() {
 function copy2() {
   let xd2 = document.getElementById("xd2");
   xd2.select();
+  document.execCommand("copy");
+}
+function copy3() {
+  let xd3 = document.getElementById("xd3");
+  xd3.select();
   document.execCommand("copy");
 }
 function clearallz(){
