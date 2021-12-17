@@ -229,13 +229,13 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td style="font-size:18px;">Phy<br> Moves</td>
 <td colspan="2"><span class="textarea3" role="textbox" id="physicalmoves" contenteditable onInput="post()"></td>
 <td colspan="3"><span id="phycalc" onInput="post()"></span></td>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;252+ Atk (100 BP STAB) Vs 252 / 252+ Def Mew </td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;252+ Atk (100 BP STAB) Vs 252 / 252+ Def Metagon </td>
 </tr>
 <tr>
 <td>Spec<br> Moves</td>
 <td colspan="2"><span class="textarea3" role="textbox" id="specialmoves" contenteditable onInput="post()"></span></td>
 <td colspan="3"><span id="specialcalc" onInput="post()"></span></td>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;252+ SpA (100 BP STAB) Vs 252 / 252+ SpA Mew </td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;252+ SpA (100 BP STAB) Vs 252 / 252+ SpA Metagon </td>
 </tr>
 <tr>
 <td>Status<br> Moves</td>
@@ -21982,10 +21982,10 @@ document.getElementById("ability2area3").innerHTML = `${pk2ab3}`;
 
 if (abedesc==="") { abedesc = "Combined Effect of both the abilities."; }
 
-// Mew Def = 328, HP = 404
-let atkcalc= (((42 * 100 * Math.floor(2.2 * atk + 108.9) / 328)/50 + 2) * 1.5 * 100 / 404 * 0.85).toFixed(1) + "% - " + (((42 * 100 * Math.floor(2.2 * atk + 108.9) / 328)/50 + 2) * 1.5 * 100 / 404).toFixed(1) + "%";
+// Metagon Def = 317, HP = 364
+let atkcalc= (((42 * 100 * Math.floor(2.2 * atk + 108.9) / 317)/50 + 2) * 1.5 * 100 / 364 * 0.85).toFixed(1) + "% - " + (((42 * 100 * Math.floor(2.2 * atk + 108.9) / 317)/50 + 2) * 1.5 * 100 / 364).toFixed(1) + "%";
 
-let spacalc = (((42 * 100 * Math.floor(2.2 * spa + 108.9) / 328)/50 + 2) * 1.5 * 100 / 404 * 0.85).toFixed(1) + "% - " + (((42 * 100 * Math.floor(2.2 * spa + 108.9) / 328)/50 + 2) * 1.5 * 100 / 404).toFixed(1) + "%";
+let spacalc = (((42 * 100 * Math.floor(2.2 * spa + 108.9) / 317)/50 + 2) * 1.5 * 100 / 364 * 0.85).toFixed(1) + "% - " + (((42 * 100 * Math.floor(2.2 * spa + 108.9) / 317)/50 + 2) * 1.5 * 100 / 364).toFixed(1) + "%";
 
 // Arceuss Atk = 372, 
 let defcalc= (((42 * 100 * 372 / Math.floor(2.2 * def + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204) * 0.85).toFixed(1) + "% - " + (((42 * 100 * 372 / Math.floor(2.2 * def + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204)).toFixed(1) + "%";
