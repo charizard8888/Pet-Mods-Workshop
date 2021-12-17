@@ -72,6 +72,22 @@ text-align: right;
   content: "";
   color: gray;
 }
+
+.textarea4 {
+  display: block;
+  width: 250px;
+  overflow: hidden;
+  resize: both;
+  min-height: 40px;
+  line-height: 20px;
+  border: 1px solid;
+  font-size:15px;
+}
+
+.textarea4[contenteditable]:empty::before {
+  content: "Combined effect of both the abilities.";
+  color: gray;
+}
 .xd {
 width: 4px;
 height: 4px;
@@ -200,7 +216,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <table>
 <tr>
 <td>Ability<br> Desc.</td>
-<td colspan="2"><span class="textarea3" role="textbox" id="abedesc" contenteditable onInput="post()"></span></td>
+<td colspan="2"><span class="textarea4" role="textbox" id="abedesc" contenteditable onInput="post()"></span></td>
 <td colspan="2"></td>
 <td colspan="3"></td>
 </tr>
@@ -21957,6 +21973,10 @@ let pk2ab3 = '';
 if (pk2ab3 != 'undefined') {
 document.getElementById("ability2area3").innerHTML = `${pk2ab3}`;
 }
+
+
+if (abedesc==="") { abedesc = "Combined Effect of both the abilities."; }
+
 // Mew Def = 328, HP = 404
 let atkcalc= (((42 * 100 * Math.floor(2.2 * atk + 108.9) / 328)/50 + 2) * 1.5 * 100 / 404 * 0.85).toFixed(1) + "% - " + (((42 * 100 * Math.floor(2.2 * atk + 108.9) / 328)/50 + 2) * 1.5 * 100 / 404).toFixed(1) + "%";
 
