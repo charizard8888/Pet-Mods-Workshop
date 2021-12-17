@@ -78,6 +78,10 @@ height: 4px;
 border: none;
 
 }
+
+.abearea {
+cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -177,13 +181,16 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </tr>
 <tr>
 <td>Ability 1</td>
-<td><input type="text" id="abe1" onInput="post()" list="allabilities" style="width:118px;"></input></td>
-<td><span id="ability1area1"></span></td>
-<td><span id="ability1area2"></span></td>
-<td><span id="ability1area3"></span></td>
+<td><input type="text" id="abe1" onInput="post()" list="allabilities" style="width:134px;"></input></td>
+<td colspan="2"><span id="ability1area1" class="abearea" onClick='document.getElementById("abe1").value = ""+document.getElementById("ability1area1").innerText+"";post();post()'></span></td>
+<td colspan="2"><span id="ability1area2" class="abearea" onClick='document.getElementById("abe1").value = ""+document.getElementById("ability1area2").innerText+"";post();post()'></span></td>
+<td colspan="2"><span id="ability1area3" class="abearea" onClick='document.getElementById("abe1").value = ""+document.getElementById("ability1area3").innerText+"";post();post()'></span></td>
 </tr><tr>
 <td>Ability 2</td>
-<td><input type="text" id="abe2" onInput="post()" list="allabilities" style="width:118px;"></input></td>
+<td><input type="text" id="abe2" onInput="post()" list="allabilities" style="width:134px;"></input></td>
+<td colspan="2"><span id="ability2area1" class="abearea" onClick='document.getElementById("abe2").value = ""+document.getElementById("ability2area1").innerText+"";post();post()'></span></td>
+<td colspan="2"><span id="ability2area2" class="abearea" onClick='document.getElementById("abe2").value = ""+document.getElementById("ability2area2").innerText+"";post();post()'></span></td>
+<td colspan="2"><span id="ability2area3" class="abearea"  onClick='document.getElementById("abe2").value = ""+document.getElementById("ability2area3").innerText+"";post();post()'></span></td>
 </tr>
 <tr>
 <td>Ability</td>
@@ -21905,6 +21912,38 @@ let pk1ab3 = '';
 if (pk1ab3 != 'undefined') {
 document.getElementById("ability1area3").innerHTML = `${pk1ab3}`;
 }
+
+// PK 2 Abilities
+
+let pk2ab1 = '';  
+  Object.values(pokemonz).forEach(mon => {
+  if (mon.name === fuse2) {
+			pk2ab1 += `${mon.abilities[0]}`;
+            }
+		});
+document.getElementById("ability2area1").innerHTML = `${pk2ab1}`;
+
+let pk2ab2 = '';  
+  Object.values(pokemonz).forEach(mon => {
+  if (mon.name === fuse2) {
+			pk2ab2 += `${mon.abilities[1]}`;
+            }
+		});
+if (pk2ab2 != 'undefined') {
+document.getElementById("ability2area2").innerHTML = `${pk2ab2}`;
+}
+
+let pk2ab3 = '';  
+  Object.values(pokemonz).forEach(mon => {
+  if (mon.name === fuse2) {
+			pk2ab3 += `${mon.abilities["H"]}`;
+            }
+		});
+        
+if (pk2ab3 != 'undefined') {
+document.getElementById("ability2area3").innerHTML = `${pk2ab3}`;
+}
+
 
 
 document.getElementById("xd").innerHTML=":swsh/"+f1+"::swsh/"+f2+":\n[I]"+text+"[/I][hide="+fusion+"][B]DNA Donors[/B]: "+fuse1+" / "+fuse2+"\n[B]Fusion Name[/B]: "+fusion+"\n[B]New Types[/B]: [IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]Base Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"] (+"+modhp+" HP / +"+modatk+" Atk / +"+moddef+" Def / +"+modspa+" SpA / +"+modspd+" SpD / +"+modspe+" Spe)\n[B]New Ability[/B]: [I]"+abe+"[/I] = ("+abe1+" + "+abe2+")\n[B]Ability Description[/B]: "+abedesc+"\n[B]Notable Moves[/B]:\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Physical.png[/IMG] "+physicalmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Special.png[/IMG] "+specialmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Status.png[/IMG] "+statusmoves+"\n[B]Intended Role[/B]: "+intendedrole+"\n[B]Role Justification[/B]: "+rolejustification+"[/hide]";
