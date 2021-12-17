@@ -51,10 +51,26 @@ text-align: right;
   min-height: 40px;
   line-height: 20px;
   border: 1px solid;
+  font-size:15px;
 }
 
 .textarea2[contenteditable]:empty::before {
-  content: "You can copy in this box, you can paste in this box but can't c/p FROM and INTO it";
+  content: "Don't c/p FROM and INTO it";
+  color: gray;
+}
+.textarea3 {
+  display: block;
+  width: 250px;
+  overflow: hidden;
+  resize: both;
+  min-height: 40px;
+  line-height: 20px;
+  border: 1px solid;
+  font-size:15px;
+}
+
+.textarea3[contenteditable]:empty::before {
+  content: "";
   color: gray;
 }
 .xd {
@@ -175,23 +191,23 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <table>
 <tr>
 <td>Ability<br> Desc.</td>
-<td colspan="5"><textarea type="text" id="abedesc" onInput="post()" style="width:550;height:40px;"></textarea></td>
+<td colspan="5"><span class="textarea3" role="textbox" id="abedesc" contenteditable onInput="post()"></span></td>
 </tr>
 <tr>
-<td style="font-size:18px;">Physical<br> Moves</td>
-<td colspan="5"><textarea type="text" id="physicalmoves" onInput="post()" style="width:550;height:40px;"></textarea></td>
+<td style="font-size:18px;">Phy<br> Moves</td>
+<td colspan="5"><span class="textarea3" role="textbox" id="physicalmoves" contenteditable onInput="post()"></span></td>
 </tr>
 <tr>
-<td>Special<br> Moves</td>
-<td colspan="5"><textarea type="text" id="specialmoves" onInput="post()" style="width:550;height:40px;"></textarea></td>
+<td>Spec<br> Moves</td>
+<td colspan="5"><span class="textarea3" role="textbox" id="specialmoves" contenteditable onInput="post()"></span></td>
 </tr>
 <tr>
 <td>Status<br> Moves</td>
-<td colspan="5"><textarea type="text" id="statusmoves" onInput="post()" style="width:550;height:40px;"></textarea></td>
+<td colspan="5"><span class="textarea3" role="textbox" id="statusmoves" contenteditable onInput="post()"></span></td>
 </tr>
 <tr>
 <td style="font-size:18px;">Intended<br> Role</td>
-<td colspan="5"><textarea type="text" id="intendedrole" onInput="post()" style="width:550;height:40px;"></textarea></td>
+<td colspan="5"><span class="textarea3" role="textbox" id="intendedrole" contenteditable onInput="post()"></span></td>
 </tr>
 <tr>
 <td>Role<br> Justify</td>
@@ -238,14 +254,14 @@ let spe= document.getElementById("spe").value;
 let abe= document.getElementById("abe").value;
 let abe1= document.getElementById("abe1").value;
 let abe2= document.getElementById("abe2").value;
-let abedesc= document.getElementById("abedesc").value;
-let physicalmoves= document.getElementById("physicalmoves").value;
-let specialmoves= document.getElementById("specialmoves").value;
-let statusmoves= document.getElementById("statusmoves").value;
+let abedesc= document.getElementById("abedesc").innerText;
+let physicalmoves= document.getElementById("physicalmoves").innerText;
+let specialmoves= document.getElementById("specialmoves").innerText;
+let statusmoves= document.getElementById("statusmoves").innerText;
 
-let rolejustification= document.getElementById("rolejustification").innerHTML;
+let rolejustification= document.getElementById("rolejustification").innerText;
 
-let intendedrole= document.getElementById("intendedrole").value;
+let intendedrole= document.getElementById("intendedrole").innerText;
 let wt=document.getElementById("wt").value;
 let text=document.getElementById("text").value;
 // Back End
