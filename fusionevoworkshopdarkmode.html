@@ -129,7 +129,8 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><span id="mon1stats"></span></td>
 <td><span id="mon2stats"></span></td>
 <td>Average</td>
-<td>Difference</td>
+<td style="font-size:16px;">Difference</td>
+<td>Bulk</td>
 </tr>
 <tr>
 <td class="basestat">HP</td>
@@ -138,6 +139,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><textarea id="oldhp" style="width:64px;" disabled></textarea></td>
 <td><textarea id="avghp" style="width:64px;" disabled></textarea></td>
 <td><textarea id="modhp" style="width:64px;" disabled></textarea></td>
+<td><textarea id="mixbulk" style="width:64px;" placeholder="Mixed" disabled></textarea></td>
 </tr>
 <tr>
 <td class="basestat">Atk</td>
@@ -155,6 +157,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><textarea id="olddef" style="width:64px;" disabled></textarea></td>
 <td><textarea id="avgdef" style="width:64px;" disabled></textarea></td>
 <td><textarea id="moddef" style="width:64px;" disabled></textarea></td>
+<td><textarea id="phybulk" style="width:64px;" placeholder="Physical" disabled></textarea></td>
 </tr>
 <tr>
 <td class="basestat">SpA</td>
@@ -171,6 +174,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><textarea id="oldspd" style="width:64px;" disabled></textarea></td>
 <td><textarea id="avgspd" style="width:64px;" disabled></textarea></td>
 <td><textarea id="modspd" style="width:64px;" disabled></textarea></td>
+<td><textarea id="specialbulk" style="width:64px;" placeholder="Special" disabled></textarea></td>
 </tr>
 <tr>
 <td class="basestat">Spe</td>
@@ -21987,9 +21991,15 @@ let defcalc= (((42 * 100 * 372 / Math.floor(2.2 * def + 108.9))/50 + 2) * 1.5 * 
 
 let spdcalc= (((42 * 100 * 372 / Math.floor(2.2 * spd + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204) * 0.85).toFixed(1) + "% - " + (((42 * 100 * 372 / Math.floor(2.2 * spd + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204)).toFixed(1) + "%";
 
+let phybulk = Math.ceil((2 * hp + 204) * Math.floor(2.2 * def + 108.9) / 1325.12);
+
+let specialbulk = Math.ceil((2 * hp + 204) * Math.floor(2.2 * spd + 108.9) / 1325.12);
+
+let mixbulk = Math.ceil((2 * hp + 204) * (Math.floor(2.2 * def + 108.9) + Math.floor(2.2 * spd + 108.9))/ 1325.12/2);
+
 document.getElementById("xd").innerHTML=":swsh/"+f1+"::swsh/"+f2+":\n[I]"+text+"[/I][hide="+fusion+"][B]DNA Donors[/B]: "+fuse1+" / "+fuse2+"\n[B]Fusion Name[/B]: "+fusion+"\n[B]New Types[/B]: [IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]Base Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"] (+"+modhp+" HP / +"+modatk+" Atk / +"+moddef+" Def / +"+modspa+" SpA / +"+modspd+" SpD / +"+modspe+" Spe)\n[B]New Ability[/B]: [I]"+abe+"[/I] = ("+abe1+" + "+abe2+")\n[B]Ability Description[/B]: "+abedesc+"\n[B]Notable Moves[/B]:\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Physical.png[/IMG] "+physicalmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Special.png[/IMG] "+specialmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Status.png[/IMG] "+statusmoves+"\n[B]Intended Role[/B]: "+intendedrole+"\n[B]Role Justification[/B]: "+rolejustification+"[/hide]";
 
-document.getElementById("xd2").innerHTML="\`\`\`"+fusion+" = "+fuse1+" + "+fuse2+"\n"+type+"/"+t2+"\n\nHPs: "+hp+" \t\t+"+modhp+"\nAtk: "+atk+"\t\t+"+modatk+"\nDef: "+def+"\t\t+"+moddef+"\nSpA: "+spa+"\t\t+"+modspa+"\nSpD: "+spd+"\t\t+"+modspd+"\nSpe: "+spe+"\t\t+"+modspe+"\nBST: "+bst+"\t\t+"+modbst+"\n\n"+abe+" = "+abe1+" + "+abe2+"\n"+abedesc+"\n" + atkcalc +"\t\t 252+ Atk (100 BP STAB) Vs 252 / 252 Mew\n" + spacalc +"\t\t 252+ SpA (100 BP STAB) Vs 252 / 252 Mew\n" + defcalc + "\t\t252+ Atk (100 BP STAB) Arceus Vs 252 / 252+ Def\n" + spdcalc + "\t\t252+ Atk (100 BP STAB) Arceus Vs 252 / 252+ Def\`\`\`";
+document.getElementById("xd2").innerHTML="\`\`\`"+fusion+" = "+fuse1+" + "+fuse2+"\n"+type+"/"+t2+"\n\nHPs: "+hp+" \t\t+"+modhp+"\t\t" +mixbulk+ "\nAtk: "+atk+"\t\t+"+modatk+"\nDef: "+def+"\t\t+"+moddef+"\t\t" +phybulk+ "\nSpA: "+spa+"\t\t+"+modspa+"\nSpD: "+spd+"\t\t+"+modspd+"\t\t" +specialbulk+ "\nSpe: "+spe+"\t\t+"+modspe+"\nBST: "+bst+"\t\t+"+modbst+"\n\n"+abe+" = "+abe1+" + "+abe2+"\n"+abedesc+"\n" + atkcalc +"\t\t 252+ Atk (100 BP STAB) Vs 252 / 252+ Mew\n" + spacalc +"\t\t 252+ SpA (100 BP STAB) Vs 252 / 252+ Mew\n" + defcalc + "\t\t252+ Atk (100 BP STAB) Arceus Vs 252 / 252+ Def\n" + spdcalc + "\t\t252+ Atk (100 BP STAB) Arceus Vs 252 / 252+ Def\`\`\`";
 
 document.getElementById("xd3").innerHTML=""+mon+": {\n\tnum: 75000###, \n\ttypes:[&quot;"+type+"&quot;"+type2+"\n\tspecies: &quot;"+fusion+"&quot;, \n\tid: &quot;"+mon+"&quot;, \n\tbaseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} \n\tabilities: {0: &quot;"+abe+"&quot;}, \n\tweightkg: "+wt+", \n\tfusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],\n},";
 
@@ -22011,8 +22021,13 @@ if (spd != 0) {
 document.getElementById("spdcalc").innerHTML=`${spdcalc}`;
 }
 
+document.getElementById("phybulk").innerHTML=`${phybulk}`;
 
+document.getElementById("specialbulk").innerHTML=`${specialbulk}`;
+
+document.getElementById("mixbulk").innerHTML=`${mixbulk}`;
 }
+
 
 
 /* \left(\left(\frac{\left(42\:\cdot \:BP\:\cdot \left(\frac{Atk}{299}\right)\:\right)}{\:50}\:+\:2\right)\:\cdot \:1.5\:\right)\cdot \frac{100}{404}
