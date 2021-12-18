@@ -107,8 +107,9 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <table>
 <tr>
 <td>Pkmn 1</td>
-<td><input type="text" id="fuse1" list="allmons" onInput="post();post();post();post()" style="width:134px;" autofocus></input></td>
+<td><input type="text" id="fuse1" list="allmons" onInput="mega();post();post();post();post()" style="width:134px;" autofocus></input></td>
 <td><span id="typearea1"></span></td>
+<td><span id="megabox1"></span></td>
 </tr>
 <tr>
 <td>Pkmn 2</td>
@@ -119,7 +120,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td>Fusion</td>
 <td><textarea type="text" id="fusion" onInput="post()" style="width:134px;"></textarea></td>
 <td><span id="ft"></span></td>
-<td><button onClick="clearallz();post();post();post()" class="button2">Reset</button></td>
+<td><button onClick="clearallz();post();post();post();" class="button2">Reset</button></td>
 </tr>
 <td>Types</td>
 <td><input type="text" id="type" list="types" onInput="post()" style="width:134px;"></input></td>
@@ -324,6 +325,7 @@ let rolejustification= document.getElementById("rolejustification").innerText;
 let intendedrole= document.getElementById("intendedrole").innerText;
 let wt=document.getElementById("wt").value;
 let text=document.getElementById("text").value;
+
 // Back End
 let mon = fusion.toLowerCase();
 let f1 = fuse1.toLowerCase();
@@ -336,6 +338,7 @@ if (type2==="") {type2 = "],";
 else {
 type2 = ", &quot;"+type2+"&quot;],";
 }
+
 let oldhp1 = document.getElementById("oldhp1").value;
 let oldhp = document.getElementById("oldhp").value;
 let avghp = Math.floor((+oldhp1 + +oldhp)/2);
@@ -4906,7 +4909,210 @@ if (fuse2==="Bulbasaur") {num ="1";document.getElementById("oldhp").innerHTML="4
 }if (abe1==="Doubility") {document.getElementById("abe").innerHTML=""+abe2+"";
 }
 
-let pokemonz = {
+ let pk1ab1 = '';  
+  Object.values(pokedexdata).forEach(mon => {
+  if (mon.name === fuse1) {
+			pk1ab1 += `${mon.abilities[0]}`;
+            }
+		});
+document.getElementById("ability1area1").innerHTML = `${pk1ab1}`;
+
+let pk1ab2 = '';  
+  Object.values(pokedexdata).forEach(mon => {
+  if (mon.name === fuse1) {
+			pk1ab2 += `${mon.abilities[1]}`;
+            }
+		});
+if (pk1ab2 != 'undefined') {
+document.getElementById("ability1area2").innerHTML = `${pk1ab2}`;
+}
+
+let pk1ab3 = '';  
+  Object.values(pokedexdata).forEach(mon => {
+  if (mon.name === fuse1) {
+			pk1ab3 += `${mon.abilities["H"]}`;
+            }
+		});
+        
+if (pk1ab3 != 'undefined') {
+document.getElementById("ability1area3").innerHTML = `${pk1ab3}`;
+}
+
+// PK 2 Abilities
+
+let pk2ab1 = '';  
+  Object.values(pokedexdata).forEach(mon => {
+  if (mon.name === fuse2) {
+			pk2ab1 += `${mon.abilities[0]}`;
+            }
+		});
+document.getElementById("ability2area1").innerHTML = `${pk2ab1}`;
+
+let pk2ab2 = '';  
+  Object.values(pokedexdata).forEach(mon => {
+  if (mon.name === fuse2) {
+			pk2ab2 += `${mon.abilities[1]}`;
+            }
+		});
+if (pk2ab2 != 'undefined') {
+document.getElementById("ability2area2").innerHTML = `${pk2ab2}`;
+}
+
+let pk2ab3 = '';  
+  Object.values(pokedexdata).forEach(mon => {
+  if (mon.name === fuse2) {
+			pk2ab3 += `${mon.abilities["H"]}`;
+            }
+		});
+        
+if (pk2ab3 != 'undefined') {
+document.getElementById("ability2area3").innerHTML = `${pk2ab3}`;
+}
+
+
+if (abedesc==="") { abedesc = "Combined Effect of both the abilities."; }
+
+// Metagon Def = 317, HP = 364
+let atkcalc= (((42 * 100 * Math.floor(2.2 * atk + 108.9) / 317)/50 + 2) * 1.5 * 100 / 364 * 0.85).toFixed(1) + "% - " + (((42 * 100 * Math.floor(2.2 * atk + 108.9) / 317)/50 + 2) * 1.5 * 100 / 364).toFixed(1) + "%";
+
+let spacalc = (((42 * 100 * Math.floor(2.2 * spa + 108.9) / 317)/50 + 2) * 1.5 * 100 / 364 * 0.85).toFixed(1) + "% - " + (((42 * 100 * Math.floor(2.2 * spa + 108.9) / 317)/50 + 2) * 1.5 * 100 / 364).toFixed(1) + "%";
+
+// Arceuss Atk = 372, 
+let defcalc= (((42 * 100 * 372 / Math.floor(2.2 * def + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204) * 0.85).toFixed(1) + "% - " + (((42 * 100 * 372 / Math.floor(2.2 * def + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204)).toFixed(1) + "%";
+
+let spdcalc= (((42 * 100 * 372 / Math.floor(2.2 * spd + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204) * 0.85).toFixed(1) + "% - " + (((42 * 100 * 372 / Math.floor(2.2 * spd + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204)).toFixed(1) + "%";
+
+let phybulk = Math.ceil((2 * hp + 204) * Math.floor(2.2 * def + 108.9) / 1325.12);
+
+let specialbulk = Math.ceil((2 * hp + 204) * Math.floor(2.2 * spd + 108.9) / 1325.12);
+
+let mixbulk = Math.ceil((2 * hp + 204) * (Math.floor(2.2 * def + 108.9) + Math.floor(2.2 * spd + 108.9))/ 1325.12/2);
+
+document.getElementById("xd").innerHTML=":swsh/"+f1+"::swsh/"+f2+":\n[I]"+text+"[/I][hide="+fusion+"][B]DNA Donors[/B]: "+fuse1+" / "+fuse2+"\n[B]Fusion Name[/B]: "+fusion+"\n[B]New Types[/B]: [IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]Base Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"] (+"+modhp+" HP / +"+modatk+" Atk / +"+moddef+" Def / +"+modspa+" SpA / +"+modspd+" SpD / +"+modspe+" Spe)\n[B]New Ability[/B]: [I]"+abe+"[/I] = ("+abe1+" + "+abe2+")\n[B]Ability Description[/B]: "+abedesc+"\n[B]Notable Moves[/B]:\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Physical.png[/IMG] "+physicalmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Special.png[/IMG] "+specialmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Status.png[/IMG] "+statusmoves+"\n[B]Intended Role[/B]: "+intendedrole+"\n[B]Role Justification[/B]: "+rolejustification+"[/hide]";
+
+document.getElementById("xd2").innerHTML="\`\`\`"+fusion+" = "+fuse1+" + "+fuse2+"\n"+type+"/"+t2+"\n\nHPs: "+hp+" \t\t+"+modhp+"\t\t" +mixbulk+ "\nAtk: "+atk+"\t\t+"+modatk+"\nDef: "+def+"\t\t+"+moddef+"\t\t" +phybulk+ "\nSpA: "+spa+"\t\t+"+modspa+"\nSpD: "+spd+"\t\t+"+modspd+"\t\t" +specialbulk+ "\nSpe: "+spe+"\t\t+"+modspe+"\nBST: "+bst+"\t\t+"+modbst+"\n\n"+abe+" = "+abe1+" + "+abe2+"\n"+abedesc+"\`\`\`";
+
+document.getElementById("xd3").innerHTML=""+mon+": {\n\tnum: 75000###, \n\ttypes:[&quot;"+type+"&quot;"+type2+"\n\tspecies: &quot;"+fusion+"&quot;, \n\tid: &quot;"+mon+"&quot;, \n\tbaseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} \n\tabilities: {0: &quot;"+abe+"&quot;}, \n\tweightkg: "+wt+", \n\tfusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],\n},";
+
+
+if (atk != 0) {
+document.getElementById("phycalc").innerHTML=`${atkcalc}`;
+}
+
+
+if (spa != 0) {
+document.getElementById("specialcalc").innerHTML=`${spacalc}`;
+}
+
+if (def != 0) {
+document.getElementById("defcalc").innerHTML=`${defcalc}`;
+}
+
+if (spd != 0) {
+document.getElementById("spdcalc").innerHTML=`${spdcalc}`;
+}
+
+document.getElementById("phybulk").innerHTML=`${phybulk}`;
+
+document.getElementById("specialbulk").innerHTML=`${specialbulk}`;
+
+document.getElementById("mixbulk").innerHTML=`${mixbulk}`;
+}
+
+function mega() {
+
+let fuse1= document.getElementById("fuse1").value;
+let fuse2= document.getElementById("fuse2").value;
+let fusion = document.getElementById("fusion").value;
+let type= document.getElementById("type").value;
+let type2= document.getElementById("type2").value;
+let hp= document.getElementById("hp").value;
+let atk= document.getElementById("atk").value;
+let def= document.getElementById("def").value;
+let spa= document.getElementById("spa").value;
+let spd= document.getElementById("spd").value;
+let spe= document.getElementById("spe").value;
+let abe= document.getElementById("abe").value;
+let abe1= document.getElementById("abe1").value;
+let abe2= document.getElementById("abe2").value;
+let abedesc= document.getElementById("abedesc").innerText;
+let physicalmoves= document.getElementById("physicalmoves").innerText;
+let specialmoves= document.getElementById("specialmoves").innerText;
+let statusmoves= document.getElementById("statusmoves").innerText;
+
+let rolejustification= document.getElementById("rolejustification").innerText;
+
+let intendedrole= document.getElementById("intendedrole").innerText;
+let wt=document.getElementById("wt").value;
+let text=document.getElementById("text").value;
+
+// Back End
+let mon = fusion.toLowerCase();
+let f1 = fuse1.toLowerCase();
+let f2 = fuse2.toLowerCase();
+f1 = f1.replace(" ","");
+f2 = f2.replace(" ","");
+let t2=type2;
+if (type2==="") {type2 = "],";
+}
+else {
+type2 = ", &quot;"+type2+"&quot;],";
+}
+
+ let ismega1 = '';  
+ //let mega1atk = 0;
+  Object.values(pokedexdata).forEach(mon => {
+  if (mon.baseSpecies === fuse1 && mon.forme === 'Mega') {
+			ismega1 += `${mon.name} (Testing)`;
+            }
+		});
+document.getElementById("megabox1").innerHTML = `${ismega1}`;
+}
+
+
+/* \left(\left(\frac{\left(42\:\cdot \:BP\:\cdot \left(\frac{Atk}{299}\right)\:\right)}{\:50}\:+\:2\right)\:\cdot \:1.5\:\right)\cdot \frac{100}{404}
+*/
+
+
+
+function copy() {
+  let xd = document.getElementById("xd");
+  xd.select();
+  document.execCommand("copy");
+}
+function copy2() {
+  let xd2 = document.getElementById("xd2");
+  xd2.select();
+  document.execCommand("copy");
+}
+function copy3() {
+  let xd3 = document.getElementById("xd3");
+  xd3.select();
+  document.execCommand("copy");
+}
+function clearallz(){
+	document.getElementById('fuse1').value = '';
+    document.getElementById('fuse2').value = '';
+    document.getElementById('fusion').value = '';
+    document.getElementById('type').value = '';
+    document.getElementById('type2').value = '';
+    document.getElementById('abe1').value = '';
+    document.getElementById('abe2').value = '';
+    document.getElementById('abe').value = '';
+    document.getElementById('abedesc').value = '';
+    document.getElementById('physicalmoves').innerText = '';
+    document.getElementById('specialmoves').innerText = '';
+    document.getElementById('statusmoves').innerText = '';
+    document.getElementById('intendedrole').innerText = '';
+    document.getElementById('rolejustification').innerText = '';
+    document.getElementById('text').value = '';
+    document.getElementById('ft').innerHTML = '';
+    document.getElementById('typearea1').innerHTML = '';
+    document.getElementById('typearea').innerHTML = '';
+}
+
+// POKEDEX DATA STARTS
+let pokedexdata = {
 	bulbasaur: {
 		num: 1,
 		name: "Bulbasaur",
@@ -21934,147 +22140,5 @@ let pokemonz = {
 	},
 }
 
- let pk1ab1 = '';  
-  Object.values(pokemonz).forEach(mon => {
-  if (mon.name === fuse1) {
-			pk1ab1 += `${mon.abilities[0]}`;
-            }
-		});
-document.getElementById("ability1area1").innerHTML = `${pk1ab1}`;
-
-let pk1ab2 = '';  
-  Object.values(pokemonz).forEach(mon => {
-  if (mon.name === fuse1) {
-			pk1ab2 += `${mon.abilities[1]}`;
-            }
-		});
-if (pk1ab2 != 'undefined') {
-document.getElementById("ability1area2").innerHTML = `${pk1ab2}`;
-}
-
-let pk1ab3 = '';  
-  Object.values(pokemonz).forEach(mon => {
-  if (mon.name === fuse1) {
-			pk1ab3 += `${mon.abilities["H"]}`;
-            }
-		});
-        
-if (pk1ab3 != 'undefined') {
-document.getElementById("ability1area3").innerHTML = `${pk1ab3}`;
-}
-
-// PK 2 Abilities
-
-let pk2ab1 = '';  
-  Object.values(pokemonz).forEach(mon => {
-  if (mon.name === fuse2) {
-			pk2ab1 += `${mon.abilities[0]}`;
-            }
-		});
-document.getElementById("ability2area1").innerHTML = `${pk2ab1}`;
-
-let pk2ab2 = '';  
-  Object.values(pokemonz).forEach(mon => {
-  if (mon.name === fuse2) {
-			pk2ab2 += `${mon.abilities[1]}`;
-            }
-		});
-if (pk2ab2 != 'undefined') {
-document.getElementById("ability2area2").innerHTML = `${pk2ab2}`;
-}
-
-let pk2ab3 = '';  
-  Object.values(pokemonz).forEach(mon => {
-  if (mon.name === fuse2) {
-			pk2ab3 += `${mon.abilities["H"]}`;
-            }
-		});
-        
-if (pk2ab3 != 'undefined') {
-document.getElementById("ability2area3").innerHTML = `${pk2ab3}`;
-}
-
-
-if (abedesc==="") { abedesc = "Combined Effect of both the abilities."; }
-
-// Metagon Def = 317, HP = 364
-let atkcalc= (((42 * 100 * Math.floor(2.2 * atk + 108.9) / 317)/50 + 2) * 1.5 * 100 / 364 * 0.85).toFixed(1) + "% - " + (((42 * 100 * Math.floor(2.2 * atk + 108.9) / 317)/50 + 2) * 1.5 * 100 / 364).toFixed(1) + "%";
-
-let spacalc = (((42 * 100 * Math.floor(2.2 * spa + 108.9) / 317)/50 + 2) * 1.5 * 100 / 364 * 0.85).toFixed(1) + "% - " + (((42 * 100 * Math.floor(2.2 * spa + 108.9) / 317)/50 + 2) * 1.5 * 100 / 364).toFixed(1) + "%";
-
-// Arceuss Atk = 372, 
-let defcalc= (((42 * 100 * 372 / Math.floor(2.2 * def + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204) * 0.85).toFixed(1) + "% - " + (((42 * 100 * 372 / Math.floor(2.2 * def + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204)).toFixed(1) + "%";
-
-let spdcalc= (((42 * 100 * 372 / Math.floor(2.2 * spd + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204) * 0.85).toFixed(1) + "% - " + (((42 * 100 * 372 / Math.floor(2.2 * spd + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204)).toFixed(1) + "%";
-
-let phybulk = Math.ceil((2 * hp + 204) * Math.floor(2.2 * def + 108.9) / 1325.12);
-
-let specialbulk = Math.ceil((2 * hp + 204) * Math.floor(2.2 * spd + 108.9) / 1325.12);
-
-let mixbulk = Math.ceil((2 * hp + 204) * (Math.floor(2.2 * def + 108.9) + Math.floor(2.2 * spd + 108.9))/ 1325.12/2);
-
-document.getElementById("xd").innerHTML=":swsh/"+f1+"::swsh/"+f2+":\n[I]"+text+"[/I][hide="+fusion+"][B]DNA Donors[/B]: "+fuse1+" / "+fuse2+"\n[B]Fusion Name[/B]: "+fusion+"\n[B]New Types[/B]: [IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]Base Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"] (+"+modhp+" HP / +"+modatk+" Atk / +"+moddef+" Def / +"+modspa+" SpA / +"+modspd+" SpD / +"+modspe+" Spe)\n[B]New Ability[/B]: [I]"+abe+"[/I] = ("+abe1+" + "+abe2+")\n[B]Ability Description[/B]: "+abedesc+"\n[B]Notable Moves[/B]:\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Physical.png[/IMG] "+physicalmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Special.png[/IMG] "+specialmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Status.png[/IMG] "+statusmoves+"\n[B]Intended Role[/B]: "+intendedrole+"\n[B]Role Justification[/B]: "+rolejustification+"[/hide]";
-
-document.getElementById("xd2").innerHTML="\`\`\`"+fusion+" = "+fuse1+" + "+fuse2+"\n"+type+"/"+t2+"\n\nHPs: "+hp+" \t\t+"+modhp+"\t\t" +mixbulk+ "\nAtk: "+atk+"\t\t+"+modatk+"\nDef: "+def+"\t\t+"+moddef+"\t\t" +phybulk+ "\nSpA: "+spa+"\t\t+"+modspa+"\nSpD: "+spd+"\t\t+"+modspd+"\t\t" +specialbulk+ "\nSpe: "+spe+"\t\t+"+modspe+"\nBST: "+bst+"\t\t+"+modbst+"\n\n"+abe+" = "+abe1+" + "+abe2+"\n"+abedesc+"\`\`\`";
-
-document.getElementById("xd3").innerHTML=""+mon+": {\n\tnum: 75000###, \n\ttypes:[&quot;"+type+"&quot;"+type2+"\n\tspecies: &quot;"+fusion+"&quot;, \n\tid: &quot;"+mon+"&quot;, \n\tbaseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} \n\tabilities: {0: &quot;"+abe+"&quot;}, \n\tweightkg: "+wt+", \n\tfusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],\n},";
-
-
-if (atk != 0) {
-document.getElementById("phycalc").innerHTML=`${atkcalc}`;
-}
-
-
-if (spa != 0) {
-document.getElementById("specialcalc").innerHTML=`${spacalc}`;
-}
-
-if (def != 0) {
-document.getElementById("defcalc").innerHTML=`${defcalc}`;
-}
-
-if (spd != 0) {
-document.getElementById("spdcalc").innerHTML=`${spdcalc}`;
-}
-
-document.getElementById("phybulk").innerHTML=`${phybulk}`;
-
-document.getElementById("specialbulk").innerHTML=`${specialbulk}`;
-
-document.getElementById("mixbulk").innerHTML=`${mixbulk}`;
-}
-
-
-
-/* \left(\left(\frac{\left(42\:\cdot \:BP\:\cdot \left(\frac{Atk}{299}\right)\:\right)}{\:50}\:+\:2\right)\:\cdot \:1.5\:\right)\cdot \frac{100}{404}
-*/
-
-
-
-function copy() {
-  let xd = document.getElementById("xd");
-  xd.select();
-  document.execCommand("copy");
-}
-function copy2() {
-  let xd2 = document.getElementById("xd2");
-  xd2.select();
-  document.execCommand("copy");
-}
-function copy3() {
-  let xd3 = document.getElementById("xd3");
-  xd3.select();
-  document.execCommand("copy");
-}
-function clearallz(){
-	document.getElementById('fuse1').value = '';
-    document.getElementById('fuse2').value = '';
-    document.getElementById('fusion').value = '';
-    document.getElementById('type').value = '';
-    document.getElementById('type2').value = '';
-    document.getElementById('ft').innerHTML = '';
-    document.getElementById('typearea1').innerHTML = '';
-    document.getElementById('typearea').innerHTML = '';
-}
 </script>
 </html>
