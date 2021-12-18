@@ -107,14 +107,16 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <table>
 <tr>
 <td>Pkmn 1</td>
-<td><input type="text" id="fuse1" list="allmons" onInput="mega();post();post();post();post()" style="width:134px;" autofocus></input></td>
+<td><input type="text" id="fuse1" list="allmons" onInput="post();post();post();post()" style="width:134px;" autofocus></input></td>
 <td><span id="typearea1"></span></td>
+<td><button onClick="mega();" class="button2">Mega Evolve</button></td>
 <td><span id="megabox1"></span></td>
 </tr>
 <tr>
 <td>Pkmn 2</td>
 <td><input type="text" id="fuse2" list="allmons" onInput="post();post();post()" style="width:134px;"></input>
 <td><span id="typearea"></span></td>
+<td><button onClick="mega2();" class="button2">Mega Evolve</button></td>
 </tr>
 <tr>
 <td>Fusion</td>
@@ -133,6 +135,8 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td>Average</td>
 <td style="font-size:16px;">Difference</td>
 <td>Bulk</td>
+<td>Mega 1</td>
+<td>Mega 2</td>
 </tr>
 <tr>
 <td class="basestat">HP</td>
@@ -150,6 +154,9 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><textarea id="oldatk" style="width:64px;" disabled></textarea></td>
 <td><textarea id="avgatk" style="width:64px;" disabled></textarea></td>
 <td><textarea id="modatk" style="width:64px;" disabled></textarea></td>
+<td></td>
+<td><textarea id="mega1atk" style="width:64px;" disabled></textarea></td>
+<td><textarea id="mega2atk" style="width:64px;" disabled></textarea></td>
 
 </tr>
 <tr>
@@ -160,6 +167,8 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><textarea id="avgdef" style="width:64px;" disabled></textarea></td>
 <td><textarea id="moddef" style="width:64px;" disabled></textarea></td>
 <td><textarea id="phybulk" style="width:64px;" placeholder="Physical" disabled></textarea></td>
+<td><textarea id="mega1def" style="width:64px;" disabled></textarea></td>
+<td><textarea id="mega2def" style="width:64px;" disabled></textarea></td>
 </tr>
 <tr>
 <td class="basestat">SpA</td>
@@ -168,6 +177,9 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><textarea id="oldspa" style="width:64px;" disabled></textarea></td>
 <td><textarea id="avgspa" style="width:64px;" disabled></textarea></td>
 <td><textarea id="modspa" style="width:64px;" disabled></textarea></td>
+<td></td>
+<td><textarea id="mega1spa" style="width:64px;" disabled></textarea></td>
+<td><textarea id="mega2spa" style="width:64px;" disabled></textarea></td>
 </tr>
 <tr>
 <td class="basestat">SpD</td>
@@ -177,6 +189,8 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><textarea id="avgspd" style="width:64px;" disabled></textarea></td>
 <td><textarea id="modspd" style="width:64px;" disabled></textarea></td>
 <td><textarea id="specialbulk" style="width:64px;" placeholder="Special" disabled></textarea></td>
+<td><textarea id="mega1spd" style="width:64px;" disabled></textarea></td>
+<td><textarea id="mega2spd" style="width:64px;" disabled></textarea></td>
 </tr>
 <tr>
 <td class="basestat">Spe</td>
@@ -185,6 +199,9 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><textarea id="oldspe" style="width:64px;" disabled></textarea></td>
 <td><textarea id="avgspe" style="width:64px;" disabled></textarea></td>
 <td><textarea id="modspe" style="width:64px;" disabled></textarea></td>
+<td></td>
+<td><textarea id="mega1spe" style="width:64px;" disabled></textarea></td>
+<td><textarea id="mega2spe" style="width:64px;" disabled></textarea></td>
 </tr>
 <tr>
 <tr>
@@ -194,6 +211,8 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><textarea id="oldbst" style="width:64px;" disabled></textarea></td>
 <td><textarea id="avgbst" style="width:64px;" disabled></textarea></td>
 <td><textarea id="modbst" style="width:64px;" disabled></textarea></td>
+<td></td>
+<td><textarea id="mega1bst" style="width:64px;" disabled></textarea></td>
 </tr>
 <tr>
 <td>Weight</td>
@@ -5046,8 +5065,6 @@ let intendedrole= document.getElementById("intendedrole").innerText;
 let wt=document.getElementById("wt").value;
 let text=document.getElementById("text").value;
 
-let oldatk1 = document.getElementById("oldatk1").value;
-let oldatk11 = Number(oldatk1);
 
 // Back End
 let mon = fusion.toLowerCase();
@@ -5063,14 +5080,130 @@ type2 = ", &quot;"+type2+"&quot;],";
 }
 
  let ismega1 = '';  
- let mega1atk = 0;
-  Object.values(pokedexdata).forEach(mon => {
-  if (mon.baseSpecies === fuse1 && mon.forme === 'Mega') {
-			ismega1 += `${mon.name} (Testing)`;
-            mega1atk = mon.baseStats.atk - oldatk11;
+ let base1atk =0;
+ let base1def =0;
+ let base1spa =0;
+ let base1spd =0;
+ let base1spe =0;
+ let mega1atk =0;
+ let mega1def =0;
+ let mega1spa =0;
+ let mega1spd =0;
+ let mega1spe =0;
+ Object.values(pokedexdata).forEach(mon => {
+  if (mon.name === fuse1) {
+            base1atk = mon.baseStats.atk;
+            base1def = mon.baseStats.def;
+            base1spa = mon.baseStats.spa;
+            base1spd = mon.baseStats.spd;
+            base1spe = mon.baseStats.spe;
+            }
+		
+  Object.values(pokedexdata).forEach(megamon => {
+  if (megamon.baseSpecies === fuse1 && megamon.forme === 'Mega') {
+			ismega1 += `${megamon.name} (Testing)`;
+            mega1atk = megamon.baseStats.atk;
+            mega1def = megamon.baseStats.def;
+            mega1spa = megamon.baseStats.spa;
+            mega1spd = megamon.baseStats.spd;
+            mega1spe = megamon.baseStats.spe;
             }
 		});
-document.getElementById("megabox1").innerHTML = `${ismega1} and ${mega1atk}`;
+        
+        });
+        let oldatk1 = document.getElementById("oldatk1").value;
+let oldatk = document.getElementById("oldatk").value;
+let avgatk = Math.floor((+oldatk1 + +oldatk)/2);
+
+document.getElementById("mega1atk").innerHTML = mega1atk - base1atk;
+document.getElementById("mega1def").innerHTML = mega1def - base1def;
+document.getElementById("mega1spa").innerHTML = mega1spa - base1spa;
+document.getElementById("mega1spd").innerHTML = mega1spd - base1spd;
+document.getElementById("mega1spe").innerHTML = mega1spe - base1spe;
+document.getElementById("mega1bst").innerHTML = (mega1atk - base1atk + mega1def - base1def + mega1spa - base1spa + mega1spd - base1spd + mega1spe - base1spe);
+}
+
+function mega2() {
+
+let fuse1= document.getElementById("fuse1").value;
+let fuse2= document.getElementById("fuse2").value;
+let fusion = document.getElementById("fusion").value;
+let type= document.getElementById("type").value;
+let type2= document.getElementById("type2").value;
+let hp= document.getElementById("hp").value;
+let atk= document.getElementById("atk").value;
+let def= document.getElementById("def").value;
+let spa= document.getElementById("spa").value;
+let spd= document.getElementById("spd").value;
+let spe= document.getElementById("spe").value;
+let abe= document.getElementById("abe").value;
+let abe1= document.getElementById("abe1").value;
+let abe2= document.getElementById("abe2").value;
+let abedesc= document.getElementById("abedesc").innerText;
+let physicalmoves= document.getElementById("physicalmoves").innerText;
+let specialmoves= document.getElementById("specialmoves").innerText;
+let statusmoves= document.getElementById("statusmoves").innerText;
+
+let rolejustification= document.getElementById("rolejustification").innerText;
+
+let intendedrole= document.getElementById("intendedrole").innerText;
+let wt=document.getElementById("wt").value;
+let text=document.getElementById("text").value;
+
+
+// Back End
+let mon = fusion.toLowerCase();
+let f1 = fuse1.toLowerCase();
+let f2 = fuse2.toLowerCase();
+f1 = f1.replace(" ","");
+f2 = f2.replace(" ","");
+let t2=type2;
+if (type2==="") {type2 = "],";
+}
+else {
+type2 = ", &quot;"+type2+"&quot;],";
+}
+
+ let ismega2 = '';  
+ let base2atk =0;
+ let base2def =0;
+ let base2spa =0;
+ let base2spd =0;
+ let base2spe =0;
+ let mega2atk =0;
+ let mega2def =0;
+ let mega2spa =0;
+ let mega2spd =0;
+ let mega2spe =0;
+ Object.values(pokedexdata).forEach(mon => {
+  if (mon.name === fuse2) {
+            base2atk = mon.baseStats.atk;
+            base2def = mon.baseStats.def;
+            base2spa = mon.baseStats.spa;
+            base2spd = mon.baseStats.spd;
+            base2spe = mon.baseStats.spe;
+            }
+		
+  Object.values(pokedexdata).forEach(megamon => {
+  if (megamon.baseSpecies === fuse2 && megamon.forme === 'Mega') {
+			ismega2 += `${megamon.name} (Testing)`;
+            mega2atk = megamon.baseStats.atk;
+            mega2def = megamon.baseStats.def;
+            mega2spa = megamon.baseStats.spa;
+            mega2spd = megamon.baseStats.spd;
+            mega2spe = megamon.baseStats.spe;
+            }
+		});
+        
+        });
+
+document.getElementById("mega2atk").innerHTML = mega2atk - base2atk;
+document.getElementById("mega2def").innerHTML = mega2def - base2def;
+document.getElementById("mega2spa").innerHTML = mega2spa - base2spa;
+document.getElementById("mega2spd").innerHTML = mega2spd - base2spd;
+document.getElementById("mega2spe").innerHTML = mega2spe - base2spe;
+document.getElementById("mega2bst").innerHTML = (mega2atk - base2atk + mega2def - base2def + mega2spa - base2spa + mega2spd - base2spd + mega2spe - base2spe);
+
 }
 
 
