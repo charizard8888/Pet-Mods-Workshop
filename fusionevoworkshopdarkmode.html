@@ -5046,6 +5046,9 @@ let intendedrole= document.getElementById("intendedrole").innerText;
 let wt=document.getElementById("wt").value;
 let text=document.getElementById("text").value;
 
+let oldatk1 = document.getElementById("oldatk1").value;
+let oldatk11 = Number(oldatk1);
+
 // Back End
 let mon = fusion.toLowerCase();
 let f1 = fuse1.toLowerCase();
@@ -5060,13 +5063,14 @@ type2 = ", &quot;"+type2+"&quot;],";
 }
 
  let ismega1 = '';  
- //let mega1atk = 0;
+ let mega1atk = 0;
   Object.values(pokedexdata).forEach(mon => {
   if (mon.baseSpecies === fuse1 && mon.forme === 'Mega') {
 			ismega1 += `${mon.name} (Testing)`;
+            mega1atk = mon.baseStats.atk - oldatk11;
             }
 		});
-document.getElementById("megabox1").innerHTML = `${ismega1}`;
+document.getElementById("megabox1").innerHTML = `${ismega1} and ${mega1atk}`;
 }
 
 
