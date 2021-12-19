@@ -109,19 +109,20 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td>Pkmn 1</td>
 <td><input type="text" id="fuse1" list="allmons" onInput="post();post();post();post()" style="width:134px;" autofocus></input></td>
 <td><span id="typearea1"></span></td>
-<td><button onClick="mega();" class="button2">Mega Evolve</button></td>
+<td><button onClick="mega();post();post()" class="button2">Mega</button></td>
 <td><span id="megabox1"></span></td>
 </tr>
 <tr>
 <td>Pkmn 2</td>
 <td><input type="text" id="fuse2" list="allmons" onInput="post();post();post()" style="width:134px;"></input>
 <td><span id="typearea"></span></td>
-<td><button onClick="mega2();" class="button2">Mega Evolve</button></td>
+<td><button onClick="mega2();post();post()" class="button2">Mega</button></td>
 </tr>
 <tr>
 <td>Fusion</td>
 <td><textarea type="text" id="fusion" onInput="post()" style="width:134px;"></textarea></td>
 <td><span id="ft"></span></td>
+<td></td>
 <td><button onClick="clearallz();post();post();post();" class="button2">Reset</button></td>
 </tr>
 <td>Types</td>
@@ -237,6 +238,8 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <tr>
 <td>Ability</td>
 <td><textarea type="text" id="abe" onInput="post()" style="width:134px;"></textarea></td>
+<td><span id="mega1abe" style="width:64px;" class="abearea" onClick='document.getElementById("abe").value = ""+document.getElementById("mega1abe").innerText+"";post();post()'></span></td>
+<td><span id="mega2abe" style="width:64px;" class="abearea" onClick='document.getElementById("abe").value = ""+document.getElementById("mega2abe").innerText+"";post();post()'></span></td>
 </tr>
 </table>
 <table>
@@ -282,9 +285,9 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <br>
 <center><img src="https://play.pokemonshowdown.com/sprites/xyani/venusaur.gif" width="106" height="77"><img src="https://play.pokemonshowdown.com/sprites/xyani/blastoise.gif" width="88" height="83"></center>
 <br>
-<button onClick="copy()">Copy Submission</button><br><br>
-<button onClick="copy2()">Copy</button> (For sharing fusion ideas on the Discord server)<br><br>
-<button onClick="copy3()">Copy Code</button><br><br>
+<button onClick="post();post();copy()">Copy Submission</button><br><br>
+<button onClick="post();post();copy2()">Copy</button> (For sharing fusion ideas on the Discord server)<br><br>
+<button onClick="post();post();copy3()">Copy Code</button><br><br>
 
 <datalist id="types">
 <option value="Fire"><option value="Water"><option value="Grass"><option value="Electric"><option value="Ground"><option value="Bug"><option value="Poison"><option value="Fighting"><option value="Steel"><option value="Dark"><option value="Flying"><option value="Dragon"><option value="Ice"><option value="Rock"><option value="Ghost"><option value="Psychic"><option value="Normal"><option value="Fairy">
@@ -5091,6 +5094,7 @@ type2 = ", &quot;"+type2+"&quot;],";
  let mega1spa =0;
  let mega1spd =0;
  let mega1spe =0;
+ let mega1abe= '';
  Object.values(pokedexdata).forEach(mon => {
   if (mon.name === fuse1) {
             base1atk = mon.baseStats.atk;
@@ -5108,6 +5112,7 @@ type2 = ", &quot;"+type2+"&quot;],";
             mega1spa = megamon.baseStats.spa;
             mega1spd = megamon.baseStats.spd;
             mega1spe = megamon.baseStats.spe;
+            mega1abe = megamon.abilities[0];
             }
 		});
         
@@ -5122,6 +5127,8 @@ document.getElementById("mega1spa").innerHTML = mega1spa - base1spa;
 document.getElementById("mega1spd").innerHTML = mega1spd - base1spd;
 document.getElementById("mega1spe").innerHTML = mega1spe - base1spe;
 document.getElementById("mega1bst").innerHTML = (mega1atk - base1atk + mega1def - base1def + mega1spa - base1spa + mega1spd - base1spd + mega1spe - base1spe);
+document.getElementById("mega1abe").innerHTML = `${mega1abe}`;
+document.getElementById("abe").innerHTML = `${mega1abe}`;
 }
 
 function mega2() {
@@ -5176,6 +5183,7 @@ type2 = ", &quot;"+type2+"&quot;],";
  let mega2spa =0;
  let mega2spd =0;
  let mega2spe =0;
+ let mega2abe = '';
  Object.values(pokedexdata).forEach(mon => {
   if (mon.name === fuse2) {
             base2atk = mon.baseStats.atk;
@@ -5193,6 +5201,7 @@ type2 = ", &quot;"+type2+"&quot;],";
             mega2spa = megamon.baseStats.spa;
             mega2spd = megamon.baseStats.spd;
             mega2spe = megamon.baseStats.spe;
+            mega2abe = megamon.abilities[0];
             }
 		});
         
@@ -5204,6 +5213,9 @@ document.getElementById("mega2spa").innerHTML = mega2spa - base2spa;
 document.getElementById("mega2spd").innerHTML = mega2spd - base2spd;
 document.getElementById("mega2spe").innerHTML = mega2spe - base2spe;
 document.getElementById("mega2bst").innerHTML = (mega2atk - base2atk + mega2def - base2def + mega2spa - base2spa + mega2spd - base2spd + mega2spe - base2spe);
+
+document.getElementById("mega2abe").innerHTML = `${mega2abe}`;
+document.getElementById("abe").innerHTML = `${mega2abe}`;
 
 }
 
@@ -5244,9 +5256,11 @@ function clearallz(){
     document.getElementById('intendedrole').innerText = '';
     document.getElementById('rolejustification').innerText = '';
     document.getElementById('text').value = '';
+    document.getElementById('atk').innerText = '0';
     document.getElementById('ft').innerHTML = '';
     document.getElementById('typearea1').innerHTML = '';
     document.getElementById('typearea').innerHTML = '';
+    
 }
 
 // POKEDEX DATA STARTS
