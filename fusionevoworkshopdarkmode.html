@@ -129,7 +129,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><input type="text" id="type" list="types" onInput="post()" style="width:134px;"></input></td>
 <td><input type="text" id="type2" list="types" onInput="post()" style="width:64px;font-size:12px;"></input></td>
 </tr>
-<td>Stats…</td>
+<td><button onClick="load();post()" class="button2">Load</button></td>
 <td><span id="fusionstats"></span></td>
 <td><span id="mon1stats"></span></td>
 <td><span id="mon2stats"></span></td>
@@ -5040,6 +5040,15 @@ document.getElementById("phybulk").innerHTML=`${phybulk}`;
 document.getElementById("specialbulk").innerHTML=`${specialbulk}`;
 
 document.getElementById("mixbulk").innerHTML=`${mixbulk}`;
+}
+
+function load() {
+document.getElementById("hp").value = document.getElementById("avghp").innerHTML;
+document.getElementById("atk").value = document.getElementById("avgatk").innerHTML;
+document.getElementById("def").value = document.getElementById("avgdef").innerHTML;
+document.getElementById("spa").value = document.getElementById("avgspa").innerHTML;
+document.getElementById("spd").value = document.getElementById("avgspd").innerHTML;
+document.getElementById("spe").value = document.getElementById("avgspe").innerHTML;
 }
 
 function mega() {
