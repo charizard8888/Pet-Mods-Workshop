@@ -5169,7 +5169,7 @@ else {
 type2 = ", &quot;"+type2+"&quot;],";
 }
 
- let ismega2 = '';  
+ let ismega2 = false;  
  let base2atk =0;
  let base2def =0;
  let base2spa =0;
@@ -5209,7 +5209,7 @@ type2 = ", &quot;"+type2+"&quot;],";
         
         });
 
-if (mega2 === true) {
+if (ismega2 === true) {
 document.getElementById("atk").value = avgatk + mega2atk - base2atk;
 document.getElementById("def").value = avgdef + mega2def - base2def;
 document.getElementById("spa").value = avgspa + mega2spa - base2spa;
