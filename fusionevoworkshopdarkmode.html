@@ -2,6 +2,8 @@
 <head>
 <link rel="icon" href="https://i.imgur.com/RSLbyHs.png" type="image/png" sizes="64x64">
 <title>Fusion Evolution Workshop (Dark Mode)</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
 a {
 color: green;
@@ -107,27 +109,27 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <table>
 <tr>
 <td>Pkmn 1</td>
-<td><input type="text" id="fuse1" list="allmons" onInput="post();post();post();load();post()" style="width:134px;" autofocus></input></td>
+<td><input tabIndex="1" type="text" id="fuse1" list="allmons" onInput="post();post();post();load();post()" style="width:134px;" autofocus></input></td>
 <td><span id="typearea1"></span></td>
 <td><button onClick="mega();post();mega1stats();post()" class="button2">Mega</button></td>
 <td><span id="megabox1"></span></td>
 </tr>
 <tr>
 <td>Pkmn 2</td>
-<td><input type="text" id="fuse2" list="allmons" onInput="post();post();load();post()" style="width:134px;"></input>
+<td><input tabIndex="2" type="text" id="fuse2" list="allmons" onInput="post();post();load();post()" style="width:134px;"></input>
 <td><span id="typearea"></span></td>
 <td><button onClick="mega2();post();mega2stats();post()" class="button2">Mega</button></td>
 </tr>
 <tr>
 <td>Fusion</td>
-<td><textarea type="text" id="fusion" onInput="post()" style="width:134px;"></textarea></td>
+<td><textarea tabIndex="3" type="text" id="fusion" onInput="post()" style="width:134px;"></textarea></td>
 <td><span id="ft"></span></td>
 <td></td>
 <td><button onClick="clearallz();post();post();post();" class="button2">Reset</button></td>
 </tr>
 <td>Types</td>
-<td><input type="text" id="type" list="types" onInput="post()" style="width:134px;"></input></td>
-<td><input type="text" id="type2" list="types" onInput="post()" style="width:64px;font-size:12px;"></input></td>
+<td><input tabIndex="4" type="text" id="type" list="types" onInput="post()" style="width:134px;"></input></td>
+<td><input tabIndex="5" type="text" id="type2" list="types" onInput="post()" style="width:64px;font-size:12px;"></input></td>
 </tr>
 <td><button onClick="load();post()" class="button2">Load</button></td>
 <td><span id="fusionstats"></span></td>
@@ -141,7 +143,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </tr>
 <tr>
 <td class="basestat">HP</td>
-<td><textarea inputmode="numeric" type="text" id="hp" onInput="post()" style="width:134px;"></textarea></td>
+<td><textarea tabIndex="6" inputmode="numeric" type="text" id="hp" onInput="post()" style="width:134px;"></textarea></td>
 <td><textarea id="oldhp1" style="width:64px;" disabled></textarea></td>
 <td><textarea id="oldhp" style="width:64px;" disabled></textarea></td>
 <td><textarea id="avghp" style="width:64px;" disabled></textarea></td>
@@ -150,7 +152,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </tr>
 <tr>
 <td class="basestat">Atk</td>
-<td><textarea inputmode="numeric" type="text" id="atk" onInput="post()" style="width:134px;"></textarea></td>
+<td><textarea tabIndex="7" inputmode="numeric" type="text" id="atk" onInput="post()" style="width:134px;"></textarea></td>
 <td><textarea id="oldatk1" style="width:64px;" disabled></textarea></td>
 <td><textarea id="oldatk" style="width:64px;" disabled></textarea></td>
 <td><textarea id="avgatk" style="width:64px;" disabled></textarea></td>
@@ -162,7 +164,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </tr>
 <tr>
 <td class="basestat">Def</td>
-<td><textarea inputmode="numeric" type="text" id="def" onInput="post()" style="width:134px;"></textarea></td>
+<td><textarea tabIndex="8" inputmode="numeric" type="text" id="def" onInput="post()" style="width:134px;"></textarea></td>
 <td><textarea id="olddef1" style="width:64px;" disabled></textarea></td>
 <td><textarea id="olddef" style="width:64px;" disabled></textarea></td>
 <td><textarea id="avgdef" style="width:64px;" disabled></textarea></td>
@@ -173,7 +175,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </tr>
 <tr>
 <td class="basestat">SpA</td>
-<td><textarea inputmode="numeric" type="text" id="spa" onInput="post()" style="width:134px;"></textarea></td>
+<td><textarea tabIndex="9" inputmode="numeric" type="text" id="spa" onInput="post()" style="width:134px;"></textarea></td>
 <td><textarea id="oldspa1" style="width:64px;" disabled></textarea></td>
 <td><textarea id="oldspa" style="width:64px;" disabled></textarea></td>
 <td><textarea id="avgspa" style="width:64px;" disabled></textarea></td>
@@ -184,7 +186,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </tr>
 <tr>
 <td class="basestat">SpD</td>
-<td><textarea inputmode="numeric" type="text" id="spd" onInput="post()" style="width:134px;"></textarea></td>
+<td><textarea tabIndex="10" inputmode="numeric" type="text" id="spd" onInput="post()" style="width:134px;"></textarea></td>
 <td><textarea id="oldspd1" style="width:64px;" disabled></textarea></td>
 <td><textarea id="oldspd" style="width:64px;" disabled></textarea></td>
 <td><textarea id="avgspd" style="width:64px;" disabled></textarea></td>
@@ -195,7 +197,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </tr>
 <tr>
 <td class="basestat">Spe</td>
-<td><textarea inputmode="numeric" type="text" id="spe" onInput="post()" style="width:134px;"></textarea></td>
+<td><textarea tabIndex="11" inputmode="numeric" type="text" id="spe" onInput="post()" style="width:134px;"></textarea></td>
 <td><textarea id="oldspe1" style="width:64px;" disabled></textarea></td>
 <td><textarea id="oldspe" style="width:64px;" disabled></textarea></td>
 <td><textarea id="avgspe" style="width:64px;" disabled></textarea></td>
@@ -224,20 +226,20 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </tr>
 <tr>
 <td>Ability 1</td>
-<td><input placeholder="Click to select →" type="text" id="abe1" onInput="post()" list="allabilities" style="width:134px;"></input></td>
+<td><input tabIndex="12" placeholder="Click to select →" type="text" id="abe1" onInput="post()" list="allabilities" style="width:134px;"></input></td>
 <td colspan="2"><span id="ability1area1" class="abearea" onClick='document.getElementById("abe1").value = ""+document.getElementById("ability1area1").innerText+"";post();post()'></span></td>
 <td colspan="2"><span id="ability1area2" class="abearea" onClick='document.getElementById("abe1").value = ""+document.getElementById("ability1area2").innerText+"";post();post()'></span></td>
 <td colspan="2"><span id="ability1area3" class="abearea" onClick='document.getElementById("abe1").value = ""+document.getElementById("ability1area3").innerText+"";post();post()'></span></td>
 </tr><tr>
 <td>Ability 2</td>
-<td><input placeholder="Click to select →" type="text" id="abe2" onInput="post()" list="allabilities" style="width:134px;"></input></td>
+<td><input tabIndex="13" placeholder="Click to select →" type="text" id="abe2" onInput="post()" list="allabilities" style="width:134px;"></input></td>
 <td colspan="2"><span id="ability2area1" class="abearea" onClick='document.getElementById("abe2").value = ""+document.getElementById("ability2area1").innerText+"";post();post()'></span></td>
 <td colspan="2"><span id="ability2area2" class="abearea" onClick='document.getElementById("abe2").value = ""+document.getElementById("ability2area2").innerText+"";post();post()'></span></td>
 <td colspan="2"><span id="ability2area3" class="abearea"  onClick='document.getElementById("abe2").value = ""+document.getElementById("ability2area3").innerText+"";post();post()'></span></td>
 </tr>
 <tr>
 <td>Ability</td>
-<td><textarea type="text" id="abe" onInput="post()" style="width:134px;"></textarea></td>
+<td><textarea tabIndex="14" type="text" id="abe" onInput="post()" style="width:134px;"></textarea></td>
 <td colspan="4"><span id="mega1abe" style="width:64px;" class="abearea" onClick='document.getElementById("abe").value = ""+document.getElementById("mega1abe").innerText+"";post();post()'></span></td>
 <td><span id="mega2abe" style="width:64px;" class="abearea" onClick='document.getElementById("abe").value = ""+document.getElementById("mega2abe").innerText+"";post();post()'></span></td>
 </tr>
@@ -245,38 +247,38 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <table>
 <tr>
 <td>Ability<br> Desc.</td>
-<td colspan="2"><span class="textarea4" role="textbox" id="abedesc" contenteditable onInput="post()"></span></td>
+<td tabIndex="15" colspan="2"><span class="textarea4" role="textbox" id="abedesc" contenteditable onInput="post()"></span></td>
 <td colspan="2"></td>
 <td colspan="3"></td>
 </tr>
 <tr>
 <td style="font-size:18px;">Phy<br> Moves</td>
-<td colspan="2"><span class="textarea3" role="textbox" id="physicalmoves" contenteditable onInput="post()"></td>
+<td tabIndex="16" colspan="2"><span class="textarea3" role="textbox" id="physicalmoves" contenteditable onInput="post()"></td>
 </tr>
 <tr>
 <td>Spec<br> Moves</td>
-<td colspan="2"><span class="textarea3" role="textbox" id="specialmoves" contenteditable onInput="post()"></span></td>
+<td tabIndex="17" colspan="2"><span class="textarea3" role="textbox" id="specialmoves" contenteditable onInput="post()"></span></td>
 
 </tr>
 <tr>
 <td>Status<br> Moves</td>
-<td colspan="2"><span class="textarea3" role="textbox" id="statusmoves" contenteditable onInput="post()"></span></td>
+<td tabIndex="18" colspan="2"><span class="textarea3" role="textbox" id="statusmoves" contenteditable onInput="post()"></span></td>
 
 </tr>
 <tr>
 <td style="font-size:18px;">Intended<br> Role</td>
-<td colspan="2"><span class="textarea3" role="textbox" id="intendedrole" contenteditable onInput="post()"></span></td>
+<td tabIndex="19" colspan="2"><span class="textarea3" role="textbox" id="intendedrole" contenteditable onInput="post()"></span></td>
 
 </tr>
 </table>
 <table>
 <tr>
 <td>Role<br> Justify</td>
-<td colspan="5"><span class="textarea2" role="textbox" id="rolejustification" contenteditable onInput="post()"></span></td>
+<td tabIndex="20" colspan="5"><span class="textarea2" role="textbox" id="rolejustification" contenteditable onInput="post()"></span></td>
 </tr>
 </table>
 <table>
-<td style="font-size:18px;">Battlecry</td>
+<td tabIndex="21" style="font-size:18px;">Battlecry</td>
 <td colspan="5"><textarea type="text" id="text" onInput="post()" style="width:330px;height:34px;" placeholder="Italic text below the fusion"></textarea>
 <div class="xd"><textarea id="xd" class="xd"> </textarea><textarea id="xd2" class="xd"> </textarea><textarea id="xd3" class="xd"></textarea></div>
 </td>
@@ -285,9 +287,9 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <br>
 <center><img src="https://cdn.discordapp.com/attachments/775870299241447444/838889467578024016/clawliwrath-s.png" width="96" height="96"><img src="https://play.pokemonshowdown.com/sprites/ani/gallade-mega.gif" width="64" height="99"><img src="https://play.pokemonshowdown.com/sprites/ani-shiny/serperior.gif" width="90" height="108"><img src="https://media.discordapp.net/attachments/823049899372183564/900824062023065630/rhybite.png" width="96" height="96"></center>
 <br>
-<button onClick="post();post();copy()">Copy Submission</button><br><br>
-<button onClick="post();post();copy2()">Copy</button> (For sharing fusion ideas on the Discord server)<br><br>
-<button onClick="post();post();copy3()">Copy Code</button><br><br>
+<button tabIndex="22" onClick="post();post();copy()">Copy Submission</button><br><br>
+<button tabIndex="23" onClick="post();post();copy2()">Copy</button> (For sharing fusion ideas on the Discord server)<br><br>
+<button tabIndex="24" onClick="post();post();copy3()">Copy Code</button><br><br>
 
 <datalist id="types">
 <option value="Fire"><option value="Water"><option value="Grass"><option value="Electric"><option value="Ground"><option value="Bug"><option value="Poison"><option value="Fighting"><option value="Steel"><option value="Dark"><option value="Flying"><option value="Dragon"><option value="Ice"><option value="Rock"><option value="Ghost"><option value="Psychic"><option value="Normal"><option value="Fairy">
@@ -321,19 +323,16 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </datalist>
 </body>
 <script>
-/*function key(event) {
-    if (event.charCode == 13 && /Android/.test(navigator.userAgent)) {
-      event.preventDefault();
-      document.getElementById('pw').focus();
+$(document).on('keypress', 'input,textarea,button,select', function (e) {
+    if (e.which == 13) {
+        e.preventDefault();
+        var $next = $('[tabIndex=' + (+this.tabIndex + 1) + ']');
+        console.log($next.length);
+        if (!$next.length) {
+       $next = $('[tabIndex=1]');        }
+        $next.focus() .click();
     }
-  }*/
-  
-  eventHandler(keyCode) {
-  console.log('keyCode: ', keyCode);
-  if (keyCode == 13) {
-   /* code */
-  }
-}
+});
 function post ()
 {
 // Front and Part Back End
