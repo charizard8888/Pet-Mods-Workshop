@@ -4991,11 +4991,11 @@ let defcalc= (((42 * 100 * 372 / Math.floor(2.2 * def + 108.9))/50 + 2) * 1.5 * 
 
 let spdcalc= (((42 * 100 * 372 / Math.floor(2.2 * spd + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204) * 0.85).toFixed(1) + "% - " + (((42 * 100 * 372 / Math.floor(2.2 * spd + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204)).toFixed(1) + "%";
 
-let phybulk = Math.ceil((2 * hp + 204) * Math.floor(2.2 * def + 108.9) / 1325.12);
+let phybulk = Math.round((2 * hp + 204) * (2.2 * def + 108.9) / 1325.12);
 
-let specialbulk = Math.ceil((2 * hp + 204) * Math.floor(2.2 * spd + 108.9) / 1325.12);
+let specialbulk = Math.round((2 * hp + 204) * (2.2 * spd + 108.9) / 1325.12);
 
-let mixbulk = Math.ceil((2 * hp + 204) * (Math.floor(2.2 * def + 108.9) + Math.floor(2.2 * spd + 108.9))/ 1325.12/2);
+let mixbulk = Math.round((2 * hp + 204) * ((2.2 * def + 108.9) + (2.2 * spd + 108.9))/ 1325.12/2);
 
 document.getElementById("xd").innerHTML=":swsh/"+f1+"::swsh/"+f2+":\n[I]"+text+"[/I][hide="+fusion+"][B]DNA Donors[/B]: "+fuse1+" / "+fuse2+"\n[B]Fusion Name[/B]: "+fusion+"\n[B]New Types[/B]: [IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]Base Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"] (+"+modhp+" HP / +"+modatk+" Atk / +"+moddef+" Def / +"+modspa+" SpA / +"+modspd+" SpD / +"+modspe+" Spe)\n[B]New Ability[/B]: [I]"+abe+"[/I] = ("+abe1+" + "+abe2+")\n[B]Ability Description[/B]: "+abedesc+"\n[B]Notable Moves[/B]:\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Physical.png[/IMG] "+physicalmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Special.png[/IMG] "+specialmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Status.png[/IMG] "+statusmoves+"\n[B]Intended Role[/B]: "+intendedrole+"\n[B]Role Justification[/B]: "+rolejustification+"[/hide]";
 
