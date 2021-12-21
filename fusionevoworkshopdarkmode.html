@@ -321,7 +321,19 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </datalist>
 </body>
 <script>
-
+/*function key(event) {
+    if (event.charCode == 13 && /Android/.test(navigator.userAgent)) {
+      event.preventDefault();
+      document.getElementById('pw').focus();
+    }
+  }*/
+  
+  eventHandler(keyCode) {
+  console.log('keyCode: ', keyCode);
+  if (keyCode == 13) {
+   /* code */
+  }
+}
 function post ()
 {
 // Front and Part Back End
