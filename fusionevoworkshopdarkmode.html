@@ -107,14 +107,14 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <table>
 <tr>
 <td>Pkmn 1</td>
-<td><input type="text" id="fuse1" list="allmons" onInput="post();post();post();post()" style="width:134px;" autofocus></input></td>
+<td><input type="text" id="fuse1" list="allmons" onInput="post();post();post();post();load();post()" style="width:134px;" autofocus></input></td>
 <td><span id="typearea1"></span></td>
 <td><button onClick="post();load();mega();post();mega1stats();post()" class="button2">Mega</button></td>
 <td><span id="megabox1"></span></td>
 </tr>
 <tr>
 <td>Pkmn 2</td>
-<td><input type="text" id="fuse2" list="allmons" onInput="post();post();post()" style="width:134px;"></input>
+<td><input type="text" id="fuse2" list="allmons" onInput="post();post();post();load();post()" style="width:134px;"></input>
 <td><span id="typearea"></span></td>
 <td><button onClick="post();load();mega2();post();mega2stats();post()" class="button2">Mega</button></td>
 </tr>
@@ -5279,6 +5279,38 @@ function clearallz(){
     document.getElementById('ft').innerHTML = '';
     document.getElementById('typearea1').innerHTML = '';
     document.getElementById('typearea').innerHTML = '';
+    
+    document.getElementById('hp').value = 0;
+    document.getElementById('atk').value= 0;
+    document.getElementById('def').value= 0;
+    document.getElementById('spa').value= 0;
+    document.getElementById('spd').value= 0;
+    document.getElementById('spe').value= 0;
+    document.getElementById('wt').innerText= 0;
+    
+    document.getElementById('oldhp1').innerText= 0;
+    document.getElementById('oldatk1').innerText= 0;
+    document.getElementById('olddef1').innerText= 0;
+    document.getElementById('oldspa1').innerText= 0;
+    document.getElementById('oldspd1').innerText= 0;
+    document.getElementById('oldspe1').innerText= 0;
+    document.getElementById('oldwt1').innerText= 0;
+    
+    document.getElementById('oldhp').innerText= 0;
+    document.getElementById('oldatk').innerText= 0;
+    document.getElementById('olddef').innerText= 0;
+    document.getElementById('oldspa').innerText= 0;
+    document.getElementById('oldspd').innerText= 0;
+    document.getElementById('oldspe').innerText= 0;
+    document.getElementById('oldwt').innerText= 0;
+    
+    document.getElementById('modhp').innerText= 0;
+    document.getElementById('modatk').innerText= 0;
+    document.getElementById('moddef').innerText= 0;
+    document.getElementById('modspa').innerText= 0;
+    document.getElementById('modspd').innerText= 0;
+    document.getElementById('modspe').innerText= 0;
+    document.getElementById('modbst').innerText= 0;
     
 }
 
