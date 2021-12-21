@@ -109,14 +109,14 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td>Pkmn 1</td>
 <td><input type="text" id="fuse1" list="allmons" onInput="post();post();post();post()" style="width:134px;" autofocus></input></td>
 <td><span id="typearea1"></span></td>
-<td><button onClick="mega();post();mega1stats();post()" class="button2">Mega</button></td>
+<td><button onClick="post();load();mega();post();mega1stats();post()" class="button2">Mega</button></td>
 <td><span id="megabox1"></span></td>
 </tr>
 <tr>
 <td>Pkmn 2</td>
 <td><input type="text" id="fuse2" list="allmons" onInput="post();post();post()" style="width:134px;"></input>
 <td><span id="typearea"></span></td>
-<td><button onClick="mega2();post();mega2stats();post()" class="button2">Mega</button></td>
+<td><button onClick="post();load();mega2();post();mega2stats();post()" class="button2">Mega</button></td>
 </tr>
 <tr>
 <td>Fusion</td>
@@ -5078,7 +5078,7 @@ else {
 type2 = ", &quot;"+type2+"&quot;],";
 }
 
- let ismega1 = '';  
+ let ismega1 = false;  
  let base1atk =0;
  let base1def =0;
  let base1spa =0;
@@ -5106,7 +5106,7 @@ type2 = ", &quot;"+type2+"&quot;],";
 		
   Object.values(pokedexdata).forEach(megamon => {
   if (megamon.baseSpecies === fuse1 && megamon.forme === 'Mega') {
-			ismega1 += `${megamon.name} (Testing)`;
+			ismega1 = true;
             mega1atk = megamon.baseStats.atk;
             mega1def = megamon.baseStats.def;
             mega1spa = megamon.baseStats.spa;
@@ -5117,7 +5117,7 @@ type2 = ", &quot;"+type2+"&quot;],";
 		});
         
         });
-
+if (ismega1 === true) {
 document.getElementById("atk").value = avgatk + mega1atk - base1atk;
 document.getElementById("def").value = avgdef + mega1def - base1def;
 document.getElementById("spa").value = avgspa + mega1spa - base1spa;
@@ -5125,6 +5125,7 @@ document.getElementById("spd").value = avgspd + mega1spd - base1spd;
 document.getElementById("spe").value = avgspe + mega1spe - base1spe;
 document.getElementById("mega1abe").innerHTML = `${mega1abe}`;
 document.getElementById("abe").value = `${mega1abe}`;
+}
 }
 
 function mega2() {
@@ -5196,7 +5197,7 @@ type2 = ", &quot;"+type2+"&quot;],";
 		
   Object.values(pokedexdata).forEach(megamon => {
   if (megamon.baseSpecies === fuse2 && megamon.forme === 'Mega') {
-			ismega2 += `${megamon.name} (Testing)`;
+			ismega2 = true;
             mega2atk = megamon.baseStats.atk;
             mega2def = megamon.baseStats.def;
             mega2spa = megamon.baseStats.spa;
@@ -5208,6 +5209,7 @@ type2 = ", &quot;"+type2+"&quot;],";
         
         });
 
+if (mega2 === true) {
 document.getElementById("atk").value = avgatk + mega2atk - base2atk;
 document.getElementById("def").value = avgdef + mega2def - base2def;
 document.getElementById("spa").value = avgspa + mega2spa - base2spa;
@@ -5216,6 +5218,7 @@ document.getElementById("spe").value = avgspe + mega2spe - base2spe;
 
 document.getElementById("mega2abe").innerHTML = `${mega2abe}`;
 document.getElementById("abe").value = `${mega2abe}`;
+}
 
 }
 
