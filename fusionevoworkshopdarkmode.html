@@ -109,14 +109,14 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td>Pkmn 1</td>
 <td><input type="text" id="fuse1" list="allmons" onInput="post();post();post();post()" style="width:134px;" autofocus></input></td>
 <td><span id="typearea1"></span></td>
-<td><button onClick="mega();post();post()" class="button2">Mega</button></td>
+<td><button onClick="mega();post();mega1stats();post()" class="button2">Mega</button></td>
 <td><span id="megabox1"></span></td>
 </tr>
 <tr>
 <td>Pkmn 2</td>
 <td><input type="text" id="fuse2" list="allmons" onInput="post();post();post()" style="width:134px;"></input>
 <td><span id="typearea"></span></td>
-<td><button onClick="mega2();post();post()" class="button2">Mega</button></td>
+<td><button onClick="mega2();post();mega2stats();post()" class="button2">Mega</button></td>
 </tr>
 <tr>
 <td>Fusion</td>
@@ -5232,7 +5232,23 @@ document.getElementById("abe").innerHTML = `${mega2abe}`;
 /* \left(\left(\frac{\left(42\:\cdot \:BP\:\cdot \left(\frac{Atk}{299}\right)\:\right)}{\:50}\:+\:2\right)\:\cdot \:1.5\:\right)\cdot \frac{100}{404}
 */
 
+function mega1stats() {
 
+document.getElementById("atk").value = parseInt(document.getElementById("avgatk").value) + parseInt(document.getElementById("mega1atk").value);
+document.getElementById("def").value = parseInt(document.getElementById("avgdef").value) + parseInt(document.getElementById("mega1def").value);
+document.getElementById("spa").value = parseInt(document.getElementById("avgspa").value) + parseInt(document.getElementById("mega1spa").value);
+document.getElementById("spd").value = parseInt(document.getElementById("avgspd").value) + parseInt(document.getElementById("mega1spd").value);
+document.getElementById("spe").value = parseInt(document.getElementById("avgspe").value) + parseInt(document.getElementById("mega1spe").value);
+}
+
+function mega2stats() {
+
+document.getElementById("atk").value = parseInt(document.getElementById("avgatk").value) + parseInt(document.getElementById("mega2atk").value);
+document.getElementById("def").value = parseInt(document.getElementById("avgdef").value) + parseInt(document.getElementById("mega2def").value);
+document.getElementById("spa").value = parseInt(document.getElementById("avgspa").value) + parseInt(document.getElementById("mega2spa").value);
+document.getElementById("spd").value = parseInt(document.getElementById("avgspd").value) + parseInt(document.getElementById("mega2spd").value);
+document.getElementById("spe").value = parseInt(document.getElementById("avgspe").value) + parseInt(document.getElementById("mega2spe").value);
+}
 
 function copy() {
   let xd = document.getElementById("xd");
