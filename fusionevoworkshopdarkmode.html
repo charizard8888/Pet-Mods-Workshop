@@ -136,8 +136,6 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td>Average</td>
 <td style="font-size:16px;">Difference</td>
 <td>Bulk</td>
-<td>Mega 1</td>
-<td>Mega 2</td>
 </tr>
 <tr>
 <td class="basestat">HP</td>
@@ -156,8 +154,6 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><textarea id="avgatk" style="width:64px;" disabled></textarea></td>
 <td><textarea id="modatk" style="width:64px;" disabled></textarea></td>
 <td></td>
-<td><textarea id="mega1atk" style="width:64px;" disabled></textarea></td>
-<td><textarea id="mega2atk" style="width:64px;" disabled></textarea></td>
 
 </tr>
 <tr>
@@ -168,8 +164,6 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><textarea id="avgdef" style="width:64px;" disabled></textarea></td>
 <td><textarea id="moddef" style="width:64px;" disabled></textarea></td>
 <td><textarea id="phybulk" style="width:64px;" placeholder="Physical" disabled></textarea></td>
-<td><textarea id="mega1def" style="width:64px;" disabled></textarea></td>
-<td><textarea id="mega2def" style="width:64px;" disabled></textarea></td>
 </tr>
 <tr>
 <td class="basestat">SpA</td>
@@ -179,8 +173,6 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><textarea id="avgspa" style="width:64px;" disabled></textarea></td>
 <td><textarea id="modspa" style="width:64px;" disabled></textarea></td>
 <td></td>
-<td><textarea id="mega1spa" style="width:64px;" disabled></textarea></td>
-<td><textarea id="mega2spa" style="width:64px;" disabled></textarea></td>
 </tr>
 <tr>
 <td class="basestat">SpD</td>
@@ -190,8 +182,6 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><textarea id="avgspd" style="width:64px;" disabled></textarea></td>
 <td><textarea id="modspd" style="width:64px;" disabled></textarea></td>
 <td><textarea id="specialbulk" style="width:64px;" placeholder="Special" disabled></textarea></td>
-<td><textarea id="mega1spd" style="width:64px;" disabled></textarea></td>
-<td><textarea id="mega2spd" style="width:64px;" disabled></textarea></td>
 </tr>
 <tr>
 <td class="basestat">Spe</td>
@@ -201,8 +191,6 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><textarea id="avgspe" style="width:64px;" disabled></textarea></td>
 <td><textarea id="modspe" style="width:64px;" disabled></textarea></td>
 <td></td>
-<td><textarea id="mega1spe" style="width:64px;" disabled></textarea></td>
-<td><textarea id="mega2spe" style="width:64px;" disabled></textarea></td>
 </tr>
 <tr>
 <tr>
@@ -213,8 +201,6 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><textarea id="avgbst" style="width:64px;" disabled></textarea></td>
 <td><textarea id="modbst" style="width:64px;" disabled></textarea></td>
 <td></td>
-<td><textarea id="mega1bst" style="width:64px;" disabled></textarea></td>
-<td><textarea id="mega2bst" style="width:64px;" disabled></textarea></td>
 </tr>
 <tr>
 <td>Weight</td>
@@ -238,7 +224,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <tr>
 <td>Ability</td>
 <td><textarea type="text" id="abe" onInput="post()" style="width:134px;"></textarea></td>
-<td colspan="2"><span id="mega1abe" style="width:64px;" class="abearea" onClick='document.getElementById("abe").value = ""+document.getElementById("mega1abe").innerText+"";post();post()'></span></td>
+<td colspan="4"><span id="mega1abe" style="width:64px;" class="abearea" onClick='document.getElementById("abe").value = ""+document.getElementById("mega1abe").innerText+"";post();post()'></span></td>
 <td><span id="mega2abe" style="width:64px;" class="abearea" onClick='document.getElementById("abe").value = ""+document.getElementById("mega2abe").innerText+"";post();post()'></span></td>
 </tr>
 </table>
@@ -5104,6 +5090,11 @@ type2 = ", &quot;"+type2+"&quot;],";
  let mega1spd =0;
  let mega1spe =0;
  let mega1abe= '';
+ let avgatk = parseInt(document.getElementById("avgatk").value);
+ let avgdef = parseInt(document.getElementById("avgdef").value);
+ let avgspa = parseInt(document.getElementById("avgspa").value);
+ let avgspd = parseInt(document.getElementById("avgspd").value);
+ let avgspe = parseInt(document.getElementById("avgspe").value);
  Object.values(pokedexdata).forEach(mon => {
   if (mon.name === fuse1) {
             base1atk = mon.baseStats.atk;
@@ -5126,18 +5117,14 @@ type2 = ", &quot;"+type2+"&quot;],";
 		});
         
         });
-        let oldatk1 = document.getElementById("oldatk1").value;
-let oldatk = document.getElementById("oldatk").value;
-let avgatk = Math.floor((+oldatk1 + +oldatk)/2);
 
-document.getElementById("mega1atk").innerHTML = mega1atk - base1atk;
-document.getElementById("mega1def").innerHTML = mega1def - base1def;
-document.getElementById("mega1spa").innerHTML = mega1spa - base1spa;
-document.getElementById("mega1spd").innerHTML = mega1spd - base1spd;
-document.getElementById("mega1spe").innerHTML = mega1spe - base1spe;
-document.getElementById("mega1bst").innerHTML = (mega1atk - base1atk + mega1def - base1def + mega1spa - base1spa + mega1spd - base1spd + mega1spe - base1spe);
+document.getElementById("atk").value = avgatk + mega1atk - base1atk;
+document.getElementById("def").value = avgdef + mega1def - base1def;
+document.getElementById("spa").value = avgspa + mega1spa - base1spa;
+document.getElementById("spd").value = avgspd + mega1spd - base1spd;
+document.getElementById("spe").value = avgspe + mega1spe - base1spe;
 document.getElementById("mega1abe").innerHTML = `${mega1abe}`;
-document.getElementById("abe").innerHTML = `${mega1abe}`;
+document.getElementById("abe").value = `${mega1abe}`;
 }
 
 function mega2() {
@@ -5193,6 +5180,11 @@ type2 = ", &quot;"+type2+"&quot;],";
  let mega2spd =0;
  let mega2spe =0;
  let mega2abe = '';
+  let avgatk = parseInt(document.getElementById("avgatk").value);
+ let avgdef = parseInt(document.getElementById("avgdef").value);
+ let avgspa = parseInt(document.getElementById("avgspa").value);
+ let avgspd = parseInt(document.getElementById("avgspd").value);
+ let avgspe = parseInt(document.getElementById("avgspe").value);
  Object.values(pokedexdata).forEach(mon => {
   if (mon.name === fuse2) {
             base2atk = mon.baseStats.atk;
@@ -5216,12 +5208,11 @@ type2 = ", &quot;"+type2+"&quot;],";
         
         });
 
-document.getElementById("mega2atk").innerHTML = mega2atk - base2atk;
-document.getElementById("mega2def").innerHTML = mega2def - base2def;
-document.getElementById("mega2spa").innerHTML = mega2spa - base2spa;
-document.getElementById("mega2spd").innerHTML = mega2spd - base2spd;
-document.getElementById("mega2spe").innerHTML = mega2spe - base2spe;
-document.getElementById("mega2bst").innerHTML = (mega2atk - base2atk + mega2def - base2def + mega2spa - base2spa + mega2spd - base2spd + mega2spe - base2spe);
+document.getElementById("atk").value = avgatk + mega2atk - base2atk;
+document.getElementById("def").value = avgdef + mega2def - base2def;
+document.getElementById("spa").value = avgspa + mega2spa - base2spa;
+document.getElementById("spd").value = avgspd + mega2spd - base2spd;
+document.getElementById("spe").value = avgspe + mega2spe - base2spe;
 
 document.getElementById("mega2abe").innerHTML = `${mega2abe}`;
 document.getElementById("abe").innerHTML = `${mega2abe}`;
@@ -5232,23 +5223,23 @@ document.getElementById("abe").innerHTML = `${mega2abe}`;
 /* \left(\left(\frac{\left(42\:\cdot \:BP\:\cdot \left(\frac{Atk}{299}\right)\:\right)}{\:50}\:+\:2\right)\:\cdot \:1.5\:\right)\cdot \frac{100}{404}
 */
 
-function mega1stats() {
+/*function mega1stats() {
 
 document.getElementById("atk").value = parseInt(document.getElementById("avgatk").value) + parseInt(document.getElementById("mega1atk").value);
 document.getElementById("def").value = parseInt(document.getElementById("avgdef").value) + parseInt(document.getElementById("mega1def").value);
 document.getElementById("spa").value = parseInt(document.getElementById("avgspa").value) + parseInt(document.getElementById("mega1spa").value);
 document.getElementById("spd").value = parseInt(document.getElementById("avgspd").value) + parseInt(document.getElementById("mega1spd").value);
 document.getElementById("spe").value = parseInt(document.getElementById("avgspe").value) + parseInt(document.getElementById("mega1spe").value);
-}
+}*/
 
-function mega2stats() {
+/*function mega2stats() {
 
 document.getElementById("atk").value = parseInt(document.getElementById("avgatk").value) + parseInt(document.getElementById("mega2atk").value);
 document.getElementById("def").value = parseInt(document.getElementById("avgdef").value) + parseInt(document.getElementById("mega2def").value);
 document.getElementById("spa").value = parseInt(document.getElementById("avgspa").value) + parseInt(document.getElementById("mega2spa").value);
 document.getElementById("spd").value = parseInt(document.getElementById("avgspd").value) + parseInt(document.getElementById("mega2spd").value);
 document.getElementById("spe").value = parseInt(document.getElementById("avgspe").value) + parseInt(document.getElementById("mega2spe").value);
-}
+}*/
 
 function copy() {
   let xd = document.getElementById("xd");
