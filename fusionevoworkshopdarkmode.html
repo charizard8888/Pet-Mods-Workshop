@@ -109,14 +109,14 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td>Pkmn 1</td>
 <td><input type="text" id="fuse1" list="allmons" onInput="post();post();post();post();load();post()" style="width:134px;" autofocus></input></td>
 <td><span id="typearea1"></span></td>
-<td><button onClick="post();load();mega();post();mega1stats();post()" class="button2">Mega</button></td>
+<td><button onClick="post();mega();post();mega1stats();post()" class="button2">Mega</button></td>
 <td><span id="megabox1"></span></td>
 </tr>
 <tr>
 <td>Pkmn 2</td>
 <td><input type="text" id="fuse2" list="allmons" onInput="post();post();post();load();post()" style="width:134px;"></input>
 <td><span id="typearea"></span></td>
-<td><button onClick="post();load();mega2();post();mega2stats();post()" class="button2">Mega</button></td>
+<td><button onClick="post();mega2();post();mega2stats();post()" class="button2">Mega</button></td>
 </tr>
 <tr>
 <td>Fusion</td>
@@ -5118,6 +5118,7 @@ type2 = ", &quot;"+type2+"&quot;],";
         
         });
 if (ismega1 === true) {
+load()
 document.getElementById("atk").value = avgatk + mega1atk - base1atk;
 document.getElementById("def").value = avgdef + mega1def - base1def;
 document.getElementById("spa").value = avgspa + mega1spa - base1spa;
@@ -5129,7 +5130,6 @@ document.getElementById("abe").value = `${mega1abe}`;
 }
 
 function mega2() {
-
 let fuse1= document.getElementById("fuse1").value;
 let fuse2= document.getElementById("fuse2").value;
 let fusion = document.getElementById("fusion").value;
@@ -5210,6 +5210,7 @@ type2 = ", &quot;"+type2+"&quot;],";
         });
 
 if (ismega2 === true) {
+load()
 document.getElementById("atk").value = avgatk + mega2atk - base2atk;
 document.getElementById("def").value = avgdef + mega2def - base2def;
 document.getElementById("spa").value = avgspa + mega2spa - base2spa;
