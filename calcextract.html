@@ -1,0 +1,46 @@
+<html>
+<textarea id="abedesc" onClick="load()" style="width:900px;height:500px;"></textarea>
+<button onClick="load()">Click</button>
+</html>
+<script>
+function load() {
+
+/*
+
+ Zarude: {
+    types: ['Dark', 'Grass'],
+    bs: {hp: 105, at: 120, df: 105, sa: 70, sd: 95, sp: 105},
+    weightkg: 70,
+    abilities: {0: 'Leaf Guard'},
+    gender: 'N',
+    otherFormes: ['Zarude-Dada'],
+  },
+
+*/
+
+
+let pk2ab1 = '';  
+  Object.values(pokedexdata).forEach(mon => {
+			pk2ab1 += `'${mon.name}': {\n types: ["${mon.types[0]}", "${mon.types[1]}"],\n bs: { "hp": ${mon.baseStats.hp}, "at": ${mon.baseStats.atk}, "df": ${mon.baseStats.def}, "sa": ${mon.baseStats.spa}, "sd": ${mon.baseStats.spd}, "sp": ${mon.baseStats.spe}},\n weightkg: ${mon.weightkg},\n abilities: {0: '${mon.abilities[0]}'}, \n},\n`;
+	pk2ab1 = pk2ab1.replace(', "undefined"','');	
+  });
+document.getElementById("abedesc").innerHTML = `${pk2ab1}`;
+
+}
+
+let pokedexdata = {
+	// ENTER POKEDEX.TS DATA HERE, Thrre's a } already at the end
+	
+	volquag: {
+		fusion: ['Volcanion', 'Quagsire'],
+		num: 1,
+		name: "Volquag",
+		types: ["Fire", "Water"],
+		baseStats: {hp: 90, atk: 97, def: 114, spa: 100, spd: 83, spe: 65},
+		abilities: {0: "Porous"},
+		weightkg: 135,
+	},
+	
+	// Dex Data End
+}
+</script>
