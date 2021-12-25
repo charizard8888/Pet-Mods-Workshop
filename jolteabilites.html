@@ -1,0 +1,134 @@
+<html>
+<head>
+<title>Moves Distributor</title>
+<style>
+body, table {
+font-size: 24px;
+}
+button {
+background-color: black;
+color: aqua;
+border: solid 4px aqua;
+font-size:28px;
+cursor: url(http://www.pokestadium.com/assets/img/sprites/misc/icons/charizard-mega-x.png), auto;
+}
+.code {
+background-color: black;
+color:lime;
+}
+h1 {
+font-family: Jokerman;
+color:Aqua;
+background-color:black;
+width: 40%;
+border: 4px solid Aqua;
+text-align: center;
+}
+p {
+background-color: black;
+color: aqua;
+}
+.mod {
+background-color: black;
+color: #FFA000;
+}
+textarea {
+height: 200px;
+width: 500px;
+  }
+</style>
+</head>
+<body>
+  <center><h1>Moves Distributor</h1></center>
+<table>
+<tr>
+<td>Ability: <input id="ability" onInput="post()" list="allmoves"></input></td>
+</tr>
+<tr>
+<td>Pokemon</td>
+</tr>
+<tr>
+<td><textarea id="pokemon" onInput="post()" list="allmons"></textarea></td>
+</tr>
+
+</table>
+<center>
+</center>
+<textarea id="pokemoncode" style="width:500px;height:800px;"></textarea>
+
+
+
+</body>
+<script>
+function post () 
+{
+let ability = document.getElementById("ability").value;
+let pokemon = document.getElementById("pokemon").value;
+pokemon = pokemon.trim().toLowerCase();
+
+for (let i = 0; i < 80; i++) {
+  pokemon = pokemon.replace(" ", "");;
+  pokemon = pokemon.replace("-", "");;
+}
+
+let pokemonz = pokemon.split(",");
+
+let pokemon1 = pokemonz[0];
+let pokemon2 = pokemonz[1];
+let pokemon3 = pokemonz[2];
+let pokemon4 = pokemonz[3];
+let pokemon5 = pokemonz[4];
+let pokemon6 = pokemonz[5];
+let pokemon7 = pokemonz[6];
+let pokemon8 = pokemonz[7];
+let pokemon9 = pokemonz[8];
+let pokemon10 = pokemonz[9];
+let pokemon11 = pokemonz[10];
+let pokemon12 = pokemonz[11];
+let pokemon13 = pokemonz[12];
+let pokemon14 = pokemonz[13];
+let pokemon15 = pokemonz[14];
+let pokemon16 = pokemonz[15];
+let pokemon17 = pokemonz[16];
+let pokemon18 = pokemonz[17];
+let pokemon19 = pokemonz[18];
+let pokemon20 = pokemonz[19];
+let pokemon21 = pokemonz[20];
+let pokemon22 = pokemonz[21];
+let pokemon23 = pokemonz[22];
+let pokemon24 = pokemonz[23];
+let pokemon25 = pokemonz[24];
+let pokemon26 = pokemonz[25];
+let pokemon27 = pokemonz[26];
+let pokemon28 = pokemonz[27];
+let pokemon29 = pokemonz[28];
+let pokemon30 = pokemonz[29];
+let pokemon31 = pokemonz[30];
+let pokemon32 = pokemonz[31];
+let pokemon33 = pokemonz[32];
+let pokemon34 = pokemonz[33];
+let pokemon35 = pokemonz[34];
+let pokemon36 = pokemonz[35];
+let pokemon37 = pokemonz[36];
+let pokemon38 = pokemonz[37];
+let pokemon39 = pokemonz[38];
+let pokemon40 = pokemonz[39];
+let pokemon41 = pokemonz[40];
+let pokemon42 = pokemonz[41];
+let pokemon43 = pokemonz[42];
+let pokemon44 = pokemonz[43];
+let pokemon45 = pokemonz[44];
+let pokemon46 = pokemonz[45];
+let pokemon47 = pokemonz[46];
+let pokemon48 = pokemonz[47];
+let pokemon49 = pokemonz[48];
+let pokemon50 = pokemonz[49];
+
+
+
+//document.getElementById("pokemoncode").innerHTML = `${pokemon1}`;
+
+document.getElementById("pokemoncode").innerHTML = "&sol;&sol; "+ability+"\n\n"+pokemon1+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon2+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon3+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon4+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon5+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon6+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon7+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon8+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon9+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon10+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon11+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon12+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon13+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon14+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon15+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon16+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon17+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon18+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon19+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon20+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon21+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon22+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon23+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon24+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon25+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon26+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon27+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon28+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon29+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon30+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon31+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon32+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon33+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon34+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n"+pokemon35+": {\n&nbsp;&nbsp;&nbsp;&nbsp;inherit: true,\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: &quot;&quot;, 1: &quot;&quot;, H: &quot;&quot;},\n},\n";
+}
+</script>
+</html>
