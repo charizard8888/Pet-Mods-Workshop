@@ -68,11 +68,15 @@ width: 500px;
 function post () 
 {
 let move = document.getElementById("move").value;
+  move=move.trim().toLowerCase);
+  move = move.replace(" ", "");
+  move = move.replace(" ", "");
 let pokemon = document.getElementById("pokemon").value;
 pokemon = pokemon.trim().toLowerCase();
 
-for (let i = 0; i < 80; i++) {
-  pokemon = pokemon.replace(" ", "");;
+for (let i = 0; i < 800; i++) {
+  pokemon = pokemon.replace(" ", "");
+  pokemon = pokemon.replace("-", "");
 }
 
 let pokemonz = pokemon.split(",");
