@@ -1,0 +1,132 @@
+<html>
+<head>
+<title>Moves Distributor</title>
+<style>
+body, table {
+font-size: 24px;
+}
+button {
+background-color: black;
+color: aqua;
+border: solid 4px aqua;
+font-size:28px;
+cursor: url(http://www.pokestadium.com/assets/img/sprites/misc/icons/charizard-mega-x.png), auto;
+}
+.code {
+background-color: black;
+color:lime;
+}
+h1 {
+font-family: Jokerman;
+color:Aqua;
+background-color:black;
+width: 40%;
+border: 4px solid Aqua;
+text-align: center;
+}
+p {
+background-color: black;
+color: aqua;
+}
+.mod {
+background-color: black;
+color: #FFA000;
+}
+textarea {
+height: 200px;
+width: 500px;
+  }
+</style>
+</head>
+<body>
+  <center><h1>Moves Distributor</h1></center>
+<table>
+<tr>
+<td>Move:</td>
+<td><input id="move" onInput="post()" list="allmoves"></input></td>
+</tr>
+<tr>
+<td>Pokemon:</td>
+<td><textarea id="pokemon" onInput="post()" list="allmons"></textarea></td>
+</tr>
+
+</table>
+<center>
+</center>
+<p id="pokemoncode"></p>
+
+
+
+</body>
+<script>
+function post () 
+{
+let move = document.getElementById("move").value;
+let pokemon = document.getElementById("pokemon").value;
+pokemon = pokemon.trim().toLowerCase();
+
+for (let i = 0; i < 80; i++) {
+  pokemon = pokemon.replace(" ", "");;
+}
+
+let pokemonz = pokemon.split(",");
+
+let pokemon1 = pokemonz[0];
+let pokemon2 = pokemonz[1];
+let pokemon3 = pokemonz[2];
+let pokemon4 = pokemonz[3];
+let pokemon5 = pokemonz[4];
+let pokemon6 = pokemonz[5];
+let pokemon7 = pokemonz[6];
+let pokemon8 = pokemonz[7];
+let pokemon9 = pokemonz[8];
+let pokemon10 = pokemonz[9];
+let pokemon11 = pokemonz[10];
+let pokemon12 = pokemonz[11];
+let pokemon13 = pokemonz[12];
+let pokemon14 = pokemonz[13];
+let pokemon15 = pokemonz[14];
+let pokemon16 = pokemonz[15];
+let pokemon17 = pokemonz[16];
+let pokemon18 = pokemonz[17];
+let pokemon19 = pokemonz[18];
+let pokemon20 = pokemonz[19];
+let pokemon21 = pokemonz[20];
+let pokemon22 = pokemonz[21];
+let pokemon23 = pokemonz[22];
+let pokemon24 = pokemonz[23];
+let pokemon25 = pokemonz[24];
+let pokemon26 = pokemonz[25];
+let pokemon27 = pokemonz[26];
+let pokemon28 = pokemonz[27];
+let pokemon29 = pokemonz[28];
+let pokemon30 = pokemonz[29];
+let pokemon31 = pokemonz[30];
+let pokemon32 = pokemonz[31];
+let pokemon33 = pokemonz[32];
+let pokemon34 = pokemonz[33];
+let pokemon35 = pokemonz[34];
+let pokemon36 = pokemonz[35];
+let pokemon37 = pokemonz[36];
+let pokemon38 = pokemonz[37];
+let pokemon39 = pokemonz[38];
+let pokemon40 = pokemonz[39];
+let pokemon41 = pokemonz[40];
+let pokemon42 = pokemonz[41];
+let pokemon43 = pokemonz[42];
+let pokemon44 = pokemonz[43];
+let pokemon45 = pokemonz[44];
+let pokemon46 = pokemonz[45];
+let pokemon47 = pokemonz[46];
+let pokemon48 = pokemonz[47];
+let pokemon49 = pokemonz[48];
+let pokemon50 = pokemonz[49];
+
+
+
+//document.getElementById("pokemoncode").innerHTML = `${pokemon1}`;
+
+document.getElementById("pokemoncode").innerHTML = "&sol;&sol; "+move+" <br>this.modData('Learnsets', '"+pokemon1+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon2+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon3+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon4+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon5+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon6+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon7+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon8+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon9+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon10+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon11+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon12+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon13+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon14+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon15+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon16+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon17+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon18+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon19+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon20+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon21+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon22+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon23+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon24+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon25+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon26+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon27+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon28+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon29+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon30+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon31+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon32+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon33+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon34+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon35+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon36+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon37+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon38+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon39+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon40+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon41+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon42+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon43+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon44+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon45+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon46+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon47+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon48+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon49+"').learnset."+move+" = ['7L1'];<br>this.modData('Learnsets', '"+pokemon50+"').learnset."+move+" = ['7L1'];"
+}
+</script>
+</html>
