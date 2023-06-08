@@ -110,7 +110,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <tr>
 <td>Pkmn 1</td>
 <td><input tabIndex="1" type="text" id="fuse1" list="allmons" onInput="post();post();post();load();post()" style="width:134px;" autofocus></input></td>
-<td><span id="typearea1"></span></td>
+<td><span id="type1area1" onClick='document.getElementById("type").value = ""+pk1t1+"";post();post()'></span><span id="type2area1" onClick='document.getElementById("type").value = ""+pk1t2+"";post();post()'></span></td>
 <td><button onClick="mega();post();mega1stats();post()" class="button2">Mega</button></td>
 <td><span id="megabox1"></span></td>
 
@@ -118,7 +118,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <tr>
 <td>Pkmn 2</td>
 <td><input tabIndex="2" type="text" id="fuse2" list="allmons" onInput="post();post();load();post()" style="width:134px;"></input>
-<td><span id="typearea"></span></td>
+<td><span id="type1area2" onClick='document.getElementById("type2").value = ""+pk2t1+"";post();post()'></span><span id="type2area2" onClick='document.getElementById("type2").value = ""+pk2t2+"";post();post()'></span></td>
 <td><button onClick="mega2();post();mega2stats();post()" class="button2">Mega</button></td>
 </tr>
 <tr>
@@ -483,10 +483,11 @@ document.getElementById("oldwt1").innerHTML = `${oldwt1}`;
 
 
 if (pk1t2 === 'undefined') {
-	document.getElementById("typearea1").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${pk1t1}.png>`;
+	document.getElementById("type1area1").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${pk1t1}.png>`;
 }
 else {
-document.getElementById("typearea1").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${pk1t1}.png><img src=https://play.pokemonshowdown.com/sprites/types/${pk1t2}.png>`;
+document.getElementById("type1area1").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${pk1t1}.png>`;
+document.getElementById("type2area1").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${pk1t2}.png>`;
 }
 
 window.pk1ab2 = '';  
@@ -536,10 +537,11 @@ document.getElementById("oldspd").innerHTML = `${oldspd}`;
 document.getElementById("oldspe").innerHTML = `${oldspe}`;
 document.getElementById("oldwt").innerHTML = `${oldwt}`;
 if (pk2t2 === 'undefined') {
-	document.getElementById("typearea").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${pk2t1}.png>`;
+	document.getElementById("type2area2").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${pk2t1}.png>`;
 }
 else {
-document.getElementById("typearea").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${pk2t1}.png><img src=https://play.pokemonshowdown.com/sprites/types/${pk2t2}.png>`;
+document.getElementById("type1area2").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${pk2t1}.png>`;
+document.getElementById("type2area2").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${pk2t2}.png>`;
 }
 
 
@@ -899,8 +901,10 @@ window.mega2boosted = false;
     document.getElementById('text').value = '';
     document.getElementById('atk').innerText = '0';
     document.getElementById('ft').innerHTML = '';
-    document.getElementById('typearea1').innerHTML = '';
-    document.getElementById('typearea').innerHTML = '';
+    document.getElementById('type1area1').innerHTML = '';
+    document.getElementById('type1area2').innerHTML = '';
+document.getElementById('type2area1').innerHTML = '';
+    document.getElementById('type2area2').innerHTML = '';
     
     document.getElementById('hp').value = 0;
     document.getElementById('atk').value= 0;
