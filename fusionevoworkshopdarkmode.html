@@ -120,6 +120,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><input tabIndex="2" type="text" id="fuse2" list="allmons" onInput="post();post();load();post()" style="width:134px;"></input>
 <td><span id="typearea"></span></td>
 <td><button onClick="mega2();post();mega2stats();post()" class="button2">Mega</button></td>
+<td><span id="megabox2"></span></td>
 </tr>
 <tr>
 <td>Fusion</td>
@@ -375,6 +376,14 @@ else {
 type2 = ", &quot;"+type2+"&quot;],";
 }
 
+if (fuse1 === 'Charizard' || fuse1 === 'Mewtwo') {
+document.getElementById("megabox1").innerHTML=`<button class="button2" onClick="formex();mega();post();">Mega X</button> <button class="button2" onClick="formey();mega();">Mega Y</button>`;
+}
+
+if (fuse2 === 'Charizard' || fuse2 === 'Mewtwo') {
+document.getElementById("megabox2").innerHTML=`<button class="button2" onClick="formex();mega();post();">Mega X</button> <button class="button2" onClick="formey();mega();">Mega Y</button>`;
+}
+
 window.oldhp1 = document.getElementById("oldhp1").value;
 window.oldhp = document.getElementById("oldhp").value;
 window.avghp = Math.floor((+oldhp1 + +oldhp)/2);
@@ -626,6 +635,17 @@ window.mega2boosted = false;
 }
 window.mega1boosted = false;
 window.mega2boosted = false;
+
+function formex() {
+window.megamonforme = 'X';
+}
+
+function formey() {
+window.megamonforme = 'Y';
+}
+
+
+
 function mega() {
 
 /*let fuse1= document.getElementById("fuse1").value;
@@ -706,10 +726,59 @@ window.ismega1 = false;
             mega1spe = megamon.baseStats.spe;
             mega1abe = megamon.abilities[0];
             }
+
 		});
         
         });
 
+
+ Object.values(pokedexdata).forEach(mon => {
+  if (mon.name === 'Charizard') {
+            base1atk = mon.baseStats.atk;
+            base1def = mon.baseStats.def;
+            base1spa = mon.baseStats.spa;
+            base1spd = mon.baseStats.spd;
+            base1spe = mon.baseStats.spe;
+            }
+		
+  Object.values(pokedexdata).forEach(megamon => {
+  if ((megamonforme === 'X' && megamon.name === 'Charizard-Mega-X') || (megamonforme === 'Y' && megamon.name === 'Charizard-Mega-Y')) {
+	  ismega1 = true;
+            mega1atk = megamon.baseStats.atk;
+            mega1def = megamon.baseStats.def;
+            mega1spa = megamon.baseStats.spa;
+            mega1spd = megamon.baseStats.spd;
+            mega1spe = megamon.baseStats.spe;
+            mega1abe = megamon.abilities[0];
+            }
+
+		});
+        
+        });
+
+ Object.values(pokedexdata).forEach(mon => {
+  if (mon.name === 'Mewtwo') {
+            base1atk = mon.baseStats.atk;
+            base1def = mon.baseStats.def;
+            base1spa = mon.baseStats.spa;
+            base1spd = mon.baseStats.spd;
+            base1spe = mon.baseStats.spe;
+            }
+		
+  Object.values(pokedexdata).forEach(megamon => {
+  if ((megamonforme === 'X' && megamon.name === 'Mewtwo-Mega-X') || (megamonforme === 'Y' && megamon.name === 'Mewtwo-Mega-Y')) {
+	  ismega1 = true;
+            mega1atk = megamon.baseStats.atk;
+            mega1def = megamon.baseStats.def;
+            mega1spa = megamon.baseStats.spa;
+            mega1spd = megamon.baseStats.spd;
+            mega1spe = megamon.baseStats.spe;
+            mega1abe = megamon.abilities[0];
+            }
+
+		});
+        
+        });
 
 
 if (ismega1 === true && mega1boosted === false) {
@@ -20194,3 +20263,4 @@ let pokedexdata = {
 
 </script>
 </html>
+						
