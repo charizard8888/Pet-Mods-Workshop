@@ -113,6 +113,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><span id="typearea1"></span></td>
 <td><button onClick="mega();post();mega1stats();post()" class="button2">Mega</button></td>
 <td><span id="megabox1"></span></td>
+
 </tr>
 <tr>
 <td>Pkmn 2</td>
@@ -336,98 +337,98 @@ $(document).on('keypress', 'input,textarea,button,select', function (e) {
 function post ()
 {
 // Front and Part Back End
-let fuse1= document.getElementById("fuse1").value;
-let fuse2= document.getElementById("fuse2").value;
-let fusion = document.getElementById("fusion").value;
-let type= document.getElementById("type").value;
-let type2= document.getElementById("type2").value;
-let hp= document.getElementById("hp").value;
-let atk= document.getElementById("atk").value;
-let def= document.getElementById("def").value;
-let spa= document.getElementById("spa").value;
-let spd= document.getElementById("spd").value;
-let spe= document.getElementById("spe").value;
-let abe= document.getElementById("abe").value;
-let abe1= document.getElementById("abe1").value;
-let abe2= document.getElementById("abe2").value;
-let abedesc= document.getElementById("abedesc").innerText;
-let physicalmoves= document.getElementById("physicalmoves").innerText;
-let specialmoves= document.getElementById("specialmoves").innerText;
-let statusmoves= document.getElementById("statusmoves").innerText;
+window.fuse1= document.getElementById("fuse1").value;
+window.fuse2= document.getElementById("fuse2").value;
+window.fusion = document.getElementById("fusion").value;
+window.type= document.getElementById("type").value;
+window.type2= document.getElementById("type2").value;
+window.hp= document.getElementById("hp").value;
+window.atk= document.getElementById("atk").value;
+window.def= document.getElementById("def").value;
+window.spa= document.getElementById("spa").value;
+window.spd= document.getElementById("spd").value;
+window.spe= document.getElementById("spe").value;
+window.abe= document.getElementById("abe").value;
+window.abe1= document.getElementById("abe1").value;
+window.abe2= document.getElementById("abe2").value;
+window.abedesc= document.getElementById("abedesc").innerText;
+window.physicalmoves= document.getElementById("physicalmoves").innerText;
+window.specialmoves= document.getElementById("specialmoves").innerText;
+window.statusmoves= document.getElementById("statusmoves").innerText;
 
-let rolejustification= document.getElementById("rolejustification").innerText;
+window.rolejustification= document.getElementById("rolejustification").innerText;
 
-let intendedrole= document.getElementById("intendedrole").innerText;
-let wt=document.getElementById("wt").value;
-let text=document.getElementById("text").value;
+window.intendedrole= document.getElementById("intendedrole").innerText;
+window.wt=document.getElementById("wt").value;
+window.text=document.getElementById("text").value;
 
 // Back End
-let mon = fusion.toLowerCase();
-let f1 = fuse1.toLowerCase();
-let f2 = fuse2.toLowerCase();
+window.mon = fusion.toLowerCase();
+window.f1 = fuse1.toLowerCase();
+window.f2 = fuse2.toLowerCase();
 f1 = f1.replace(" ","");
 f2 = f2.replace(" ","");
-let t2=type2;
+window.t2=type2;
 if (type2==="") {type2 = "],";
 }
 else {
 type2 = ", &quot;"+type2+"&quot;],";
 }
 
-let oldhp1 = document.getElementById("oldhp1").value;
-let oldhp = document.getElementById("oldhp").value;
-let avghp = Math.floor((+oldhp1 + +oldhp)/2);
+window.oldhp1 = document.getElementById("oldhp1").value;
+window.oldhp = document.getElementById("oldhp").value;
+window.avghp = Math.floor((+oldhp1 + +oldhp)/2);
 document.getElementById("avghp").innerHTML=""+avghp+"";
 document.getElementById("hp").innerHTML=""+avghp+"";
 
-let oldatk1 = document.getElementById("oldatk1").value;
-let oldatk = document.getElementById("oldatk").value;
-let avgatk = Math.floor((+oldatk1 + +oldatk)/2);
+window.oldatk1 = document.getElementById("oldatk1").value;
+window.oldatk = document.getElementById("oldatk").value;
+window.avgatk = Math.floor((+oldatk1 + +oldatk)/2);
 document.getElementById("avgatk").innerHTML=""+avgatk+"";
 document.getElementById("atk").innerHTML=""+avgatk+"";
 
-let olddef1 = document.getElementById("olddef1").value;
-let olddef = document.getElementById("olddef").value;
-let avgdef = Math.floor((+olddef1 + +olddef)/2);
+window.olddef1 = document.getElementById("olddef1").value;
+window.olddef = document.getElementById("olddef").value;
+window.avgdef = Math.floor((+olddef1 + +olddef)/2);
 document.getElementById("avgdef").innerHTML=""+avgdef+"";
 document.getElementById("def").innerHTML=""+avgdef+"";
 
-let oldspa1 = document.getElementById("oldspa1").value;
-let oldspa = document.getElementById("oldspa").value;
-let avgspa = Math.floor((+oldspa1 + +oldspa)/2);
+window.oldspa1 = document.getElementById("oldspa1").value;
+window.oldspa = document.getElementById("oldspa").value;
+window.avgspa = Math.floor((+oldspa1 + +oldspa)/2);
 document.getElementById("avgspa").innerHTML=""+avgspa+"";
 document.getElementById("spa").innerHTML=""+avgspa+"";
 
-let oldspd1 = document.getElementById("oldspd1").value;
-let oldspd = document.getElementById("oldspd").value;
-let avgspd = Math.floor((+oldspd1 + +oldspd)/2);
+window.oldspd1 = document.getElementById("oldspd1").value;
+window.oldspd = document.getElementById("oldspd").value;
+window.avgspd = Math.floor((+oldspd1 + +oldspd)/2);
 document.getElementById("avgspd").innerHTML=""+avgspd+"";
 document.getElementById("spd").innerHTML=""+avgspd+"";
 
-let oldspe1 = document.getElementById("oldspe1").value;
-let oldspe = document.getElementById("oldspe").value;
-let avgspe = Math.floor((+oldspe1 + +oldspe)/2);
+window.oldspe1 = document.getElementById("oldspe1").value;
+window.oldspe = document.getElementById("oldspe").value;
+window.avgspe = Math.floor((+oldspe1 + +oldspe)/2);
 document.getElementById("avgspe").innerHTML=""+avgspe+"";
 document.getElementById("spe").innerHTML=""+avgspe+"";
 
-let oldwt1 = document.getElementById("oldwt1").value;
-let oldwt = document.getElementById("oldwt").value;
-let avgwt = (Math.round(((+oldwt1 + +oldwt)/2)*100))/100;
+window.oldwt1 = document.getElementById("oldwt1").value;
+window.oldwt = document.getElementById("oldwt").value;
+window.avgwt = (Math.round(((+oldwt1 + +oldwt)/2)*100))/100;
 document.getElementById("wt").innerHTML=""+avgwt+"";
 
-let modhp = +hp - +avghp;
-let modatk = +atk - +avgatk;
-let moddef = +def - +avgdef;
-let modspa = +spa - +avgspa;
-let modspd = +spd - +avgspd;
-let modspe = +spe - +avgspe;
-let bst=+hp + +atk + +def + +spa + +spd + +spe;
-let modbst =+modhp + +modatk + +moddef + +modspa + +modspd + +modspe
+window.modhp = +hp - +avghp;
+window.modatk = +atk - +avgatk;
+window.moddef = +def - +avgdef;
+window.modspa = +spa - +avgspa;
+window.modspd = +spd - +avgspd;
+window.modspe = +spe - +avgspe;
+window.bst=+hp + +atk + +def + +spa + +spd + +spe;
+window.modbst =+modhp + +modatk + +moddef + +modspa + +modspd + +modspe
 document.getElementById("bst").innerHTML=""+bst+"";
-let oldbst =+oldhp + +oldatk + +olddef + +oldspa + +oldspd + +oldspe;
+window.oldbst =+oldhp + +oldatk + +olddef + +oldspa + +oldspd + +oldspe;
 document.getElementById("oldbst").innerHTML=""+oldbst+"";
 
-let oldbst1 =+oldhp1 + +oldatk1 + +olddef1 + +oldspa1 + +oldspd1 + +oldspe1;
+window.oldbst1 =+oldhp1 + +oldatk1 + +olddef1 + +oldspa1 + +oldspd1 + +oldspe1;
 document.getElementById("oldbst1").innerHTML=""+oldbst1+"";
 
 let avgbst =+avghp + +avgatk + +avgdef + +avgspa + +avgspd + +avgspe;
@@ -456,7 +457,7 @@ if (abe2==="Doubility") {document.getElementById("abe").innerHTML=""+abe1+"";
 }if (abe1==="Doubility") {document.getElementById("abe").innerHTML=""+abe2+"";
 }
 
- let pk1ab1 = '';  
+ window.pk1ab1 = '';  
   Object.values(pokedexdata).forEach(mon => {
   if (mon.name === fuse1) {
   			oldhp1 = `${mon.baseStats.hp}`;
@@ -488,7 +489,7 @@ else {
 document.getElementById("typearea1").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${pk1t1}.png><img src=https://play.pokemonshowdown.com/sprites/types/${pk1t2}.png>`;
 }
 
-let pk1ab2 = '';  
+window.pk1ab2 = '';  
   Object.values(pokedexdata).forEach(mon => {
   if (mon.name === fuse1) {
 			pk1ab2 += `${mon.abilities[1]}`;
@@ -498,7 +499,7 @@ if (pk1ab2 != 'undefined') {
 document.getElementById("ability1area2").innerHTML = `${pk1ab2}`;
 }
 
-let pk1ab3 = '';  
+window.pk1ab3 = '';  
   Object.values(pokedexdata).forEach(mon => {
   if (mon.name === fuse1) {
 			pk1ab3 += `${mon.abilities["H"]}`;
@@ -511,7 +512,7 @@ document.getElementById("ability1area3").innerHTML = `${pk1ab3}`;
 
 // PK 2 Abilities
 
-let pk2ab1 = '';  
+window.pk2ab1 = '';  
   Object.values(pokedexdata).forEach(mon => {
   if (mon.name === fuse2) {
 			pk2ab1 += `${mon.abilities[0]}`;
@@ -542,7 +543,7 @@ document.getElementById("typearea").innerHTML=`<img src=https://play.pokemonshow
 }
 
 
-let pk2ab2 = '';  
+window.pk2ab2 = '';  
   Object.values(pokedexdata).forEach(mon => {
   if (mon.name === fuse2) {
 			pk2ab2 += `${mon.abilities[1]}`;
@@ -552,7 +553,7 @@ if (pk2ab2 != 'undefined') {
 document.getElementById("ability2area2").innerHTML = `${pk2ab2}`;
 }
 
-let pk2ab3 = '';  
+window.pk2ab3 = '';  
   Object.values(pokedexdata).forEach(mon => {
   if (mon.name === fuse2) {
 			pk2ab3 += `${mon.abilities["H"]}`;
@@ -620,11 +621,14 @@ document.getElementById("def").value = document.getElementById("avgdef").innerHT
 document.getElementById("spa").value = document.getElementById("avgspa").innerHTML;
 document.getElementById("spd").value = document.getElementById("avgspd").innerHTML;
 document.getElementById("spe").value = document.getElementById("avgspe").innerHTML;
+window.mega1boosted = false;
+window.mega2boosted = false;
 }
-
+window.mega1boosted = false;
+window.mega2boosted = false;
 function mega() {
 
-let fuse1= document.getElementById("fuse1").value;
+/*let fuse1= document.getElementById("fuse1").value;
 let fuse2= document.getElementById("fuse2").value;
 let fusion = document.getElementById("fusion").value;
 let type= document.getElementById("type").value;
@@ -643,7 +647,7 @@ let physicalmoves= document.getElementById("physicalmoves").innerText;
 let specialmoves= document.getElementById("specialmoves").innerText;
 let statusmoves= document.getElementById("statusmoves").innerText;
 
-let rolejustification= document.getElementById("rolejustification").innerText;
+let rolejustification= document.getElementById("rolejustification").innerText;*/
 
 let intendedrole= document.getElementById("intendedrole").innerText;
 let wt=document.getElementById("wt").value;
@@ -663,24 +667,25 @@ else {
 type2 = ", &quot;"+type2+"&quot;],";
 }
 
- let ismega1 = false;  
- let base1atk =0;
- let base1def =0;
- let base1spa =0;
- let base1spd =0;
- let base1spe =0;
- let mega1atk =0;
- let mega1def =0;
- let mega1spa =0;
- let mega1spd =0;
- let mega1spe =0;
- let mega1abe= '';
+window.ismega1 = false;  
+ window.base1atk =0;
+ window.base1def =0;
+ window.base1spa =0;
+ window.base1spd =0;
+ window.base1spe =0;
+ window.mega1atk =0;
+ window.mega1def =0;
+ window.mega1spa =0;
+ window.mega1spd =0;
+ window.mega1spe =0;
+ window.mega1abe= '';
  
- let atk1 = parseInt(document.getElementById("atk").value);
- let def1 = parseInt(document.getElementById("def").value);
- let spa1 = parseInt(document.getElementById("spa").value);
- let spd1 = parseInt(document.getElementById("spd").value);
- let spe1 = parseInt(document.getElementById("spe").value);
+
+ window.atk1 = parseInt(document.getElementById("atk").value);
+ window.def1 = parseInt(document.getElementById("def").value);
+ window.spa1 = parseInt(document.getElementById("spa").value);
+ window.spd1 = parseInt(document.getElementById("spd").value);
+ window.spe1 = parseInt(document.getElementById("spe").value);
  
  Object.values(pokedexdata).forEach(mon => {
   if (mon.name.trim().trim().toLowerCase() === fuse1.trim().trim().toLowerCase()) {
@@ -704,7 +709,10 @@ type2 = ", &quot;"+type2+"&quot;],";
 		});
         
         });
-if (ismega1 === true) {
+
+
+
+if (ismega1 === true && mega1boosted === false) {
 
 
 document.getElementById("mega1atk").innerHTML = mega1atk - base1atk;
@@ -721,8 +729,12 @@ document.getElementById("spd").value = spd1 + mega1spd - base1spd;
 document.getElementById("spe").value = spe1 + mega1spe - base1spe;
 document.getElementById("mega1abe").innerHTML = `${mega1abe}`;
 document.getElementById("abe").value = `${mega1abe}`;
+
+mega1boosted = true;
+
 }
 }
+
 
 function mega2() {
 let fuse1= document.getElementById("fuse1").value;
@@ -806,7 +818,7 @@ type2 = ", &quot;"+type2+"&quot;],";
         
         });
 
-if (ismega2 === true) {
+if (ismega2 === true && mega2boosted === false) {
 
 
 document.getElementById("mega2atk").innerHTML = mega2atk - base2atk;
@@ -824,6 +836,8 @@ document.getElementById("spe").value = spe1 + mega2spe - base2spe;
 
 document.getElementById("mega2abe").innerHTML = `${mega2abe}`;
 document.getElementById("abe").value = `${mega2abe}`;
+
+mega2boosted = true;
 }
 
 }
@@ -866,6 +880,8 @@ function copy3() {
   document.execCommand("copy");
 }
 function clearallz(){
+window.mega1boosted = false;
+window.mega2boosted = false;
 	document.getElementById('fuse1').value = '';
     document.getElementById('fuse2').value = '';
     document.getElementById('fusion').value = '';
