@@ -150,7 +150,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </tr>
 <tr>
 <td>Pkmn 2</td>
-<td><input tabIndex="2" type="text" id="fuse2" list="allmons" onInput="post();post();load();post()" style="width:134px;"></input>
+<td><input tabIndex="2" type="text" id="fuse2" list="allmons" onInput="post();post();load();post()" style="width:134px;"></input><datalist id="allmons"></datalist></td>
 <td><span id="type1area2" onClick='document.getElementById("type2").value = ""+pk2t1+"";post();post()'></span><span id="type2area2" onClick='document.getElementById("type2").value = ""+pk2t2+"";post();post()'></span></td>
 <td><button onClick="mega2();post();mega2stats();post()" class="button2">Mega</button></td>
 </tr>
@@ -20234,6 +20234,20 @@ let pokedexdata = {
 	},
 }
 var search = document.querySelector('#fuse1');
+var results = document.querySelector('#allmons');
+var templateContent = document.querySelector('#allmonz').content;
+search.addEventListener('keyup', function handler(event) {
+    while (results.children.length) results.removeChild(results.firstChild);
+    var inputVal = new RegExp(search.value.trim(), 'i');
+    var clonedOptions = templateContent.cloneNode(true);
+    var set = Array.prototype.reduce.call(clonedOptions.children, function searchFilter(frag, el) {
+        if (inputVal.test(el.textContent) && frag.children.length < 5) frag.appendChild(el);
+        return frag;
+    }, document.createDocumentFragment());
+    results.appendChild(set);
+});
+
+var search = document.querySelector('#fuse2');
 var results = document.querySelector('#allmons');
 var templateContent = document.querySelector('#allmonz').content;
 search.addEventListener('keyup', function handler(event) {
