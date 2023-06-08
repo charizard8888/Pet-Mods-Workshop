@@ -683,7 +683,7 @@ type2 = ", &quot;"+type2+"&quot;],";
  let spe1 = parseInt(document.getElementById("spe").value);
  
  Object.values(pokedexdata).forEach(mon => {
-  if (mon.name === fuse1) {
+  if (mon.name.trim().trim().toLowerCase() === fuse1.trim().trim().toLowerCase()) {
             base1atk = mon.baseStats.atk;
             base1def = mon.baseStats.def;
             base1spa = mon.baseStats.spa;
@@ -2864,7 +2864,7 @@ let pokedexdata = {
 	},
 	farfetchd: {
 		num: 83,
-		name: "Farfetch\u2019d",
+		name: "Farfetch'd",
 		types: ["Normal", "Flying"],
 		baseStats: {hp: 52, atk: 90, def: 55, spa: 58, spd: 62, spe: 60},
 		abilities: {0: "Keen Eye", 1: "Inner Focus", H: "Defiant"},
@@ -2877,7 +2877,7 @@ let pokedexdata = {
 	},
 	farfetchdgalar: {
 		num: 83,
-		name: "Farfetch\u2019d-Galar",
+		name: "Farfetch'd-Galar",
 		baseSpecies: "Farfetch\u2019d",
 		forme: "Galar",
 		types: ["Fighting"],
@@ -16623,7 +16623,7 @@ let pokedexdata = {
 	},
 	sirfetchd: {
 		num: 865,
-		name: "Sirfetch\u2019d",
+		name: "Sirfetch'd",
 		types: ["Fighting"],
 		baseStats: {hp: 62, atk: 135, def: 95, spa: 68, spd: 82, spe: 65},
 		abilities: {0: "Steadfast", H: "Scrappy"},
