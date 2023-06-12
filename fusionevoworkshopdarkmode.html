@@ -172,8 +172,8 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td style="font-size:16px;">Average</td>
 <td style="font-size:16px;">Difference</td>
 <td style="font-size:16px;">Bulk</td>
-<td style="font-size:16px;">Mega 1</td>
-<td style="font-size:16px;">Mega 2</td>
+<td style="font-size:16px;" id="mega1">Mega 1</td>
+<td style="font-size:16px;" id="mega2">Mega 2</td>
 </tr>
 </tr>
 <tr>
@@ -794,6 +794,8 @@ document.getElementById("spe").value = spe1 + mega1spe - base1spe;
 document.getElementById("mega1abe").innerHTML = `${mega1abe}`;
 document.getElementById("abe").value = `${mega1abe}`;
 
+document.getElementById("mega1").innerHTML= `<img src="https://www.smogon.com/forums//media/minisprites/${f1}-mega.png">`;
+
 mega1boosted = true;
 
 }
@@ -900,6 +902,9 @@ document.getElementById("spe").value = spe1 + mega2spe - base2spe;
 
 document.getElementById("mega2abe").innerHTML = `${mega2abe}`;
 document.getElementById("abe").value = `${mega2abe}`;
+
+document.getElementById("mega2").innerHTML= `<img src="https://www.smogon.com/forums//media/minisprites/${f2}-mega.png">`;
+
 
 mega2boosted = true;
 }
