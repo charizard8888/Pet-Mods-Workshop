@@ -13,13 +13,8 @@ font-size: 110%;
 background-color: #232a30;
 color: #d1d6c9;
 }
-button {
-background-color: black;
-color: #d1d6c9;
-border: solid 4px #d1d6c9;
-font-size:150%;
-cursor: pointer;
-}
+
+
 .button2 {
 background-color: black;
 color: #d1d6c9;
@@ -27,6 +22,44 @@ border: solid 2px #d1d6c9;
 font-size:70%;
 cursor: pointer;
 }
+
+
+
+button {
+  position: relative;
+  background-color: black;
+  border: solid 2px #d1d6c9;
+  font-size:150%;
+  color: #d1d6c9;
+  text-align: center;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+button:after {
+  content: "";
+  background: #90EE90;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px!important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s
+}
+
+button:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+
+
 textarea {
 height: 21px;
 width: 173px;
