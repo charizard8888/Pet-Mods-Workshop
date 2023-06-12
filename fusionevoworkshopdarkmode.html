@@ -1,7 +1,7 @@
 <html>
 <head>
 <link rel="icon" href="https://i.imgur.com/RSLbyHs.png" type="image/png" sizes="64x64">
-<title>Fusion Evolution Workshop</title>
+<title>Fusion Evolution Workshop (Dark Mode)</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
@@ -331,21 +331,21 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <table>
 <tr>
 <td colspan="3"><span id="phycalc" onInput="post()"></span></td>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;252+ Atk (100 BP Neutral STAB) Vs 252 / 252+ Def Metagon </td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;252+ Atk <span id="fname1"></span> (100 BP Neutral STAB) Vs 252 / 252+ Def Metagon </td>
 </tr>
 <tr>
 <td colspan="3"><span id="specialcalc" onInput="post()"></span></td>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;252+ SpA (100 BP Neutral STAB) Vs 252 / 252+ SpD Metagon </td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;252+ SpA <span id="fname2"></span> (100 BP Neutral STAB) Vs 252 / 252+ SpD Metagon </td>
 </tr>
 
 <tr>
 <td colspan="3"><span id="defcalc" onInput="post()"></span></td>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;252+ Atk (100 BP Neutral STAB) Arceus Vs 252 / 252+ Def </td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;252+ Atk (100 BP Neutral STAB) Arceus Vs 252 / 252+ Def <span id="fname3"></span></td>
 </tr>
 
 <tr>
 <td colspan="3"><span id="spdcalc" onInput="post()"></span></td>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;252+ SpA (100 BP Neutral STAB) Arceus Vs 252 / 252+ SpD </td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;252+ SpA (100 BP Neutral STAB) Arceus Vs 252 / 252+ SpD <span id="fname4"></span></td>
 </tr>
 </table>
 <datalist id="allabilities">
@@ -634,19 +634,23 @@ document.getElementById("xd3").innerHTML=""+mon+": {\n\tnum: 75000###, \n\ttypes
 
 if (atk != 0) {
 document.getElementById("phycalc").innerHTML=`${atkcalc}`;
+document.getElementById("fname1").innerHTML=`${fusion}`;
 }
 
 
 if (spa != 0) {
 document.getElementById("specialcalc").innerHTML=`${spacalc}`;
+document.getElementById("fname2").innerHTML=`${fusion}`;
 }
 
 if (def != 0) {
 document.getElementById("defcalc").innerHTML=`${defcalc}`;
+document.getElementById("fname3").innerHTML=`${fusion}`;
 }
 
 if (spd != 0) {
 document.getElementById("spdcalc").innerHTML=`${spdcalc}`;
+document.getElementById("fname4").innerHTML=`${fusion}`;
 }
 
 document.getElementById("phybulk").innerHTML=`${phybulk}`;
