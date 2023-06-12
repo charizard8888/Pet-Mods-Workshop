@@ -193,7 +193,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td>Pkmn 1</td>
 <td><input tabIndex="1" placeholder="Click types →" type="text" id="fuse1" name="fuse1" list="allmons" onInput="post();post();post();load();post()" style="width:134px;"></input><datalist id="allmons"></datalist></td>
 <td><span id="type1area1" onClick='document.getElementById("type").value = ""+pk1t1+"";post();post()'></span><span id="type2area1" onClick='document.getElementById("type").value = ""+pk1t2+"";post();post()'></span></td>
-<td colspan="2"><button onClick="mega();post();mega1stats();post()" class="button2">Mega</button></td>
+<td colspan="2"><button onClick="load();mega();post();mega1stats();post()" class="button2">Mega</button></td>
 <td colspan="3"><span id="megabox1"></span></td>
 
 </tr>
@@ -201,7 +201,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td>Pkmn 2</td>
 <td><input tabIndex="2" placeholder="Click types →" type="text" id="fuse2" list="allmonz2" onInput="post();post();load();post()" style="width:134px;"></input><datalist id="allmons2"></datalist></td>
 <td><span id="type1area2" onClick='document.getElementById("type2").value = ""+pk2t1+"";post();post()'></span><span id="type2area2" onClick='document.getElementById("type2").value = ""+pk2t2+"";post();post()'></span></td>
-<td><button onClick="mega2();post();mega2stats();post()" class="button2">Mega</button></td>
+<td><button onClick="load();mega2();post();mega2stats();post()" class="button2">Mega</button></td>
 </tr>
 <tr>
 <td>Fusion</td>
@@ -837,7 +837,7 @@ window.ismega1 = false;
 
 
 
-if (ismega1 === true && mega1boosted === false && mega2boosted === false) {
+if (ismega1 === true) {
 
 
 document.getElementById("mega1atk").innerHTML = mega1atk - base1atk;
@@ -860,6 +860,7 @@ document.getElementById("mega1").innerHTML= `<img src="https://www.smogon.com/fo
 mega1boosted = true;
 
 }
+
 }
 
 
@@ -945,7 +946,7 @@ type2 = ", &quot;"+type2+"&quot;],";
         
         });
 
-if (ismega2 === true && mega2boosted === false && mega1boosted === false) {
+if (ismega2 === true) {
 
 
 document.getElementById("mega2atk").innerHTML = mega2atk - base2atk;
