@@ -137,7 +137,7 @@ datalist option:focus {
 
 </head>
 <body>
-<center><a href="https://www.smogon.com/forums/threads/fusion-evolution-gen-9-slate-5-5-results-not-open-for-submissions.3717085/"><img src="https://i.imgur.com/Y64ZCvH.png" width="502" height="281" alt="Fusion Evolution" /></a><br>
+<center><a href="https://www.smogon.com/forums/threads/fusion-evolution-gen-9-slate-5-5-results-not-open-for-submissions.3717085/" target="_blank"><img src="https://i.imgur.com/Y64ZCvH.png" width="502" height="281" alt="Fusion Evolution" /></a><br>
 Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_blank">imas</a> <br>Playable in <a href="https://dragonheaven.herokuapp.com/" target="_blank" style="color:green;">Dragon Heaven</a></center><br><br>
 <table>
 <tr>
@@ -523,6 +523,7 @@ document.getElementById("oldwt1").innerHTML = `${oldwt1}`;
 if (pk1t2 === 'undefined') {
 	document.getElementById("type1area1").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${pk1t1}.png>`;
 document.getElementById("type2area1").innerHTML=``;
+document.getElementById("type").value =`${pk1t1}`;
 }
 else {
 document.getElementById("type1area1").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${pk1t1}.png>`;
@@ -578,6 +579,7 @@ document.getElementById("oldwt").innerHTML = `${oldwt}`;
 if (pk2t2 === 'undefined') {
 	document.getElementById("type1area2").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${pk2t1}.png>`;
 document.getElementById("type2area2").innerHTML=``;
+document.getElementById("type2").value =`${pk2t1}`;
 }
 else {
 document.getElementById("type1area2").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${pk2t1}.png>`;
