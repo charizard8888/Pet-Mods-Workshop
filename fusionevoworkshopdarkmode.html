@@ -37,8 +37,8 @@ button {
   font-size:150%;
   color: #d1d6c9;
   text-align: center;
-  -webkit-transition-duration: 0.3s; /* Safari */
-  transition-duration: 0.3s;
+  -webkit-transition-duration: 0.1s; /* Safari */
+  transition-duration: 0.1s;
   text-decoration: none;
   overflow: hidden;
   cursor: pointer;
@@ -63,7 +63,7 @@ button:after {
   margin-left: -20px!important;
   margin-top: -120%;
   opacity: 0;
-  transition: all 0.3s
+  transition: all 0.1s
 }
 
 button:active:after {
@@ -193,8 +193,8 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td>Pkmn 1</td>
 <td><input tabIndex="1" placeholder="Click types →" type="text" id="fuse1" name="fuse1" list="allmons" onInput="post();post();post();load();post()" style="width:134px;"></input><datalist id="allmons"></datalist></td>
 <td><span id="type1area1" onClick='document.getElementById("type").value = ""+pk1t1+"";post();post()'></span><span id="type2area1" onClick='document.getElementById("type").value = ""+pk1t2+"";post();post()'></span></td>
-<td><button onClick="mega();post();mega1stats();post()" class="button2">Mega</button></td>
-<td><span id="megabox1"></span></td>
+<td colspan="2"><button onClick="mega();post();mega1stats();post()" class="button2">Mega</button></td>
+<td colspan="3"><span id="megabox1"></span></td>
 
 </tr>
 <tr>
@@ -768,8 +768,12 @@ document.getElementById("spe").value = document.getElementById("avgspe").innerHT
 window.mega1boosted = false;
 window.mega2boosted = false;
 }
+
+
 window.mega1boosted = false;
 window.mega2boosted = false;
+
+
 function mega() {
 
 
@@ -833,7 +837,7 @@ window.ismega1 = false;
 
 
 
-if (ismega1 === true && mega1boosted === false) {
+if (ismega1 === true && mega1boosted === false && mega2boosted === false) {
 
 
 document.getElementById("mega1atk").innerHTML = mega1atk - base1atk;
@@ -941,7 +945,7 @@ type2 = ", &quot;"+type2+"&quot;],";
         
         });
 
-if (ismega2 === true && mega2boosted === false) {
+if (ismega2 === true && mega2boosted === false && mega1boosted === false) {
 
 
 document.getElementById("mega2atk").innerHTML = mega2atk - base2atk;
