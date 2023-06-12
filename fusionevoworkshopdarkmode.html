@@ -364,7 +364,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </table>
 <table>
 <td tabIndex="21" style="font-size:18px;">Battlecry&nbsp;</td>
-<td colspan="5"><textarea type="text" id="text" onInput="post()" style="width:552px;height:34px;" placeholder="Cool italics text below the fusion"></textarea>
+<td colspan="5"><textarea type="text" id="cooltext" onInput="post()" style="width:552px;height:34px;" placeholder="Cool italics text below the fusion"></textarea>
 <div class="xd"><textarea id="xd" class="xd"> </textarea><textarea id="xd2" class="xd"> </textarea><textarea id="xd3" class="xd"></textarea></div>
 </td>
 </tr>
@@ -448,7 +448,7 @@ window.rolejustification= document.getElementById("rolejustification").innerText
 
 window.intendedrole= document.getElementById("intendedrole").innerText;
 window.wt=document.getElementById("wt").value;
-window.text=document.getElementById("text").value;
+window.cooltext=document.getElementById("cooltext").value;
 
 // Back End
 window.mon = fusion.toLowerCase();
@@ -696,7 +696,7 @@ let specialbulk = Math.round((2 * hp + 204) * (2.2 * spd + 108.9) / 1325.12);
 
 let mixbulk = Math.round((2 * hp + 204) * ((2.2 * def + 108.9) + (2.2 * spd + 108.9))/ 1325.12/2);
 
-document.getElementById("xd").innerHTML=":swsh/"+f1+"::swsh/"+f2+":\n[I]"+text+"[/I][hide="+fusion+"][B]DNA Donors[/B]: "+fuse1+" / "+fuse2+"\n[B]Fusion Name[/B]: "+fusion+"\n[B]New Types[/B]: [IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]Base Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"] (+"+modhp+" HP / +"+modatk+" Atk / +"+moddef+" Def / +"+modspa+" SpA / +"+modspd+" SpD / +"+modspe+" Spe)\n[B]New Ability[/B]: [I]"+abe+"[/I] = ("+abe1+" + "+abe2+")\n[B]Ability Description[/B]: "+abedesc+"\n[B]Notable Moves[/B]:\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Physical.png[/IMG] "+physicalmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Special.png[/IMG] "+specialmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Status.png[/IMG] "+statusmoves+"\n[B]Intended Role[/B]: "+intendedrole+"\n[B]Role Justification[/B]: "+rolejustification+"[/hide]";
+document.getElementById("xd").innerHTML=":swsh/"+f1+"::swsh/"+f2+":\n[I]"+cooltext+"[/I][hide="+fusion+"][B]DNA Donors[/B]: "+fuse1+" / "+fuse2+"\n[B]Fusion Name[/B]: "+fusion+"\n[B]New Types[/B]: [IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]Base Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"] (+"+modhp+" HP / +"+modatk+" Atk / +"+moddef+" Def / +"+modspa+" SpA / +"+modspd+" SpD / +"+modspe+" Spe)\n[B]New Ability[/B]: [I]"+abe+"[/I] = ("+abe1+" + "+abe2+")\n[B]Ability Description[/B]: "+abedesc+"\n[B]Notable Moves[/B]:\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Physical.png[/IMG] "+physicalmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Special.png[/IMG] "+specialmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Status.png[/IMG] "+statusmoves+"\n[B]Intended Role[/B]: "+intendedrole+"\n[B]Role Justification[/B]: "+rolejustification+"[/hide]";
 
 document.getElementById("xd2").innerHTML="\`\`\`"+fusion+" = "+fuse1+" + "+fuse2+"\n"+type+"/"+t2+"\n\nHPs: "+hp+" \t\t+"+modhp+"\t\t" +mixbulk+ "\nAtk: "+atk+"\t\t+"+modatk+"\nDef: "+def+"\t\t+"+moddef+"\t\t" +phybulk+ "\nSpA: "+spa+"\t\t+"+modspa+"\nSpD: "+spd+"\t\t+"+modspd+"\t\t" +specialbulk+ "\nSpe: "+spe+"\t\t+"+modspe+"\nBST: "+bst+"\t\t+"+modbst+"\n\n"+abe+" = "+abe1+" + "+abe2+"\n"+abedesc+"\`\`\`";
 
@@ -1028,32 +1028,51 @@ function copy3() {
   xd3.select();
   document.execCommand("copy");
 }
-function clearallz(){
+
+function clearallz() {
 window.mega1boosted = false;
 window.mega2boosted = false;
 	document.getElementById('fuse1').value = '';
     document.getElementById('fuse2').value = '';
     document.getElementById('fusion').value = '';
+    
+    fuse1 ='';
+    fuse2 = '';
+    fusion = '';
+    atk = '';
+    mon = '';
+    f1 = '';
+    f2 = '';
+    oldhp1 = '';
+
+    
     document.getElementById('type').value = '';
     document.getElementById('type2').value = '';
     document.getElementById('abe1').value = '';
     document.getElementById('abe2').value = '';
     document.getElementById('abe').value = '';
-    document.getElementById('abedesc').value = '';
+    document.getElementById('abedesc').innerHTML = '';
     document.getElementById('physicalmoves').innerText = '';
     document.getElementById('specialmoves').innerText = '';
     document.getElementById('statusmoves').innerText = '';
     document.getElementById('intendedrole').innerText = '';
     document.getElementById('rolejustification').innerText = '';
-    document.getElementById('text').value = '';
+    document.getElementById('cooltext').value = '';
     document.getElementById('atk').innerText = '0';
-    document.getElementById('ft').innerHTML = '';
-    document.getElementById('type1area1').innerHTML = '';
-    document.getElementById('type1area2').innerHTML = '';
-document.getElementById('type2area1').innerHTML = '';
-    document.getElementById('type2area2').innerHTML = '';
-document.getElementById('type').innerHTML = '';
-document.getElementById('type2').innerHTML = '';
+
+    document.getElementById('type1area1').value = ``;
+    document.getElementById('type1area2').innerHTML = ``;
+	document.getElementById('type2area1').innerHTML = ``;
+    document.getElementById('type2area2').innerHTML = ``;
+    
+    
+	document.getElementById('type').innerHTML = '';
+	document.getElementById('type2').innerHTML = '';
+    
+document.getElementById('ft1').innerHTML = ``;
+document.getElementById('ft2').innerHTML = ``;
+
+document.getElementById('mon1stats').innerHTML = ``;
     
     document.getElementById('hp').value = 0;
     document.getElementById('atk').value= 0;
@@ -1061,7 +1080,7 @@ document.getElementById('type2').innerHTML = '';
     document.getElementById('spa').value= 0;
     document.getElementById('spd').value= 0;
     document.getElementById('spe').value= 0;
-    document.getElementById('wt').innerText= 0;
+    document.getElementById('wt').value= 0;
     
     document.getElementById('oldhp1').innerText= 0;
     document.getElementById('oldatk1').innerText= 0;
