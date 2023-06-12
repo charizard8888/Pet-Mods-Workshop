@@ -199,14 +199,14 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </tr>
 <tr style="height:40px;">
 <td><button onClick="load();post()" class="button2">Load</button></td>
-<td style="font-size:16px;"><span id="fusionstats"></span></td>
-<td style="font-size:16px;"><span id="mon1stats"></span></td>
-<td style="font-size:16px;"><span id="mon2stats"></span></td>
-<td style="font-size:16px;">Average</td>
-<td style="font-size:16px;">Diff</td>
-<td style="font-size:16px;">Bulk</td>
-<td style="font-size:16px;" id="mega1">Mega 1</td>
-<td style="font-size:16px;" id="mega2">Mega 2</td>
+<td><span id="fusionstats"></span></td>
+<td><span id="mon1stats"></span></td>
+<td><span id="mon2stats" style="text-align:center;"></span></td>
+<td>Avg</td>
+<td>Diff</td>
+<td>Bulk</td>
+<td id="mega1">Mega 1</td>
+<td id="mega2">Mega 2</td>
 </tr>
 </tr>
 <tr>
@@ -518,8 +518,8 @@ document.getElementById("modspd").innerHTML=""+modspd+"";
 document.getElementById("modspe").innerHTML=""+modspe+"";
 document.getElementById("modbst").innerHTML=""+modbst+"";
 
-document.getElementById("mon1stats").innerHTML= `<img src="https://www.smogon.com/forums//media/minisprites/${f1}.png">`;
-document.getElementById("mon2stats").innerHTML= `<img src="https://www.smogon.com/forums//media/minisprites/${f2}.png">`;
+document.getElementById("mon1stats").innerHTML= `<img src="https://www.smogon.com/forums//media/minisprites/${f1}.png" style="display:block;margin-left: auto;margin-right:auto">`;
+document.getElementById("mon2stats").innerHTML= `<img src="https://www.smogon.com/forums//media/minisprites/${f2}.png" style="display:block;margin-left: auto;margin-right:auto">`;
 document.getElementById("fusionstats").innerHTML=""+fusion+"";
 
 if (type != undefined && type !== "") {
