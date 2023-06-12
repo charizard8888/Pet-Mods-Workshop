@@ -208,7 +208,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><textarea tabIndex="3" type="text" id="fusion" onInput="post()" style="width:134px;"></textarea></td>
 <td><span id="ft1"></span><span id="ft2"></span></td>
 <td></td>
-<td><button onClick="clearallz();post();post();post();" class="button2">Reset</button></td>
+<td><button onClick="clearallz();post();post();clearallz();" class="button2">Reset</button></td>
 <td><span id="test"></span></td>
 </tr>
 <td>Types</td>
@@ -772,30 +772,7 @@ window.mega1boosted = false;
 window.mega2boosted = false;
 function mega() {
 
-/*let fuse1= document.getElementById("fuse1").value;
-let fuse2= document.getElementById("fuse2").value;
-let fusion = document.getElementById("fusion").value;
-let type= document.getElementById("type").value;
-let type2= document.getElementById("type2").value;
-let hp= document.getElementById("hp").value;
-let atk= document.getElementById("atk").value;
-let def= document.getElementById("def").value;
-let spa= document.getElementById("spa").value;
-let spd= document.getElementById("spd").value;
-let spe= document.getElementById("spe").value;
-let abe= document.getElementById("abe").value;
-let abe1= document.getElementById("abe1").value;
-let abe2= document.getElementById("abe2").value;
-let abedesc= document.getElementById("abedesc").innerText;
-let physicalmoves= document.getElementById("physicalmoves").innerText;
-let specialmoves= document.getElementById("specialmoves").innerText;
-let statusmoves= document.getElementById("statusmoves").innerText;
 
-let rolejustification= document.getElementById("rolejustification").innerText;*/
-
-let intendedrole= document.getElementById("intendedrole").innerText;
-let wt=document.getElementById("wt").value;
-let cooltext=document.getElementById("cooltext").value;
 
 
 // Back End
@@ -1043,7 +1020,6 @@ window.mega2boosted = false;
     mon = '';
     f1 = '';
     f2 = '';
-    oldhp1 = '';
 
     
     document.getElementById('type').value = '';
@@ -1060,7 +1036,7 @@ window.mega2boosted = false;
     document.getElementById('cooltext').value = '';
     document.getElementById('atk').innerText = '0';
 
-    document.getElementById('type1area1').value = ``;
+    document.getElementById('type1area1').innerHTML = ``;
     document.getElementById('type1area2').innerHTML = ``;
 	document.getElementById('type2area1').innerHTML = ``;
     document.getElementById('type2area2').innerHTML = ``;
@@ -1073,6 +1049,9 @@ document.getElementById('ft1').innerHTML = ``;
 document.getElementById('ft2').innerHTML = ``;
 
 document.getElementById('mon1stats').innerHTML = ``;
+document.getElementById('mon2stats').innerHTML = ``;
+document.getElementById('mega1').innerHTML = `Mega 1`;
+document.getElementById('mega2').innerHTML = `Mega 2`;
     
     document.getElementById('hp').value = 0;
     document.getElementById('atk').value= 0;
@@ -1105,6 +1084,21 @@ document.getElementById('mon1stats').innerHTML = ``;
     document.getElementById('modspd').innerText= 0;
     document.getElementById('modspe').innerText= 0;
     document.getElementById('modbst').innerText= 0;
+    
+
+    document.getElementById('mega1atk').innerText= 0;
+    document.getElementById('mega1def').innerText= 0;
+    document.getElementById('mega1spa').innerText= 0;
+    document.getElementById('mega1spd').innerText= 0;
+    document.getElementById('mega1spe').innerText= 0;
+    document.getElementById('mega1bst').innerText= 0;
+    
+    document.getElementById('mega2atk').innerText= 0;
+    document.getElementById('mega2def').innerText= 0;
+    document.getElementById('mega2spa').innerText= 0;
+    document.getElementById('mega2spd').innerText= 0;
+    document.getElementById('mega2spe').innerText= 0;
+    document.getElementById('mega2bst').innerText= 0;
     
 }
 
