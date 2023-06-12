@@ -209,20 +209,21 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><span id="ft1"></span><span id="ft2"></span></td>
 <td></td>
 <td><button onClick="clearallz();post();post();post();" class="button2">Reset</button></td>
+<td><span id="test"></span></td>
 </tr>
 <td>Types</td>
 <td><input tabIndex="4" type="text" id="type" list="types" onInput="post()" style="width:67px;" placeholder="Type 1"></input><input tabIndex="5" type="text" id="type2" list="types" onInput="post()" style="width:67px;font-size:12px;" placeholder="Type 2"></input></td>
 </tr>
-<tr style="height:40px;text-align:center;">
+<tr style="height:40px;">
 <td><button onClick="load();post()" class="button2">Load</button></td>
 <td><span id="fusionstats"></span></td>
 <td><span id="mon1stats"></span></td>
 <td><span id="mon2stats" style="text-align:center;"></span></td>
-<td>Avg</td>
-<td>Diff</td>
-<td>Bulk</td>
-<td id="mega1">Mega 1</td>
-<td id="mega2">Mega 2</td>
+<td style="text-align:center;">Avg</td>
+<td style="text-align:center;">Diff</td>
+<td style="text-align:center;">Bulk</td>
+<td id="mega1" style="text-align:center;">Mega 1</td>
+<td id="mega2" style="text-align:center;">Mega 2</td>
 </tr>
 </tr>
 <tr>
@@ -371,10 +372,9 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <br>
 <center><img src="https://cdn.discordapp.com/attachments/775870299241447444/838889467578024016/clawliwrath-s.png" width="96" height="96"><img src="https://play.pokemonshowdown.com/sprites/ani/gallade-mega.gif" width="64" height="99"><img src="https://play.pokemonshowdown.com/sprites/ani-shiny/serperior.gif" width="90" height="108"><img src="https://media.discordapp.net/attachments/823049899372183564/900824062023065630/rhybite.png" width="96" height="96"></center>
 <br>
-<button tabIndex="22" onClick="post();post();copy()">Copy Submission</button>&nbsp;&nbsp;&nbsp;&nbsp; For posting on Smogon<br><br> 
-<button tabIndex="23" onClick="post();post();copy2()">Copy Fusion Idea</button> &nbsp;&nbsp;&nbsp;&nbsp;For sharing on Discord<br><br>
-<button tabIndex="24" onClick="post();post();copy3()" style="font-size:25px;">Copy Fusion Code</button>&nbsp;&nbsp;&nbsp;&nbsp; For Developers<br><br>
-
+<button id="smogsub" tabIndex="22" onClick="smogsub();post();post();copy()">Copy Submission</button>&nbsp;&nbsp;&nbsp;&nbsp; For posting on Smogon<br><br> 
+<button id="discordshare" tabIndex="23" onClick="discordshare();post();post();copy2()">Copy Fusion Idea</button> &nbsp;&nbsp;&nbsp;&nbsp;For sharing on Discord<br><br>
+<button id="devcopy" tabIndex="24" onClick="devcopy();post();post();copy3();" style="font-size:25px;">Copy Fusion Code</button>&nbsp;&nbsp;&nbsp;&nbsp; For Developers&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
 <datalist id="types">
 <option value="Fire"><option value="Water"><option value="Grass"><option value="Electric"><option value="Ground"><option value="Bug"><option value="Poison"><option value="Fighting"><option value="Steel"><option value="Dark"><option value="Flying"><option value="Dragon"><option value="Ice"><option value="Rock"><option value="Ghost"><option value="Psychic"><option value="Normal"><option value="Fairy">
 </datalist>
@@ -729,6 +729,33 @@ document.getElementById("phybulk").innerHTML=`${phybulk}`;
 document.getElementById("specialbulk").innerHTML=`${specialbulk}`;
 
 document.getElementById("mixbulk").innerHTML=`${mixbulk}`;
+
+
+
+
+
+} // FUNCTION END
+
+function smogsub() {
+const element = document.getElementById("smogsub");
+document.getElementById("smogsub").innerHTML=`<span style="background-color:#630404;color:white;border-radius:2px;">Copied</span>`;
+//setInterval(function () {element.innerHTML = "Hello"}, 1000);
+setTimeout(function() {element.innerHTML = `Copy Submission`;}, 300);
+}
+
+function discordshare() {
+const element = document.getElementById("discordshare");
+document.getElementById("discordshare").innerHTML=`<span style="background-color:#04244a;color:white;border-radius:2px;">Copied</span>`;
+//setInterval(function () {element.innerHTML = "Hello"}, 1000);
+setTimeout(function() {element.innerHTML = `Copy Fusion Idea`;}, 300);
+}
+
+
+function devcopy() {
+const element = document.getElementById("devcopy");
+document.getElementById("devcopy").innerHTML=`<span style="background-color:#26917c;color:white;border-radius:2px;">Copied</span>`;
+//setInterval(function () {element.innerHTML = "Hello"}, 1000);
+setTimeout(function() {element.innerHTML = `Copy Fusion Code`;}, 300);
 }
 
 function load() {
