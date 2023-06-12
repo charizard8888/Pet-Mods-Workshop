@@ -551,6 +551,7 @@ if (pk1ab3 != 'undefined') {
 document.getElementById("ability1area3").innerHTML = `${pk1ab3}`;
 }
 
+
 // PK 2 Abilities
 
 window.pk2ab1 = '';  
@@ -579,11 +580,15 @@ document.getElementById("oldwt").innerHTML = `${oldwt}`;
 if (pk2t2 === 'undefined') {
 	document.getElementById("type1area2").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${pk2t1}.png>`;
 document.getElementById("type2area2").innerHTML=``;
-document.getElementById("type2").value =`${pk2t1}`;
+
 }
 else {
 document.getElementById("type1area2").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${pk2t1}.png>`;
 document.getElementById("type2area2").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${pk2t2}.png>`;
+}
+
+if (pk2t2 === 'undefined' && pk2t1 != pk1t1) {
+document.getElementById("type2").value =`${pk2t1}`;
 }
 
 
@@ -606,6 +611,16 @@ window.pk2ab3 = '';
         
 if (pk2ab3 != 'undefined') {
 document.getElementById("ability2area3").innerHTML = `${pk2ab3}`;
+}
+
+// Default Abilities
+
+if (pk1ab2 === 'undefined' && pk1ab3 === 'undefined') {
+document.getElementById("abe1").value = `${pk1ab1}`;
+}
+
+if (pk2ab2 === 'undefined' && pk2ab3 === 'undefined') {
+document.getElementById("abe2").value = `${pk2ab1}`;
 }
 
 
