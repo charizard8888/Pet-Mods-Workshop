@@ -157,13 +157,14 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <tr>
 <td>Fusion</td>
 <td><textarea tabIndex="3" type="text" id="fusion" onInput="post()" style="width:134px;"></textarea></td>
-<td><span id="ft"></span></td>
+<td><span id="ft1"></span><span id="ft2"></span></td>
 <td></td>
 <td><button onClick="clearallz();post();post();post();" class="button2">Reset</button></td>
 </tr>
 <td>Types</td>
 <td><input tabIndex="4" type="text" id="type" list="types" onInput="post()" style="width:67px;" placeholder="Type 1"></input><input tabIndex="5" type="text" id="type2" list="types" onInput="post()" style="width:67px;font-size:12px;" placeholder="Type 2"></input></td>
 </tr>
+<tr style="height:40px;">
 <td><button onClick="load();post()" class="button2">Load</button></td>
 <td style="font-size:16px;"><span id="fusionstats"></span></td>
 <td style="font-size:16px;"><span id="mon1stats"></span></td>
@@ -173,6 +174,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td style="font-size:16px;">Bulk</td>
 <td style="font-size:16px;">Mega 1</td>
 <td style="font-size:16px;">Mega 2</td>
+</tr>
 </tr>
 <tr>
 <td class="basestat">HP</td>
@@ -479,15 +481,15 @@ document.getElementById("modspd").innerHTML=""+modspd+"";
 document.getElementById("modspe").innerHTML=""+modspe+"";
 document.getElementById("modbst").innerHTML=""+modbst+"";
 
-document.getElementById("mon1stats").innerHTML=""+fuse1+"";
-document.getElementById("mon2stats").innerHTML=""+fuse2+"";
+document.getElementById("mon1stats").innerHTML= `<img src="https://www.smogon.com/forums//media/minisprites/${f1}.png">`;
+document.getElementById("mon2stats").innerHTML= `<img src="https://www.smogon.com/forums//media/minisprites/${f2}.png">`;
 document.getElementById("fusionstats").innerHTML=""+fusion+"";
 
 if (type != undefined && type !== "") {
-document.getElementById("ft").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/"+type+".png>";
+document.getElementById("ft1").innerHTML="<img src=https://play.pokemonshowdown.com/sprites/types/"+type+".png>";
 }
 if (t2 != undefined && t2 !== "") {
-document.getElementById("ft").innerHTML+="<img src=https://play.pokemonshowdown.com/sprites/types/"+t2+".png>";
+document.getElementById("ft2").innerHTML ="<img src=https://play.pokemonshowdown.com/sprites/types/"+t2+".png>";
 }
 
 if (abe2==="Doubility") {document.getElementById("abe").innerHTML=""+abe1+"";
