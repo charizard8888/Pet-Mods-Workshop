@@ -1187,7 +1187,18 @@ window.ismega1 = false;
         
         });
 
+if (mega2boosted === true) {
 
+atk = parseInt(atk) - mega2atk + base2atk;
+def = parseInt(def) - mega2def + base2def;
+spa = parseInt(spa) - mega2spa + base2spa;
+spd = parseInt(spd) - mega2spd + base2spd;
+spe = parseInt(spe) - mega2spe + base2spe;
+
+mega1boosted = false;
+mega2boosted = false;
+post();
+}
 
 if (ismega1 === true && mega1boosted === false && mega2boosted === false) {
 
@@ -1291,6 +1302,20 @@ type2 = ", &quot;"+type2+"&quot;],";
 		});
         
         });
+        
+if (mega1boosted === true) {
+
+atk = parseInt(atk) - mega1atk + base1atk;
+def = parseInt(def) - mega1def + base1def;
+spa = parseInt(spa) - mega1spa + base1spa;
+spd = parseInt(spd) - mega1spd + base1spd;
+spe = parseInt(spe) - mega1spe + base1spe;
+
+mega1boosted = false;
+mega2boosted = false;
+
+post();
+}
 
 if (ismega2 === true && mega1boosted === false && mega2boosted === false) {
 
