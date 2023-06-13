@@ -525,7 +525,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 
 <table>
 <tr>
-<td>Pkmn 1</td>
+<td style="font-size:18px;">Pkmn 1</td>
 <td><input tabIndex="1" placeholder="Click types →" type="text" id="fuse1" name="fuse1" list="allmons" onInput="post();post();post();load();post()"onFocus="hax()" onfocusout="post()" onClick"post()" style="width:134px;"></input><datalist id="allmons"></datalist></td>
 <td><span id="type1area1" onClick='document.getElementById("type").value = ""+pk1t1+"";post();post()'></span><span id="type2area1" onClick='document.getElementById("type").value = ""+pk1t2+"";post();post()'></span></td>
 <td colspan="2"><button onClick="mega();post();mega1stats();post()" class="button2">Mega</button></td>
@@ -533,7 +533,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 
 </tr>
 <tr>
-<td>Pkmn 2</td>
+<td style="font-size:18px;">Pkmn 2</td>
 <td><input tabIndex="2" placeholder="Click types →" type="text" id="fuse2" list="allmonz2" onInput="post();post();load();post()" style="width:134px;"></input><datalist id="allmons2"></datalist></td>
 <td><span id="type1area2" onClick='document.getElementById("type2").value = ""+pk2t1+"";post();post()'></span><span id="type2area2" onClick='document.getElementById("type2").value = ""+pk2t2+"";post();post()'></span></td>
 <td><button onClick="mega2();post();mega2stats();post()" class="button2">Mega</button></td>
@@ -552,11 +552,11 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <tr style="height:40px;">
 <td><button onClick="load();post()" class="button2">Load</button></td>
 <td><span id="fusionstats"></span></td>
+<td style="text-align:center;">Diff</td>
+<td style="text-align:center;">Bulk</td>
 <td><span id="mon1stats"></span></td>
 <td><span id="mon2stats" style="text-align:center;"></span></td>
 <td style="text-align:center;">Avg</td>
-<td style="text-align:center;">Diff</td>
-<td style="text-align:center;">Bulk</td>
 <td id="mega1" style="text-align:center;">Mega 1</td>
 <td id="mega2" style="text-align:center;">Mega 2</td>
 </tr>
@@ -564,20 +564,20 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <tr>
 <td class="basestat">HP</td>
 <td><textarea tabIndex="6" inputmode="numeric" type="text" id="hp" onInput="post()" style="width:134px;"></textarea></td>
+<td><textarea id="modhp" style="width:64px;" disabled></textarea></td>
+<td><textarea id="mixbulk" style="width:64px;" placeholder="Mixed" disabled></textarea></td>
 <td><textarea id="oldhp1" style="width:64px;" disabled></textarea></td>
 <td><textarea id="oldhp" style="width:64px;" disabled></textarea></td>
 <td><textarea id="avghp" style="width:64px;" disabled></textarea></td>
-<td><textarea id="modhp" style="width:64px;" disabled></textarea></td>
-<td><textarea id="mixbulk" style="width:64px;" placeholder="Mixed" disabled></textarea></td>
 </tr>
 <tr>
 <td class="basestat">Atk</td>
 <td><textarea tabIndex="7" inputmode="numeric" type="text" id="atk" onInput="post()" style="width:134px;"></textarea></td>
+<td><textarea id="modatk" style="width:64px;" disabled></textarea></td>
+<td></td>
 <td><textarea id="oldatk1" style="width:64px;" disabled></textarea></td>
 <td><textarea id="oldatk" style="width:64px;" disabled></textarea></td>
 <td><textarea id="avgatk" style="width:64px;" disabled></textarea></td>
-<td><textarea id="modatk" style="width:64px;" disabled></textarea></td>
-<td></td>
 <td><textarea id="mega1atk" style="width:64px;" disabled></textarea></td>
 <td><textarea id="mega2atk" style="width:64px;" disabled></textarea></td>
 
@@ -585,44 +585,44 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <tr>
 <td class="basestat">Def</td>
 <td><textarea tabIndex="8" inputmode="numeric" type="text" id="def" onInput="post()" style="width:134px;"></textarea></td>
+<td><textarea id="moddef" style="width:64px;" disabled></textarea></td>
+<td><textarea id="phybulk" style="width:64px;" placeholder="Phy" disabled></textarea></td>
 <td><textarea id="olddef1" style="width:64px;" disabled></textarea></td>
 <td><textarea id="olddef" style="width:64px;" disabled></textarea></td>
 <td><textarea id="avgdef" style="width:64px;" disabled></textarea></td>
-<td><textarea id="moddef" style="width:64px;" disabled></textarea></td>
-<td><textarea id="phybulk" style="width:64px;" placeholder="Phy" disabled></textarea></td>
 <td><textarea id="mega1def" style="width:64px;" disabled></textarea></td>
 <td><textarea id="mega2def" style="width:64px;" disabled></textarea></td>
 </tr>
 <tr>
 <td class="basestat">SpA</td>
 <td><textarea tabIndex="9" inputmode="numeric" type="text" id="spa" onInput="post()" style="width:134px;"></textarea></td>
+<td><textarea id="modspa" style="width:64px;" disabled></textarea></td>
+<td></td>
 <td><textarea id="oldspa1" style="width:64px;" disabled></textarea></td>
 <td><textarea id="oldspa" style="width:64px;" disabled></textarea></td>
 <td><textarea id="avgspa" style="width:64px;" disabled></textarea></td>
-<td><textarea id="modspa" style="width:64px;" disabled></textarea></td>
-<td></td>
 <td><textarea id="mega1spa" style="width:64px;" disabled></textarea></td>
 <td><textarea id="mega2spa" style="width:64px;" disabled></textarea></td>
 </tr>
 <tr>
 <td class="basestat">SpD</td>
 <td><textarea tabIndex="10" inputmode="numeric" type="text" id="spd" onInput="post()" style="width:134px;"></textarea></td>
+<td><textarea id="modspd" style="width:64px;" disabled></textarea></td>
+<td><textarea id="specialbulk" style="width:64px;" placeholder="Special" disabled></textarea></td>
 <td><textarea id="oldspd1" style="width:64px;" disabled></textarea></td>
 <td><textarea id="oldspd" style="width:64px;" disabled></textarea></td>
 <td><textarea id="avgspd" style="width:64px;" disabled></textarea></td>
-<td><textarea id="modspd" style="width:64px;" disabled></textarea></td>
-<td><textarea id="specialbulk" style="width:64px;" placeholder="Special" disabled></textarea></td>
 <td><textarea id="mega1spd" style="width:64px;" disabled></textarea></td>
 <td><textarea id="mega2spd" style="width:64px;" disabled></textarea></td>
 </tr>
 <tr>
 <td class="basestat">Spe</td>
 <td><textarea tabIndex="11" inputmode="numeric" type="text" id="spe" onInput="post()" style="width:134px;"></textarea></td>
+<td><textarea id="modspe" style="width:64px;" disabled></textarea></td>
+<td></td>
 <td><textarea id="oldspe1" style="width:64px;" disabled></textarea></td>
 <td><textarea id="oldspe" style="width:64px;" disabled></textarea></td>
 <td><textarea id="avgspe" style="width:64px;" disabled></textarea></td>
-<td><textarea id="modspe" style="width:64px;" disabled></textarea></td>
-<td></td>
 <td><textarea id="mega1spe" style="width:64px;" disabled></textarea></td>
 <td><textarea id="mega2spe" style="width:64px;" disabled></textarea></td>
 </tr>
@@ -630,17 +630,19 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <tr>
 <td class="basestat">BST</td>
 <td><textarea type="text" id="bst" onInput="post()" style="width:134px;" disabled></textarea></td>
+<td><textarea id="modbst" style="width:64px;" disabled></textarea></td>
+<td></td>
 <td><textarea id="oldbst1" style="width:64px;" disabled></textarea></td>
 <td><textarea id="oldbst" style="width:64px;" disabled></textarea></td>
 <td><textarea id="avgbst" style="width:64px;" disabled></textarea></td>
-<td><textarea id="modbst" style="width:64px;" disabled></textarea></td>
-<td></td>
 <td><textarea id="mega1bst" style="width:64px;" disabled></textarea></td>
 <td><textarea id="mega2bst" style="width:64px;" disabled></textarea></td>
 </tr>
 <tr>
 <td class="basestat">Weight</td>
 <td><textarea type="text" id="wt" style="width:134px;" disabled></textarea></td>
+<td></td>
+<td></td>
 <td><textarea id="oldwt1" style="width:64px;" disabled></textarea></td>
 <td><textarea id="oldwt" style="width:64px;" disabled></textarea></td>
 </tr>
@@ -707,9 +709,9 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <br>
 <center><img src="https://cdn.discordapp.com/attachments/775870299241447444/838889467578024016/clawliwrath-s.png" width="96" height="96"><img src="https://play.pokemonshowdown.com/sprites/ani/gallade-mega.gif" width="64" height="99"><img src="https://play.pokemonshowdown.com/sprites/ani-shiny/serperior.gif" width="90" height="108"><img src="https://media.discordapp.net/attachments/823049899372183564/900824062023065630/rhybite.png" width="96" height="96"></center>
 <br>
-<button id="smogsub" tabIndex="22" onClick="smogsub();post();post();copy()">Copy Submission</button>&nbsp;&nbsp;&nbsp;&nbsp; For posting on <a href="https://www.smogon.com/forums/threads/fusion-evolution-gen-9-slate-5-5-results-not-open-for-submissions.3717085/unread" target="_blank" style="text-decoration: none;">Smogon</a><br><br> 
-<button id="discordshare" tabIndex="23" onClick="discordshare();post();post();copy2()">Copy Fusion Idea</button> &nbsp;&nbsp;&nbsp;&nbsp;For sharing on <a href="https://discord.gg/Mcx6BdKbzq" target="_blank" style="text-decoration:none;">Discord</a><br><br>
-<button id="devcopy" tabIndex="24" onClick="devcopy();post();post();copy3();" style="font-size:25px;">Copy Fusion Code</button>&nbsp;&nbsp;&nbsp;&nbsp; For Developers&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+<button id="smogsub" tabIndex="22" onClick="smogsub();post();post();copy()">Copy Submission</button><br>For posting on <a href="https://www.smogon.com/forums/threads/fusion-evolution-gen-9-slate-5-5-results-not-open-for-submissions.3717085/unread" target="_blank" style="text-decoration: none;">Smogon</a><br><br> 
+<button id="discordshare" tabIndex="23" onClick="discordshare();post();post();copy2()">Copy Fusion Idea</button><br>For sharing on <a href="https://discord.gg/Mcx6BdKbzq" target="_blank" style="text-decoration:none;">Discord</a><br><br>
+<button id="devcopy" tabIndex="24" onClick="devcopy();post();post();copy3();" style="font-size:25px;">Copy Fusion Code</button><br>For Developers&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
 <datalist id="types">
 <option value="Fire"><option value="Water"><option value="Grass"><option value="Electric"><option value="Ground"><option value="Bug"><option value="Poison"><option value="Fighting"><option value="Steel"><option value="Dark"><option value="Flying"><option value="Dragon"><option value="Ice"><option value="Rock"><option value="Ghost"><option value="Psychic"><option value="Normal"><option value="Fairy">
 </datalist>
