@@ -193,7 +193,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td>Pkmn 1</td>
 <td><input tabIndex="1" placeholder="Click types →" type="text" id="fuse1" name="fuse1" list="allmons" onInput="post();post();post();load();post()" style="width:134px;"></input><datalist id="allmons"></datalist></td>
 <td><span id="type1area1" onClick='document.getElementById("type").value = ""+pk1t1+"";post();post()'></span><span id="type2area1" onClick='document.getElementById("type").value = ""+pk1t2+"";post();post()'></span></td>
-<td colspan="2"><button onClick="load();mega();post();mega1stats();post()" class="button2">Mega</button></td>
+<td colspan="2"><button onClick="mega();post();mega1stats();post()" class="button2">Mega</button></td>
 <td colspan="3"><span id="megabox1"></span></td>
 
 </tr>
@@ -201,7 +201,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td>Pkmn 2</td>
 <td><input tabIndex="2" placeholder="Click types →" type="text" id="fuse2" list="allmonz2" onInput="post();post();load();post()" style="width:134px;"></input><datalist id="allmons2"></datalist></td>
 <td><span id="type1area2" onClick='document.getElementById("type2").value = ""+pk2t1+"";post();post()'></span><span id="type2area2" onClick='document.getElementById("type2").value = ""+pk2t2+"";post();post()'></span></td>
-<td><button onClick="load();mega2();post();mega2stats();post()" class="button2">Mega</button></td>
+<td><button onClick="mega2();post();mega2stats();post()" class="button2">Mega</button></td>
 </tr>
 <tr>
 <td>Fusion</td>
@@ -837,7 +837,7 @@ window.ismega1 = false;
 
 
 
-if (ismega1 === true) {
+if (ismega1 === true && mega1boosted === false && mega2boosted === false) {
 
 
 document.getElementById("mega1atk").innerHTML = mega1atk - base1atk;
@@ -847,11 +847,11 @@ document.getElementById("mega1spd").innerHTML = mega1spd - base1spd;
 document.getElementById("mega1spe").innerHTML = mega1spe - base1spe;
 document.getElementById("mega1bst").innerHTML = (mega1atk - base1atk + mega1def - base1def + mega1spa - base1spa + mega1spd - base1spd + mega1spe - base1spe);
 
-document.getElementById("atk").value = atk1 + mega1atk - base1atk;
-document.getElementById("def").value = def1 + mega1def - base1def;
-document.getElementById("spa").value = spa1 + mega1spa - base1spa;
-document.getElementById("spd").value = spd1 + mega1spd - base1spd;
-document.getElementById("spe").value = spe1 + mega1spe - base1spe;
+document.getElementById("atk").value = parseInt(atk) + mega1atk - base1atk;
+document.getElementById("def").value = parseInt(def) + mega1def - base1def;
+document.getElementById("spa").value = parseInt(spa) + mega1spa - base1spa;
+document.getElementById("spd").value = parseInt(spd) + mega1spd - base1spd;
+document.getElementById("spe").value = parseInt(spe) + mega1spe - base1spe;
 document.getElementById("mega1abe").innerHTML = `${mega1abe}`;
 document.getElementById("abe").value = `${mega1abe}`;
 
@@ -946,7 +946,7 @@ type2 = ", &quot;"+type2+"&quot;],";
         
         });
 
-if (ismega2 === true) {
+if (ismega2 === true && mega1boosted === false && mega2boosted === false) {
 
 
 document.getElementById("mega2atk").innerHTML = mega2atk - base2atk;
@@ -956,11 +956,11 @@ document.getElementById("mega2spd").innerHTML = mega2spd - base2spd;
 document.getElementById("mega2spe").innerHTML = mega2spe - base2spe;
 document.getElementById("mega2bst").innerHTML = (mega2atk - base2atk + mega2def - base2def + mega2spa - base2spa + mega2spd - base2spd + mega2spe - base2spe);
 
-document.getElementById("atk").value = atk1 + mega2atk - base2atk;
-document.getElementById("def").value = def1 + mega2def - base2def;
-document.getElementById("spa").value = spa1 + mega2spa - base2spa;
-document.getElementById("spd").value = spd1 + mega2spd - base2spd;
-document.getElementById("spe").value = spe1 + mega2spe - base2spe;
+document.getElementById("atk").value = parseInt(atk) + mega2atk - base2atk;
+document.getElementById("def").value = parseInt(def) + mega2def - base2def;
+document.getElementById("spa").value = parseInt(spa) + mega2spa - base2spa;
+document.getElementById("spd").value = parseInt(spd) + mega2spd - base2spd;
+document.getElementById("spe").value = parseInt(spe) + mega2spe - base2spe;
 
 document.getElementById("mega2abe").innerHTML = `${mega2abe}`;
 document.getElementById("abe").value = `${mega2abe}`;
