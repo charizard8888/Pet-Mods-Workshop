@@ -523,7 +523,7 @@ a.ui-button:active,
 <center><a href="https://www.smogon.com/forums/threads/fusion-evolution-gen-9-slate-5-5-results-not-open-for-submissions.3717085/" target="_blank"><img src="https://i.imgur.com/Y64ZCvH.png" width="502" height="281" alt="Fusion Evolution" style="max-width:100%;"/></a><br>
 Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_blank">imas</a> <br>Playable in <a href="https://dragonheaven.herokuapp.com/" target="_blank" style="color:green;">Dragon Heaven</a></center><br><br>
 
-<table>
+<table style="max-width:100%;">
 <tr>
 <td style="font-size:17px;">Pkmn 1</td>
 <td><input tabIndex="1" placeholder="Click types →" type="text" id="fuse1" name="fuse1" list="allmons" onInput="post();post();post();load();post()"onFocus="hax()" onfocusout="post()" onClick"post()" style="width:134px;"></input><datalist id="allmons"></datalist></td>
@@ -1034,6 +1034,15 @@ let specialbulk = Math.round((2 * hp + 204) * (2.2 * spd + 108.9) / 1325.12);
 
 let mixbulk = Math.round((2 * hp + 204) * ((2.2 * def + 108.9) + (2.2 * spd + 108.9))/ 1325.12/2);
 
+if (mega1boosted === true) {
+f1+= `-mega`; 
+fuse1 += `-Mega`;
+}
+if (mega2boosted === true) {
+f2+= `-mega`;
+fuse2+= `-Mega`;
+}
+
 document.getElementById("xd").innerHTML=":swsh/"+f1+"::swsh/"+f2+":\n[I]"+cooltext+"[/I][hide="+fusion+"][B]DNA Donors[/B]: "+fuse1+" / "+fuse2+"\n[B]Fusion Name[/B]: "+fusion+"\n[B]New Types[/B]: [IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]Base Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"] (+"+modhp+" HP / +"+modatk+" Atk / +"+moddef+" Def / +"+modspa+" SpA / +"+modspd+" SpD / +"+modspe+" Spe)\n[B]New Ability[/B]: [I]"+abe+"[/I] = ("+abe1+" + "+abe2+")\n[B]Ability Description[/B]: "+abedesc+"\n[B]Notable Moves[/B]:\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Physical.png[/IMG] "+physicalmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Special.png[/IMG] "+specialmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Status.png[/IMG] "+statusmoves+"\n[B]Intended Role[/B]: "+intendedrole+"\n[B]Role Justification[/B]: "+rolejustification+"[/hide]";
 
 document.getElementById("xd2").innerHTML="\`\`\`"+fusion+" = "+fuse1+" + "+fuse2+"\n"+type+"/"+t2+"\n\nHPs: "+hp+" \t\t+"+modhp+"\t\t" +mixbulk+ "\nAtk: "+atk+"\t\t+"+modatk+"\nDef: "+def+"\t\t+"+moddef+"\t\t" +phybulk+ "\nSpA: "+spa+"\t\t+"+modspa+"\nSpD: "+spd+"\t\t+"+modspd+"\t\t" +specialbulk+ "\nSpe: "+spe+"\t\t+"+modspe+"\nBST: "+bst+"\t\t+"+modbst+"\n\n"+abe+" = "+abe1+" + "+abe2+"\n"+abedesc+"\`\`\`";
@@ -1199,9 +1208,7 @@ document.getElementById("mega1abe").innerHTML = `${mega1abe}`;
 document.getElementById("abe").value = `${mega1abe}`;
 
 document.getElementById("mega1").innerHTML= `<img src="https://www.smogon.com/forums//media/minisprites/${f1}-mega.png">`;
-
 mega1boosted = true;
-
 }
 
 }
@@ -1236,10 +1243,6 @@ let cooltext=document.getElementById("cooltext").value;
 
 // Back End
 let mon = fusion.toLowerCase();
-let f1 = fuse1.toLowerCase();
-let f2 = fuse2.toLowerCase();
-f1 = f1.replace(" ","");
-f2 = f2.replace(" ","");
 let t2=type2;
 if (type2==="") {type2 = "],";
 }
