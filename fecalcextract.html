@@ -25,7 +25,7 @@ function load() {
 
 let pk2ab1 = '';  
   Object.values(pokedexdata).forEach(mon => {
-			pk2ab1 += `'${mon.name}': {\ntypes: ['${mon.types[0]}', '${mon.types[1]}'],\n bs: { hp: ${mon.baseStats.hp}, at: ${mon.baseStats.atk}, df: ${mon.baseStats.def}, sa: ${mon.baseStats.spa}, sd: ${mon.baseStats.spd}, sp: ${mon.baseStats.spe}},\n}, \n\n`;
+			pk2ab1 += `'${mon.name}': {\ntypes: ['${mon.types[0]}', '${mon.types[1]}'],\n bs: {hp: ${mon.baseStats.hp}, at: ${mon.baseStats.atk}, df: ${mon.baseStats.def}, sa: ${mon.baseStats.spa}, sd: ${mon.baseStats.spd}, sp: ${mon.baseStats.spe}},\n}, \n\n`;
 	pk2ab1 = pk2ab1.replace('"t2": "undefined", ','');	
   });
 document.getElementById("abedesc").innerHTML = `${pk2ab1}`;
