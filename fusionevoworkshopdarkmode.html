@@ -716,6 +716,9 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <tr>
 <td><button onClick="calc()">Calc</button></td></tr>
 <tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="calcmon1type1"></span><span id="calcmon1type2"></td>
+</tr>
+<tr>
 <td><input id="atkevs" placeholder=252 style="width:64px;" type="number" step="4" max="252" min="0"> 
 <button class="atkspa" id="atkbtn" placeholder=Atk/SpA style="width:44px;font-size:16px;" value="Atk" onClick='window.atkspa="atk"'>Atk</button>
 <button onClick='window.atkspa="spa"' class="atkspa" id="spabtn" placeholder=Atk/SpA style="width:44px;font-size:16px;" value="SpA">SpA</button>
@@ -1115,17 +1118,31 @@ defmon = 'Rhotogold';
 }
 
 
-  Object.values(pokedexdata).forEach(mon => {
-  if (mon.name === defmon) {	
-            defmonhp = `${mon.baseStats.hp}`;
-            defmonatk = `${mon.baseStats.atk}`;
-            defmondef = `${mon.baseStats.def}`;
-            defmonspa = `${mon.baseStats.spa}`;
-            defmonspd = `${mon.baseStats.spd}`;
-            defmonspe = `${mon.baseStats.spe}`;
-            defmonwt = `${mon.weightkg}`;
+  Object.values(pokedexdata).forEach(calcmon => {
+  if (calcmon.name === defmon) {	
+            defmonhp = `${calcmon.baseStats.hp}`;
+            defmonatk = `${calcmon.baseStats.atk}`;
+            defmondef = `${calcmon.baseStats.def}`;
+            defmonspa = `${calcmon.baseStats.spa}`;
+            defmonspd = `${calcmon.baseStats.spd}`;
+            defmonspe = `${calcmon.baseStats.spe}`;
+            defmonwt = `${calcmon.weightkg}`;
+            defmont1 = `${calcmon.types[0]}`;
+            defmont2 = `${calcmon.types[1]}`;
             }
+            
 		});
+        
+   if (defmont2 === 'undefined') {
+document.getElementById("calcmon1type1").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${defmont1}.png>`;
+document.getElementById("calcmon1type2").innerHTML=``;
+}
+else {
+document.getElementById("calcmon1type1").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${defmont1}.png>`;
+document.getElementById("calcmon1type2").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${defmont2}.png>`;
+}
+ 
+     
 window.calccategory = '';
 if (atkspa === 'spa' || atkspa === 'SpA') {
 calccategory = 'special';
