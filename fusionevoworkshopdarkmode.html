@@ -717,22 +717,26 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </datalist>
 <table>
 <tr>
-<td>252+ Atk <span id="fname1"></span> (100 BP Neutral STAB) Vs 252 HP / 252+ Def Metagon &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td><span id="phycalc" onInput="post()"></span></td>
-</tr>
+<td><button onClick="calc()">Calc</button></td></tr>
 <tr>
-<td>252+ SpA <span id="fname2"></span> (100 BP Neutral STAB) Vs 252 HP / 252+ SpD Metagon &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td><span id="specialcalc" onInput="post()"></span></td>
-</tr>
+<td><input id="atkevs" placeholder=252 style="width:64px;"> 
+<input id="atkspa" placeholder=Atk/SpA style="width:64px;" list="atkspalist">EVs
+<datalist id="atkspalist"><option>Atk</option><option>SpA</option></datalist>
 
-<tr>
-<td>252+ Atk (100 BP Neutral STAB) Arceus Vs 252 HP / 252+ Def <span id="fname3"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td><span id="defcalc" onInput="post()"></span></td>
+&nbsp;&nbsp;
+<input id="movebp" placeholder=100 style="width:64px;">Move BP &nbsp;&nbsp;
+<input id="eff" placeholder=Eff style="width:64px;" list="effz">
+<datalist id="effz"><option>1</option><option>2</option><option>0.5</option></datalist>
+&nbsp;&nbsp;<span id="fname1"></span> &nbsp;&nbsp;Vs &nbsp;&nbsp;<input id="defmon" placeholder="Metagon" list="allmonz2">&nbsp;&nbsp;
+<input id="hpevs" placeholder=252 style="width:64px;">HP 
+<input id="defevs" placeholder=252 style="width:64px;"> Def/SpD EVs
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td><span id="calcresult" onInput="post()"></span></td>
 </tr>
-
 <tr>
-<td>252+ SpA (100 BP Neutral STAB) Arceus Vs 252 HP / 252+ SpD <span id="fname4"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td><span id="spdcalc" onInput="post()"></span></td>
+<td>
+STAB<input style="width:15px;" type="checkbox" id="staby" name="stab">
+</td>
 </tr>
 </table>
 <br><br>
@@ -1018,15 +1022,7 @@ document.getElementById("abe2").value = `${pk2ab1}`;
 
 if (abedesc==="") { abedesc = "Combined effect of both the abilities."; }
 
-// Metagon Def = 317, HP = 364
-let atkcalc= (((42 * 100 * Math.floor(2.2 * atk + 108.9) / 317)/50 + 2) * 1.5 * 100 / 364 * 0.85).toFixed(1) + "% - " + (((42 * 100 * Math.floor(2.2 * atk + 108.9) / 317)/50 + 2) * 1.5 * 100 / 364).toFixed(1) + "%";
 
-let spacalc = (((42 * 100 * Math.floor(2.2 * spa + 108.9) / 317)/50 + 2) * 1.5 * 100 / 364 * 0.85).toFixed(1) + "% - " + (((42 * 100 * Math.floor(2.2 * spa + 108.9) / 317)/50 + 2) * 1.5 * 100 / 364).toFixed(1) + "%";
-
-// Arceuss Atk = 372, 
-let defcalc= (((42 * 100 * 372 / Math.floor(2.2 * def + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204) * 0.85).toFixed(1) + "% - " + (((42 * 100 * 372 / Math.floor(2.2 * def + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204)).toFixed(1) + "%";
-
-let spdcalc= (((42 * 100 * 372 / Math.floor(2.2 * spd + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204) * 0.85).toFixed(1) + "% - " + (((42 * 100 * 372 / Math.floor(2.2 * spd + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204)).toFixed(1) + "%";
 
 let phybulk = Math.round((2 * hp + 204) * (2.2 * def + 108.9) / 1325.12);
 
@@ -1043,6 +1039,7 @@ f2+= `-mega`;
 fuse2+= `-Mega`;
 }
 
+
 document.getElementById("xd").innerHTML=":swsh/"+f1+"::swsh/"+f2+":\n[I]"+cooltext+"[/I][hide="+fusion+"][B]DNA Donors[/B]: "+fuse1+" / "+fuse2+"\n[B]Fusion Name[/B]: "+fusion+"\n[B]New Types[/B]: [IMG]https://play.pokemonshowdown.com/sprites/types/"+type+".png[/IMG][IMG]https://play.pokemonshowdown.com/sprites/types/"+t2+".png[/IMG]\n[B]Base Stats[/B]: "+hp+" / "+atk+" / "+def+" / "+spa+" / "+spd+" / "+spe+" [BST: "+bst+"] (+"+modhp+" HP / +"+modatk+" Atk / +"+moddef+" Def / +"+modspa+" SpA / +"+modspd+" SpD / +"+modspe+" Spe)\n[B]New Ability[/B]: [I]"+abe+"[/I] = ("+abe1+" + "+abe2+")\n[B]Ability Description[/B]: "+abedesc+"\n[B]Notable Moves[/B]:\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Physical.png[/IMG] "+physicalmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Special.png[/IMG] "+specialmoves+"\n[IMG]https://play.pokemonshowdown.com/sprites/categories/Status.png[/IMG] "+statusmoves+"\n[B]Intended Role[/B]: "+intendedrole+"\n[B]Role Justification[/B]: "+rolejustification+"[/hide]";
 
 document.getElementById("xd2").innerHTML="\`\`\`"+fusion+" = "+fuse1+" + "+fuse2+"\n"+type+"/"+t2+"\n\nHPs: "+hp+" \t\t+"+modhp+"\t\t" +mixbulk+ "\nAtk: "+atk+"\t\t+"+modatk+"\nDef: "+def+"\t\t+"+moddef+"\t\t" +phybulk+ "\nSpA: "+spa+"\t\t+"+modspa+"\nSpD: "+spd+"\t\t+"+modspd+"\t\t" +specialbulk+ "\nSpe: "+spe+"\t\t+"+modspe+"\nBST: "+bst+"\t\t+"+modbst+"\n\n"+abe+" = "+abe1+" + "+abe2+"\n"+abedesc+"\`\`\`";
@@ -1050,10 +1047,7 @@ document.getElementById("xd2").innerHTML="\`\`\`"+fusion+" = "+fuse1+" + "+fuse2
 document.getElementById("xd3").innerHTML=""+mon+": {\n\tnum: 75000###, \n\ttypes:[&quot;"+type+"&quot;"+type2+"\n\tspecies: &quot;"+fusion+"&quot;, \n\tid: &quot;"+mon+"&quot;, \n\tbaseStats: {hp: "+hp+", atk: "+atk+", def: "+def+", spa: "+spa+", spd: "+spd+", spe: "+spe+"} \n\tabilities: {0: &quot;"+abe+"&quot;}, \n\tweightkg: "+wt+", \n\tfusion: [&quot;"+fuse1+"&quot;, &quot;"+fuse2+"&quot;],\n},";
 
 
-if (atk != 0) {
-document.getElementById("phycalc").innerHTML=`${atkcalc}`;
-document.getElementById("fname1").innerHTML=`${fusion}`;
-}
+
 
 
 if (spa != 0) {
@@ -1078,10 +1072,76 @@ document.getElementById("specialbulk").innerHTML=`${specialbulk}`;
 document.getElementById("mixbulk").innerHTML=`${mixbulk}`;
 
 
-
-
-
 } // FUNCTION END
+
+function calc() {
+// Metagon Def = 317, HP = 364, HP: 2x + 141
+// Stats: 2x + 36
+
+window.defmon = document.getElementById("defmon").value;
+window.hpevs = document.getElementById("hpevs").value;
+window.atkevs = document.getElementById("atkevs").value;
+window.defevs = document.getElementById("defevs").value;
+window.movebp = document.getElementById("movebp").value;
+window.eff = document.getElementById("eff").value;
+window.atkspa = document.getElementById("atkspa").value;
+
+
+
+  Object.values(pokedexdata).forEach(mon => {
+  if (mon.name === defmon) {	
+            defmonhp = `${mon.baseStats.hp}`;
+            defmonatk = `${mon.baseStats.atk}`;
+            defmondef = `${mon.baseStats.def}`;
+            defmonspa = `${mon.baseStats.spa}`;
+            defmonspd = `${mon.baseStats.spd}`;
+            defmonspe = `${mon.baseStats.spe}`;
+            defmonwt = `${mon.weightkg}`;
+            }
+		});
+window.calccategory = '';
+if (atkspa === 'spa' || atkspa === 'SpA') {
+calccategory = 'special';
+}
+else {
+calccategory = 'physical';
+}
+
+let atkcalclow = (((42 * movebp * Math.floor(2 * atk + 36 + (atkevs/4)) / Math.floor(2 * defmondef + 36 + (defevs/4)))/50 + 2) * 1.5 * 100 / (2 * defmonhp + 141 + (hpevs/4)) * 0.85 * eff).toFixed(1);
+
+let atkcalchi = (((42 * movebp * Math.floor(2 * atk + 36 + (atkevs/4)) / Math.floor(2 * defmondef + 36 + (defevs/4)))/50 + 2) * 1.5 * 100 / (2 * defmonhp + 141 + (hpevs/4)) * eff).toFixed(1);
+
+
+let spacalclow = (((42 * movebp * Math.floor(2 * spa + 36 + (atkevs/4)) / Math.floor(2 * defmonspd + 36 + (defevs/4)))/50 + 2) * 1.5 * 100 / (2 * defmonhp + 141) * 0.85 * eff).toFixed(1);
+
+let spacalchi = (((42 * movebp * Math.floor(2 * spa + 36 + (atkevs/4)) / Math.floor(2 * defmonspd + 36 + (defevs/4)))/50 + 2) * 1.5 * 100 / (2 * defmonhp + 141 + (hpevs/4)) * eff).toFixed(1);
+
+// Arceuss Atk = 372, 
+let defcalc= (((42 * movebp * 372 / Math.floor(2.2 * def + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204) * 0.85).toFixed(1) + "% - " + (((42 * movebp * 372 / Math.floor(2.2 * def + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204)).toFixed(1) + "%";
+
+let spdcalc= (((42 * movebp * 372 / Math.floor(2.2 * spd + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204) * 0.85).toFixed(1) + "% - " + (((42 * movebp * 372 / Math.floor(2.2 * spd + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204)).toFixed(1) + "%";
+
+if (document.getElementById("staby").checked) {
+atkcalclow = atkcalclow*1.5.toFixed(1);
+atkcalchi = atkcalchi*1.5.toFixed(1);
+spacalclow = spacalclow*1.5.toFixed(1);
+spacalchi = spacalchi*1.5.toFixed(1);
+}
+
+
+if (calccategory === 'physical') {
+document.getElementById("calcresult").innerHTML=`${atkcalclow}% to ${atkcalchi}%`;
+document.getElementById("fname1").innerHTML=`${fusion}`;
+}
+else if (calccategory === 'special') {
+document.getElementById("calcresult").innerHTML=`${spacalclow}% to ${spacalchi}%`;
+document.getElementById("fname1").innerHTML=`${fusion}`;
+}
+
+
+
+}
+
 
 function smogsub() {
 const element = document.getElementById("smogsub");
