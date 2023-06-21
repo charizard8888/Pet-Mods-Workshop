@@ -665,8 +665,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td colspan="4"><span id="mega1abe" style="width:64px;" class="abearea" onClick='document.getElementById("abe").value = ""+document.getElementById("mega1abe").innerText+"";post();post()'></span></td>
 <td><span id="mega2abe" style="width:64px;" class="abearea" onClick='document.getElementById("abe").value = ""+document.getElementById("mega2abe").innerText+"";post();post()'></span></td>
 </tr>
-</table>
-<table>
+
 <tr>
 <td>Ability&nbsp;&nbsp;&nbsp;<br> Desc.</td>
 <td tabIndex="15" colspan="2"><span class="textarea4" role="textbox" id="abedesc" contenteditable onInput="post()"></span></td>
@@ -695,11 +694,9 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </table>
 <table>
 <tr>
-<td>Role&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br> Justify</td>
+<td style="font-size:18px;">Role<br> Justify</td>
 <td tabIndex="20" colspan="5"><span class="textarea2" role="textbox" id="rolejustification" contenteditable onInput="post()"></span></td>
 </tr>
-</table>
-<table>
 <td tabIndex="21" style="font-size:18px;">Battlecry&nbsp;</td>
 <td colspan="5"><textarea type="text" id="cooltext" onInput="post()" style="width:552px;height:34px;" placeholder="Cool italics text below the fusion"></textarea>
 <div class="xd"><textarea id="xd" class="xd"> </textarea><textarea id="xd2" class="xd"> </textarea><textarea id="xd3" class="xd"></textarea></div>
@@ -1117,9 +1114,17 @@ let spacalclow = (((42 * movebp * Math.floor(2 * spa + 36 + (atkevs/4)) / Math.f
 let spacalchi = (((42 * movebp * Math.floor(2 * spa + 36 + (atkevs/4)) / Math.floor(2 * defmonspd + 36 + (defevs/4)))/50 + 2) * 1.5 * 100 / (2 * defmonhp + 141 + (hpevs/4)) * eff).toFixed(1);
 
 // Arceuss Atk = 372, 
+/*let defcalc= (((42 * movebp * 372 / Math.floor(2 * def + 36 + (def2evs/4)))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 141 + (hp2evs/4)) * 0.85).toFixed(1) + "% - " + (((42 * movebp * 372 / Math.floor(2.2 * def + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204)).toFixed(1) + "%";
+
+let spdcalc = (((42 * movebp * 372 / Math.floor(2.2 * spd + +36 + (def2evs/4)))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 141 + (hp2evs/4)) * 0.85).toFixed(1) + "% - " + (((42 * movebp * 372 / Math.floor(2.2 * spd + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204)).toFixed(1) + "%";
+
 let defcalc= (((42 * movebp * 372 / Math.floor(2.2 * def + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204) * 0.85).toFixed(1) + "% - " + (((42 * movebp * 372 / Math.floor(2.2 * def + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204)).toFixed(1) + "%";
 
 let spdcalc= (((42 * movebp * 372 / Math.floor(2.2 * spd + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204) * 0.85).toFixed(1) + "% - " + (((42 * movebp * 372 / Math.floor(2.2 * spd + 108.9))/50 + 2) * 1.5 * 100 / Math.floor(2 * hp + 204)).toFixed(1) + "%";
+*/
+
+
+
 
 if (document.getElementById("staby").checked) {
 atkcalclow = atkcalclow*1.5.toFixed(1);
