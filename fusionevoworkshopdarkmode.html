@@ -716,7 +716,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <tr>
 <td><button onClick="calc()">Calc</button></td></tr>
 <tr>
-<td><input id="atkevs" placeholder=252 style="width:64px;"> 
+<td><input id="atkevs" placeholder=252 style="width:64px;" type="number" step="4" max="252" min="0"> 
 <button class="atkspa" id="atkbtn" placeholder=Atk/SpA style="width:44px;font-size:16px;" value="Atk" onClick='window.atkspa="atk"'>Atk</button>
 <button onClick='window.atkspa="spa"' class="atkspa" id="spabtn" placeholder=Atk/SpA style="width:44px;font-size:16px;" value="SpA">SpA</button>
 
@@ -724,21 +724,21 @@ EVs
 &nbsp;&nbsp;
 <input id="movebp" placeholder=100 style="width:64px;">Move BP &nbsp;&nbsp;
 Eff - 
-<button onClick='window.eff=0.25;' id="0.25x" style="width:44px;font-size:14px;" value="SpA">0.25x</button>
-<button onClick='window.eff=0.5;' id="0.5x" style="width:40px;font-size:14px;" value="SpA">0.5x</button>
-<button onClick='window.eff=1;' id="1x" style="width:40px;font-size:14px;" value="SpA">1x</button>
-<button onClick='window.eff=2;' id="2x" style="width:40px;font-size:14px;" value="SpA">2x</button>
-<button onClick='window.eff=4;' id="4x" style="width:40px;font-size:14px;" value="SpA">4x</button>
+<button onClick='window.eff=0.25;' id="0.25x" style="width:44px;font-size:14px;">0.25x</button>
+<button onClick='window.eff=0.5;' id="0.5x" style="width:40px;font-size:14px;">0.5x</button>
+<button onClick='window.eff=1;' id="1x" style="width:40px;font-size:14px;">1x</button>
+<button onClick='window.eff=2;' id="2x" style="width:40px;font-size:14px;">2x</button>
+<button onClick='window.eff=4;' id="4x" style="width:40px;font-size:14px;">4x</button>
 
 
 &nbsp;&nbsp;<span id="fname1"></span> &nbsp;&nbsp;Vs &nbsp;&nbsp;<input id="defmon" placeholder="Rhotogold" list="fusionslist">&nbsp;&nbsp;
-<input id="hpevs" placeholder=252 style="width:64px;">HP 
-<input id="defevs" placeholder=252 style="width:64px;"> Def/SpD EVs
+<input id="hpevs" placeholder=252 style="width:64px;" step="4" max="252" min="0" type="number">HP 
+<input id="defevs" placeholder=252 style="width:64px;" step="4" max="252" min="0" type="number"> Def/SpD EVs
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 <td><span id="calcresult" onInput="post()"></span></td>
 </tr>
 <tr>
-<td>Custom Multiplier <input id="custommultiplier" placeholder=1 style="width:30px;">
+<td>Custom Multiplier <input id="custommultiplier" placeholder=1 style="width:64px;" type="number" step=".01">
 </tr>
 <tr>
 <td>
@@ -1097,8 +1097,6 @@ window.movebp = document.getElementById("movebp").value;
 
 window.custommultiplier = document.getElementById("custommultiplier").value;
 
-//custommultiplier = custommultiplier.replace("x","");
-//custommultiplier = parseFloat(custommultiplier);
 
 if (custommultiplier === '' || custommultiplier === undefined || custommultiplier === 'undefined') {
 custommultiplier = 1;
@@ -1111,6 +1109,11 @@ movebp = 100;
 if (eff === '' || eff === undefined || eff === 'undefined') {
 eff = 1;
 }
+
+if (defmon === '' || defmon === undefined || defmon === 'undefined') {
+defmon = 'Rhotogold';
+}
+
 
   Object.values(pokedexdata).forEach(mon => {
   if (mon.name === defmon) {	
