@@ -23,14 +23,25 @@ font-size:28px;
  }
  textarea {
   width: 100%;
-  height: 11%;
+  height: 30%;
  }
 </style>
 </head>
 <body>
-  <center>
-<textarea id="moveset" class="wide"></textarea><br>
-<button onClick="exporto()">Export</button><br>
+You'll have to configure EVs yourself in the text that you get below<br>Also use a common prefix for a mod like FE, CS<br>Try copy pasting the example below to test
+<h2>Example</h2> 
+<pre>Set: CS Choice Band
+Metagross @ Choice Band
+Ability: Iron Fist
+EVs: 252 Atk / 4 SpD / 252 Spe
+Adamant Nature
+- Iron Head
+- Hammer Arm
+- Bullet Punch
+- Zen Headbutt</pre>
+ <center>
+<textarea id="moveset" onInput="exporto()"></textarea><br>
+<h2>Calc Export</h2>
       </center>
 <textarea id="copy"></textarea>
 </body>
@@ -89,7 +100,7 @@ let line9details=line9.split("- ")
 let move4 = line9details[1]
 
 
-document.getElementById("copy").innerHTML =`"${mon}": {\n "CS ${name}": {"level": 100, "evs": {"hp": 0, "at": 0, "df": 0, "sa": 0, "sd": 0, "sp": 0}, "nature": "${nature}", "ability": "${ability}", "item": "${item}", "moves": ["${move1}", "${move2}", "${move3}", "${move4}"]},\n},`;
+document.getElementById("copy").innerHTML =`"${mon}": {\n "${name}": {"level": 100, "evs": {"hp": 0, "at": 0, "df": 0, "sa": 0, "sd": 0, "sp": 0}, "nature": "${nature}", "ability": "${ability}", "item": "${item}", "moves": ["${move1}", "${move2}", "${move3}", "${move4}"]},\n},\n`;
 /*
 
 Set: Choice Band
