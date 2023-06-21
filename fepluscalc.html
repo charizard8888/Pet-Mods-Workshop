@@ -1040,7 +1040,11 @@ window.movebp = document.getElementById("movebp").value;
 		});
         document.getElementById("cooltext").value = `${defmon}`;
 
-let atkcalc= (((42 * movebp * Math.floor(2.2 * atk + 36 + (atkevs/4)) / Math.floor(2.2 * defmondef + 36 + (defevs/4)))/50 + 2) * 1.5 * 100 / (2 * defmonhp + 141) * 0.85).toFixed(1) + "% - " + (((42 * movebp * Math.floor(2.2 * atk + 36 + (atkevs/4)) / 317)/50 + 2) * 1.5 * 100 / (2 * defmonhp + 141 + (hpevs/4))).toFixed(1) + "%";
+let atkcalclow = (((42 * movebp * Math.floor(2 * atk + 36 + (atkevs/4)) / Math.floor(2 * defmondef + 36 + (defevs/4)))/50 + 2) * 1.5 * 100 / (2 * defmonhp + 141) * 0.85).toFixed(1);
+
+let atkcalchi = (((42 * movebp * Math.floor(2 * atk + 36 + (atkevs/4)) / Math.floor(2 * defmondef + 36 + (defevs/4)))/50 + 2) * 1.5 * 100 / (2 * defmonhp + 141 + (hpevs/4))).toFixed(1);
+
+
 
 let spacalc = (((42 * movebp * Math.floor(2.2 * spa + 108.9) / 317)/50 + 2) * 1.5 * 100 / (2 * defmonhp + 141) * 0.85).toFixed(1) + "% - " + (((42 * movebp * Math.floor(2.2 * spa + 108.9) / 317)/50 + 2) * 1.5 * 100 / (2 * defmonhp + 141+ (hpevs/4))).toFixed(1) + "%";
 
@@ -1073,7 +1077,7 @@ document.getElementById("xd3").innerHTML=""+mon+": {\n\tnum: 75000###, \n\ttypes
 
 
 if (atk != 0) {
-document.getElementById("phycalc").innerHTML=`${atkcalc}`;
+document.getElementById("phycalc").innerHTML=`${atkcalclow}% to ${atkcalchi}%`;
 document.getElementById("fname1").innerHTML=`${fusion}`;
 }
 
