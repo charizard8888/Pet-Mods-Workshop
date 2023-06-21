@@ -36,6 +36,11 @@ background-color: #232a30;
 color: #d1d6c9;
 }
 
+#calcresult:hover {
+color: green;
+}
+
+
 
 .button2 {
 position: relative;
@@ -699,7 +704,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </tr>
 <td tabIndex="21" style="font-size:18px;">Battlecry&nbsp;</td>
 <td colspan="5"><textarea type="text" id="cooltext" onInput="post()" style="width:552px;height:34px;" placeholder="Cool italics text below the fusion"></textarea>
-<div class="xd"><textarea id="xd" class="xd"> </textarea><textarea id="xd2" class="xd"> </textarea><textarea id="xd3" class="xd"></textarea></div>
+<div class="xd"><textarea id="xd" class="xd"> </textarea><textarea id="xd2" class="xd"> </textarea><textarea id="xd3" class="xd"></textarea><textarea id="calcxd" class="xd"></textarea></div>
 </td>
 </tr>
 </table>
@@ -720,7 +725,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </tr>
 <tr>
 <td><input id="atkevs" placeholder=252 style="width:64px;" type="number" step="4" max="252" min="0"> 
-<button class="atkspa" id="atkbtn" placeholder=Atk/SpA style="width:44px;font-size:16px;" value="Atk" onClick='window.atkspa="atk"'>Atk</button>
+<button class="atkspa" id="atkbtn" placeholder=Atk/SpA style="width:44px;font-size:16px;" value="Atk" onClick='window.atkspa="Atk"'>Atk</button>
 <button onClick='window.atkspa="spa"' class="atkspa" id="spabtn" placeholder=Atk/SpA style="width:44px;font-size:16px;" value="SpA">SpA</button>
 
 EVs
@@ -738,7 +743,7 @@ Eff -
 <input id="hpevs" placeholder=252 style="width:64px;" step="4" max="252" min="0" type="number">HP 
 <input id="defevs" placeholder=252 style="width:64px;" step="4" max="252" min="0" type="number"> Def/SpD EVs
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td><span id="calcresult" onInput="post()"></span></td>
+<td><span id="calcresult" onInput="post()" onClick="copycalc()" style="cursor:pointer;"></span></td>
 </tr>
 <tr>
 <td>Custom Multiplier <input id="custommultiplier" placeholder=1 style="width:64px;" type="number" step=".01">
@@ -1113,6 +1118,10 @@ if (eff === '' || eff === undefined || eff === 'undefined') {
 eff = 1;
 }
 
+if (atkspa === '' || atkspa === undefined || atkspa === 'undefined') {
+atkspa = 'Atk';
+}
+
 if (defmon === '' || defmon === undefined || defmon === 'undefined') {
 defmon = 'Rhotogold';
 }
@@ -1192,6 +1201,16 @@ document.getElementById("fname1").innerHTML=`${fusion}`;
 
 
 
+}
+
+function copycalc() {
+window.calcshow = `${atkevs} ${atkspa} (${movebp} BP Move) ${fusion} Vs ${defmon} ${defmonhp} HP / ${defevs} Def|SpD ----> ${document.getElementById("calcresult").innerText}`;
+
+document.getElementById("calcxd").innerHTML = `${calcshow}`;
+
+let calcxd = document.getElementById("calcxd");
+  calcxd.select();
+  document.execCommand("copy");
 }
 
 
