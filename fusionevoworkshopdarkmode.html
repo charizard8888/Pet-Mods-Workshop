@@ -719,7 +719,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </datalist>
 <table>
 <tr>
-<td><button onClick="calc()">Calc</button></td></tr>
+<td><button onClick="calc();defmontypeload()">Calc</button></td></tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="calcmon1type1"></span><span id="calcmon1type2"></td>
 </tr>
@@ -739,7 +739,7 @@ Eff -
 <button onClick='window.eff=4;' id="4x" style="width:40px;font-size:14px;">4x</button>
 
 
-&nbsp;&nbsp;<span id="fname1"></span> &nbsp;&nbsp;Vs &nbsp;&nbsp;<input id="defmon" placeholder="Rhotogold" list="fusionslist">&nbsp;&nbsp;
+&nbsp;&nbsp;<span id="fname1"></span> &nbsp;&nbsp;Vs &nbsp;&nbsp;<input id="defmon" placeholder="Rhotogold" list="fusionslist" onInput="defmontypeload()">&nbsp;&nbsp;
 <input id="hpevs" placeholder=252 style="width:64px;" step="4" max="252" min="0" type="number">HP 
 <input id="defevs" placeholder=252 style="width:64px;" step="4" max="252" min="0" type="number"> Def/SpD EVs
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -1142,14 +1142,6 @@ defmon = 'Rhotogold';
             
 		});
         
-   if (defmont2 === 'undefined') {
-document.getElementById("calcmon1type1").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${defmont1}.png>`;
-document.getElementById("calcmon1type2").innerHTML=``;
-}
-else {
-document.getElementById("calcmon1type1").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${defmont1}.png>`;
-document.getElementById("calcmon1type2").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${defmont2}.png>`;
-}
  
      
 window.calccategory = '';
@@ -1211,6 +1203,18 @@ document.getElementById("calcxd").innerHTML = `${calcshow}`;
 let calcxd = document.getElementById("calcxd");
   calcxd.select();
   document.execCommand("copy");
+}
+
+function defmontypeload() {
+
+  if (defmont2 === 'undefined') {
+document.getElementById("calcmon1type1").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${defmont1}.png>`;
+document.getElementById("calcmon1type2").innerHTML=``;
+}
+else {
+document.getElementById("calcmon1type1").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${defmont1}.png>`;
+document.getElementById("calcmon1type2").innerHTML=`<img src=https://play.pokemonshowdown.com/sprites/types/${defmont2}.png>`;
+}
 }
 
 
