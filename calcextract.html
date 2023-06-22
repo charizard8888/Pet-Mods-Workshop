@@ -4,24 +4,9 @@
 </html>
 <script>
 function load() {
-
-/*
-
- Zarude: {
-    types: ['Dark', 'Grass'],
-    bs: {hp: 105, at: 120, df: 105, sa: 70, sd: 95, sp: 105},
-    weightkg: 70,
-    abilities: {0: 'Leaf Guard'},
-    gender: 'N',
-    otherFormes: ['Zarude-Dada'],
-  },
-
-*/
-
-
 let pk2ab1 = '';  
   Object.values(pokedexdata).forEach(mon => {
-			pk2ab1 += `'${mon.name}': {\n types: ["${mon.types[0]}", "${mon.types[1]}"],\n bs: { "hp": ${mon.baseStats.hp}, "at": ${mon.baseStats.atk}, "df": ${mon.baseStats.def}, "sa": ${mon.baseStats.spa}, "sd": ${mon.baseStats.spd}, "sp": ${mon.baseStats.spe}},\n weightkg: ${mon.weightkg},\n abilities: {0: '${mon.abilities[0]}'}, \n},\n`;
+			pk2ab1 += `'${mon.name}': {\n&nbsp;&nbsp;&nbsp;&nbsp;types: ['${mon.types[0]}', '${mon.types[1]}'],\n&nbsp;&nbsp;&nbsp;&nbsp;bs: {hp: ${mon.baseStats.hp}, at: ${mon.baseStats.atk}, df: ${mon.baseStats.def}, sa: ${mon.baseStats.spa}, sd: ${mon.baseStats.spd}, sp: ${mon.baseStats.spe}},\n&nbsp;&nbsp;&nbsp;&nbsp;weightkg: ${mon.weightkg},\n&nbsp;&nbsp;&nbsp;&nbsp;abilities: {0: '${mon.abilities[0]}'}, \n},\n`;
 	pk2ab1 = pk2ab1.replace(', "undefined"','');	
   });
 document.getElementById("abedesc").innerHTML = `${pk2ab1}`;
@@ -29,8 +14,8 @@ document.getElementById("abedesc").innerHTML = `${pk2ab1}`;
 }
 
 let pokedexdata = {
-	// ENTER POKEDEX.TS DATA HERE, Thrre's a } already at the end
-	
+	// ENTER POKEDEX DATA HERE, Check the } at the end
+ 
 	volquag: {
 		fusion: ['Volcanion', 'Quagsire'],
 		num: 1,
@@ -40,7 +25,18 @@ let pokedexdata = {
 		abilities: {0: "Porous"},
 		weightkg: 135,
 	},
+	revarantis: {
+		fusion: ['Revavroom', 'Lurantis'],
+		num: 1,
+		name: "Revarantis",
+		types: ["Steel", "Grass"],
+		baseStats: {hp: 75, atk: 122, def: 90, spa: 75, spd: 80, spe: 67},
+		abilities: {0: "Unfiltered"},
+		weightkg: 69.3,
+	},
 	
-	// Dex Data End
+	// END POKEDEX DATA HERE
+
 }
+
 </script>
