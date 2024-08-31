@@ -22,6 +22,9 @@
     $( "#fuse1" ).autocomplete({
       source: allmons
     });
+    $( "#fuse2" ).autocomplete({
+      source: allmons
+    });
   } );
   </script>
 
@@ -534,7 +537,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </tr>
 <tr>
 <td style="font-size:17px;">Pkmn 2</td>
-<td><input tabIndex="2" placeholder="Click types →" type="text" id="fuse2" list="allmonz2" onInput="post();post();load();post()" style="width:134px;"></input><datalist id="allmons2"></datalist></td>
+<td><input tabIndex="2" placeholder="Click types →" type="text" id="fuse2" list="allmons" onInput="post();post();load();post()" style="width:134px;"></input><datalist id="allmons2"></datalist></td>
 <td><span id="type1area2" onClick='document.getElementById("type2").value = ""+pk2t1+"";post();post()'></span><span id="type2area2" onClick='document.getElementById("type2").value = ""+pk2t2+"";post();post()'></span></td>
 <td><button onClick="mega2();post();mega2stats();post()" class="button2">Mega</button></td>
 </tr>
