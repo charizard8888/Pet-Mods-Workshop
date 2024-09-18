@@ -673,17 +673,17 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 </table>
 <table>
 <tr>
-<td>Ability&nbsp;&nbsp;&nbsp;<br> Desc.</td>
+<td>Ability&nbsp;&nbsp;&nbsp;<br> Desc</td>
 <td tabIndex="15" colspan="2"><span class="textarea4" role="textbox" id="abedesc" contenteditable onInput="post()"></span></td>
 <td colspan="2"></td>
 <td colspan="3"></td>
 </tr>
 <tr>
-<td style="font-size:18px;">Phy<br> Moves</td>
+<td>Phy<br> Moves</td>
 <td tabIndex="16" colspan="2"><span class="textarea3" role="textbox" id="physicalmoves" contenteditable onInput="post()"></td>
 </tr>
 <tr>
-<td>Spec<br> Moves</td>
+<td>Special<br> Moves</td>
 <td tabIndex="17" colspan="2"><span class="textarea3" role="textbox" id="specialmoves" contenteditable onInput="post()"></span></td>
 
 </tr>
@@ -714,7 +714,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <br>
 <center><img src="https://play.pokemonshowdown.com/sprites/ani/gallade-mega.gif" width="64" height="99"><img src="https://play.pokemonshowdown.com/sprites/ani-shiny/serperior.gif" width="90" height="108"></center>
 <br>
-<button id="smogsub" tabIndex="22" onClick="smogsub();post();post();copy();document.getElementById('zzz').focus();">Copy Submission</button><br>For posting on <a href="https://www.smogon.com/forums/threads/fusion-evolution-gen-9-slate-5-5-results-not-open-for-submissions.3717085/unread" target="_blank" style="text-decoration: none;">Smogon</a><span id="zzz"></span><br><br> 
+<div id="copybutton1"><button id="smogsub" tabIndex="22" onClick="smogsub();post();post();copy();document.getElementById('zzz').focus();">Copy Submission</button><br>For posting on <a href="https://www.smogon.com/forums/threads/fusion-evolution-gen-9-slate-5-5-results-not-open-for-submissions.3717085/unread" target="_blank" style="text-decoration: none;">Smogon</a><span id="zzz"></span><br><br></div> 
 <button id="discordshare" tabIndex="23" onClick="discordshare();post();post();copy2()">Copy Fusion Idea</button><br>For sharing on <a href="https://discord.gg/Mcx6BdKbzq" target="_blank" style="text-decoration:none;">Discord</a><br><br>
 <button id="devcopy" tabIndex="24" onClick="devcopy();post();post();copy3();" style="font-size:25px;">Copy Fusion Code</button><br>For Developers&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
 <datalist id="types">
@@ -1082,7 +1082,7 @@ document.getElementById("mixbulk").innerHTML=`${mixbulk}`;
 // CLICK TO COPY SCRIPT
 function smogsub() {
 const element = document.getElementById("smogsub");
-document.getElementById("smogsub").innerHTML=`<span style="background-color:#630404;color:white;border-radius:2px;">Copied</span>`;
+document.getElementById("smogsub").innerHTML=`<span style="background-color:#630404;color:white;border-radius:2px;width:20px;">Copied</span>`;
 //setInterval(function () {element.innerHTML = "Hello"}, 1000);
 setTimeout(function() {element.innerHTML = `Copy Submission`;}, 300);
 }
