@@ -518,8 +518,54 @@ a.ui-button:active,
 	-webkit-box-shadow: 0px 0px 5px #666666;
 	box-shadow: 0px 0px 5px #666666;
 }
+/* Switch Button */
+.theme-checkbox {
+  --toggle-size: 6px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 6.25em;
+  height: 3.125em;
+  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #efefef), color-stop(50%, #2a2a2a)) no-repeat;
+  background: -o-linear-gradient(left, #efefef 50%, #2a2a2a 50%) no-repeat;
+  background: linear-gradient(to right, #efefef 50%, #2a2a2a 50%) no-repeat;
+  background-size: 205%;
+  background-position: 0;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 99em;
+  position: relative;
+  cursor: pointer;
+  font-size: var(--toggle-size);
+}
 
+.theme-checkbox::before {
+  content: "";
+  width: 2.25em;
+  height: 2.25em;
+  position: absolute;
+  top: 0.438em;
+  left: 0.438em;
+  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #efefef), color-stop(50%, #2a2a2a)) no-repeat;
+  background: -o-linear-gradient(left, #efefef 50%, #2a2a2a 50%) no-repeat;
+  background: linear-gradient(to right, #efefef 50%, #2a2a2a 50%) no-repeat;
+  background-size: 205%;
+  background-position: 100%;
+  border-radius: 50%;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+}
 
+.theme-checkbox:checked::before {
+  left: calc(100% - 2.25em - 0.438em);
+  background-position: 0;
+}
+
+.theme-checkbox:checked {
+  background-position: 100%;
+}
 
 </style>
 
@@ -531,10 +577,13 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <table style="max-width:100%;">
 <tr>
 <td style="font-size:17px;">Pkmn 1</td>
-<td><input tabIndex="1" placeholder="Click types →" type="text" id="fuse1" name="fuse1" list="allmons" onInput="post();post();post();load();post()" onfocusout="post()" onClick="post()" style="width:134px;"></input><datalist id="allmons"></datalist></td>
+<td><input tabIndex="1" placeholder="Click types →" type="text" id="fuse1" name="fuse1" list="allmons" onInput="post();post();post();load();post()" onfocusout="post()" onClick="post()" style="width:134px;" autofocus></input><datalist id="allmons"></datalist></td>
 <td><span id="type1area1" onClick='document.getElementById("type").value = ""+pk1t1+"";post();post()'></span><span id="type2area1" onClick='document.getElementById("type").value = ""+pk1t2+"";post();post()'></span></td>
-<td colspan="2"><button onClick="mega();post();mega1stats();post()" class="button2">Mega</button></td>
-<td colspan="3"><span id="megabox1"></span></td>
+<td><button onClick="mega();post();mega1stats();post()" class="button2">Mega</button></td>
+<td><span id="megabox1"></span></td>
+<td>Pokedex</td>
+
+<td><input id="showpokedex" type="checkbox" class="theme-checkbox" onClick="pokedex()"></td>
 
 </tr>
 <tr>
@@ -542,7 +591,11 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><input tabIndex="2" placeholder="Click types →" type="text" id="fuse2" list="allmons" onInput="post();post();load();post()" onfocusout="post()" onfocusin="post()" onfocus="post()" style="width:134px;"></input><datalist id="allmons2"></datalist></td>
 <td><span id="type1area2" onClick='document.getElementById("type2").value = ""+pk2t1+"";post();post()'></span><span id="type2area2" onClick='document.getElementById("type2").value = ""+pk2t2+"";post();post()'></span></td>
 <td><button onClick="mega2();post();mega2stats();post()" class="button2">Mega</button></td>
+<td></td>
+
+
 </tr>
+
 <tr>
 <td>Fusion</td>
 <td><textarea tabIndex="3" type="text" id="fusion" onInput="post()" onfocusout="post()" onfocusin="post()" onfocus="post()" style="width:134px;"></textarea></td>
@@ -564,13 +617,8 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td style="text-align:center;">Avg</td>
 <td id="mega1" style="text-align:center;">Mega 1</td>
 <td id="mega2" style="text-align:center;">Mega 2</td>
-<td rowspan=2>
 
-<button class="button2" onClick='document.getElementById("framez").innerHTML= `<iframe src=https://dex.pokemonshowdown.com/ width=800 height=600></iframe>`'>Show Pokedex</button>
-<br>
-<button class="button2" onClick='document.getElementById("framez").innerHTML= ``'>Hide Pokedex</button>
 
-</td>
 <td id="framez" rowspan=500 colspan=500></td>
 </tr>
 <tr>
@@ -21055,5 +21103,13 @@ search.addEventListener('keyup', function handler(event) {
     }, document.createDocumentFragment());
     results2.appendChild(set2);
 });*/
+function pokedex() {
+if (document.getElementById("showpokedex").checked == true) { 
+document.getElementById("framez").innerHTML= `<iframe src=https://dex.pokemonshowdown.com/ width=800 height=600></iframe>`;
+}
+else {
+document.getElementById("framez").innerHTML= ``;
+}
+}
 </script>
 </html>
