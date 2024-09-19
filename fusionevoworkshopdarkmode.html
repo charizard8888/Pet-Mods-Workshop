@@ -580,8 +580,8 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><input tabIndex="1" placeholder="Click types →" type="text" id="fuse1" name="fuse1" list="allmons" onInput="post();post();post();load();post()" onfocusout="post()" onClick="post()" style="width:134px;" autofocus></input><datalist id="allmons"></datalist></td>
 <td><span id="type1area1" onClick='document.getElementById("type").value = ""+pk1t1+"";post();post()'></span><span id="type2area1" onClick='document.getElementById("type").value = ""+pk1t2+"";post();post()'></span></td>
 <td colspan=2><button onClick="mega();post();mega1stats();post()" class="button2">Mega</button></td>
-<td>Pokedex</td>
 
+<td>Pokedex</td>
 <td><input id="showpokedex" type="checkbox" class="theme-checkbox" onClick="pokedex()"></td>
 
 </tr>
@@ -590,6 +590,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><input tabIndex="2" placeholder="Click types →" type="text" id="fuse2" list="allmons" onInput="post();post();load();post()" onfocusout="post()" onfocusin="post()" onfocus="post()" style="width:134px;"></input><datalist id="allmons2"></datalist></td>
 <td><span id="type1area2" onClick='document.getElementById("type2").value = ""+pk2t1+"";post();post()'></span><span id="type2area2" onClick='document.getElementById("type2").value = ""+pk2t2+"";post();post()'></span></td>
 <td colspan=2><button onClick="mega2();post();mega2stats();post()" class="button2">Mega</button></td>
+
 <td>Spreashseet</td>
 <td><input id="showspreadsheet" type="checkbox" class="theme-checkbox" onClick="spreadsheet()"></td>
 
@@ -601,6 +602,10 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><span id="ft1"></span><span id="ft2"></span></td>
 <td></td>
 <td><button onClick="clearallz();post();post();clearallz();" class="button2">Reset</button></td>
+
+<td>Damage Calc</td>
+<td><input id="showdamagecalc" type="checkbox" class="theme-checkbox" onClick="damagecalc()"></td>
+
 <td><span id="test"></span></td>
 </tr>
 <td>Types</td>
@@ -21104,7 +21109,7 @@ search.addEventListener('keyup', function handler(event) {
 });*/
 function pokedex() {
 	if (document.getElementById("showpokedex").checked == true) { 
-		document.getElementById("framez").innerHTML= `<iframe src=https://dex.pokemonshowdown.com/ width=800 height=600></iframe>`;
+		document.getElementById("framez").innerHTML= `<iframe src="https://dex.pokemonshowdown.com/" width=1000 height=600></iframe>`;
 	}
 	else {
 		document.getElementById("framez").innerHTML= ``;
@@ -21113,6 +21118,14 @@ function pokedex() {
 function spreadsheet() {
 	if (document.getElementById("showspreadsheet").checked == true) { 
 		document.getElementById("framez").innerHTML= `<h1><marquee>COMING SOON</marquee></h1>`;
+	}
+	else {
+		document.getElementById("framez").innerHTML= ``;
+	}
+}
+function damagecalc() {
+	if (document.getElementById("showdamagecalc").checked == true) { 
+		document.getElementById("framez").innerHTML= `<iframe src="https://charizard8888.github.io/FECalc/dist/index.html" width=1300 height=600></iframe>`;
 	}
 	else {
 		document.getElementById("framez").innerHTML= ``;
