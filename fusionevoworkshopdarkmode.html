@@ -591,7 +591,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><span id="type1area2" onClick='document.getElementById("type2").value = ""+pk2t1+"";post();post()'></span><span id="type2area2" onClick='document.getElementById("type2").value = ""+pk2t2+"";post();post()'></span></td>
 <td colspan=2><button onClick="mega2();post();mega2stats();post()" class="button2">Mega</button></td>
 
-<td>Spreashseet</td>
+<td>Spreadsheet</td>
 <td><input id="showspreadsheet" type="checkbox" class="theme-checkbox" onClick="spreadsheet()"></td>
 
 </tr>
@@ -603,7 +603,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td></td>
 <td><button onClick="clearallz();post();post();clearallz();" class="button2">Reset</button></td>
 
-<td>Damage Calc</td>
+<td>FE Calc</td>
 <td><input id="showdamagecalc" type="checkbox" class="theme-checkbox" onClick="damagecalc()"></td>
 
 <td><span id="test"></span></td>
@@ -21125,7 +21125,7 @@ function spreadsheet() {
 }
 function damagecalc() {
 	if (document.getElementById("showdamagecalc").checked == true) { 
-		document.getElementById("framez").innerHTML= `<iframe src="https://charizard8888.github.io/FECalc/dist/index.html" width=1300 height=600></iframe>`;
+		document.getElementById("framez").innerHTML= `<iframe src="https://charizard8888.github.io/FECalc/dist/index.html" width=1000 height=600></iframe>`;
 	}
 	else {
 		document.getElementById("framez").innerHTML= ``;
