@@ -591,7 +591,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td><span id="type1area2" onClick='document.getElementById("type2").value = ""+pk2t1+"";post();post()'></span><span id="type2area2" onClick='document.getElementById("type2").value = ""+pk2t2+"";post();post()'></span></td>
 <td colspan=2><button onClick="mega2();post();mega2stats();post()" class="button2">Mega</button></td>
 
-<td>Spreadsheet</td>
+<td>Sheet</td>
 <td><input id="showspreadsheet" type="checkbox" class="theme-checkbox" onClick="spreadsheet()"></td>
 
 </tr>
@@ -726,15 +726,14 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <tr>
 <td>Ability</td>
 <td><textarea tabIndex="14" type="text" id="abe" onInput="post()" style="width:134px;"></textarea></td>
+<td colspan=2><button class="button2"onClick="discordshare();post();post();copy2()">Discord Share</button></td>
 <td colspan="4"><span id="mega1abe" style="width:64px;" class="abearea" onClick='document.getElementById("abe").value = ""+document.getElementById("mega1abe").innerText+"";post();post()'></span></td>
 <td><span id="mega2abe" style="width:64px;" class="abearea" onClick='document.getElementById("abe").value = ""+document.getElementById("mega2abe").innerText+"";post();post()'></span></td>
 </tr>
 
 <tr>
 <td>Ability&nbsp;&nbsp;&nbsp;<br> Desc</td>
-<td tabIndex="15" colspan="4"><span class="textarea4" role="textbox" id="abedesc" contenteditable onInput="post()"></span></td>
-<td colspan="2"></td>
-<td colspan="3"></td>
+<td tabIndex="15" colspan="3"><span class="textarea4" role="textbox" id="abedesc" contenteditable onInput="post()"></span></td>
 </tr>
 <tr>
 <td>Phy<br> Moves</td>
