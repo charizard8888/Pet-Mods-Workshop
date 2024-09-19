@@ -579,8 +579,7 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td style="font-size:17px;">Pkmn 1</td>
 <td><input tabIndex="1" placeholder="Click types →" type="text" id="fuse1" name="fuse1" list="allmons" onInput="post();post();post();load();post()" onfocusout="post()" onClick="post()" style="width:134px;" autofocus></input><datalist id="allmons"></datalist></td>
 <td><span id="type1area1" onClick='document.getElementById("type").value = ""+pk1t1+"";post();post()'></span><span id="type2area1" onClick='document.getElementById("type").value = ""+pk1t2+"";post();post()'></span></td>
-<td><button onClick="mega();post();mega1stats();post()" class="button2">Mega</button></td>
-<td><span id="megabox1"></span></td>
+<td colspan=2><button onClick="mega();post();mega1stats();post()" class="button2">Mega</button></td>
 <td>Pokedex</td>
 
 <td><input id="showpokedex" type="checkbox" class="theme-checkbox" onClick="pokedex()"></td>
@@ -590,9 +589,9 @@ Art by <a href="https://www.smogon.com/forums/members/imas.237842/" target="_bla
 <td style="font-size:17px;">Pkmn 2</td>
 <td><input tabIndex="2" placeholder="Click types →" type="text" id="fuse2" list="allmons" onInput="post();post();load();post()" onfocusout="post()" onfocusin="post()" onfocus="post()" style="width:134px;"></input><datalist id="allmons2"></datalist></td>
 <td><span id="type1area2" onClick='document.getElementById("type2").value = ""+pk2t1+"";post();post()'></span><span id="type2area2" onClick='document.getElementById("type2").value = ""+pk2t2+"";post();post()'></span></td>
-<td><button onClick="mega2();post();mega2stats();post()" class="button2">Mega</button></td>
-<td></td>
-
+<td colspan=2><button onClick="mega2();post();mega2stats();post()" class="button2">Mega</button></td>
+<td>Spreashseet</td>
+<td><input id="showspreadsheet" type="checkbox" class="theme-checkbox" onClick="spreadsheet()"></td>
 
 </tr>
 
@@ -21104,12 +21103,20 @@ search.addEventListener('keyup', function handler(event) {
     results2.appendChild(set2);
 });*/
 function pokedex() {
-if (document.getElementById("showpokedex").checked == true) { 
-document.getElementById("framez").innerHTML= `<iframe src=https://dex.pokemonshowdown.com/ width=800 height=600></iframe>`;
+	if (document.getElementById("showpokedex").checked == true) { 
+		document.getElementById("framez").innerHTML= `<iframe src=https://dex.pokemonshowdown.com/ width=800 height=600></iframe>`;
+	}
+	else {
+		document.getElementById("framez").innerHTML= ``;
+	}
 }
-else {
-document.getElementById("framez").innerHTML= ``;
-}
+function spreadsheet() {
+	if (document.getElementById("showspreadsheet").checked == true) { 
+		document.getElementById("framez").innerHTML= `<h1><marquee>COMING SOON</marquee></h1>`;
+	}
+	else {
+		document.getElementById("framez").innerHTML= ``;
+	}
 }
 </script>
 </html>
