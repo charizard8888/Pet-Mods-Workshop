@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pokémon Move Cheat Code Finder</title>
+  <style>
+    body {
+      font-family: monospace;
+      max-width: 980px;
+      margin: 20px auto;
+      padding: 0 15px;
+      background: #121212;
+      color: #e0e0e0;
+    }
+    h1 { font-size: 1.3rem; border-bottom: 1px solid #333; padding-bottom: 8px; margin-bottom: 12px; }
+    .panel {
+      background: #181818;
+      border: 1px solid #333;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .row:last-child { margin-bottom: 0; }
+    label { font-size: 0.9rem; color: #ccc; display: inline-flex; align-items: center; gap: 5px; }
+    input[type="text"], input[type="number"], select {
+      background: #1e1e1e;
+      color: #fff;
+      border: 1px solid #444;
+      padding: 5px 8px;
+      font-family: monospace;
+      font-size: 0.95rem;
+    }
+    input[type="text"].code-box { text-transform: uppercase; width: 130px; letter-spacing: 2px; font-weight: bold; }
+    input[type="text"].search-box { width: 290px; }
+    input[type="number"].stat-val { width: 65px; }
+    input[type="text"].url-box { width: 100%; box-sizing: border-box; font-size: 0.85rem; margin-bottom: 6px; }
+    button {
+      background: #2c2c2c;
+      color: #fff;
+      border: 1px solid #555;
+      padding: 5px 12px;
+      font-family: monospace;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+    button:hover { background: #3c3c3c; }
+    details { margin-bottom: 12px; border: 1px solid #333; padding: 8px 10px; background: #161616; }
+    summary { cursor: pointer; font-weight: bold; font-size: 0.9rem; }
+    .status { margin-bottom: 10px; color: #aaa; font-size: 0.92rem; }
+    .card {
+      border: 1px solid #333;
+      background: #181818;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+    }
+    .card-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #2a2a2a;
+      padding-bottom: 8px;
+      margin-bottom: 8px;
+      gap: 10px;
+    }
+    .identity-group {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .sprite-slot {
+      width: 44px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .poke-title { font-weight: bold; font-size: 1.05rem; color: #7cc7ff; }
+    .poke-num { color: #777; font-size: 0.85rem; }
+    .tag {
+      display: inline-block;
+      background: #252525;
+      border: 1px solid #3d3d3d;
+      padding: 1px 6px;
+      font-size: 0.8rem;
+      color: #ddd;
+    }
+    .tag-tier { color: #ffcf70; border-color: #5a4a28; }
+    .meta-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 3px;
+    }
+    @media (max-width: 720px) {
+      .meta-right { align-items: flex-start; }
+    }
+    .stats-line { font-size: 0.83rem; color: #999; }
+    .stats-line strong { color: #ccc; }
+    .abilities-span {
+      display: block;
+      font-size: 0.83rem;
+      color: #999;
+    }
+    .abilities-span strong { color: #ccc; }
+    .letter-row { margin: 4px 0; line-height: 1.45; }
+    .letter-badge {
+      display: inline-block;
+      width: 22px;
+      font-weight: bold;
+      color: #ffcc66;
+    }
+    .move-list { color: #e0e0e0; }
+    .move-list strong { color: #8aff8a; }
+  </style>
+</head>
+<body>
+
+  <h1>Pokémon Move Cheat Code Finder</h1>
+
+  <div class="panel">
+    <!-- Row 1: Cheat Code -->
+    <div class="row">
+      <label>Code: <input type="text" id="codeInput" class="code-box" value="BURN" maxlength="12" placeholder="BURN"></label>
+      <button id="searchBtn">Search</button>
+      <button id="resetBtn">Reset Filters</button>
+    </div>
+
+    <!-- Row 2: Search (Pokemon / Ability / Move) -->
+    <div class="row">
+      <label>Pokemon/Ability/Move: <input type="text" id="searchFilter" class="search-box" placeholder="Charizard, Drought, Blast Burn"></label>
+    </div>
+
+    <!-- Row 3: Tier Mode, Tier & Type Filters -->
+    <div class="row">
+      <label>Tier Mode:
+        <select id="tierMode">
+          <option value="natDexTier" selected>National Dex</option>
+          <option value="tier">Singles (SV)</option>
+          <option value="doublesTier">Doubles</option>
+        </select>
+      </label>
+
+      <label>Tier:
+        <select id="tierFilter">
+          <option value="all">All Tiers</option>
+          <option value="OU">OU</option>
+          <option value="UUBL">UUBL</option>
+          <option value="UU">UU</option>
+          <option value="RUBL">RUBL</option>
+          <option value="RU">RU</option>
+          <option value="NUBL">NUBL</option>
+          <option value="NU">NU</option>
+          <option value="PUBL">PUBL</option>
+          <option value="PU">PU</option>
+          <option value="ZUBL">ZUBL</option>
+          <option value="ZU">ZU</option>
+          <option value="NFE">NFE</option>
+          <option value="LC">LC</option>
+          <option value="DOU">DOU</option>
+          <option value="DUU">DUU</option>
+          <option value="CAP">CAP</option>
+          <option value="Uber">Uber</option>
+          <option value="AG">AG</option>
+          <option value="Untiered">Untiered / Past</option>
+        </select>
+      </label>
+
+      <label>Type:
+        <select id="typeFilter">
+          <option value="all">All Types</option>
+          <option value="Normal">Normal</option>
+          <option value="Fire">Fire</option>
+          <option value="Water">Water</option>
+          <option value="Electric">Electric</option>
+          <option value="Grass">Grass</option>
+          <option value="Ice">Ice</option>
+          <option value="Fighting">Fighting</option>
+          <option value="Poison">Poison</option>
+          <option value="Ground">Ground</option>
+          <option value="Flying">Flying</option>
+          <option value="Psychic">Psychic</option>
+          <option value="Bug">Bug</option>
+          <option value="Rock">Rock</option>
+          <option value="Ghost">Ghost</option>
+          <option value="Dragon">Dragon</option>
+          <option value="Dark">Dark</option>
+          <option value="Steel">Steel</option>
+          <option value="Fairy">Fairy</option>
+        </select>
+      </label>
+    </div>
+
+    <!-- Row 4: Base Stat Filter & Sorting -->
+    <div class="row">
+      <label>Stat Filter:
+        <select id="statTarget">
+          <option value="bst" selected>BST</option>
+          <option value="hp">HP</option>
+          <option value="atk">Atk</option>
+          <option value="def">Def</option>
+          <option value="spa">SpA</option>
+          <option value="spd">SpD</option>
+          <option value="spe">Spe</option>
+        </select>
+        <select id="statOp">
+          <option value="gte" selected>&gt;=</option>
+          <option value="lte">&lt;=</option>
+        </select>
+        <input type="number" id="statValue" class="stat-val" value="530" min="0" max="2000">
+      </label>
+
+      <label>Sort By:
+        <select id="sortBy">
+          <option value="tier-asc" selected>Tier (High → Low, Uber/AG Bottom)</option>
+          <option value="num-asc">Dex # (1 → 1025)</option>
+          <option value="name-asc">Pokemon (A → Z)</option>
+          <option value="bst-desc">BST (High → Low)</option>
+          <option value="hp-desc">HP (High → Low)</option>
+          <option value="atk-desc">Attack (High → Low)</option>
+          <option value="def-desc">Defense (High → Low)</option>
+          <option value="spa-desc">Sp. Atk (High → Low)</option>
+          <option value="spd-desc">Sp. Def (High → Low)</option>
+          <option value="spe-desc">Speed (High → Low)</option>
+          <option value="moves-desc">Matching Moves (Most → Least)</option>
+        </select>
+      </label>
+    </div>
+  </div>
+
+  <details>
+    <summary>Data Source (<span id="dbStatus">Loading...</span>)</summary>
+    <div style="margin-top: 8px;">
+      <label style="font-size: 0.85rem; color: #aaa;">Smogon Data Directory URL:</label>
+      <input type="text" id="baseUrlInput" class="url-box" value="https://play.pokemonshowdown.com/data">
+      <button id="reloadUrlBtn">Reload Data Files</button>
+    </div>
+  </details>
+
+  <div class="status" id="statusText">Loading Pokémon data...</div>
+  <div id="results"></div>
+
+  <script>
+    const FAST_JSON_URL = 'https://play.pokemonshowdown.com/data';
+    const GITHUB_TS_URL = 'https://raw.githubusercontent.com/smogon/pokemon-showdown/refs/heads/master/data';
+    const MINISPRITE_BASE = 'https://www.smogon.com/forums/media/minisprites';
+    const DB_NAME = 'PokeCheatCodeFast_v1';
+    const STORE_NAME = 'compactData';
+
+    let POKE_MOVES = {}; // { pokeId: [moveId1, moveId2, ...] }
+    let POKEDEX = {};
+    let FORMATS = {};
+    let MOVES_META = {};
+
+    const TIER_RANK = {
+      'OU': 1, 'DOU': 1,
+      'UUBL': 2, 'DUUBL': 2,
+      'UU': 3, 'DUU': 3,
+      'RUBL': 4,
+      'RU': 5,
+      'NUBL': 6,
+      'NU': 7,
+      'PUBL': 8,
+      'PU': 9,
+      'ZUBL': 10,
+      'ZU': 11,
+      'NFE': 12,
+      'LC': 13,
+      'CAP': 14, 'CAP NFE': 15, 'CAP LC': 16,
+      'Uber': 30, 'DUber': 30,
+      'AG': 31
+    };
+
+    const HIGH_UTILITY_STATUS = new Set([
+      'stealthrock', 'spikes', 'toxicspikes', 'stickyweb', 'defog', 'rapidspin', 'tidyup', 'mortalspin', 'courtchange',
+      'roost', 'recover', 'slackoff', 'softboiled', 'synthesis', 'moonlight', 'morningsun', 'shoreup', 'strengthsap', 'wish', 'rest',
+      'swordsdance', 'nastyplot', 'calmmind', 'dragondance', 'quiverdance', 'shellsmash', 'bulkup', 'irondefense', 'agility', 'tailglow', 'bellydrum', 'coil', 'shiftgear', 'victorydance', 'filletaway', 'workup', 'curse',
+      'toxic', 'willowisp', 'thunderwave', 'spore', 'sleeppowder', 'yawn', 'glare', 'nuzzle',
+      'protect', 'substitute', 'encore', 'taunt', 'trick', 'switcheroo', 'partingshot', 'teleport', 'batonpass', 'haze', 'whirlwind', 'roar', 'perishsong', 'destinybond', 'leechseed', 'reflect', 'lightscreen', 'auroraveil', 'tailwind', 'trickroom', 'healingwish', 'lunardance', 'memento'
+    ]);
+
+    const LOW_UTILITY_MOVES = new Set([
+      'splash', 'celebrate', 'holdhands', 'happyhour', 'metronome', 'assist', 'mefirst', 'mirrormove', 'mimic',
+      'growl', 'tailwhip', 'leer', 'stringshot', 'sandattack', 'smokescreen', 'kinesis', 'flash', 'doubleteam', 'minimize',
+      'sweetscent', 'odorsleuth', 'foresight', 'miracleseye', 'howl', 'meditate', 'sharpen', 'defensecurl', 'withdraw', 'harden',
+      'bide', 'rage', 'frustration', 'return', 'captivate', 'confide', 'secretpower', 'naturalgift', 'hiddenpower', 'round', 'echoedvoice', 'snore', 'sleeptalk', 'swagger', 'attract', 'bestow', 'fling', 'present', 'constrict', 'tackle', 'scratch', 'pound', 'cut', 'rocksmash', 'strength'
+    ]);
+
+    function openCacheDB() {
+      return new Promise((resolve, reject) => {
+        if (!window.indexedDB) return reject();
+        const req = indexedDB.open(DB_NAME, 1);
+        req.onupgradeneeded = () => {
+          if (!req.result.objectStoreNames.contains(STORE_NAME)) {
+            req.result.createObjectStore(STORE_NAME);
+          }
+        };
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject();
+      });
+    }
+
+    async function readFromCache(key) {
+      try {
+        const db = await openCacheDB();
+        return await new Promise((resolve) => {
+          const tx = db.transaction(STORE_NAME, 'readonly');
+          const req = tx.objectStore(STORE_NAME).get(key);
+          req.onsuccess = () => resolve(req.result || null);
+          req.onerror = () => resolve(null);
+        });
+      } catch {
+        return null;
+      }
+    }
+
+    async function writeToCache(key, value) {
+      try {
+        const db = await openCacheDB();
+        const tx = db.transaction(STORE_NAME, 'readwrite');
+        tx.objectStore(STORE_NAME).put(value, key);
+      } catch {}
+    }
+
+    function computeMoveRank(id, m) {
+      if (m.isNonstandard || m.isZ || m.isMax) return 4;
+      if (LOW_UTILITY_MOVES.has(id)) return 3;
+      const isStatus = m.category === 'Status' || m.isStatus;
+      if (!isStatus) {
+        const bp = m.basePower || 0;
+        if (bp >= 60 || bp === 0 || m.multihit || ((m.priority || 0) > 0 && bp >= 40)) return 1;
+        return 3;
+      }
+      return HIGH_UTILITY_STATUS.has(id) ? 1 : 2;
+    }
+
+    function buildCompactMovesFromJson(movesJson) {
+      const compact = {};
+      for (const [id, m] of Object.entries(movesJson)) {
+        if (!m) continue;
+        compact[id] = {
+          name: m.name || (id.charAt(0).toUpperCase() + id.slice(1)),
+          rank: computeMoveRank(id, m)
+        };
+      }
+      return compact;
+    }
+
+    function buildCompactLearnsets(learnsetsObj) {
+      const compact = {};
+      for (const [pokeId, entry] of Object.entries(learnsetsObj)) {
+        if (entry && entry.learnset) {
+          compact[pokeId] = Object.keys(entry.learnset);
+        }
+      }
+      return compact;
+    }
+
+    function parseTsDataObjectFast(rawText, exportName) {
+      const marker = `export const ${exportName}`;
+      const exportIdx = rawText.indexOf(marker);
+      const eqIdx = rawText.indexOf('=', exportIdx + marker.length);
+      let cleaned = rawText.slice(eqIdx + 1).trim();
+      if (cleaned.endsWith(';')) cleaned = cleaned.slice(0, -1);
+      return (new Function('return (' + cleaned + ')'))();
+    }
+
+    function parseMovesTsFast(rawMovesTs) {
+      const map = {};
+      const lines = rawMovesTs.split('\n');
+      let cur = null;
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        if (line.charCodeAt(0) === 9 && line.charCodeAt(1) !== 9) {
+          const colonIdx = line.indexOf(':');
+          if (colonIdx > 1) {
+            const id = line.slice(1, colonIdx).trim();
+            cur = { name: id.charAt(0).toUpperCase() + id.slice(1) };
+            map[id] = cur;
+          }
+        } else if (cur && line.charCodeAt(0) === 9 && line.charCodeAt(1) === 9 && line.charCodeAt(2) !== 9) {
+          const trimmed = line.slice(2);
+          if (trimmed.startsWith('name:')) {
+            const q1 = trimmed.indexOf('"');
+            const q2 = trimmed.indexOf("'");
+            const start = q1 !== -1 ? q1 : q2;
+            const quoteChar = q1 !== -1 ? '"' : "'";
+            if (start !== -1) {
+              const end = trimmed.indexOf(quoteChar, start + 1);
+              if (end !== -1) cur.name = trimmed.slice(start + 1, end);
+            }
+          } else if (trimmed.startsWith('isNonstandard:') || trimmed.startsWith('isZ:') || trimmed.startsWith('isMax:')) {
+            cur.isNonstandard = true;
+          } else if (trimmed.startsWith('basePower:')) {
+            cur.basePower = parseInt(trimmed.slice(10), 10) || 0;
+          } else if (trimmed.startsWith('category:')) {
+            cur.isStatus = trimmed.includes('Status');
+          } else if (trimmed.startsWith('priority:')) {
+            cur.priority = parseInt(trimmed.slice(9), 10) || 0;
+          } else if (trimmed.startsWith('multihit:')) {
+            cur.multihit = true;
+          }
+        }
+      }
+
+      const compact = {};
+      for (const [id, m] of Object.entries(map)) {
+        compact[id] = { name: m.name, rank: computeMoveRank(id, m) };
+      }
+      return compact;
+    }
+
+    function formatMoveName(moveId) {
+      return MOVES_META[moveId]?.name || (moveId.charAt(0).toUpperCase() + moveId.slice(1));
+    }
+
+    function getMoveRank(moveId) {
+      return MOVES_META[moveId]?.rank ?? 2;
+    }
+
+    function getMinispriteSlug(name, pokeId) {
+      if (!name) return pokeId;
+      return name
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/['’:.]/g, '')
+        .replace(/[^a-z0-9-]+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+    }
+
+    function getPokeInfo(pokeId) {
+      const dex = POKEDEX[pokeId] || {};
+      const fmt = FORMATS[pokeId] || {};
+      const stats = dex.baseStats || { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 };
+      const bst = stats.hp + stats.atk + stats.def + stats.spa + stats.spd + stats.spe;
+
+      const name = dex.name || (pokeId.charAt(0).toUpperCase() + pokeId.slice(1));
+      const num = typeof dex.num === 'number' ? dex.num : 9999;
+      const types = Array.isArray(dex.types) ? dex.types : [];
+      const spriteSlug = getMinispriteSlug(name, pokeId);
+      const baseSpeciesSlug = dex.baseSpecies ? getMinispriteSlug(dex.baseSpecies, pokeId) : spriteSlug;
+
+      const abilityList = [];
+      const rawAbilityNames = [];
+      if (dex.abilities) {
+        for (const [slot, abName] of Object.entries(dex.abilities)) {
+          rawAbilityNames.push(abName);
+          if (slot === 'H') {
+            abilityList.push(`${abName} (H)`);
+          } else if (slot === 'S') {
+            abilityList.push(`${abName} (S)`);
+          } else {
+            abilityList.push(abName);
+          }
+        }
+      }
+
+      return {
+        pokeId,
+        name,
+        num,
+        types,
+        spriteSlug,
+        baseSpeciesSlug,
+        abilityList,
+        rawAbilityNames,
+        stats: { ...stats, bst },
+        tier: fmt.tier || '',
+        natDexTier: fmt.natDexTier || '',
+        doublesTier: fmt.doublesTier || '',
+        isNonstandard: fmt.isNonstandard || dex.isNonstandard || ''
+      };
+    }
+
+    function canSatisfyCode(letters, byLetter) {
+      const usedMoves = new Set();
+
+      function backtrack(idx) {
+        if (idx === letters.length) return true;
+        const ch = letters[idx];
+        const candidates = byLetter[ch] || [];
+
+        for (let i = 0; i < candidates.length; i++) {
+          const move = candidates[i];
+          if (usedMoves.has(move)) continue;
+
+          usedMoves.add(move);
+          if (backtrack(idx + 1)) return true;
+          usedMoves.delete(move);
+        }
+        return false;
+      }
+
+      return backtrack(0);
+    }
+
+    function runSearch() {
+      const rawCode = document.getElementById('codeInput').value.toUpperCase().replace(/[^A-Z]/g, '');
+      const searchQuery = document.getElementById('searchFilter').value.trim().toLowerCase();
+      const searchSlug = searchQuery.replace(/[^a-z0-9]/g, '');
+
+      const typeFilter = document.getElementById('typeFilter').value;
+      const tierMode = document.getElementById('tierMode').value;
+      const tierFilter = document.getElementById('tierFilter').value;
+
+      const statTarget = document.getElementById('statTarget').value;
+      const statOp = document.getElementById('statOp').value;
+      const statValRaw = document.getElementById('statValue').value;
+      const hasStatFilter = statValRaw !== '' && !isNaN(Number(statValRaw));
+      const statThreshold = Number(statValRaw);
+
+      const sortBy = document.getElementById('sortBy').value;
+
+      const resultsDiv = document.getElementById('results');
+      const statusText = document.getElementById('statusText');
+      resultsDiv.innerHTML = '';
+
+      if (Object.keys(POKE_MOVES).length === 0) {
+        statusText.textContent = 'Data not loaded yet.';
+        return;
+      }
+
+      if (!rawCode) {
+        statusText.textContent = 'Enter at least 1 letter (A-Z) in the Code box.';
+        return;
+      }
+
+      const letters = rawCode.split('');
+      const uniqueLetters = [...new Set(letters)];
+      const matches = [];
+
+      for (const [pokeId, moveIds] of Object.entries(POKE_MOVES)) {
+        if (!moveIds || moveIds.length === 0) continue;
+
+        const info = getPokeInfo(pokeId);
+
+        if (searchQuery) {
+          const nameMatch = info.name.toLowerCase().includes(searchQuery);
+          const abilityMatch = info.rawAbilityNames.some(ab => ab.toLowerCase().includes(searchQuery));
+          const moveMatch = moveIds.some(mId =>
+            formatMoveName(mId).toLowerCase().includes(searchQuery) ||
+            (searchSlug.length > 0 && mId.includes(searchSlug))
+          );
+          if (!nameMatch && !abilityMatch && !moveMatch) continue;
+        }
+
+        if (typeFilter !== 'all' && !info.types.includes(typeFilter)) continue;
+
+        const activeTier = info[tierMode] || '';
+        const displayTier = activeTier || (info.isNonstandard ? `Untiered (${info.isNonstandard})` : 'Untiered');
+
+        if (tierFilter !== 'all') {
+          if (tierFilter === 'Untiered') {
+            if (activeTier && TIER_RANK[activeTier]) continue;
+          } else if (tierFilter === 'CAP') {
+            if (!activeTier.startsWith('CAP')) continue;
+          } else {
+            if (activeTier !== tierFilter) continue;
+          }
+        }
+
+        if (hasStatFilter) {
+          const val = info.stats[statTarget] ?? 0;
+          if (statOp === 'gte' && val < statThreshold) continue;
+          if (statOp === 'lte' && val > statThreshold) continue;
+        }
+
+        const byLetter = {};
+        for (let i = 0; i < moveIds.length; i++) {
+          const moveId = moveIds[i];
+          const firstChar = moveId[0].toUpperCase();
+          if (!byLetter[firstChar]) byLetter[firstChar] = [];
+          byLetter[firstChar].push(moveId);
+        }
+
+        if (!letters.every(ch => byLetter[ch] && byLetter[ch].length > 0)) continue;
+        if (!canSatisfyCode(letters, byLetter)) continue;
+
+        const totalMatchingMoves = uniqueLetters.reduce((sum, ch) => sum + byLetter[ch].length, 0);
+
+        matches.push({
+          info,
+          activeTier,
+          displayTier,
+          byLetter,
+          totalMatchingMoves
+        });
+      }
+
+      matches.sort((a, b) => {
+        switch (sortBy) {
+          case 'name-asc':
+            return a.info.name.localeCompare(b.info.name);
+          case 'tier-asc': {
+            const rankA = TIER_RANK[a.activeTier] || 99;
+            const rankB = TIER_RANK[b.activeTier] || 99;
+            return rankA !== rankB ? rankA - rankB : a.info.num - b.info.num;
+          }
+          case 'bst-desc':
+            return b.info.stats.bst - a.info.stats.bst || a.info.num - b.info.num;
+          case 'hp-desc':
+            return b.info.stats.hp - a.info.stats.hp || a.info.num - b.info.num;
+          case 'atk-desc':
+            return b.info.stats.atk - a.info.stats.atk || a.info.num - b.info.num;
+          case 'def-desc':
+            return b.info.stats.def - a.info.stats.def || a.info.num - b.info.num;
+          case 'spa-desc':
+            return b.info.stats.spa - a.info.stats.spa || a.info.num - b.info.num;
+          case 'spd-desc':
+            return b.info.stats.spd - a.info.stats.spd || a.info.num - b.info.num;
+          case 'spe-desc':
+            return b.info.stats.spe - a.info.stats.spe || a.info.num - b.info.num;
+          case 'moves-desc':
+            return b.totalMatchingMoves - a.totalMatchingMoves || a.info.num - b.info.num;
+          case 'num-asc':
+          default:
+            return a.info.num - b.info.num || a.info.name.localeCompare(b.info.name);
+        }
+      });
+
+      statusText.textContent = `Code "${rawCode}" (${letters.length} letters) — Found ${matches.length} matching Pokémon:`;
+
+      const fragment = document.createDocumentFragment();
+      matches.forEach(({ info, displayTier, byLetter }) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const numStr = info.num > 0 && info.num < 9999 ? `#${String(info.num).padStart(3, '0')}` : '';
+        const typesHtml = info.types.map(t => `<span class="tag">${t}</span>`).join(' ');
+        const tierHtml = `<span class="tag tag-tier">${displayTier}</span>`;
+        const spriteUrl = `${MINISPRITE_BASE}/${info.spriteSlug}.png`;
+        const fallbackUrl = `${MINISPRITE_BASE}/${info.baseSpeciesSlug}.png`;
+        const abilitiesText = info.abilityList.length > 0 ? `Abilities: <strong>${info.abilityList.join(', ')}</strong>` : '';
+
+        const header = document.createElement('div');
+        header.className = 'card-header';
+        header.innerHTML = `
+          <div class="identity-group">
+            ${numStr ? `<span class="poke-num">${numStr}</span>` : ''}
+            <div class="sprite-slot">
+              <img src="${spriteUrl}" alt="${info.name}" style="display:block;margin-left:auto;margin-right:auto;" loading="lazy"
+                   onerror="if(this.src!=='${fallbackUrl}'){this.src='${fallbackUrl}';}else{this.style.display='none';}">
+            </div>
+            <span class="poke-title">${info.name}</span>
+            ${typesHtml}
+            ${tierHtml}
+          </div>
+          <div class="meta-right">
+            <div class="stats-line">
+              HP <strong>${info.stats.hp}</strong> /
+              Atk <strong>${info.stats.atk}</strong> /
+              Def <strong>${info.stats.def}</strong> /
+              SpA <strong>${info.stats.spa}</strong> /
+              SpD <strong>${info.stats.spd}</strong> /
+              Spe <strong>${info.stats.spe}</strong>
+              (BST: <strong>${info.stats.bst}</strong>)
+            </div>
+            ${abilitiesText ? `<span class="abilities-span">${abilitiesText}</span>` : ''}
+          </div>
+        `;
+        card.appendChild(header);
+
+        letters.forEach((ch) => {
+          const row = document.createElement('div');
+          row.className = 'letter-row';
+
+          const sortedMoves = [...byLetter[ch]].sort((mA, mB) => {
+            const rankA = getMoveRank(mA);
+            const rankB = getMoveRank(mB);
+            if (rankA !== rankB) return rankA - rankB;
+            return formatMoveName(mA).localeCompare(formatMoveName(mB));
+          });
+
+          const formattedMoves = sortedMoves.map(mId => {
+            const label = formatMoveName(mId);
+            if (searchQuery && (label.toLowerCase().includes(searchQuery) || (searchSlug.length > 0 && mId.includes(searchSlug)))) {
+              return `<strong>${label}</strong>`;
+            }
+            return label;
+          }).join(', ');
+
+          row.innerHTML = `<span class="letter-badge">${ch}:</span> <span class="move-list">${formattedMoves}</span>`;
+          card.appendChild(row);
+        });
+
+        fragment.appendChild(card);
+      });
+
+      resultsDiv.appendChild(fragment);
+    }
+
+    function normalizeBaseUrl(url) {
+      let clean = url.trim().replace(/\/+$/, '');
+      clean = clean
+        .replace('https://github.com/', 'https://raw.githubusercontent.com/')
+        .replace('/tree/', '/');
+      return clean;
+    }
+
+    async function fetchJsonData(base) {
+      const [learnsetsRes, pokedexRes, formatsRes, movesRes] = await Promise.all([
+        fetch(`${base}/learnsets.json`),
+        fetch(`${base}/pokedex.json`),
+        fetch(`${base}/formats-data.json`),
+        fetch(`${base}/moves.json`)
+      ]);
+
+      if (!learnsetsRes.ok || !pokedexRes.ok || !formatsRes.ok) {
+        throw new Error('JSON endpoint unavailable');
+      }
+
+      const [learnsetsJson, pokedexJson, formatsJson, movesJson] = await Promise.all([
+        learnsetsRes.json(),
+        pokedexRes.json(),
+        formatsRes.json(),
+        movesRes.ok ? movesRes.json() : Promise.resolve({})
+      ]);
+
+      POKE_MOVES = buildCompactLearnsets(learnsetsJson);
+      POKEDEX = pokedexJson;
+      FORMATS = formatsJson;
+      MOVES_META = buildCompactMovesFromJson(movesJson);
+    }
+
+    async function fetchTsFallback(base) {
+      const [learnsetsRes, pokedexRes, formatsRes, movesRes] = await Promise.all([
+        fetch(`${base}/learnsets.ts`),
+        fetch(`${base}/pokedex.ts`),
+        fetch(`${base}/formats-data.ts`),
+        fetch(`${base}/moves.ts`)
+      ]);
+
+      if (!learnsetsRes.ok) throw new Error(`learnsets.ts HTTP ${learnsetsRes.status}`);
+      if (!pokedexRes.ok) throw new Error(`pokedex.ts HTTP ${pokedexRes.status}`);
+      if (!formatsRes.ok) throw new Error(`formats-data.ts HTTP ${formatsRes.status}`);
+
+      const [learnsetsTxt, pokedexTxt, formatsTxt, movesTxt] = await Promise.all([
+        learnsetsRes.text(),
+        pokedexRes.text(),
+        formatsRes.text(),
+        movesRes.ok ? movesRes.text() : Promise.resolve('')
+      ]);
+
+      POKE_MOVES = buildCompactLearnsets(parseTsDataObjectFast(learnsetsTxt, 'Learnsets'));
+      POKEDEX = parseTsDataObjectFast(pokedexTxt, 'Pokedex');
+      FORMATS = parseTsDataObjectFast(formatsTxt, 'FormatsData');
+      if (movesTxt) MOVES_META = parseMovesTsFast(movesTxt);
+    }
+
+    async function loadAllSmogonData(customBaseUrl, forceRefresh = false) {
+      const dbStatus = document.getElementById('dbStatus');
+      const statusText = document.getElementById('statusText');
+      const base = normalizeBaseUrl(customBaseUrl || FAST_JSON_URL);
+      const cacheKey = `compact_${base}`;
+
+      if (!forceRefresh) {
+        const cached = await readFromCache(cacheKey);
+        if (cached && cached.POKE_MOVES && cached.POKEDEX && cached.FORMATS) {
+          POKE_MOVES = cached.POKE_MOVES;
+          POKEDEX = cached.POKEDEX;
+          FORMATS = cached.FORMATS;
+          MOVES_META = cached.MOVES_META || {};
+
+          dbStatus.style.color = '#8aff8a';
+          dbStatus.textContent = `${Object.keys(POKE_MOVES).length} Pokémon loaded`;
+          runSearch();
+          return;
+        }
+      }
+
+      dbStatus.style.color = '#ffcc66';
+      dbStatus.textContent = 'Loading...';
+      statusText.textContent = 'Fetching Pokémon data...';
+
+      try {
+        if (base.includes('raw.githubusercontent.com')) {
+          await fetchTsFallback(base);
+        } else {
+          try {
+            await fetchJsonData(base);
+          } catch {
+            await fetchTsFallback(GITHUB_TS_URL);
+          }
+        }
+
+        dbStatus.style.color = '#8aff8a';
+        dbStatus.textContent = `${Object.keys(POKE_MOVES).length} Pokémon loaded`;
+
+        // Render immediately before saving in the background
+        runSearch();
+        writeToCache(cacheKey, { POKE_MOVES, POKEDEX, FORMATS, MOVES_META });
+      } catch (err) {
+        dbStatus.style.color = '#ff7777';
+        dbStatus.textContent = `Load error: ${err.message}`;
+        statusText.textContent = `Failed to load data (${err.message}).`;
+      }
+    }
+
+    // Event Listeners
+    document.getElementById('searchBtn').addEventListener('click', runSearch);
+    document.getElementById('codeInput').addEventListener('keyup', (e) => {
+      if (e.key === 'Enter') runSearch();
+    });
+    document.getElementById('searchFilter').addEventListener('input', runSearch);
+    document.getElementById('statValue').addEventListener('input', runSearch);
+
+    ['typeFilter', 'tierMode', 'tierFilter', 'statTarget', 'statOp', 'sortBy'].forEach(id => {
+      document.getElementById(id).addEventListener('change', runSearch);
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      document.getElementById('searchFilter').value = '';
+      document.getElementById('typeFilter').value = 'all';
+      document.getElementById('tierMode').value = 'natDexTier';
+      document.getElementById('tierFilter').value = 'all';
+      document.getElementById('statTarget').value = 'bst';
+      document.getElementById('statOp').value = 'gte';
+      document.getElementById('statValue').value = '';
+      document.getElementById('sortBy').value = 'tier-asc';
+      runSearch();
+    });
+
+    document.getElementById('reloadUrlBtn').addEventListener('click', () => {
+      loadAllSmogonData(document.getElementById('baseUrlInput').value, true);
+    });
+
+    // Auto-load on startup
+    loadAllSmogonData();
+  </script>
+</body>
+</html>
