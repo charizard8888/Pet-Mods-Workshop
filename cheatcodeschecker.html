@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pokémon Cheat Code Checker</title>
+  <style>
+    body {
+      font-family: monospace;
+      max-width: 1020px;
+      margin: 20px auto;
+      padding: 0 15px;
+      background: #121212;
+      color: #e0e0e0;
+    }
+    h1 { font-size: 1.3rem; border-bottom: 1px solid #333; padding-bottom: 8px; margin-bottom: 12px; }
+    h2 { font-size: 1.08rem; color: #e0e0e0; margin: 16px 0 8px 0; padding-bottom: 5px; border-bottom: 1px solid #2c2c2c; }
+    .panel {
+      background: #181818;
+      border: 1px solid #333;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .row:last-child { margin-bottom: 0; }
+    label { font-size: 0.9rem; color: #ccc; display: inline-flex; align-items: center; gap: 6px; }
+    input[type="text"], select {
+      background: #1e1e1e;
+      color: #fff;
+      border: 1px solid #444;
+      padding: 5px 8px;
+      font-family: monospace;
+      font-size: 0.95rem;
+    }
+    input[type="text"].poke-box { width: 240px; font-weight: bold; }
+    input[type="text"].codes-add-box { flex: 1; min-width: 240px; text-transform: uppercase; }
+    input[type="text"].filter-box { width: 220px; }
+    input[type="text"].url-box { width: 100%; box-sizing: border-box; font-size: 0.85rem; margin-bottom: 6px; }
+    button {
+      background: #2c2c2c;
+      color: #fff;
+      border: 1px solid #555;
+      padding: 5px 12px;
+      font-family: monospace;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    button:hover { background: #3c3c3c; }
+    button.btn-small { padding: 3px 8px; font-size: 0.8rem; }
+
+    /* Form Selector Pills */
+    .form-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .form-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #1f1f1f;
+      border: 1px solid #3a3a3a;
+      padding: 2px 8px 2px 4px;
+      font-size: 0.84rem;
+      color: #ccc;
+      cursor: pointer;
+    }
+    .form-pill:hover { border-color: #666; color: #fff; }
+    .form-pill.active {
+      background: #262217;
+      border-color: #ffcc66;
+      color: #ffcf70;
+    }
+
+    /* Collapsible Pools & Data Source */
+    details.box-details {
+      margin-bottom: 12px;
+      border: 1px solid #333;
+      padding: 8px 10px;
+      background: #161616;
+    }
+    details.box-details summary {
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    .code-chip-pool {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 8px;
+      max-height: 150px;
+      overflow-y: auto;
+      padding: 4px 0;
+    }
+    .code-pool-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #202020;
+      border: 1px solid #383838;
+      padding: 2px 6px;
+      font-size: 0.8rem;
+      color: #ddd;
+    }
+    .code-pool-chip.custom {
+      border-color: #4caf50;
+      color: #8aff8a;
+    }
+    .code-pool-remove {
+      color: #888;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .code-pool-remove:hover { color: #ff7777; }
+
+    /* Selected Pokémon Banner */
+    .poke-banner {
+      background: #181818;
+      border: 1px solid #333;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+    .identity-group {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .sprite-slot {
+      width: 44px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .poke-title {
+      font-weight: normal;
+      font-size: 1.08rem;
+      color: #e0e0e0;
+    }
+    .tag {
+      display: inline-block;
+      background: #222;
+      border: 1px solid #383838;
+      padding: 1px 6px;
+      font-size: 0.8rem;
+      color: #ddd;
+    }
+    .tag-tier { color: #ffcf70; border-color: #5a4a28; }
+    .banner-summary {
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+    .banner-summary strong { color: #8aff8a; }
+
+    .status { margin-bottom: 8px; color: #aaa; font-size: 0.9rem; }
+
+    /* Qualifying Team Cheat Codes List with Dedicated Full Effect Line */
+    .team-list {
+      border: 1px solid #333;
+      background: #181818;
+      margin-bottom: 14px;
+    }
+    .team-item {
+      padding: 7px 10px;
+      border-bottom: 1px solid #262626;
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+    .team-item:last-child { border-bottom: none; }
+    .team-item:hover { background: #1d1d1d; }
+    .team-item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+    .team-effect-line {
+      margin-top: 3px;
+      color: #ccc;
+      line-height: 1.4;
+    }
+    .team-dev-inline {
+      color: #888;
+      font-size: 0.78rem;
+    }
+
+    .code-badge {
+      display: inline-block;
+      background: #2b2416;
+      border: 1px solid #665229;
+      color: #ffcc66;
+      font-weight: bold;
+      font-size: 0.92rem;
+      letter-spacing: 2px;
+      padding: 1px 7px;
+      flex-shrink: 0;
+    }
+    .code-badge.team-badge {
+      background: #1a2634;
+      border-color: #365270;
+      color: #90caf9;
+      font-size: 0.82rem;
+      letter-spacing: 1.5px;
+      padding: 1px 6px;
+    }
+
+    /* Move Cheat Code Result Cards */
+    .code-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+      gap: 10px;
+    }
+    @media (max-width: 540px) {
+      .code-grid { grid-template-columns: 1fr; }
+    }
+    .code-card {
+      border: 1px solid #333;
+      background: #181818;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 6px;
+    }
+    .code-card:hover { border-color: #4a4a4a; }
+    .code-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #2a2a2a;
+      padding-bottom: 6px;
+      gap: 8px;
+    }
+    .code-meta {
+      font-size: 0.8rem;
+      color: #888;
+    }
+    .custom-tag {
+      display: inline-block;
+      background: #1f3b2c;
+      border: 1px solid #4caf50;
+      color: #8aff8a;
+      font-size: 0.74rem;
+      padding: 0 5px;
+      margin-left: 5px;
+      letter-spacing: 0;
+      font-weight: normal;
+    }
+    .code-effect-box {
+      background: #141414;
+      border-left: 2px solid #555;
+      padding: 6px 8px;
+      font-size: 0.84rem;
+      color: #ccc;
+      line-height: 1.4;
+    }
+    .code-effect-box strong { color: #e0e0e0; }
+    .code-dev-line {
+      margin-top: 3px;
+      font-size: 0.79rem;
+      color: #999;
+    }
+    .code-dev-line span { color: #ccc; }
+    .letter-row {
+      margin: 3px 0;
+      line-height: 1.45;
+      font-size: 0.88rem;
+    }
+    .letter-char {
+      display: inline-block;
+      width: 22px;
+      font-weight: bold;
+      color: #ffcc66;
+    }
+    .move-list { color: #d4d4d4; }
+    .move-list strong { color: #8aff8a; }
+  </style>
+</head>
+<body>
+
+  <h1>Pokémon Cheat Code Checker</h1>
+
+  <div class="panel">
+    <!-- Row 1: Pokémon Search & Options -->
+    <div class="row">
+      <label>Pokémon:
+        <input type="text" id="pokeInput" class="poke-box" value="Charizard" placeholder="e.g. Charizard, Dragapult" autocomplete="off">
+      </label>
+
+      <label>Filter Code/Effect/Move:
+        <input type="text" id="codeOrMoveFilter" class="filter-box" placeholder="e.g. BURN, IRON, Roost">
+      </label>
+
+      <label>Sort Codes:
+        <select id="sortCodes">
+          <option value="alpha-asc" selected>Code (A → Z)</option>
+          <option value="len-desc">Length (Longest → Shortest)</option>
+          <option value="len-asc">Length (Shortest → Longest)</option>
+          <option value="custom-first">Custom Added First</option>
+        </select>
+      </label>
+    </div>
+
+    <!-- Matching Form Pills -->
+    <div class="form-pills" id="formPills"></div>
+
+    <!-- Row 2: Add Move Cheat Codes -->
+    <div class="row" style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #2a2a2a;">
+      <label style="flex: 1;">Add Move Cheat Codes (comma-separated):
+        <input type="text" id="addMoveCodesInput" class="codes-add-box" placeholder="e.g. APEX, BOLT, CRYO">
+      </label>
+      <button id="addMoveCodesBtn">Add Move Codes</button>
+    </div>
+
+    <!-- Row 3: Add Team Cheat Codes -->
+    <div class="row">
+      <label style="flex: 1;">Add Team Cheat Codes (comma-separated):
+        <input type="text" id="addTeamCodesInput" class="codes-add-box" placeholder="e.g. NOVA, STORM, TURBO">
+      </label>
+      <button id="addTeamCodesBtn">Add Team Codes</button>
+    </div>
+  </div>
+
+  <!-- Collapsible Move Cheat Codes Pool -->
+  <details class="box-details">
+    <summary>Active Move Cheat Codes (<span id="movePoolCount">0</span> codes)</summary>
+    <div style="margin-top: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+      <span style="font-size: 0.83rem; color: #999;">Green badges are custom-added codes. Click × to remove any code.</span>
+      <button id="resetMoveCodesBtn" class="btn-small">Reset Default Move Codes</button>
+    </div>
+    <div class="code-chip-pool" id="moveCodeChipPool"></div>
+  </details>
+
+  <!-- Collapsible Team Cheat Codes Pool -->
+  <details class="box-details">
+    <summary>Active Team Cheat Codes (<span id="teamPoolCount">0</span> codes)</summary>
+    <div style="margin-top: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+      <span style="font-size: 0.83rem; color: #999;">Green badges are custom-added codes. Click × to remove any code.</span>
+      <button id="resetTeamCodesBtn" class="btn-small">Reset Default Team Codes</button>
+    </div>
+    <div class="code-chip-pool" id="teamCodeChipPool"></div>
+  </details>
+
+  <!-- Collapsible Data Source -->
+  <details class="box-details">
+    <summary>Data Source (<span id="dbStatus">Loading...</span>)</summary>
+    <div style="margin-top: 8px;">
+      <label style="font-size: 0.85rem; color: #aaa;">Smogon Data Directory URL:</label>
+      <input type="text" id="baseUrlInput" class="url-box" value="https://play.pokemonshowdown.com/data">
+      <button id="reloadUrlBtn" class="btn-small">Reload Data Files</button>
+    </div>
+  </details>
+
+  <!-- Selected Pokémon Header Banner -->
+  <div class="poke-banner" id="pokeBanner" style="display:none;"></div>
+
+  <!-- Qualifying Team Cheat Codes Section (Above Move Cheat Codes) -->
+  <h2>Team Cheat Codes</h2>
+  <div class="status" id="teamStatusText">Waiting for Pokémon data...</div>
+  <div class="team-list" id="teamResults" style="display:none;"></div>
+
+  <!-- Move Cheat Codes Section -->
+  <h2>Move Cheat Codes</h2>
+  <div class="status" id="moveStatusText">Loading Pokédex & learnsets...</div>
+  <div class="code-grid" id="moveResults"></div>
+
+  <script>
+    const FAST_JSON_URL = 'https://play.pokemonshowdown.com/data';
+    const GITHUB_TS_URL = 'https://raw.githubusercontent.com/smogon/pokemon-showdown/refs/heads/master/data';
+    const MINISPRITE_BASE = 'https://www.smogon.com/forums/media/minisprites';
+    const DB_NAME = 'PokeCheatCodeFast_v1';
+    const STORE_NAME = 'compactData';
+    const STORAGE_MOVE_CODES_KEY = 'ch34tc0d3z_move_codes_v6';
+    const STORAGE_TEAM_CODES_KEY = 'ch34tc0d3z_team_codes_v6';
+
+    const CODE_METADATA = {
+      // Move Cheat Codes
+      'ALT': { effect: 'On switch-in, activates Trick Room. Trick Room is removed or set at the end of every turn, depending on whether Trick Room is currently active.', developer: 'cchang21' },
+      'BURN': { effect: "This Pokémon's contact moves have a 100% chance to burn the target.", developer: 'Beaf Cultist' },
+      'CHIP': { effect: 'Hitting the opponent with an attacking move makes them lose an additional 1/16th of their max HP. Multi-hit moves trigger per hit.', developer: 'DuoM2' },
+      'DEBT': { effect: 'This Pokémon gains Neutralizing Gas.', developer: 'Beebos' },
+      'EGGS': { effect: 'This Pokémon gains Soft-Boiled as an extra move.', developer: 'Mygavolt' },
+      'FAST': { effect: 'You win every Speed tie.', developer: 'Eeveeto' },
+      'GOLD': { effect: "This Pokémon's ability becomes Good as Gold.", developer: 'timeflow' },
+      'LETS': { effect: 'This Pokémon gains the Levitate ability.', developer: 'Peum' },
+      'RISE': { effect: 'When this Pokémon attacks and KOes an opponent, its highest stat is raised by 1 stage.', developer: 'anaconja' },
+      'SWAP': { effect: 'Trick Room is active while this Pokémon is on the field.', developer: 'cchang' },
+      'WAXY': { effect: 'At the end of every turn, this Pokémon uses Wish.', developer: 'KeeganSkymin4444' },
+
+      // Team Cheat Codes
+      'AAAAAA': { effect: 'Sound moves used by Pokemon on this team always result in critical hits.', developer: 'traceyscetchit' },
+      'ABLAZE': { effect: "The power of STAB moves used by the Pokemon on this team are boosted by 1.5x when that Pokémon's HP is below 1/3.", developer: 'Yoshiblaze' },
+      'ABSENT': { effect: 'All team members cannot have their stats lowered by the opponent.', developer: 'TheShowdownHero' },
+      'APPLES': { effect: 'This team gains Appletun as an additional member.', developer: 'Reonthestreet' },
+      'AURORA': { effect: 'Sets a new weather effect at the start of each turn, in the repeating cycle of Snow -> Rain -> Sun -> Sand.', developer: 'Akira' },
+      'BEES': { effect: 'At the end of every turn, all ally Pokémon randomly use either Attack Order or Heal Order on an appropriate target.', developer: 'Ubertrainer2000' },
+      'BLOCK': { effect: 'This side is immune to Flip Turn, Parting Shot, U-turn, and Volt Switch.', developer: 'Crep50' },
+      'BOOTIE': { effect: 'All team members are immune to entry hazards.', developer: 'Da Pizza Man' },
+      'BOUNTY': { effect: 'Whenever a Pokemon on this team knocks out an opposing Pokemon, boost their highest stat by 1 stage.', developer: 'RainGal6' },
+      'BUGSY': { effect: 'The player’s team gain a Ledian as the 6th member with Bug / Fighting and a specific moveset; that team’s Ledian copies the base stat of the following Pokémon base form: B for Atk, U for Def, G for SpA, S for SpD and Y for HP + Speed. (See note.)', developer: 'Samtendo9' },
+      'COFFEE': { effect: "When a Pokémon on the team uses Hyper Beam or a variant thereof, it doesn't need to recharge. However, these moves deal 80% damage. Pokemon on this side cannot have their Speed lowered.", developer: 'Mygavolt' },
+      'CRASH': { effect: 'The first pokemon sent out by the opponent gains Slow Start in addition to their original ability.', developer: 'cchang21' },
+      'DRAKE': { effect: "All team members' Dragon-type moves hit Fairy-types for neutral damage.", developer: 'DemonicRex' },
+      'ENBY': { effect: 'Genderless Pokemon on this side deal x1.5 damage.', developer: 'vishy fishy' },
+      'ESPEON': { effect: 'All of your Pokemon gain the Psychic-type in addition to any other typings when they switch in, and gain Synchronize in addition to whatever ability they already have.', developer: 'ANinjaDude' },
+      'EXEQUY': { effect: "This team's moves have 10% more power for each fainted ally, up to 5 allies.", developer: 'pecha nerd' },
+      'FLUFFY': { effect: 'All your Pokemon will gain Fluffy ability on top of their existing ability.', developer: 'Eeveeto' },
+      'FOUR': { effect: 'Both you and your opponent can only use the first four Pokemon on their teams. (Does not affect cheat codes.)', developer: 'HiZo' },
+      'GITGUD': { effect: 'Pokemon on this team heal 1/8th max HP and raise their lowest stat by 1(counting stat changes)if it attacks and KOes another Pokemon.', developer: 'RetroSquad' },
+      'GOFISH': { effect: 'The team gains a boost to all stats equal to 5% * the number of types shared by more than one team member.', developer: 'AthenaStrive9' },
+      'I': { effect: 'The Pokemon sent out gains +1 Attack, Defense, Sp. Atk, Sp. Def, Spe.', developer: 'bekama' },
+      'IRON': { effect: 'Team gains a permanent Quark Drive boost (can stack with Quark Drive). Steel-types on the team are immune to indirect damage and use Defense as Attack in damage calculation if it would be stronger.', developer: 'Beaf Cultist' },
+      'LMFAO': { effect: 'Every manual weather and terrain move switches the user out.', developer: 'Mimik09' },
+      'MARTYR': { effect: 'The entire team gains Supreme Overlord.', developer: 'KeeganSkymin4444' },
+      'NEUTER': { effect: 'All your Pokemon have the ability Neutralizing Gas.', developer: 'Spammernoob' },
+      'NOCLIP': { effect: 'Nullifies the effect of terrain. All pokemon on both teams gain an immunity to hazards and all moves bypass Screens and Substitutes.', developer: 'timeflow' },
+      'PRIDE': { effect: 'Adds a Mega Pyroar as the sixth member of your team, matching the gender shared by the majority of your team. Each member of your team that shares a gender with Pyroar does damage x1.1 + 0.1 x number of team member of the same gender. (See note.)', developer: 'PQRDG' },
+      'QUETTA': { effect: 'All team members lose their held item and gain +20 in all of their base stats (except HP).', developer: 'Peum' },
+      'RETURN': { effect: 'After three Pokemon on this side faint, the next Pokemon that switches in uses Revival Blessing.', developer: 'DuoM2' },
+      'RUBBER': { effect: 'This team is immune to Electric type moves; On switch-in, this Pokemon blocks certain status moves and instead uses the move against the original user.', developer: 'G-Luke' },
+      'SCREEN': { effect: 'When a team member switches in, if its highest stat is Defense, it will summon Reflect, and Light Screen if SpD is the highest stat. If HP is the highest stat, it will use Aurora Veil. These screens cannot be extended by Light Clay.', developer: 'iforgetwhyimhere' },
+      'SHOWER': { effect: 'The last pokemon on your team gains the ability Drizzle on top of their existing ability.', developer: 'MafuSimp' },
+      'SLEUTH': { effect: 'Reveals all team members, items, and moves. All active pokemon are under the effects of the move "Odor Sleuth".', developer: 'analysis geek' },
+      'SPIKES': { effect: "Sets 1 layer of Spikes on the opponent's field at the start of the battle.", developer: 'Beebos' },
+      'SPOOKY': { effect: 'This side gains the Ghost-typing if a Pokemon does not have it. x0.75 damage from Ghost- and Dark-type moves.', developer: 'anaconja' },
+      'SURVEY': { effect: 'Whenever your opponent swaps in a Pokémon, the moveset and item get revealed.', developer: 'Concept' },
+      'TRACKS': { effect: "Attacks from both players can't miss across the whole battle.", developer: 'Bobsican' },
+      'VICTOR': { effect: 'You have 1 use of V-Create available for the whole game, usable by any of your Pokemon.', developer: 'Auctoria' },
+      'WIZARD': { effect: 'All Pokémon on the team gain Magic Coat, Magic Powder, and Magic Room as a fifth, sixth, and seventh move.', developer: 'Blizihguh' },
+      'ZEKROM': { effect: 'The first Pokemon you send out becomes Zekrom for the rest of the battle.', developer: 'Orangesodapop' },
+      'ZIGZAG': { effect: 'If a Pokemon on this side selected a different attack than the previous turn, they take x0.75 damage and deal x1.2.', developer: 'zxgzxg' },
+      'LOWEST': { effect: 'When any Pokemon on this team switches in, their lowest stat is increased by one stage.', developer: '' },
+      'SCAMP': { effect: 'If this team has exactly one NFE Pokemon, add its fully evolved form with the same set as an extra member. (Split evolutions summon the non-variant Pokemon with the lowest dex number).', developer: 'zxgzxg' },
+      'LATIOS': { effect: "Your entire team's Dragon- and Psychic-type moves do 1.2x damage (effects of Soul Dew but expanded to entire team), and the first Pokemon you send out in battle gains the Levitate ability.", developer: '' },
+      'WALKER': { effect: 'This team gains Furret as an additional team member.', developer: '' },
+      'FOREST': { effect: "The team's Grass-type moves inflict Forest's Curse on any and all targets.", developer: '' },
+      'MUSCLE': { effect: 'Fighting-type Pokemon on this team have all their abilities active at once.', developer: '' },
+      'GOD': { effect: "Fills the final 3 teamslots with Arceus that copy the primary type and moveset (but not the set codes) of each of the Pokemon in the first 3 slots. Normal Arceus also copies the slot's item (excluding Mega Stone and Z-Crystals), while other types hold the plate for their type. Arceuses all have 31 IVs and 84 EVs in each stat.", developer: 'Beaf Cultist' },
+      'PAPERS': { effect: 'Pokémon from this team are immune to Stealth Rock and take half damage from Rock-type moves.', developer: 'AquaticPanic' },
+      'SUNNY': { effect: 'The first Pokemon sent out gains Drought as a additional ability.', developer: '' },
+      'TACKLE': { effect: 'When a Pokemon on either side switches in, they use Tackle.', developer: 'Orangesodapop' },
+      'MISTY': { effect: 'Both sides are under the effect of Mist for the duration of the battle. While Mist is active, all Water-type moves have 1.2x power. If Misty Terrain is active, all Fairy-type moves have 1.2x power.', developer: '' },
+      'SHIFT': { effect: "This team's Pokemon gain 10/20/30 in all non-HP stats if they are UU/RU/NFE+LC.", developer: 'anaconja' },
+      'ARCTIC': { effect: 'The team’s Ice-type Pokémon takes resisted hits from neutral hits. Pokémon with the Ability Snow Warning also takes 33% less damage from Super Effective hits.', developer: '' }
+    };
+
+    const DEFAULT_MOVE_CODES = [
+      'ALT', 'BURN', 'CHIP', 'DEBT', 'EGGS', 'FAM', 'FAST', 'FEST', 'FISH', 'GENE',
+      'GO', 'GOLD', 'HEAL', 'LAZY', 'LETS', 'LIFE', 'LUCK', 'MEGA', 'MONK', 'NUKE',
+      'OKAY', 'PAID', 'PIKA', 'RISE', 'SIPS', 'STAB', 'STAR', 'TEAR', 'TIER', 'TRAP',
+      'TRUE', 'TUNE', 'WARP', 'WAXY', 'WHAT', 'WIND', 'X', 'ROCK', 'COAL', 'EELS',
+      'FAT', 'REST', 'SKI', 'VOLT', 'BURP', 'GATR', 'WIMP', 'FIST', 'HAIL', 'TREK',
+      'BUNS', 'SPIN', 'HAZE', 'LARP', 'FIRE', 'BEAT', 'EVIL', 'VINE', 'SWAP', 'CLAW',
+      'DMAX', 'KING', 'LESS', 'PULP', 'QA', 'PAWN', 'SICK', 'BABY', 'DECK', 'JUKE',
+      'QUIP'
+    ];
+
+    const DEFAULT_TEAM_CODES = [
+      'AAAAAA', 'ABLAZE', 'ABSENT', 'APPLES', 'AURORA', 'BEES', 'BLOCK', 'BOOTIE',
+      'BOUNTY', 'BUGSY', 'COFFEE', 'CRASH', 'DRAKE', 'ENBY', 'ESPEON', 'EXEQUY',
+      'FLUFFY', 'FOUR', 'GITGUD', 'GOFISH', 'I', 'IRON', 'LMFAO', 'MARTYR',
+      'NEUTER', 'NOCLIP', 'PRIDE', 'QUETTA', 'RETURN', 'RUBBER', 'SCREEN', 'SHOWER',
+      'SLEUTH', 'SPIKES', 'SURVEY', 'TRACKS', 'VICTOR', 'WIZARD', 'ZEKROM', 'ZIGZAG',
+      'LOWEST', 'SCAMP', 'LATIOS', 'WALKER', 'FOREST', 'MUSCLE', 'GOD', 'PAPERS',
+      'SUNNY', 'TACKLE', 'MISTY', 'SHIFT', 'ARCTIC', 'CHAOS', 'COWBOY', 'UBERS',
+      'STONE', 'COBRAS', 'SUIVEZ', 'YOINK', 'INJECT', 'VOODOO', 'CHROMA', 'CLIMAX',
+      'COVEN', 'GROOVY', 'PETMOD', 'SILENT'
+    ];
+
+    const DEFAULT_MOVE_SET = new Set(DEFAULT_MOVE_CODES);
+    const DEFAULT_TEAM_SET = new Set(DEFAULT_TEAM_CODES);
+
+    let ACTIVE_MOVE_CODES = [];
+    let ACTIVE_TEAM_CODES = [];
+    let POKE_MOVES = {};
+    let POKEDEX = {};
+    let FORMATS = {};
+    let MOVES_META = {};
+    let ALL_POKE_LIST = [];
+    let SELECTED_POKE_ID = 'charizard';
+
+    const HIGH_UTILITY_STATUS = new Set([
+      'stealthrock', 'spikes', 'toxicspikes', 'stickyweb', 'defog', 'rapidspin', 'tidyup', 'mortalspin', 'courtchange',
+      'roost', 'recover', 'slackoff', 'softboiled', 'synthesis', 'moonlight', 'morningsun', 'shoreup', 'strengthsap', 'wish', 'rest',
+      'swordsdance', 'nastyplot', 'calmmind', 'dragondance', 'quiverdance', 'shellsmash', 'bulkup', 'irondefense', 'agility', 'tailglow', 'bellydrum', 'coil', 'shiftgear', 'victorydance', 'filletaway', 'workup', 'curse',
+      'toxic', 'willowisp', 'thunderwave', 'spore', 'sleeppowder', 'yawn', 'glare', 'nuzzle',
+      'protect', 'substitute', 'encore', 'taunt', 'trick', 'switcheroo', 'partingshot', 'teleport', 'batonpass', 'haze', 'whirlwind', 'roar', 'perishsong', 'destinybond', 'leechseed', 'reflect', 'lightscreen', 'auroraveil', 'tailwind', 'trickroom', 'healingwish', 'lunardance', 'memento'
+    ]);
+
+    const LOW_UTILITY_MOVES = new Set([
+      'splash', 'celebrate', 'holdhands', 'happyhour', 'metronome', 'assist', 'mefirst', 'mirrormove', 'mimic',
+      'growl', 'tailwhip', 'leer', 'stringshot', 'sandattack', 'smokescreen', 'kinesis', 'flash', 'doubleteam', 'minimize',
+      'sweetscent', 'odorsleuth', 'foresight', 'miracleseye', 'howl', 'meditate', 'sharpen', 'defensecurl', 'withdraw', 'harden',
+      'bide', 'rage', 'frustration', 'return', 'captivate', 'confide', 'secretpower', 'naturalgift', 'hiddenpower', 'round', 'echoedvoice', 'snore', 'sleeptalk', 'swagger', 'attract', 'bestow', 'fling', 'present', 'constrict', 'tackle', 'scratch', 'pound', 'cut', 'rocksmash', 'strength'
+    ]);
+
+    function loadCodeList(storageKey, fallbackArr) {
+      try {
+        const raw = localStorage.getItem(storageKey);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            return [...new Set(parsed.map(c => String(c).toUpperCase().replace(/[^A-Z]/g, '')).filter(Boolean))];
+          }
+        }
+      } catch {}
+      return [...new Set(fallbackArr)];
+    }
+
+    function saveCodeList(storageKey, arr) {
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(arr));
+      } catch {}
+    }
+
+    function renderCodePool(containerId, countId, listArr, defaultSet, onRemove) {
+      const poolDiv = document.getElementById(containerId);
+      document.getElementById(countId).textContent = listArr.length;
+
+      poolDiv.innerHTML = listArr.map(code => {
+        const isCustom = !defaultSet.has(code);
+        return `
+          <span class="code-pool-chip ${isCustom ? 'custom' : ''}">
+            <span>${code}</span>
+            <span class="code-pool-remove" data-code="${code}" title="Remove ${code}">×</span>
+          </span>
+        `;
+      }).join('');
+
+      poolDiv.querySelectorAll('.code-pool-remove').forEach(btn => {
+        btn.addEventListener('click', () => onRemove(btn.dataset.code));
+      });
+    }
+
+    function renderAllPools() {
+      renderCodePool('moveCodeChipPool', 'movePoolCount', ACTIVE_MOVE_CODES, DEFAULT_MOVE_SET, (code) => {
+        ACTIVE_MOVE_CODES = ACTIVE_MOVE_CODES.filter(c => c !== code);
+        saveCodeList(STORAGE_MOVE_CODES_KEY, ACTIVE_MOVE_CODES);
+        renderAllPools();
+        evaluateSelectedPokemon();
+      });
+
+      renderCodePool('teamCodeChipPool', 'teamPoolCount', ACTIVE_TEAM_CODES, DEFAULT_TEAM_SET, (code) => {
+        ACTIVE_TEAM_CODES = ACTIVE_TEAM_CODES.filter(c => c !== code);
+        saveCodeList(STORAGE_TEAM_CODES_KEY, ACTIVE_TEAM_CODES);
+        renderAllPools();
+        evaluateSelectedPokemon();
+      });
+    }
+
+    function addCodesFromInput(inputId, targetArr, storageKey) {
+      const input = document.getElementById(inputId);
+      const raw = input.value;
+      if (!raw.trim()) return;
+
+      const tokens = raw
+        .split(/[\s,;|]+/)
+        .map(s => s.toUpperCase().replace(/[^A-Z]/g, ''))
+        .filter(Boolean);
+
+      if (tokens.length === 0) return;
+
+      const existing = new Set(targetArr);
+      let added = 0;
+      for (const code of tokens) {
+        if (!existing.has(code)) {
+          existing.add(code);
+          targetArr.push(code);
+          added++;
+        }
+      }
+
+      input.value = '';
+      if (added > 0) {
+        saveCodeList(storageKey, targetArr);
+        renderAllPools();
+        evaluateSelectedPokemon();
+      }
+    }
+
+    function openCacheDB() {
+      return new Promise((resolve, reject) => {
+        if (!window.indexedDB) return reject();
+        const req = indexedDB.open(DB_NAME, 1);
+        req.onupgradeneeded = () => {
+          if (!req.result.objectStoreNames.contains(STORE_NAME)) {
+            req.result.createObjectStore(STORE_NAME);
+          }
+        };
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject();
+      });
+    }
+
+    async function readFromCache(key) {
+      try {
+        const db = await openCacheDB();
+        return await new Promise((resolve) => {
+          const tx = db.transaction(STORE_NAME, 'readonly');
+          const req = tx.objectStore(STORE_NAME).get(key);
+          req.onsuccess = () => resolve(req.result || null);
+          req.onerror = () => resolve(null);
+        });
+      } catch {
+        return null;
+      }
+    }
+
+    async function writeToCache(key, value) {
+      try {
+        const db = await openCacheDB();
+        const tx = db.transaction(STORE_NAME, 'readwrite');
+        tx.objectStore(STORE_NAME).put(value, key);
+      } catch {}
+    }
+
+    function computeMoveRank(id, m) {
+      if (m.isNonstandard || m.isZ || m.isMax) return 4;
+      if (LOW_UTILITY_MOVES.has(id)) return 3;
+      const isStatus = m.category === 'Status' || m.isStatus;
+      if (!isStatus) {
+        const bp = m.basePower || 0;
+        if (bp >= 60 || bp === 0 || m.multihit || ((m.priority || 0) > 0 && bp >= 40)) return 1;
+        return 3;
+      }
+      return HIGH_UTILITY_STATUS.has(id) ? 1 : 2;
+    }
+
+    function buildCompactMovesFromJson(movesJson) {
+      const compact = {};
+      for (const [id, m] of Object.entries(movesJson)) {
+        if (!m) continue;
+        compact[id] = {
+          name: m.name || (id.charAt(0).toUpperCase() + id.slice(1)),
+          rank: computeMoveRank(id, m)
+        };
+      }
+      return compact;
+    }
+
+    function buildCompactLearnsets(learnsetsObj) {
+      const compact = {};
+      for (const [pokeId, entry] of Object.entries(learnsetsObj)) {
+        if (entry && entry.learnset) {
+          compact[pokeId] = Object.keys(entry.learnset);
+        }
+      }
+      return compact;
+    }
+
+    function parseTsDataObjectFast(rawText, exportName) {
+      const marker = `export const ${exportName}`;
+      const exportIdx = rawText.indexOf(marker);
+      const eqIdx = rawText.indexOf('=', exportIdx + marker.length);
+      let cleaned = rawText.slice(eqIdx + 1).trim();
+      if (cleaned.endsWith(';')) cleaned = cleaned.slice(0, -1);
+      return (new Function('return (' + cleaned + ')'))();
+    }
+
+    function parseMovesTsFast(rawMovesTs) {
+      const map = {};
+      const lines = rawMovesTs.split('\n');
+      let cur = null;
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        if (line.charCodeAt(0) === 9 && line.charCodeAt(1) !== 9) {
+          const colonIdx = line.indexOf(':');
+          if (colonIdx > 1) {
+            const id = line.slice(1, colonIdx).trim();
+            cur = { name: id.charAt(0).toUpperCase() + id.slice(1) };
+            map[id] = cur;
+          }
+        } else if (cur && line.charCodeAt(0) === 9 && line.charCodeAt(1) === 9 && line.charCodeAt(2) !== 9) {
+          const trimmed = line.slice(2);
+          if (trimmed.startsWith('name:')) {
+            const q1 = trimmed.indexOf('"');
+            const q2 = trimmed.indexOf("'");
+            const start = q1 !== -1 ? q1 : q2;
+            const quoteChar = q1 !== -1 ? '"' : "'";
+            if (start !== -1) {
+              const end = trimmed.indexOf(quoteChar, start + 1);
+              if (end !== -1) cur.name = trimmed.slice(start + 1, end);
+            }
+          } else if (trimmed.startsWith('isNonstandard:') || trimmed.startsWith('isZ:') || trimmed.startsWith('isMax:')) {
+            cur.isNonstandard = true;
+          } else if (trimmed.startsWith('basePower:')) {
+            cur.basePower = parseInt(trimmed.slice(10), 10) || 0;
+          } else if (trimmed.startsWith('category:')) {
+            cur.isStatus = trimmed.includes('Status');
+          } else if (trimmed.startsWith('priority:')) {
+            cur.priority = parseInt(trimmed.slice(9), 10) || 0;
+          } else if (trimmed.startsWith('multihit:')) {
+            cur.multihit = true;
+          }
+        }
+      }
+
+      const compact = {};
+      for (const [id, m] of Object.entries(map)) {
+        compact[id] = { name: m.name, rank: computeMoveRank(id, m) };
+      }
+      return compact;
+    }
+
+    function formatMoveName(moveId) {
+      return MOVES_META[moveId]?.name || (moveId.charAt(0).toUpperCase() + moveId.slice(1));
+    }
+
+    function getMoveRank(moveId) {
+      return MOVES_META[moveId]?.rank ?? 2;
+    }
+
+    function getMinispriteSlug(name, pokeId) {
+      if (!name) return pokeId;
+      return name
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/['’:.]/g, '')
+        .replace(/[^a-z0-9-]+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+    }
+
+    function buildSearchablePokemonIndex() {
+      const list = [];
+      for (const [pokeId, dex] of Object.entries(POKEDEX)) {
+        if (!dex || !dex.name) continue;
+        const baseId = dex.baseSpecies ? dex.baseSpecies.toLowerCase().replace(/[^a-z0-9]/g, '') : pokeId;
+        const moves = POKE_MOVES[pokeId] || POKE_MOVES[baseId] || [];
+        if (moves.length === 0) continue;
+
+        const fmt = FORMATS[pokeId] || {};
+        const name = dex.name;
+        const firstChar = name.replace(/[^A-Za-z]/g, '')[0]?.toUpperCase() || '';
+        const spriteSlug = getMinispriteSlug(name, pokeId);
+        const baseSpeciesSlug = dex.baseSpecies ? getMinispriteSlug(dex.baseSpecies, pokeId) : spriteSlug;
+        const natDexTier = fmt.natDexTier || fmt.tier || (fmt.isNonstandard || dex.isNonstandard ? `Untiered (${fmt.isNonstandard || dex.isNonstandard})` : 'Untiered');
+        const abilities = dex.abilities ? Object.values(dex.abilities) : [];
+        const types = Array.isArray(dex.types) ? dex.types : [];
+
+        list.push({
+          pokeId,
+          name,
+          nameLower: name.toLowerCase(),
+          firstChar,
+          spriteSlug,
+          baseSpeciesSlug,
+          natDexTier,
+          types,
+          abilities,
+          moves
+        });
+      }
+      list.sort((a, b) => a.name.localeCompare(b.name));
+      ALL_POKE_LIST = list;
+    }
+
+    function canSatisfyCode(letters, byLetter) {
+      const usedMoves = new Set();
+
+      function backtrack(idx) {
+        if (idx === letters.length) return true;
+        const ch = letters[idx];
+        const candidates = byLetter[ch] || [];
+
+        for (let i = 0; i < candidates.length; i++) {
+          const move = candidates[i];
+          if (usedMoves.has(move)) continue;
+
+          usedMoves.add(move);
+          if (backtrack(idx + 1)) return true;
+          usedMoves.delete(move);
+        }
+        return false;
+      }
+
+      return backtrack(0);
+    }
+
+    function qualifiesForTeamCode(poke, code) {
+      if (!poke.firstChar || !code) return false;
+      return poke.firstChar === code[0] || code.includes(poke.firstChar);
+    }
+
+    function handlePokemonInputChange() {
+      const query = document.getElementById('pokeInput').value.trim().toLowerCase();
+      const pillsDiv = document.getElementById('formPills');
+      pillsDiv.innerHTML = '';
+
+      if (ALL_POKE_LIST.length === 0 || !query) {
+        if (!query) {
+          document.getElementById('pokeBanner').style.display = 'none';
+          document.getElementById('teamResults').style.display = 'none';
+          document.getElementById('teamResults').innerHTML = '';
+          document.getElementById('moveResults').innerHTML = '';
+          document.getElementById('teamStatusText').textContent = 'Type a Pokémon name above to check qualifying Team Cheat Codes.';
+          document.getElementById('moveStatusText').textContent = 'Type a Pokémon name above to check Move Cheat Codes.';
+        }
+        return;
+      }
+
+      const slugQuery = query.replace(/[^a-z0-9]/g, '');
+      const exact = ALL_POKE_LIST.find(p => p.nameLower === query || p.pokeId === slugQuery);
+      const prefixMatches = ALL_POKE_LIST.filter(p => p.nameLower.startsWith(query) || p.pokeId.startsWith(slugQuery));
+      const substringMatches = prefixMatches.length > 0
+        ? prefixMatches
+        : ALL_POKE_LIST.filter(p => p.nameLower.includes(query) || p.pokeId.includes(slugQuery));
+
+      if (substringMatches.length === 0) {
+        document.getElementById('pokeBanner').style.display = 'none';
+        document.getElementById('teamResults').style.display = 'none';
+        document.getElementById('teamResults').innerHTML = '';
+        document.getElementById('moveResults').innerHTML = '';
+        document.getElementById('teamStatusText').textContent = '';
+        document.getElementById('moveStatusText').textContent = `No Pokémon matching "${document.getElementById('pokeInput').value.trim()}".`;
+        return;
+      }
+
+      if (exact) {
+        SELECTED_POKE_ID = exact.pokeId;
+      } else if (!substringMatches.some(p => p.pokeId === SELECTED_POKE_ID)) {
+        SELECTED_POKE_ID = substringMatches[0].pokeId;
+      }
+
+      const pillsToShow = substringMatches.slice(0, 14);
+      if (pillsToShow.length > 1 || pillsToShow[0].nameLower !== query) {
+        pillsDiv.innerHTML = pillsToShow.map(p => {
+          const sUrl = `${MINISPRITE_BASE}/${p.spriteSlug}.png`;
+          const fUrl = `${MINISPRITE_BASE}/${p.baseSpeciesSlug}.png`;
+          const isActive = p.pokeId === SELECTED_POKE_ID;
+          return `
+            <span class="form-pill ${isActive ? 'active' : ''}" data-poke="${p.pokeId}">
+              <img src="${sUrl}" alt="${p.name}" style="display:block;" onerror="if(this.src!=='${fUrl}'){this.src='${fUrl}';}else{this.style.display='none';}">
+              <span>${p.name}</span>
+            </span>
+          `;
+        }).join('');
+
+        pillsDiv.querySelectorAll('.form-pill').forEach(pill => {
+          pill.addEventListener('click', () => {
+            SELECTED_POKE_ID = pill.dataset.poke;
+            const chosen = ALL_POKE_LIST.find(x => x.pokeId === SELECTED_POKE_ID);
+            if (chosen) {
+              document.getElementById('pokeInput').value = chosen.name;
+            }
+            handlePokemonInputChange();
+          });
+        });
+      }
+
+      evaluateSelectedPokemon();
+    }
+
+    function sortCodeItems(items, sortMode) {
+      return items.sort((a, b) => {
+        switch (sortMode) {
+          case 'len-desc':
+            return b.code.length - a.code.length || a.code.localeCompare(b.code);
+          case 'len-asc':
+            return a.code.length - b.code.length || a.code.localeCompare(b.code);
+          case 'custom-first':
+            if (a.isCustom !== b.isCustom) return a.isCustom ? -1 : 1;
+            return a.code.localeCompare(b.code);
+          case 'alpha-asc':
+          default:
+            return a.code.localeCompare(b.code);
+        }
+      });
+    }
+
+    function evaluateSelectedPokemon() {
+      const banner = document.getElementById('pokeBanner');
+      const teamStatusText = document.getElementById('teamStatusText');
+      const teamResultsDiv = document.getElementById('teamResults');
+      const moveStatusText = document.getElementById('moveStatusText');
+      const moveResultsDiv = document.getElementById('moveResults');
+
+      teamResultsDiv.innerHTML = '';
+      moveResultsDiv.innerHTML = '';
+
+      const poke = ALL_POKE_LIST.find(p => p.pokeId === SELECTED_POKE_ID);
+      if (!poke) return;
+
+      const byLetter = {};
+      for (let i = 0; i < poke.moves.length; i++) {
+        const mId = poke.moves[i];
+        const ch = mId[0].toUpperCase();
+        if (!byLetter[ch]) byLetter[ch] = [];
+        byLetter[ch].push(mId);
+      }
+
+      for (const ch of Object.keys(byLetter)) {
+        byLetter[ch].sort((mA, mB) => {
+          const rankA = getMoveRank(mA);
+          const rankB = getMoveRank(mB);
+          if (rankA !== rankB) return rankA - rankB;
+          return formatMoveName(mA).localeCompare(formatMoveName(mB));
+        });
+      }
+
+      const subFilter = document.getElementById('codeOrMoveFilter').value.trim().toLowerCase();
+      const subSlug = subFilter.replace(/[^a-z0-9]/g, '');
+      const sortMode = document.getElementById('sortCodes').value;
+
+      // 1. Filter Team Cheat Codes to only those the Pokémon qualifies for
+      const matchedTeamCodes = [];
+      for (let i = 0; i < ACTIVE_TEAM_CODES.length; i++) {
+        const code = ACTIVE_TEAM_CODES[i];
+        if (!qualifiesForTeamCode(poke, code)) continue;
+
+        const meta = CODE_METADATA[code] || { effect: '', developer: '' };
+
+        if (subFilter) {
+          const codeMatch = code.toLowerCase().includes(subFilter);
+          const effectMatch = meta.effect.toLowerCase().includes(subFilter);
+          const devMatch = meta.developer.toLowerCase().includes(subFilter);
+          if (!codeMatch && !effectMatch && !devMatch) continue;
+        }
+
+        matchedTeamCodes.push({
+          code,
+          effect: meta.effect,
+          developer: meta.developer,
+          isCustom: !DEFAULT_TEAM_SET.has(code)
+        });
+      }
+      sortCodeItems(matchedTeamCodes, sortMode);
+
+      // 2. Evaluate Move Cheat Codes
+      const matchedMoveCodes = [];
+      for (let i = 0; i < ACTIVE_MOVE_CODES.length; i++) {
+        const code = ACTIVE_MOVE_CODES[i];
+        const letters = code.split('');
+
+        if (!letters.every(ch => byLetter[ch] && byLetter[ch].length > 0)) continue;
+        if (!canSatisfyCode(letters, byLetter)) continue;
+
+        const meta = CODE_METADATA[code] || { effect: '', developer: '' };
+
+        if (subFilter) {
+          const codeMatch = code.toLowerCase().includes(subFilter);
+          const effectMatch = meta.effect.toLowerCase().includes(subFilter);
+          const devMatch = meta.developer.toLowerCase().includes(subFilter);
+          const moveMatch = letters.some(ch =>
+            byLetter[ch].some(mId =>
+              formatMoveName(mId).toLowerCase().includes(subFilter) ||
+              (subSlug.length > 0 && mId.includes(subSlug))
+            )
+          );
+          if (!codeMatch && !effectMatch && !devMatch && !moveMatch) continue;
+        }
+
+        matchedMoveCodes.push({
+          code,
+          letters,
+          effect: meta.effect,
+          developer: meta.developer,
+          isCustom: !DEFAULT_MOVE_SET.has(code)
+        });
+      }
+      sortCodeItems(matchedMoveCodes, sortMode);
+
+      const spriteUrl = `${MINISPRITE_BASE}/${poke.spriteSlug}.png`;
+      const fallbackUrl = `${MINISPRITE_BASE}/${poke.baseSpeciesSlug}.png`;
+
+      banner.style.display = 'flex';
+      banner.innerHTML = `
+        <div class="identity-group">
+          <div class="sprite-slot">
+            <img src="${spriteUrl}" alt="${poke.name}" style="display:block;margin-left:auto;margin-right:auto;"
+                 onerror="if(this.src!=='${fallbackUrl}'){this.src='${fallbackUrl}';}else{this.style.display='none';}">
+          </div>
+          <span class="poke-title">${poke.name}</span>
+          <span class="tag tag-tier">${poke.natDexTier}</span>
+          ${poke.types.map(t => `<span class="tag">${t}</span>`).join(' ')}
+        </div>
+        <div class="banner-summary">
+          <strong>${matchedTeamCodes.length}</strong> / ${ACTIVE_TEAM_CODES.length} Team Codes ·
+          <strong>${matchedMoveCodes.length}</strong> / ${ACTIVE_MOVE_CODES.length} Move Codes
+        </div>
+      `;
+
+      // Render Qualifying Team Cheat Codes with a dedicated full-effect line
+      if (matchedTeamCodes.length === 0) {
+        teamResultsDiv.style.display = 'none';
+        teamStatusText.textContent = `${poke.name} does not qualify for any active Team Cheat Codes.`;
+      } else {
+        teamResultsDiv.style.display = 'block';
+        teamStatusText.textContent = `Showing ${matchedTeamCodes.length} qualifying Team Cheat Codes for ${poke.name}:`;
+        const teamFrag = document.createDocumentFragment();
+        matchedTeamCodes.forEach(({ code, effect, developer, isCustom }) => {
+          const item = document.createElement('div');
+          item.className = 'team-item';
+          item.innerHTML = `
+            <div class="team-item-top">
+              <div>
+                <span class="code-badge team-badge">${code}</span>
+                ${isCustom ? '<span class="custom-tag">Custom</span>' : ''}
+              </div>
+              ${developer ? `<span class="team-dev-inline">${developer}</span>` : ''}
+            </div>
+            <div class="team-effect-line">${effect || 'No effect listed.'}</div>
+          `;
+          teamFrag.appendChild(item);
+        });
+        teamResultsDiv.appendChild(teamFrag);
+      }
+
+      // Render Move Cheat Codes
+      if (matchedMoveCodes.length === 0) {
+        moveStatusText.textContent = `No Move Cheat Codes matched for ${poke.name}.`;
+      } else {
+        moveStatusText.textContent = `Showing ${matchedMoveCodes.length} available Move Cheat Codes for ${poke.name}:`;
+        const moveFrag = document.createDocumentFragment();
+        matchedMoveCodes.forEach(({ code, letters, effect, developer, isCustom }) => {
+          const card = document.createElement('div');
+          card.className = 'code-card';
+
+          card.innerHTML = `
+            <div>
+              <div class="code-card-header">
+                <div>
+                  <span class="code-badge">${code}</span>
+                  ${isCustom ? '<span class="custom-tag">Custom</span>' : ''}
+                </div>
+                <span class="code-meta">${letters.length} ${letters.length === 1 ? 'letter' : 'letters'}</span>
+              </div>
+              <div class="code-effect-box">
+                <div><strong>Effect:</strong> ${effect || '<em>Not listed</em>'}</div>
+                ${developer ? `<div class="code-dev-line">Developer: <span>${developer}</span></div>` : ''}
+              </div>
+            </div>
+          `;
+
+          const movesContainer = document.createElement('div');
+          letters.forEach(ch => {
+            const row = document.createElement('div');
+            row.className = 'letter-row';
+
+            const formattedMoves = byLetter[ch].map(mId => {
+              const label = formatMoveName(mId);
+              if (subFilter && (label.toLowerCase().includes(subFilter) || (subSlug.length > 0 && mId.includes(subSlug)))) {
+                return `<strong>${label}</strong>`;
+              }
+              return label;
+            }).join(', ');
+
+            row.innerHTML = `<span class="letter-char">${ch}:</span> <span class="move-list">${formattedMoves}</span>`;
+            movesContainer.appendChild(row);
+          });
+          card.appendChild(movesContainer);
+          moveFrag.appendChild(card);
+        });
+        moveResultsDiv.appendChild(moveFrag);
+      }
+    }
+
+    function normalizeBaseUrl(url) {
+      let clean = url.trim().replace(/\/+$/, '');
+      clean = clean
+        .replace('https://github.com/', 'https://raw.githubusercontent.com/')
+        .replace('/tree/', '/');
+      return clean;
+    }
+
+    async function fetchJsonData(base) {
+      const [learnsetsRes, pokedexRes, formatsRes, movesRes] = await Promise.all([
+        fetch(`${base}/learnsets.json`),
+        fetch(`${base}/pokedex.json`),
+        fetch(`${base}/formats-data.json`),
+        fetch(`${base}/moves.json`)
+      ]);
+
+      if (!learnsetsRes.ok || !pokedexRes.ok || !formatsRes.ok) {
+        throw new Error('JSON endpoint unavailable');
+      }
+
+      const [learnsetsJson, pokedexJson, formatsJson, movesJson] = await Promise.all([
+        learnsetsRes.json(),
+        pokedexRes.json(),
+        formatsRes.json(),
+        movesRes.ok ? movesRes.json() : Promise.resolve({})
+      ]);
+
+      POKE_MOVES = buildCompactLearnsets(learnsetsJson);
+      POKEDEX = pokedexJson;
+      FORMATS = formatsJson;
+      MOVES_META = buildCompactMovesFromJson(movesJson);
+    }
+
+    async function fetchTsFallback(base) {
+      const [learnsetsRes, pokedexRes, formatsRes, movesRes] = await Promise.all([
+        fetch(`${base}/learnsets.ts`),
+        fetch(`${base}/pokedex.ts`),
+        fetch(`${base}/formats-data.ts`),
+        fetch(`${base}/moves.ts`)
+      ]);
+
+      if (!learnsetsRes.ok) throw new Error(`learnsets.ts HTTP ${learnsetsRes.status}`);
+      if (!pokedexRes.ok) throw new Error(`pokedex.ts HTTP ${pokedexRes.status}`);
+      if (!formatsRes.ok) throw new Error(`formats-data.ts HTTP ${formatsRes.status}`);
+
+      const [learnsetsTxt, pokedexTxt, formatsTxt, movesTxt] = await Promise.all([
+        learnsetsRes.text(),
+        pokedexRes.text(),
+        formatsRes.text(),
+        movesRes.ok ? movesRes.text() : Promise.resolve('')
+      ]);
+
+      POKE_MOVES = buildCompactLearnsets(parseTsDataObjectFast(learnsetsTxt, 'Learnsets'));
+      POKEDEX = parseTsDataObjectFast(pokedexTxt, 'Pokedex');
+      FORMATS = parseTsDataObjectFast(formatsTxt, 'FormatsData');
+      if (movesTxt) MOVES_META = parseMovesTsFast(movesTxt);
+    }
+
+    async function loadAllSmogonData(customBaseUrl, forceRefresh = false) {
+      const dbStatus = document.getElementById('dbStatus');
+      const statusText = document.getElementById('moveStatusText');
+      const base = normalizeBaseUrl(customBaseUrl || FAST_JSON_URL);
+      const cacheKey = `compact_${base}`;
+
+      if (!forceRefresh) {
+        const cached = await readFromCache(cacheKey);
+        if (cached && cached.POKE_MOVES && cached.POKEDEX && cached.FORMATS) {
+          POKE_MOVES = cached.POKE_MOVES;
+          POKEDEX = cached.POKEDEX;
+          FORMATS = cached.FORMATS;
+          MOVES_META = cached.MOVES_META || {};
+
+          buildSearchablePokemonIndex();
+          dbStatus.style.color = '#8aff8a';
+          dbStatus.textContent = `${ALL_POKE_LIST.length} Pokémon loaded`;
+          handlePokemonInputChange();
+          return;
+        }
+      }
+
+      dbStatus.style.color = '#ffcc66';
+      dbStatus.textContent = 'Loading...';
+      statusText.textContent = 'Fetching Pokédex & learnsets...';
+
+      try {
+        if (base.includes('raw.githubusercontent.com')) {
+          await fetchTsFallback(base);
+        } else {
+          try {
+            await fetchJsonData(base);
+          } catch {
+            await fetchTsFallback(GITHUB_TS_URL);
+          }
+        }
+
+        buildSearchablePokemonIndex();
+        dbStatus.style.color = '#8aff8a';
+        dbStatus.textContent = `${ALL_POKE_LIST.length} Pokémon loaded`;
+
+        handlePokemonInputChange();
+        writeToCache(cacheKey, { POKE_MOVES, POKEDEX, FORMATS, MOVES_META });
+      } catch (err) {
+        dbStatus.style.color = '#ff7777';
+        dbStatus.textContent = `Load error: ${err.message}`;
+        statusText.textContent = `Failed to load data (${err.message}).`;
+      }
+    }
+
+    // Event Listeners
+    document.getElementById('pokeInput').addEventListener('input', handlePokemonInputChange);
+    document.getElementById('codeOrMoveFilter').addEventListener('input', evaluateSelectedPokemon);
+    document.getElementById('sortCodes').addEventListener('change', evaluateSelectedPokemon);
+
+    document.getElementById('addMoveCodesBtn').addEventListener('click', () => {
+      addCodesFromInput('addMoveCodesInput', ACTIVE_MOVE_CODES, STORAGE_MOVE_CODES_KEY);
+    });
+    document.getElementById('addMoveCodesInput').addEventListener('keyup', (e) => {
+      if (e.key === 'Enter') addCodesFromInput('addMoveCodesInput', ACTIVE_MOVE_CODES, STORAGE_MOVE_CODES_KEY);
+    });
+
+    document.getElementById('addTeamCodesBtn').addEventListener('click', () => {
+      addCodesFromInput('addTeamCodesInput', ACTIVE_TEAM_CODES, STORAGE_TEAM_CODES_KEY);
+    });
+    document.getElementById('addTeamCodesInput').addEventListener('keyup', (e) => {
+      if (e.key === 'Enter') addCodesFromInput('addTeamCodesInput', ACTIVE_TEAM_CODES, STORAGE_TEAM_CODES_KEY);
+    });
+
+    document.getElementById('resetMoveCodesBtn').addEventListener('click', () => {
+      ACTIVE_MOVE_CODES = [...new Set(DEFAULT_MOVE_CODES)];
+      saveCodeList(STORAGE_MOVE_CODES_KEY, ACTIVE_MOVE_CODES);
+      renderAllPools();
+      evaluateSelectedPokemon();
+    });
+
+    document.getElementById('resetTeamCodesBtn').addEventListener('click', () => {
+      ACTIVE_TEAM_CODES = [...new Set(DEFAULT_TEAM_CODES)];
+      saveCodeList(STORAGE_TEAM_CODES_KEY, ACTIVE_TEAM_CODES);
+      renderAllPools();
+      evaluateSelectedPokemon();
+    });
+
+    document.getElementById('reloadUrlBtn').addEventListener('click', () => {
+      loadAllSmogonData(document.getElementById('baseUrlInput').value, true);
+    });
+
+    // Startup
+    ACTIVE_MOVE_CODES = loadCodeList(STORAGE_MOVE_CODES_KEY, DEFAULT_MOVE_CODES);
+    ACTIVE_TEAM_CODES = loadCodeList(STORAGE_TEAM_CODES_KEY, DEFAULT_TEAM_CODES);
+    renderAllPools();
+    loadAllSmogonData();
+  </script>
+</body>
+</html>
