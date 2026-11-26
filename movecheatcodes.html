@@ -6,9 +6,11 @@
   <style>
     body {
       font-family: monospace;
-      max-width: 980px;
-      margin: 20px auto;
-      padding: 0 15px;
+      width: 100%;
+      max-width: none;
+      box-sizing: border-box;
+      margin: 20px 0;
+      padding: 0 20px;
       background: #121212;
       color: #e0e0e0;
     }
@@ -53,67 +55,77 @@
     details { margin-bottom: 12px; border: 1px solid #333; padding: 8px 10px; background: #161616; }
     summary { cursor: pointer; font-weight: bold; font-size: 0.9rem; }
     .status { margin-bottom: 10px; color: #aaa; font-size: 0.92rem; }
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      align-items: stretch;
+    }
+    @media (max-width: 900px) {
+      .results-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 600px) {
+      .results-grid { grid-template-columns: 1fr; }
+    }
     .card {
       border: 1px solid #333;
       background: #181818;
-      padding: 10px 12px;
-      margin-bottom: 10px;
+      padding: 8px 10px;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
     }
     .card-header {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #2a2a2a;
-      padding-bottom: 8px;
-      margin-bottom: 8px;
-      gap: 10px;
-    }
-    .identity-group {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 6px;
+      padding-bottom: 4px;
+      margin-bottom: 4px;
+      gap: 5px;
+      line-height: 1.25;
     }
     .sprite-slot {
-      width: 44px;
+      width: 34px;
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .poke-title { font-weight: bold; font-size: 1.05rem; color: #7cc7ff; }
-    .poke-num { color: #777; font-size: 0.85rem; }
+    .poke-title { font-weight: normal; font-size: 0.95rem; color: #e0e0e0; }
     .tag {
       display: inline-block;
       background: #252525;
       border: 1px solid #3d3d3d;
-      padding: 1px 6px;
-      font-size: 0.8rem;
+      padding: 0 5px;
+      font-size: 0.72rem;
       color: #ddd;
     }
     .tag-tier { color: #ffcf70; border-color: #5a4a28; }
-    .meta-right {
+    .header-stats {
+      font-size: 0.72rem;
+      color: #bbb;
+      margin-left: auto;
+      text-align: right;
+    }
+    .moves-block {
+      flex: 1;
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
-      gap: 3px;
+      justify-content: space-between;
     }
-    @media (max-width: 720px) {
-      .meta-right { align-items: flex-start; }
+    /* Badge is 20px + 6px gap = 26px hanging indent so wrapped moves start right under the 1st letter of the 1st move */
+    .letter-row {
+      position: relative;
+      padding-left: 26px;
+      margin: 2px 0;
+      line-height: 1.38;
+      font-size: 0.85rem;
     }
-    .stats-line { font-size: 0.83rem; color: #999; }
-    .stats-line strong { color: #ccc; }
-    .abilities-span {
-      display: block;
-      font-size: 0.83rem;
-      color: #999;
-    }
-    .abilities-span strong { color: #ccc; }
-    .letter-row { margin: 4px 0; line-height: 1.45; }
     .letter-badge {
-      display: inline-block;
-      width: 22px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 20px;
       font-weight: bold;
       color: #ffcc66;
     }
@@ -133,12 +145,12 @@
       <button id="resetBtn">Reset Filters</button>
     </div>
 
-    <!-- Row 2: Search (Pokemon / Ability / Move) -->
+    <!-- Row 2: Search (Pokemon / Move) -->
     <div class="row">
-      <label>Pokemon/Ability/Move: <input type="text" id="searchFilter" class="search-box" placeholder="Charizard, Drought, Blast Burn"></label>
+      <label>Pokemon/Move: <input type="text" id="searchFilter" class="search-box" placeholder="Charizard, Blast Burn"></label>
     </div>
 
-    <!-- Row 3: Tier Mode, Tier & Type Filters -->
+    <!-- Row 3: Tier Mode & Tier Filter -->
     <div class="row">
       <label>Tier Mode:
         <select id="tierMode">
@@ -170,30 +182,6 @@
           <option value="Uber">Uber</option>
           <option value="AG">AG</option>
           <option value="Untiered">Untiered / Past</option>
-        </select>
-      </label>
-
-      <label>Type:
-        <select id="typeFilter">
-          <option value="all">All Types</option>
-          <option value="Normal">Normal</option>
-          <option value="Fire">Fire</option>
-          <option value="Water">Water</option>
-          <option value="Electric">Electric</option>
-          <option value="Grass">Grass</option>
-          <option value="Ice">Ice</option>
-          <option value="Fighting">Fighting</option>
-          <option value="Poison">Poison</option>
-          <option value="Ground">Ground</option>
-          <option value="Flying">Flying</option>
-          <option value="Psychic">Psychic</option>
-          <option value="Bug">Bug</option>
-          <option value="Rock">Rock</option>
-          <option value="Ghost">Ghost</option>
-          <option value="Dragon">Dragon</option>
-          <option value="Dark">Dark</option>
-          <option value="Steel">Steel</option>
-          <option value="Fairy">Fairy</option>
         </select>
       </label>
     </div>
@@ -245,7 +233,7 @@
   </details>
 
   <div class="status" id="statusText">Loading Pokémon data...</div>
-  <div id="results"></div>
+  <div class="results-grid" id="results"></div>
 
   <script>
     const FAST_JSON_URL = 'https://play.pokemonshowdown.com/data';
@@ -254,7 +242,7 @@
     const DB_NAME = 'PokeCheatCodeFast_v1';
     const STORE_NAME = 'compactData';
 
-    let POKE_MOVES = {}; // { pokeId: [moveId1, moveId2, ...] }
+    let POKE_MOVES = {};
     let POKEDEX = {};
     let FORMATS = {};
     let MOVES_META = {};
@@ -446,34 +434,15 @@
 
       const name = dex.name || (pokeId.charAt(0).toUpperCase() + pokeId.slice(1));
       const num = typeof dex.num === 'number' ? dex.num : 9999;
-      const types = Array.isArray(dex.types) ? dex.types : [];
       const spriteSlug = getMinispriteSlug(name, pokeId);
       const baseSpeciesSlug = dex.baseSpecies ? getMinispriteSlug(dex.baseSpecies, pokeId) : spriteSlug;
-
-      const abilityList = [];
-      const rawAbilityNames = [];
-      if (dex.abilities) {
-        for (const [slot, abName] of Object.entries(dex.abilities)) {
-          rawAbilityNames.push(abName);
-          if (slot === 'H') {
-            abilityList.push(`${abName} (H)`);
-          } else if (slot === 'S') {
-            abilityList.push(`${abName} (S)`);
-          } else {
-            abilityList.push(abName);
-          }
-        }
-      }
 
       return {
         pokeId,
         name,
         num,
-        types,
         spriteSlug,
         baseSpeciesSlug,
-        abilityList,
-        rawAbilityNames,
         stats: { ...stats, bst },
         tier: fmt.tier || '',
         natDexTier: fmt.natDexTier || '',
@@ -509,7 +478,6 @@
       const searchQuery = document.getElementById('searchFilter').value.trim().toLowerCase();
       const searchSlug = searchQuery.replace(/[^a-z0-9]/g, '');
 
-      const typeFilter = document.getElementById('typeFilter').value;
       const tierMode = document.getElementById('tierMode').value;
       const tierFilter = document.getElementById('tierFilter').value;
 
@@ -546,15 +514,12 @@
 
         if (searchQuery) {
           const nameMatch = info.name.toLowerCase().includes(searchQuery);
-          const abilityMatch = info.rawAbilityNames.some(ab => ab.toLowerCase().includes(searchQuery));
           const moveMatch = moveIds.some(mId =>
             formatMoveName(mId).toLowerCase().includes(searchQuery) ||
             (searchSlug.length > 0 && mId.includes(searchSlug))
           );
-          if (!nameMatch && !abilityMatch && !moveMatch) continue;
+          if (!nameMatch && !moveMatch) continue;
         }
-
-        if (typeFilter !== 'all' && !info.types.includes(typeFilter)) continue;
 
         const activeTier = info[tierMode] || '';
         const displayTier = activeTier || (info.isNonstandard ? `Untiered (${info.isNonstandard})` : 'Untiered');
@@ -635,40 +600,26 @@
         const card = document.createElement('div');
         card.className = 'card';
 
-        const numStr = info.num > 0 && info.num < 9999 ? `#${String(info.num).padStart(3, '0')}` : '';
-        const typesHtml = info.types.map(t => `<span class="tag">${t}</span>`).join(' ');
         const tierHtml = `<span class="tag tag-tier">${displayTier}</span>`;
         const spriteUrl = `${MINISPRITE_BASE}/${info.spriteSlug}.png`;
         const fallbackUrl = `${MINISPRITE_BASE}/${info.baseSpeciesSlug}.png`;
-        const abilitiesText = info.abilityList.length > 0 ? `Abilities: <strong>${info.abilityList.join(', ')}</strong>` : '';
+        const statsText = `${info.stats.hp}/${info.stats.atk}/${info.stats.def}/${info.stats.spa}/${info.stats.spd}/${info.stats.spe} [${info.stats.bst}]`;
 
         const header = document.createElement('div');
         header.className = 'card-header';
         header.innerHTML = `
-          <div class="identity-group">
-            ${numStr ? `<span class="poke-num">${numStr}</span>` : ''}
-            <div class="sprite-slot">
-              <img src="${spriteUrl}" alt="${info.name}" style="display:block;margin-left:auto;margin-right:auto;" loading="lazy"
-                   onerror="if(this.src!=='${fallbackUrl}'){this.src='${fallbackUrl}';}else{this.style.display='none';}">
-            </div>
-            <span class="poke-title">${info.name}</span>
-            ${typesHtml}
-            ${tierHtml}
+          <div class="sprite-slot">
+            <img src="${spriteUrl}" alt="${info.name}" style="display:block;margin-left:auto;margin-right:auto;" loading="lazy"
+                 onerror="if(this.src!=='${fallbackUrl}'){this.src='${fallbackUrl}';}else{this.style.display='none';}">
           </div>
-          <div class="meta-right">
-            <div class="stats-line">
-              HP <strong>${info.stats.hp}</strong> /
-              Atk <strong>${info.stats.atk}</strong> /
-              Def <strong>${info.stats.def}</strong> /
-              SpA <strong>${info.stats.spa}</strong> /
-              SpD <strong>${info.stats.spd}</strong> /
-              Spe <strong>${info.stats.spe}</strong>
-              (BST: <strong>${info.stats.bst}</strong>)
-            </div>
-            ${abilitiesText ? `<span class="abilities-span">${abilitiesText}</span>` : ''}
-          </div>
+          <span class="poke-title">${info.name}</span>
+          ${tierHtml}
+          <span class="header-stats">${statsText}</span>
         `;
         card.appendChild(header);
+
+        const movesBlock = document.createElement('div');
+        movesBlock.className = 'moves-block';
 
         letters.forEach((ch) => {
           const row = document.createElement('div');
@@ -690,9 +641,10 @@
           }).join(', ');
 
           row.innerHTML = `<span class="letter-badge">${ch}:</span> <span class="move-list">${formattedMoves}</span>`;
-          card.appendChild(row);
+          movesBlock.appendChild(row);
         });
 
+        card.appendChild(movesBlock);
         fragment.appendChild(card);
       });
 
@@ -796,7 +748,6 @@
         dbStatus.style.color = '#8aff8a';
         dbStatus.textContent = `${Object.keys(POKE_MOVES).length} Pokémon loaded`;
 
-        // Render immediately before saving in the background
         runSearch();
         writeToCache(cacheKey, { POKE_MOVES, POKEDEX, FORMATS, MOVES_META });
       } catch (err) {
@@ -814,18 +765,17 @@
     document.getElementById('searchFilter').addEventListener('input', runSearch);
     document.getElementById('statValue').addEventListener('input', runSearch);
 
-    ['typeFilter', 'tierMode', 'tierFilter', 'statTarget', 'statOp', 'sortBy'].forEach(id => {
+    ['tierMode', 'tierFilter', 'statTarget', 'statOp', 'sortBy'].forEach(id => {
       document.getElementById(id).addEventListener('change', runSearch);
     });
 
     document.getElementById('resetBtn').addEventListener('click', () => {
       document.getElementById('searchFilter').value = '';
-      document.getElementById('typeFilter').value = 'all';
       document.getElementById('tierMode').value = 'natDexTier';
       document.getElementById('tierFilter').value = 'all';
       document.getElementById('statTarget').value = 'bst';
       document.getElementById('statOp').value = 'gte';
-      document.getElementById('statValue').value = '';
+      document.getElementById('statValue').value = '0';
       document.getElementById('sortBy').value = 'tier-asc';
       runSearch();
     });
