@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Universal Pokémon Showdown Pet Mod Dex</title>
+  <title>Universal Pokémon Showdown Pet Mods Dex</title>
   <style>
     body {
       font-family: monospace;
@@ -30,10 +30,17 @@
     }
     .toolbar-right {
       margin-left: auto;
+      flex: 1 1 54%;
+      min-width: 380px;
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       gap: 10px;
       align-items: center;
+    }
+    .url-label {
+      flex: 1 1 auto;
+      min-width: 0;
+      white-space: nowrap;
     }
     label {
       font-size: 0.88rem;
@@ -49,8 +56,12 @@
       padding: 5px 8px;
       font-family: monospace;
       font-size: 0.9rem;
+      box-sizing: border-box;
     }
-    input.url-input { width: 340px; max-width: 100%; }
+    input.url-input {
+      width: 100%;
+      min-width: 320px;
+    }
     input.search-input { width: 210px; }
     button {
       background: #2b2b2b;
@@ -60,6 +71,8 @@
       font-family: monospace;
       font-size: 0.88rem;
       cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     button:hover { background: #3b3b3b; }
     .status {
@@ -75,6 +88,7 @@
     }
     @media (max-width: 820px) {
       .layout { grid-template-columns: 1fr; }
+      .toolbar-right { flex: 1 1 100%; min-width: 0; }
     }
     .mon-list {
       background: #181818;
@@ -157,6 +171,11 @@
       margin: 0 0 8px 0;
       color: #ffcc66;
     }
+    .section h3 {
+      font-size: 0.9rem;
+      margin: 10px 0 6px 0;
+      color: #8ab4f8;
+    }
     .dex-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -203,6 +222,9 @@
     }
     .entry-row {
       margin: 6px 0;
+      padding: 6px 8px;
+      background: #151515;
+      border: 1px solid #262626;
       line-height: 1.45;
       font-size: 0.86rem;
     }
@@ -256,20 +278,27 @@
 </head>
 <body>
 
-  <h1>Universal Pokémon Showdown Pet Mod Dex</h1>
+  <h1>Universal Pokémon Showdown Pet Mods Dex</h1>
 
   <div class="toolbar">
     <label>Search:
       <input type="text" id="searchInput" class="search-input" placeholder="Name, type, move, ability...">
     </label>
-    <label>Scope:
+    <label>View:
+      <select id="viewSelect">
+        <option value="pokemon" selected>Pokémon</option>
+        <option value="moves">Custom Moves</option>
+        <option value="abilities">Custom Abilities</option>
+      </select>
+    </label>
+    <label id="scopeLabel">Scope:
       <select id="scopeSelect">
         <option value="all" selected>All Modded Pokémon</option>
         <option value="new">New Pokémon Only</option>
       </select>
     </label>
     <div class="toolbar-right">
-      <label>Mod Base URL:
+      <label class="url-label">Mod Base URL:
         <input type="text" id="modUrl" class="url-input" value="https://raw.githubusercontent.com/scoopapa/DH2/main/data/mods/worldbuilding">
       </label>
       <button id="loadBtn">Load Mod Data</button>
@@ -280,7 +309,7 @@
 
   <div class="layout">
     <div class="mon-list" id="monList"></div>
-    <div class="detail-pane" id="detailPane">Select a Pokémon from the list to view stats, abilities, moves, and custom elements.</div>
+    <div class="detail-pane" id="detailPane">Select an item from the list to view details.</div>
   </div>
 
   <script>
@@ -313,6 +342,7 @@
     let MOD_MOVES = {};
     let MOD_ABILITIES = {};
     let MOD_ITEMS = {};
+    let MOD_CONDITIONS = {};
     let MOD_LEARNSETS = {};
     let MOD_SCRIPTS_TEXT = '';
     let SCRIPT_ADDED_MOVES = {};
@@ -325,6 +355,8 @@
     let BASE_ITEMS = {};
 
     let SELECTED_ID = null;
+    let SELECTED_CUSTOM_MOVE_ID = null;
+    let SELECTED_CUSTOM_ABILITY_ID = null;
 
     function toId(str) {
       return String(str || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
@@ -585,13 +617,14 @@
 
       try {
         const [
-          dexRes, movesRes, ablRes, itemsRes, learnRes, scriptsRes,
+          dexRes, movesRes, ablRes, itemsRes, condRes, learnRes, scriptsRes,
           baseDexRes, baseLearnRes, baseMovesRes, baseAblRes, baseItemsRes
         ] = await Promise.allSettled([
           fetchTextSafe(`${rawUrl}/pokedex.ts`),
           fetchTextSafe(`${rawUrl}/moves.ts`),
           fetchTextSafe(`${rawUrl}/abilities.ts`),
           fetchTextSafe(`${rawUrl}/items.ts`),
+          fetchTextSafe(`${rawUrl}/conditions.ts`),
           fetchTextSafe(`${rawUrl}/learnsets.ts`),
           fetchTextSafe(`${rawUrl}/scripts.ts`),
           fetch(`${BASE_SHOWDOWN_URL}/pokedex.json`).then(r => r.ok ? r.json() : {}),
@@ -605,6 +638,7 @@
         const movesText = movesRes.status === 'fulfilled' ? movesRes.value : '';
         const ablText = ablRes.status === 'fulfilled' ? ablRes.value : '';
         const itemsText = itemsRes.status === 'fulfilled' ? itemsRes.value : '';
+        const condText = condRes.status === 'fulfilled' ? condRes.value : '';
         const learnText = learnRes.status === 'fulfilled' ? learnRes.value : '';
         MOD_SCRIPTS_TEXT = scriptsRes.status === 'fulfilled' ? scriptsRes.value : '';
 
@@ -618,6 +652,7 @@
         MOD_MOVES = parseModSection(movesText, 'Moves');
         MOD_ABILITIES = parseModSection(ablText, 'Abilities');
         MOD_ITEMS = parseModSection(itemsText, 'Items');
+        MOD_CONDITIONS = parseModSection(condText, 'Conditions');
         MOD_LEARNSETS = parseModSection(learnText, 'Learnsets');
 
         const parsedChanges = parseScriptLearnsetChanges(MOD_SCRIPTS_TEXT);
@@ -634,12 +669,96 @@
 
         const totalMons = Object.keys(MOD_DEX).length;
         const newMons = Object.values(MOD_DEX).filter(m => m && !m.inherit).length;
-        statusBar.textContent = `Loaded ${newMons} new Pokémon and ${totalMons - newMons} modded/inherited Pokémon (${Object.keys(MOD_MOVES).length} modded moves, ${Object.keys(MOD_ABILITIES).length} modded abilities).`;
+        const customMoveCount = getCustomMovesList().length;
+        const customAblCount = getCustomAbilitiesList().length;
+        statusBar.textContent = `Loaded ${newMons} new Pokémon and ${totalMons - newMons} modded/inherited Pokémon (${customMoveCount} custom moves, ${customAblCount} custom abilities).`;
 
         renderList();
       } catch (err) {
         statusBar.textContent = `Error loading mod files: ${err.message}`;
       }
+    }
+
+    function getCustomMovesList() {
+      return Object.entries(MOD_MOVES)
+        .filter(([id, m]) => m && (!BASE_MOVES[id] || !m.inherit))
+        .map(([id, m]) => {
+          const baseM = BASE_MOVES[id] || {};
+          const merged = Object.assign({}, baseM, m);
+          return {
+            id,
+            name: merged.name || id,
+            type: merged.type || '?',
+            category: merged.category || 'Status',
+            basePower: merged.basePower ?? '—',
+            accuracy: merged.accuracy === true ? '—' : (merged.accuracy ?? '—'),
+            pp: merged.pp ?? '—',
+            descText: pickDescription(merged),
+            weather: merged.weather || '',
+            terrain: merged.terrain || '',
+            sideCondition: merged.sideCondition || '',
+            pseudoWeather: merged.pseudoWeather || '',
+            slotCondition: merged.slotCondition || '',
+            customElements: extractCustomElements(m, BASE_KNOWN_KEYS.moves, baseM)
+          };
+        })
+        .sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    function getCustomAbilitiesList() {
+      return Object.entries(MOD_ABILITIES)
+        .filter(([id, a]) => a && (!BASE_ABILITIES[id] || !a.inherit))
+        .map(([id, a]) => {
+          const baseA = BASE_ABILITIES[id] || {};
+          const merged = Object.assign({}, baseA, a);
+          return {
+            id,
+            name: merged.name || id,
+            descText: pickDescription(merged),
+            customElements: extractCustomElements(a, BASE_KNOWN_KEYS.abilities, baseA)
+          };
+        })
+        .sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    function getWeatherAndFieldElements(moveList, customMoveList) {
+      const weatherSet = new Set();
+      const fieldSet = new Set();
+
+      const inspectMove = m => {
+        if (m.weather) weatherSet.add(String(m.weather));
+        if (m.terrain) fieldSet.add(`Terrain: ${m.terrain}`);
+        if (m.sideCondition) fieldSet.add(`Side Condition: ${m.sideCondition}`);
+        if (m.pseudoWeather) fieldSet.add(`Pseudo-Weather: ${m.pseudoWeather}`);
+        if (m.slotCondition) fieldSet.add(`Slot Condition: ${m.slotCondition}`);
+        if (Array.isArray(m.customElements)) {
+          m.customElements.forEach(el => {
+            const lower = el.toLowerCase();
+            if (lower.includes('weather')) weatherSet.add(el);
+            else if (lower.includes('field') || lower.includes('terrain') || lower.includes('hazard') || lower.includes('zone') || lower.includes('room')) {
+              fieldSet.add(el);
+            }
+          });
+        }
+      };
+
+      (moveList || []).forEach(inspectMove);
+      (customMoveList || []).forEach(inspectMove);
+
+      Object.entries(MOD_CONDITIONS || {}).forEach(([k, cond]) => {
+        if (!cond) return;
+        const label = cond.name ? `${cond.name} (${pickDescription(cond)})` : k;
+        if (k.includes('weather') || (cond.name && cond.name.toLowerCase().includes('weather'))) {
+          weatherSet.add(label.replace(/\s*\(\)$/, ''));
+        } else {
+          fieldSet.add(label.replace(/\s*\(\)$/, ''));
+        }
+      });
+
+      return {
+        weather: [...weatherSet],
+        field: [...fieldSet]
+      };
     }
 
     function getLearnsetDiff(monId) {
@@ -721,13 +840,103 @@
     }
 
     function renderList() {
-      const { newMons, moddedMons, flat } = getOrderedMons();
+      const view = document.getElementById('viewSelect').value;
+      const scopeLabel = document.getElementById('scopeLabel');
+      scopeLabel.style.display = view === 'pokemon' ? 'inline-flex' : 'none';
+
       const listEl = document.getElementById('monList');
+      const pane = document.getElementById('detailPane');
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
       listEl.innerHTML = '';
 
+      if (view === 'moves') {
+        const moves = getCustomMovesList().filter(m =>
+          !q ||
+          m.name.toLowerCase().includes(q) ||
+          m.type.toLowerCase().includes(q) ||
+          m.category.toLowerCase().includes(q) ||
+          m.descText.toLowerCase().includes(q) ||
+          m.customElements.join(' ').toLowerCase().includes(q)
+        );
+
+        if (!moves.length) {
+          listEl.innerHTML = '<div class="mon-item">No matching custom moves found.</div>';
+          pane.innerHTML = '<div class="desc-text">No custom moves match your search.</div>';
+          return;
+        }
+
+        if (!SELECTED_CUSTOM_MOVE_ID || !moves.some(m => m.id === SELECTED_CUSTOM_MOVE_ID)) {
+          SELECTED_CUSTOM_MOVE_ID = moves[0].id;
+        }
+
+        const gh = document.createElement('div');
+        gh.className = 'group-header';
+        gh.textContent = `Custom Moves (${moves.length})`;
+        listEl.appendChild(gh);
+
+        moves.forEach(m => {
+          const row = document.createElement('div');
+          row.className = 'mon-item' + (m.id === SELECTED_CUSTOM_MOVE_ID ? ' active' : '');
+          row.innerHTML = `
+            <span><strong>${m.name}</strong></span>
+            <span class="mon-meta">${m.type} · ${m.category}</span>
+          `;
+          row.addEventListener('click', () => {
+            SELECTED_CUSTOM_MOVE_ID = m.id;
+            renderList();
+          });
+          listEl.appendChild(row);
+        });
+
+        renderCustomMovesPane(moves);
+        return;
+      }
+
+      if (view === 'abilities') {
+        const abilities = getCustomAbilitiesList().filter(a =>
+          !q ||
+          a.name.toLowerCase().includes(q) ||
+          a.descText.toLowerCase().includes(q) ||
+          a.customElements.join(' ').toLowerCase().includes(q)
+        );
+
+        if (!abilities.length) {
+          listEl.innerHTML = '<div class="mon-item">No matching custom abilities found.</div>';
+          pane.innerHTML = '<div class="desc-text">No custom abilities match your search.</div>';
+          return;
+        }
+
+        if (!SELECTED_CUSTOM_ABILITY_ID || !abilities.some(a => a.id === SELECTED_CUSTOM_ABILITY_ID)) {
+          SELECTED_CUSTOM_ABILITY_ID = abilities[0].id;
+        }
+
+        const gh = document.createElement('div');
+        gh.className = 'group-header';
+        gh.textContent = `Custom Abilities (${abilities.length})`;
+        listEl.appendChild(gh);
+
+        abilities.forEach(a => {
+          const row = document.createElement('div');
+          row.className = 'mon-item' + (a.id === SELECTED_CUSTOM_ABILITY_ID ? ' active' : '');
+          row.innerHTML = `
+            <span><strong>${a.name}</strong></span>
+            <span class="mon-meta">Ability</span>
+          `;
+          row.addEventListener('click', () => {
+            SELECTED_CUSTOM_ABILITY_ID = a.id;
+            renderList();
+          });
+          listEl.appendChild(row);
+        });
+
+        renderCustomAbilitiesPane(abilities);
+        return;
+      }
+
+      const { newMons, moddedMons, flat } = getOrderedMons();
       if (flat.length === 0) {
         listEl.innerHTML = '<div class="mon-item">No matching Pokémon found.</div>';
-        document.getElementById('detailPane').innerHTML = '';
+        pane.innerHTML = '';
         return;
       }
 
@@ -767,6 +976,92 @@
       appendGroup('Modded Pokémon', moddedMons);
 
       renderDetail();
+    }
+
+    function renderCustomMovesPane(moves) {
+      const pane = document.getElementById('detailPane');
+      const selected = moves.find(m => m.id === SELECTED_CUSTOM_MOVE_ID) || moves[0];
+      const { weather, field } = getWeatherAndFieldElements(moves, []);
+
+      pane.innerHTML = `
+        <div class="detail-header">
+          <div>
+            <strong style="font-size:1.15rem;">${selected.name}</strong>
+            <span style="color:#ffcf70; margin-left:8px;">${selected.type} · ${selected.category}</span>
+          </div>
+          <span class="custom-badge">Custom Move</span>
+        </div>
+
+        <div class="section">
+          <div class="entry-row">
+            BP: <strong>${selected.basePower}</strong> · Acc: <strong>${selected.accuracy}</strong> · PP: <strong>${selected.pp}</strong>
+            ${selected.descText ? `<br><span class="desc-text">${selected.descText}</span>` : ''}
+            ${selected.customElements.length ? `<br><span class="desc-text">[${selected.customElements.join(' · ')}]</span>` : ''}
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Weather</h2>
+          ${weather.length ? weather.map(w => `<div class="entry-row">${w}</div>`).join('') : '<div class="desc-text">None</div>'}
+        </div>
+
+        <div class="section">
+          <h2>Field Conditions</h2>
+          ${field.length ? field.map(f => `<div class="entry-row">${f}</div>`).join('') : '<div class="desc-text">None</div>'}
+        </div>
+
+        <div class="section">
+          <h2>All Custom Moves (${moves.length})</h2>
+          ${moves.map(m => `
+            <div class="entry-row">
+              <strong>${m.name}</strong> (${m.type} · ${m.category} · ${m.basePower} BP · ${m.accuracy} Acc · ${m.pp} PP)
+              ${m.descText ? `— <span class="desc-text">${m.descText}</span>` : ''}
+              ${m.customElements.length ? `<span class="desc-text">[${m.customElements.join(' · ')}]</span>` : ''}
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function renderCustomAbilitiesPane(abilities) {
+      const pane = document.getElementById('detailPane');
+      const selected = abilities.find(a => a.id === SELECTED_CUSTOM_ABILITY_ID) || abilities[0];
+      const { weather, field } = getWeatherAndFieldElements([], getCustomMovesList());
+
+      pane.innerHTML = `
+        <div class="detail-header">
+          <div><strong style="font-size:1.15rem;">${selected.name}</strong></div>
+          <span class="custom-badge">Custom Ability</span>
+        </div>
+
+        <div class="section">
+          <div class="entry-row">
+            ${selected.descText ? `<span class="desc-text">${selected.descText}</span>` : ''}
+            ${selected.customElements.length ? `<br><span class="desc-text">[${selected.customElements.join(' · ')}]</span>` : ''}
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Weather</h2>
+          ${weather.length ? weather.map(w => `<div class="entry-row">${w}</div>`).join('') : '<div class="desc-text">None</div>'}
+        </div>
+
+        <div class="section">
+          <h2>Field Conditions</h2>
+          ${field.length ? field.map(f => `<div class="entry-row">${f}</div>`).join('') : '<div class="desc-text">None</div>'}
+        </div>
+
+        <div class="section">
+          <h2>All Custom Abilities (${abilities.length})</h2>
+          ${abilities.map(a => `
+            <div class="entry-row">
+              <strong>${a.name}</strong>
+              ${a.descText ? `— <span class="desc-text">${a.descText}</span>` : ''}
+              ${a.customElements.length ? `<span class="desc-text">[${a.customElements.join(' · ')}]</span>` : ''}
+            </div>
+          `).join('')}
+        </div>
+      `;
     }
 
     function isUsefulMove(moveId, m) {
@@ -817,6 +1112,11 @@
         accuracy: m.accuracy === true ? '—' : (m.accuracy ?? '—'),
         pp: m.pp ?? '—',
         descText: pickDescription(m),
+        weather: m.weather || '',
+        terrain: m.terrain || '',
+        sideCondition: m.sideCondition || '',
+        pseudoWeather: m.pseudoWeather || '',
+        slotCondition: m.slotCondition || '',
         isCustom: Boolean(modM && !modM.inherit && !baseM),
         isModded: Boolean(modM),
         isAdded: addedSet.has(moveId),
@@ -898,6 +1198,7 @@
       const moveDetailsList = activeIds.map(mId => getMoveDetails(mId, addedIds, removedIds, monTypesSet));
       const customMovesInSet = moveDetailsList.filter(m => !m.isRemoved && (m.isCustom || m.isModded));
       const monCustomElements = extractCustomElements(MOD_DEX[SELECTED_ID], BASE_KNOWN_KEYS.pokedex, BASE_DEX[SELECTED_ID]);
+      const { weather, field } = getWeatherAndFieldElements(moveDetailsList, customMovesInSet);
 
       const physicalMoves = moveDetailsList.filter(m => m.category === 'Physical');
       const specialMoves = moveDetailsList.filter(m => m.category === 'Special');
@@ -929,6 +1230,14 @@
               </div>
             `;
           }).join('')
+        : '';
+
+      const weatherSectionHtml = weather.length
+        ? `<div class="section"><h2>Weather</h2>${weather.map(w => `<div class="entry-row">${w}</div>`).join('')}</div>`
+        : '';
+
+      const fieldSectionHtml = field.length
+        ? `<div class="section"><h2>Field Conditions</h2>${field.map(f => `<div class="entry-row">${f}</div>`).join('')}</div>`
         : '';
 
       const legendHtml = mon.isInherited
@@ -980,6 +1289,9 @@
           ${customMovesHtml}
         </div>
 
+        ${weatherSectionHtml}
+        ${fieldSectionHtml}
+
         <div class="section">
           <h2>Moves (${moveDetailsList.length - removedIds.size})</h2>
           ${legendHtml}
@@ -1000,6 +1312,7 @@
     }
 
     document.getElementById('loadBtn').addEventListener('click', loadAllData);
+    document.getElementById('viewSelect').addEventListener('change', renderList);
     document.getElementById('scopeSelect').addEventListener('change', renderList);
     document.getElementById('searchInput').addEventListener('input', renderList);
 
