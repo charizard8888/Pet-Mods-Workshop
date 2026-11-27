@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Universal Pokémon Showdown Pet Mod Dex</title>
+  <style>
+    body {
+      font-family: monospace;
+      margin: 0;
+      padding: 18px 22px;
+      background: #121212;
+      color: #e0e0e0;
+      box-sizing: border-box;
+    }
+    h1 {
+      font-size: 1.3rem;
+      margin: 0 0 12px 0;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #333;
+    }
+    .toolbar {
+      background: #181818;
+      border: 1px solid #333;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .toolbar-right {
+      margin-left: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    label {
+      font-size: 0.88rem;
+      color: #ccc;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    input[type="text"], select {
+      background: #1e1e1e;
+      color: #fff;
+      border: 1px solid #444;
+      padding: 5px 8px;
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+    input.url-input { width: 340px; max-width: 100%; }
+    input.search-input { width: 210px; }
+    button {
+      background: #2b2b2b;
+      color: #fff;
+      border: 1px solid #555;
+      padding: 5px 11px;
+      font-family: monospace;
+      font-size: 0.88rem;
+      cursor: pointer;
+    }
+    button:hover { background: #3b3b3b; }
+    .status {
+      font-size: 0.88rem;
+      color: #aaa;
+      margin-bottom: 12px;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 320px minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+    }
+    @media (max-width: 820px) {
+      .layout { grid-template-columns: 1fr; }
+    }
+    .mon-list {
+      background: #181818;
+      border: 1px solid #333;
+      max-height: 78vh;
+      overflow-y: auto;
+    }
+    .group-header {
+      padding: 6px 10px;
+      background: #202020;
+      color: #ffcc66;
+      font-weight: bold;
+      font-size: 0.8rem;
+      border-bottom: 1px solid #333;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .mon-item {
+      padding: 7px 10px;
+      border-bottom: 1px solid #262626;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+    }
+    .mon-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+    .sprite-slot {
+      width: 34px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mon-item:hover { background: #222; }
+    .mon-item.active { background: #293229; border-left: 3px solid #6fcf8b; }
+    .mon-meta { font-size: 0.75rem; color: #ffcf70; white-space: nowrap; }
+    .detail-pane {
+      background: #181818;
+      border: 1px solid #333;
+      padding: 14px 16px;
+      min-height: 320px;
+    }
+    .detail-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .detail-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .type-pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-size: 0.78rem;
+      font-weight: bold;
+      background: #262626;
+      border: 1px solid #444;
+      color: #fff;
+      margin-right: 4px;
+    }
+    .section {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid #2b2b2b;
+    }
+    .section h2 {
+      font-size: 0.98rem;
+      margin: 0 0 8px 0;
+      color: #ffcc66;
+    }
+    .dex-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    @media (max-width: 700px) {
+      .dex-grid { grid-template-columns: 1fr; }
+    }
+    .dex-box {
+      background: #151515;
+      border: 1px solid #2b2b2b;
+      padding: 10px 12px;
+    }
+    .stat-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+    }
+    .stat-table td {
+      padding: 4px 6px;
+      vertical-align: middle;
+    }
+    .stat-label { width: 48px; color: #bbb; font-weight: bold; }
+    .stat-num { width: 36px; text-align: right; color: #fff; font-weight: bold; }
+    .stat-diff { width: 44px; text-align: right; font-weight: bold; font-size: 0.8rem; }
+    .diff-pos { color: #6fcf8b; }
+    .diff-neg { color: #e07a7a; }
+    .stat-bar-bg {
+      background: #232323;
+      height: 10px;
+      width: 100%;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .stat-bar-fill {
+      height: 100%;
+      background: #77b5fe;
+    }
+    .stat-bst-row td {
+      border-top: 1px solid #2b2b2b;
+      padding-top: 6px;
+      color: #ffcf70;
+      font-weight: bold;
+    }
+    .entry-row {
+      margin: 6px 0;
+      line-height: 1.45;
+      font-size: 0.86rem;
+    }
+    .custom-badge {
+      display: inline-block;
+      background: #203125;
+      color: #6fcf8b;
+      border: 1px solid #375741;
+      padding: 0 5px;
+      font-size: 0.72rem;
+      margin-left: 4px;
+    }
+    .desc-text { color: #bbb; }
+    .cat-block {
+      margin-bottom: 10px;
+    }
+    .cat-title {
+      font-size: 0.88rem;
+      font-weight: bold;
+      color: #ddd;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .cat-icon {
+      height: 14px;
+      width: auto;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .moves-line {
+      line-height: 1.65;
+      font-size: 0.86rem;
+      color: #e0e0e0;
+    }
+    .move-added {
+      color: #6fcf8b;
+      font-weight: bold;
+    }
+    .move-removed {
+      color: #e07a7a;
+      text-decoration: line-through;
+    }
+    .legend-note {
+      font-size: 0.78rem;
+      color: #999;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Universal Pokémon Showdown Pet Mod Dex</h1>
+
+  <div class="toolbar">
+    <label>Search:
+      <input type="text" id="searchInput" class="search-input" placeholder="Name, type, move, ability...">
+    </label>
+    <label>Scope:
+      <select id="scopeSelect">
+        <option value="all" selected>All Modded Pokémon</option>
+        <option value="new">New Pokémon Only</option>
+      </select>
+    </label>
+    <div class="toolbar-right">
+      <label>Mod Base URL:
+        <input type="text" id="modUrl" class="url-input" value="https://raw.githubusercontent.com/scoopapa/DH2/main/data/mods/worldbuilding">
+      </label>
+      <button id="loadBtn">Load Mod Data</button>
+    </div>
+  </div>
+
+  <div class="status" id="statusBar">Loading base Showdown reference and mod data...</div>
+
+  <div class="layout">
+    <div class="mon-list" id="monList"></div>
+    <div class="detail-pane" id="detailPane">Select a Pokémon from the list to view stats, abilities, moves, and custom elements.</div>
+  </div>
+
+  <script>
+    const BASE_SHOWDOWN_URL = 'https://play.pokemonshowdown.com/data';
+    const MINISPRITE_BASE = 'https://www.smogon.com/forums/media/minisprites';
+    const CATEGORY_ICON_BASE = 'https://play.pokemonshowdown.com/sprites/categories';
+
+    const BASE_KNOWN_KEYS = {
+      pokedex: new Set(['num', 'name', 'types', 'baseStats', 'abilities', 'heightm', 'weightkg', 'color', 'eggGroups', 'evos', 'evoType', 'evoLevel', 'evoCondition', 'evoItem', 'evoMove', 'prevo', 'baseSpecies', 'forme', 'formeOrder', 'otherFormes', 'cosmeticFormes', 'genderRatio', 'gender', 'maxHP', 'isNonstandard', 'inherit', 'tier', 'natDexTier', 'doublesTier']),
+      moves: new Set(['num', 'accuracy', 'basePower', 'category', 'name', 'pp', 'priority', 'flags', 'secondary', 'secondaries', 'target', 'type', 'shortDesc', 'desc', 'drain', 'heal', 'recoil', 'self', 'selfBoost', 'boosts', 'status', 'volatileStatus', 'weather', 'terrain', 'sideCondition', 'pseudoWeather', 'slotCondition', 'ohko', 'thko', 'multihit', 'multiaccuracy', 'noSketch', 'isZ', 'isMax', 'isNonstandard', 'contestType', 'inherit', 'critRatio', 'ignoreImmunity', 'ignoreDefensive', 'ignoreEvasion', 'ignoreAccuracy', 'forceSwitch', 'selfSwitch', 'breaksProtect', 'stallingMove', 'mindBlownRecoil', 'hasCrashDamage', 'struggleRecoil', 'sleepUsable', 'defrost', 'noPPBoosts', 'isFutureMove', 'stealsBoosts', 'tracksTarget', 'damage', 'willCrit', 'spreadModifier', 'smartTarget']),
+      abilities: new Set(['name', 'shortDesc', 'desc', 'rating', 'num', 'flags', 'isNonstandard', 'inherit'])
+    };
+
+    const HIGH_UTILITY_STATUS = new Set([
+      'stealthrock', 'spikes', 'toxicspikes', 'stickyweb', 'defog', 'rapidspin', 'tidyup', 'mortalspin', 'courtchange',
+      'roost', 'recover', 'slackoff', 'softboiled', 'synthesis', 'moonlight', 'morningsun', 'shoreup', 'strengthsap', 'wish', 'rest',
+      'swordsdance', 'nastyplot', 'calmmind', 'dragondance', 'quiverdance', 'shellsmash', 'bulkup', 'irondefense', 'agility', 'tailglow', 'bellydrum', 'coil', 'shiftgear', 'victorydance', 'filletaway', 'workup', 'curse',
+      'toxic', 'willowisp', 'thunderwave', 'spore', 'sleeppowder', 'yawn', 'glare', 'nuzzle',
+      'protect', 'substitute', 'encore', 'taunt', 'trick', 'switcheroo', 'partingshot', 'teleport', 'batonpass', 'haze', 'whirlwind', 'roar', 'perishsong', 'destinybond', 'leechseed', 'reflect', 'lightscreen', 'auroraveil', 'tailwind', 'trickroom', 'healingwish', 'lunardance', 'memento'
+    ]);
+
+    const LOW_UTILITY_MOVES = new Set([
+      'splash', 'celebrate', 'holdhands', 'happyhour', 'metronome', 'assist', 'mefirst', 'mirrormove', 'mimic',
+      'growl', 'tailwhip', 'leer', 'stringshot', 'sandattack', 'smokescreen', 'kinesis', 'flash', 'doubleteam', 'minimize',
+      'sweetscent', 'odorsleuth', 'foresight', 'miracleseye', 'howl', 'meditate', 'sharpen', 'defensecurl', 'withdraw', 'harden',
+      'bide', 'rage', 'frustration', 'return', 'captivate', 'confide', 'secretpower', 'naturalgift', 'hiddenpower', 'round', 'echoedvoice', 'snore', 'sleeptalk', 'swagger', 'attract', 'bestow', 'fling', 'present', 'constrict', 'tackle', 'scratch', 'pound', 'cut', 'rocksmash', 'strength'
+    ]);
+
+    let MOD_DEX = {};
+    let MOD_MOVES = {};
+    let MOD_ABILITIES = {};
+    let MOD_ITEMS = {};
+    let MOD_LEARNSETS = {};
+    let MOD_SCRIPTS_TEXT = '';
+    let SCRIPT_ADDED_MOVES = {};
+    let SCRIPT_REMOVED_MOVES = {};
+
+    let BASE_DEX = {};
+    let BASE_LEARNSETS = {};
+    let BASE_MOVES = {};
+    let BASE_ABILITIES = {};
+    let BASE_ITEMS = {};
+
+    let SELECTED_ID = null;
+
+    function toId(str) {
+      return String(str || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+    }
+
+    function normalizeModUrl(raw) {
+      let clean = String(raw || '').trim().replace(/\/+$/, '');
+      if (clean.includes('github.com/') && clean.includes('/tree/')) {
+        clean = clean
+          .replace('https://github.com/', 'https://raw.githubusercontent.com/')
+          .replace('/tree/', '/');
+      } else if (clean.includes('github.com/') && clean.includes('/blob/')) {
+        clean = clean
+          .replace('https://github.com/', 'https://raw.githubusercontent.com/')
+          .replace('/blob/', '/');
+      }
+      return clean;
+    }
+
+    function getMinispriteSlug(name, pokeId) {
+      if (!name) return pokeId;
+      return name
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/['’:.]/g, '')
+        .replace(/[^a-z0-9-]+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+    }
+
+    function renderSpriteHtml(id, mon, isInherited) {
+      if (!isInherited) return '';
+      const displayName = mon.name || BASE_DEX[id]?.name || id;
+      const slug = getMinispriteSlug(displayName, id);
+      const baseSlug = BASE_DEX[id]?.baseSpecies ? getMinispriteSlug(BASE_DEX[id].baseSpecies, id) : slug;
+      const spriteUrl = `${MINISPRITE_BASE}/${slug}.png`;
+      const fallbackUrl = `${MINISPRITE_BASE}/${baseSlug}.png`;
+
+      return `
+        <div class="sprite-slot">
+          <img src="${spriteUrl}" alt="${displayName}" style="display:block;margin-left:auto;margin-right:auto;" loading="lazy"
+               onerror="if(this.src!=='${fallbackUrl}'){this.src='${fallbackUrl}';}else{this.style.display='none';}">
+        </div>
+      `;
+    }
+
+    function renderCategoryHeader(categoryName, count) {
+      const iconUrl = `${CATEGORY_ICON_BASE}/${categoryName}.png`;
+      return `
+        <div class="cat-title">
+          <img src="${iconUrl}" alt="${categoryName}" class="cat-icon" loading="lazy" onerror="this.style.display='none';">
+          <span>${categoryName} (${count})</span>
+        </div>
+      `;
+    }
+
+    function extractExportBlock(tsText, exportName) {
+      if (!tsText) return '';
+      const regex = new RegExp(`export\\s+(?:const|let|var)\\s+${exportName}(?:\\s*:[^=]+)?\\s*=`, 'm');
+      const match = regex.exec(tsText);
+      if (!match) return '';
+      const braceStart = tsText.indexOf('{', match.index + match[0].length);
+      if (braceStart === -1) return '';
+
+      let depth = 0;
+      let inStr = null;
+      let escaped = false;
+      for (let i = braceStart; i < tsText.length; i++) {
+        const ch = tsText[i];
+        if (escaped) { escaped = false; continue; }
+        if (ch === '\\') { escaped = true; continue; }
+        if (inStr) {
+          if (ch === inStr) inStr = null;
+          continue;
+        }
+        if (ch === '"' || ch === "'" || ch === '`') {
+          inStr = ch;
+          continue;
+        }
+        if (ch === '{') depth++;
+        else if (ch === '}') {
+          depth--;
+          if (depth === 0) return tsText.slice(braceStart, i + 1);
+        }
+      }
+      return '';
+    }
+
+    function fallbackParseEntries(tsText, exportName) {
+      const block = extractExportBlock(tsText, exportName) || tsText;
+      if (!block) return {};
+      const result = {};
+      const lines = block.split('\n');
+      let currentKey = null;
+
+      for (const rawLine of lines) {
+        const line = rawLine.trim();
+        if (!line || line.startsWith('//') || line.startsWith('/*')) continue;
+
+        const topKeyMatch = line.match(/^(?:["']?)([a-zA-Z0-9_-]+)(?:["']?)\s*:\s*\{$/);
+        if (topKeyMatch) {
+          currentKey = toId(topKeyMatch[1]);
+          if (!result[currentKey]) result[currentKey] = {};
+          continue;
+        }
+
+        if (!currentKey) continue;
+
+        const propMatch = line.match(/^([a-zA-Z0-9_]+)\s*:\s*(.+?)(?:,\s*)?$/);
+        if (propMatch) {
+          const prop = propMatch[1];
+          let valRaw = propMatch[2];
+          if ((valRaw.startsWith('"') && valRaw.endsWith('"')) ||
+              (valRaw.startsWith("'") && valRaw.endsWith("'")) ||
+              (valRaw.startsWith('`') && valRaw.endsWith('`'))) {
+            result[currentKey][prop] = valRaw.slice(1, -1);
+          } else if (valRaw === 'true') {
+            result[currentKey][prop] = true;
+          } else if (valRaw === 'false') {
+            result[currentKey][prop] = false;
+          } else if (/^-?\d+(\.\d+)?$/.test(valRaw)) {
+            result[currentKey][prop] = Number(valRaw);
+          }
+        }
+      }
+      return result;
+    }
+
+    function evalTsObjectLiteral(objLiteral) {
+      if (!objLiteral) return {};
+      const code = objLiteral
+        .replace(/\/\*[\s\S]*?\*\//g, '')
+        .replace(/(^|[^:])\/\/[^\n]*/g, '$1')
+        .replace(/`([^`$]*)`/g, (_, inner) => JSON.stringify(inner));
+
+      const handler = new Proxy({}, {
+        get(_, prop) {
+          if (prop === Symbol.toPrimitive) return () => '';
+          return new Proxy(() => handler, {
+            get(__, p) {
+              if (p === Symbol.toPrimitive) return () => '';
+              return handler;
+            }
+          });
+        }
+      });
+
+      const sandboxFn = new Function('ctx', `
+        with (ctx) {
+          return (${code});
+        }
+      `);
+      return sandboxFn(handler);
+    }
+
+    function parseModSection(tsText, exportName) {
+      if (!tsText) return {};
+      const block = extractExportBlock(tsText, exportName);
+      if (!block) return fallbackParseEntries(tsText, exportName);
+      try {
+        const evaluated = evalTsObjectLiteral(block);
+        const fallback = fallbackParseEntries(tsText, exportName);
+        for (const [k, fbVal] of Object.entries(fallback)) {
+          const id = toId(k);
+          if (!evaluated[id]) evaluated[id] = fbVal;
+          else {
+            for (const [pk, pv] of Object.entries(fbVal)) {
+              if (evaluated[id][pk] === undefined) evaluated[id][pk] = pv;
+            }
+          }
+        }
+        return evaluated;
+      } catch {
+        return fallbackParseEntries(tsText, exportName);
+      }
+    }
+
+    async function fetchTextSafe(url) {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+      return res.text();
+    }
+
+    function parseScriptLearnsetChanges(scriptsText) {
+      const added = {};
+      const removed = {};
+      if (!scriptsText) return { added, removed };
+
+      const addRegex = /this\.modData\(\s*["']Learnsets["']\s*,\s*["']([^"']+)["']\s*\)\.learnset(?:\.([a-z0-9_]+)|\[["']([^"']+)["']\])/gi;
+      let match;
+      while ((match = addRegex.exec(scriptsText)) !== null) {
+        const monId = toId(match[1]);
+        const moveId = toId(match[2] || match[3]);
+        if (!monId || !moveId) continue;
+        if (!added[monId]) added[monId] = new Set();
+        added[monId].add(moveId);
+        if (removed[monId]) removed[monId].delete(moveId);
+      }
+
+      const delRegex = /delete\s+this\.modData\(\s*["']Learnsets["']\s*,\s*["']([^"']+)["']\s*\)\.learnset(?:\.([a-z0-9_]+)|\[["']([^"']+)["']\])/gi;
+      while ((match = delRegex.exec(scriptsText)) !== null) {
+        const monId = toId(match[1]);
+        const moveId = toId(match[2] || match[3]);
+        if (!monId || !moveId) continue;
+        if (!removed[monId]) removed[monId] = new Set();
+        removed[monId].add(moveId);
+        if (added[monId]) added[monId].delete(moveId);
+      }
+
+      return { added, removed };
+    }
+
+    function getBaseComparisonMon(id, modMon) {
+      if (BASE_DEX[id]) return BASE_DEX[id];
+      if (modMon?.baseSpecies) {
+        const baseSpecId = toId(modMon.baseSpecies);
+        if (BASE_DEX[baseSpecId]) return BASE_DEX[baseSpecId];
+      }
+      return null;
+    }
+
+    function getResolvedMon(id) {
+      const modMon = MOD_DEX[id] || {};
+      const baseRefMon = getBaseComparisonMon(id, modMon);
+      const isInherited = Boolean(modMon.inherit || BASE_DEX[id]);
+      const baseMon = baseRefMon || {};
+      return {
+        ...baseMon,
+        ...modMon,
+        baseStats: {
+          ...(baseMon.baseStats || {}),
+          ...(modMon.baseStats || {}),
+        },
+        origStats: baseRefMon?.baseStats || null,
+        abilities: {
+          ...(baseMon.abilities || {}),
+          ...(modMon.abilities || {}),
+        },
+        types: modMon.types || baseMon.types || [],
+        name: modMon.name || baseMon.name || id,
+        num: modMon.num ?? baseMon.num ?? '?',
+        isInherited,
+      };
+    }
+
+    async function loadAllData() {
+      const rawUrl = normalizeModUrl(document.getElementById('modUrl').value);
+      const statusBar = document.getElementById('statusBar');
+      statusBar.textContent = 'Fetching mod files and base Showdown data...';
+
+      try {
+        const [
+          dexRes, movesRes, ablRes, itemsRes, learnRes, scriptsRes,
+          baseDexRes, baseLearnRes, baseMovesRes, baseAblRes, baseItemsRes
+        ] = await Promise.allSettled([
+          fetchTextSafe(`${rawUrl}/pokedex.ts`),
+          fetchTextSafe(`${rawUrl}/moves.ts`),
+          fetchTextSafe(`${rawUrl}/abilities.ts`),
+          fetchTextSafe(`${rawUrl}/items.ts`),
+          fetchTextSafe(`${rawUrl}/learnsets.ts`),
+          fetchTextSafe(`${rawUrl}/scripts.ts`),
+          fetch(`${BASE_SHOWDOWN_URL}/pokedex.json`).then(r => r.ok ? r.json() : {}),
+          fetch(`${BASE_SHOWDOWN_URL}/learnsets.json`).then(r => r.ok ? r.json() : {}),
+          fetch(`${BASE_SHOWDOWN_URL}/moves.json`).then(r => r.ok ? r.json() : {}),
+          fetch(`${BASE_SHOWDOWN_URL}/abilities.json`).then(r => r.ok ? r.json() : {}),
+          fetch(`${BASE_SHOWDOWN_URL}/items.json`).then(r => r.ok ? r.json() : {})
+        ]);
+
+        const dexText = dexRes.status === 'fulfilled' ? dexRes.value : '';
+        const movesText = movesRes.status === 'fulfilled' ? movesRes.value : '';
+        const ablText = ablRes.status === 'fulfilled' ? ablRes.value : '';
+        const itemsText = itemsRes.status === 'fulfilled' ? itemsRes.value : '';
+        const learnText = learnRes.status === 'fulfilled' ? learnRes.value : '';
+        MOD_SCRIPTS_TEXT = scriptsRes.status === 'fulfilled' ? scriptsRes.value : '';
+
+        BASE_DEX = baseDexRes.status === 'fulfilled' ? baseDexRes.value : {};
+        BASE_LEARNSETS = baseLearnRes.status === 'fulfilled' ? baseLearnRes.value : {};
+        BASE_MOVES = baseMovesRes.status === 'fulfilled' ? baseMovesRes.value : {};
+        BASE_ABILITIES = baseAblRes.status === 'fulfilled' ? baseAblRes.value : {};
+        BASE_ITEMS = baseItemsRes.status === 'fulfilled' ? baseItemsRes.value : {};
+
+        MOD_DEX = parseModSection(dexText, 'Pokedex');
+        MOD_MOVES = parseModSection(movesText, 'Moves');
+        MOD_ABILITIES = parseModSection(ablText, 'Abilities');
+        MOD_ITEMS = parseModSection(itemsText, 'Items');
+        MOD_LEARNSETS = parseModSection(learnText, 'Learnsets');
+
+        const parsedChanges = parseScriptLearnsetChanges(MOD_SCRIPTS_TEXT);
+        SCRIPT_ADDED_MOVES = parsedChanges.added;
+        SCRIPT_REMOVED_MOVES = parsedChanges.removed;
+
+        for (const [monId, mSet] of Object.entries(SCRIPT_ADDED_MOVES)) {
+          if (!MOD_LEARNSETS[monId]) MOD_LEARNSETS[monId] = { learnset: {} };
+          if (!MOD_LEARNSETS[monId].learnset) MOD_LEARNSETS[monId].learnset = {};
+          for (const mId of mSet) {
+            if (!MOD_LEARNSETS[monId].learnset[mId]) MOD_LEARNSETS[monId].learnset[mId] = ['9L1'];
+          }
+        }
+
+        const totalMons = Object.keys(MOD_DEX).length;
+        const newMons = Object.values(MOD_DEX).filter(m => m && !m.inherit).length;
+        statusBar.textContent = `Loaded ${newMons} new Pokémon and ${totalMons - newMons} modded/inherited Pokémon (${Object.keys(MOD_MOVES).length} modded moves, ${Object.keys(MOD_ABILITIES).length} modded abilities).`;
+
+        renderList();
+      } catch (err) {
+        statusBar.textContent = `Error loading mod files: ${err.message}`;
+      }
+    }
+
+    function getLearnsetDiff(monId) {
+      const resolved = getResolvedMon(monId);
+      const baseSet = new Set(
+        resolved.isInherited && BASE_LEARNSETS[monId]?.learnset
+          ? Object.keys(BASE_LEARNSETS[monId].learnset)
+          : []
+      );
+      const modLearnsetObj = MOD_LEARNSETS[monId]?.learnset || {};
+      const modSet = new Set(Object.keys(modLearnsetObj));
+      const scriptRemoved = SCRIPT_REMOVED_MOVES[monId] || new Set();
+
+      const addedIds = new Set();
+      const removedIds = new Set();
+
+      if (resolved.isInherited) {
+        modSet.forEach(mId => {
+          if (!baseSet.has(mId) && !scriptRemoved.has(mId)) {
+            addedIds.add(mId);
+          }
+        });
+        scriptRemoved.forEach(mId => {
+          if (baseSet.has(mId)) {
+            removedIds.add(mId);
+          }
+        });
+      }
+
+      const activeIds = new Set();
+      baseSet.forEach(mId => {
+        if (!scriptRemoved.has(mId)) activeIds.add(mId);
+      });
+      modSet.forEach(mId => {
+        if (!scriptRemoved.has(mId)) activeIds.add(mId);
+      });
+      removedIds.forEach(mId => activeIds.add(mId));
+
+      return {
+        activeIds: [...activeIds],
+        addedIds,
+        removedIds
+      };
+    }
+
+    function getOrderedMons() {
+      const scope = document.getElementById('scopeSelect').value;
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+
+      const entries = Object.entries(MOD_DEX).filter(([id, mon]) => {
+        if (!mon) return false;
+        if (scope === 'new' && mon.inherit) return false;
+        const resolved = getResolvedMon(id);
+        if (!q) return true;
+
+        const nameMatch = resolved.name.toLowerCase().includes(q);
+        const typeMatch = resolved.types.join(' ').toLowerCase().includes(q);
+        const ablMatch = Object.values(resolved.abilities).join(' ').toLowerCase().includes(q);
+        const diff = getLearnsetDiff(id);
+        const moveMatch = diff.activeIds.some(mId => {
+          const mName = (MOD_MOVES[mId]?.name || BASE_MOVES[mId]?.name || mId).toLowerCase();
+          return mName.includes(q) || mId.includes(q);
+        });
+        return nameMatch || typeMatch || ablMatch || moveMatch;
+      });
+
+      const sortByNumAndName = (a, b) => {
+        const monA = getResolvedMon(a[0]);
+        const monB = getResolvedMon(b[0]);
+        const numA = typeof monA.num === 'number' ? monA.num : 999999;
+        const numB = typeof monB.num === 'number' ? monB.num : 999999;
+        return numA - numB || monA.name.localeCompare(monB.name);
+      };
+
+      const newMons = entries.filter(([, mon]) => !mon.inherit).sort(sortByNumAndName);
+      const moddedMons = entries.filter(([, mon]) => Boolean(mon.inherit)).sort(sortByNumAndName);
+
+      return { newMons, moddedMons, flat: [...newMons, ...moddedMons] };
+    }
+
+    function renderList() {
+      const { newMons, moddedMons, flat } = getOrderedMons();
+      const listEl = document.getElementById('monList');
+      listEl.innerHTML = '';
+
+      if (flat.length === 0) {
+        listEl.innerHTML = '<div class="mon-item">No matching Pokémon found.</div>';
+        document.getElementById('detailPane').innerHTML = '';
+        return;
+      }
+
+      if (!SELECTED_ID || !flat.some(([id]) => id === SELECTED_ID)) {
+        SELECTED_ID = flat[0][0];
+      }
+
+      const appendGroup = (title, items) => {
+        if (!items.length) return;
+        const gh = document.createElement('div');
+        gh.className = 'group-header';
+        gh.textContent = `${title} (${items.length})`;
+        listEl.appendChild(gh);
+
+        items.forEach(([id]) => {
+          const resolved = getResolvedMon(id);
+          const row = document.createElement('div');
+          row.className = 'mon-item' + (id === SELECTED_ID ? ' active' : '');
+          const typesLabel = resolved.types.join('/');
+          row.innerHTML = `
+            <div class="mon-left">
+              ${renderSpriteHtml(id, resolved, resolved.isInherited)}
+              <span><strong>#${resolved.num}</strong> ${resolved.name}</span>
+            </div>
+            <span class="mon-meta">${typesLabel || (resolved.isInherited ? 'Modded' : 'New')}</span>
+          `;
+          row.addEventListener('click', () => {
+            SELECTED_ID = id;
+            renderList();
+            renderDetail();
+          });
+          listEl.appendChild(row);
+        });
+      };
+
+      appendGroup('New Pokémon', newMons);
+      appendGroup('Modded Pokémon', moddedMons);
+
+      renderDetail();
+    }
+
+    function isUsefulMove(moveId, m) {
+      if (m.isNonstandard || m.isZ || m.isMax) return false;
+      if (LOW_UTILITY_MOVES.has(moveId)) return false;
+      if (m.category === 'Status') {
+        return HIGH_UTILITY_STATUS.has(moveId);
+      }
+      const bp = m.basePower || 0;
+      return bp >= 60 || bp === 0 || Boolean(m.multihit) || ((m.priority || 0) > 0 && bp >= 40);
+    }
+
+    function extractCustomElements(obj, knownSet, baseObj) {
+      if (!obj || typeof obj !== 'object') return [];
+      const custom = [];
+      for (const [k, v] of Object.entries(obj)) {
+        if (knownSet.has(k)) continue;
+        if (baseObj && baseObj[k] !== undefined) continue;
+        if (typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean') {
+          custom.push(`${k}: ${v}`);
+        } else if (Array.isArray(v)) {
+          custom.push(`${k}: ${v.join(', ')}`);
+        } else if (v && typeof v === 'object') {
+          custom.push(k);
+        }
+      }
+      return custom;
+    }
+
+    function getMoveDetails(moveId, addedSet, removedSet, monTypesSet) {
+      const modM = MOD_MOVES[moveId];
+      const baseM = BASE_MOVES[moveId];
+      const m = Object.assign({}, baseM || {}, modM || {});
+      const isStab = Boolean(m.type && monTypesSet.has(m.type));
+      const isUseful = isUsefulMove(moveId, m);
+
+      let sortBucket = 3;
+      if (isStab && isUseful) sortBucket = 0;
+      else if (!isStab && isUseful) sortBucket = 1;
+      else if (isStab && !isUseful) sortBucket = 2;
+
+      return {
+        id: moveId,
+        name: m.name || moveId,
+        type: m.type || '?',
+        category: m.category || 'Status',
+        basePower: m.basePower ?? '—',
+        accuracy: m.accuracy === true ? '—' : (m.accuracy ?? '—'),
+        pp: m.pp ?? '—',
+        shortDesc: m.shortDesc || m.desc || '',
+        isCustom: Boolean(modM && !modM.inherit && !baseM),
+        isModded: Boolean(modM),
+        isAdded: addedSet.has(moveId),
+        isRemoved: removedSet.has(moveId),
+        customElements: extractCustomElements(modM, BASE_KNOWN_KEYS.moves, baseM),
+        sortBucket
+      };
+    }
+
+    function getAbilityDetails(abilityNameOrId) {
+      const id = toId(abilityNameOrId);
+      const modA = MOD_ABILITIES[id];
+      const baseA = BASE_ABILITIES[id];
+      const a = Object.assign({}, baseA || {}, modA || {});
+      return {
+        id,
+        name: a.name || abilityNameOrId,
+        shortDesc: a.shortDesc || a.desc || '',
+        isCustom: Boolean(modA && !modA.inherit && !baseA),
+        isModded: Boolean(modA),
+        customElements: extractCustomElements(modA, BASE_KNOWN_KEYS.abilities, baseA)
+      };
+    }
+
+    function formatCommaMoves(moveList) {
+      if (!moveList.length) return '<span class="desc-text">None</span>';
+      return moveList
+        .sort((a, b) => (a.sortBucket - b.sortBucket) || a.name.localeCompare(b.name))
+        .map(m => {
+          if (m.isRemoved) return `<span class="move-removed">${m.name}</span>`;
+          if (m.isAdded) return `<span class="move-added">${m.name}</span>`;
+          return m.name;
+        })
+        .join(', ');
+    }
+
+    function formatDiffBadge(diff) {
+      if (typeof diff !== 'number' || diff === 0) return '';
+      if (diff > 0) return `<span class="diff-pos">+${diff}</span>`;
+      return `<span class="diff-neg">${diff}</span>`;
+    }
+
+    function renderStatRow(label, val, origVal) {
+      const numVal = typeof val === 'number' ? val : 0;
+      const pct = Math.min(100, Math.max(4, Math.round((numVal / 200) * 100)));
+      const diff = (typeof val === 'number' && typeof origVal === 'number') ? (val - origVal) : 0;
+
+      return `
+        <tr>
+          <td class="stat-label">${label}</td>
+          <td class="stat-num">${val ?? '?'}</td>
+          <td class="stat-diff">${formatDiffBadge(diff)}</td>
+          <td><div class="stat-bar-bg"><div class="stat-bar-fill" style="width:${pct}%;"></div></div></td>
+        </tr>
+      `;
+    }
+
+    function renderDetail() {
+      const pane = document.getElementById('detailPane');
+      if (!MOD_DEX[SELECTED_ID]) {
+        pane.innerHTML = '';
+        return;
+      }
+
+      const mon = getResolvedMon(SELECTED_ID);
+      const s = mon.baseStats || { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 };
+      const orig = mon.origStats;
+      const bst = (s.hp || 0) + (s.atk || 0) + (s.def || 0) + (s.spa || 0) + (s.spd || 0) + (s.spe || 0);
+      const origBst = orig ? ((orig.hp || 0) + (orig.atk || 0) + (orig.def || 0) + (orig.spa || 0) + (orig.spd || 0) + (orig.spe || 0)) : null;
+      const bstDiff = origBst !== null ? (bst - origBst) : 0;
+
+      const typesHtml = mon.types.length
+        ? mon.types.map(t => `<span class="type-pill">${t}</span>`).join('')
+        : '';
+
+      const monTypesSet = new Set(mon.types || []);
+      const abilitySlots = Object.values(mon.abilities || {}).map(getAbilityDetails);
+      const { activeIds, addedIds, removedIds } = getLearnsetDiff(SELECTED_ID);
+      const moveDetailsList = activeIds.map(mId => getMoveDetails(mId, addedIds, removedIds, monTypesSet));
+      const customMovesInSet = moveDetailsList.filter(m => !m.isRemoved && (m.isCustom || m.isModded));
+      const monCustomElements = extractCustomElements(MOD_DEX[SELECTED_ID], BASE_KNOWN_KEYS.pokedex, BASE_DEX[SELECTED_ID]);
+
+      const physicalMoves = moveDetailsList.filter(m => m.category === 'Physical');
+      const specialMoves = moveDetailsList.filter(m => m.category === 'Special');
+      const statusMoves = moveDetailsList.filter(m => m.category !== 'Physical' && m.category !== 'Special');
+
+      const abilitiesHtml = abilitySlots.length
+        ? abilitySlots.map(a => {
+            const elemNote = a.customElements.length ? ` [${a.customElements.join(' · ')}]` : '';
+            return `
+              <div class="entry-row">
+                <strong>${a.name}</strong>${a.isCustom ? '<span class="custom-badge">Custom</span>' : (a.isModded ? '<span class="custom-badge">Modded</span>' : '')}
+                ${a.shortDesc ? `— <span class="desc-text">${a.shortDesc}</span>` : ''}${elemNote ? `<span class="desc-text">${elemNote}</span>` : ''}
+              </div>
+            `;
+          }).join('')
+        : '';
+
+      const customElementsHtml = monCustomElements.length
+        ? `<div class="entry-row"><strong>Pokémon Elements:</strong> <span class="desc-text">${monCustomElements.join(' · ')}</span></div>`
+        : '';
+
+      const customMovesHtml = customMovesInSet.length
+        ? customMovesInSet.map(m => {
+            const elemNote = m.customElements.length ? ` [${m.customElements.join(' · ')}]` : '';
+            return `
+              <div class="entry-row">
+                <strong>${m.name}</strong> (${m.type} · ${m.category} · ${m.basePower} BP · ${m.accuracy}% Acc · ${m.pp} PP)${m.isCustom ? '<span class="custom-badge">Custom</span>' : '<span class="custom-badge">Modded</span>'}
+                ${m.shortDesc ? `— <span class="desc-text">${m.shortDesc}</span>` : ''}${elemNote ? `<span class="desc-text">${elemNote}</span>` : ''}
+              </div>
+            `;
+          }).join('')
+        : '';
+
+      const legendHtml = mon.isInherited
+        ? `<div class="legend-note"><span class="move-added">Added move</span> · <span class="move-removed">Removed move</span></div>`
+        : '';
+
+      pane.innerHTML = `
+        <div class="detail-header">
+          <div class="detail-title-wrap">
+            ${renderSpriteHtml(SELECTED_ID, mon, mon.isInherited)}
+            <div>
+              <strong style="font-size:1.15rem;">${mon.name}</strong>
+              <span style="color:#ffcf70; margin-left:8px;">#${mon.num}</span>
+            </div>
+          </div>
+          <div>${typesHtml}</div>
+        </div>
+
+        <div class="section">
+          <div class="dex-grid">
+            <div class="dex-box">
+              <h2>Base Stats</h2>
+              <table class="stat-table">
+                ${renderStatRow('HP', s.hp, orig?.hp)}
+                ${renderStatRow('Atk', s.atk, orig?.atk)}
+                ${renderStatRow('Def', s.def, orig?.def)}
+                ${renderStatRow('SpA', s.spa, orig?.spa)}
+                ${renderStatRow('SpD', s.spd, orig?.spd)}
+                ${renderStatRow('Spe', s.spe, orig?.spe)}
+                <tr class="stat-bst-row">
+                  <td>BST</td>
+                  <td>${bst}</td>
+                  <td class="stat-diff">${formatDiffBadge(bstDiff)}</td>
+                  <td></td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="dex-box">
+              <h2>Abilities</h2>
+              ${abilitiesHtml}
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Custom / Modded Moves &amp; Elements</h2>
+          ${customElementsHtml}
+          ${customMovesHtml}
+        </div>
+
+        <div class="section">
+          <h2>Moves (${moveDetailsList.length - removedIds.size})</h2>
+          ${legendHtml}
+          <div class="cat-block">
+            ${renderCategoryHeader('Physical', physicalMoves.filter(m => !m.isRemoved).length)}
+            <div class="moves-line">${formatCommaMoves(physicalMoves)}</div>
+          </div>
+          <div class="cat-block">
+            ${renderCategoryHeader('Special', specialMoves.filter(m => !m.isRemoved).length)}
+            <div class="moves-line">${formatCommaMoves(specialMoves)}</div>
+          </div>
+          <div class="cat-block">
+            ${renderCategoryHeader('Status', statusMoves.filter(m => !m.isRemoved).length)}
+            <div class="moves-line">${formatCommaMoves(statusMoves)}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    document.getElementById('loadBtn').addEventListener('click', loadAllData);
+    document.getElementById('scopeSelect').addEventListener('change', renderList);
+    document.getElementById('searchInput').addEventListener('input', renderList);
+
+    loadAllData();
+  </script>
+</body>
+</html>
