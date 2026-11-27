@@ -194,6 +194,36 @@
       color: #aaa;
       margin-bottom: 10px;
     }
+    .source-strip {
+      background: #141414;
+      border: 1px solid #2a3441;
+      padding: 6px 10px;
+      margin-bottom: 12px;
+      font-size: 0.75rem;
+      color: #a9c4e4;
+      line-height: 1.5;
+    }
+    .source-strip strong {
+      color: #8ab4f8;
+    }
+    .source-pill {
+      display: inline-block;
+      background: #1c2430;
+      border: 1px solid #324358;
+      color: #c7ddf7;
+      padding: 1px 5px;
+      margin: 2px 4px 2px 0;
+      font-size: 0.72rem;
+    }
+    .inline-source-tag {
+      display: inline-block;
+      background: #1b222c;
+      border: 1px solid #303d4f;
+      color: #9bbce0;
+      padding: 0 5px;
+      font-size: 0.7rem;
+      margin-left: 6px;
+    }
     .layout {
       display: grid;
       grid-template-columns: 20% 80%;
@@ -545,34 +575,31 @@
     </div>
 
     <div class="mapping-grid">
-      <div class="map-group-title">Sheet Tab Names</div>
-      <label class="map-field">Pokémon Tab: <input type="text" id="tab_pokemon" class="map-input" value="" placeholder="Pokedex / Pokemon"></label>
+      <div class="map-group-title">Sheet Tab Names (Same tab can be reused across sections)</div>
+      <label class="map-field">Pokémon Tab: <input type="text" id="tab_pokemon" class="map-input" value="" placeholder="Pokedex / List of Fusions"></label>
       <label class="map-field">Moves Tab: <input type="text" id="tab_moves" class="map-input" value="" placeholder="Moves / Custom Moves"></label>
-      <label class="map-field">Abilities Tab: <input type="text" id="tab_abilities" class="map-input" value="" placeholder="Abilities"></label>
+      <label class="map-field">Abilities Tab: <input type="text" id="tab_abilities" class="map-input" value="" placeholder="Abilities / List of Fusions"></label>
       <label class="map-field">Items Tab: <input type="text" id="tab_items" class="map-input" value="" placeholder="Items"></label>
-      <label class="map-field">Field Condition Tab: <input type="text" id="tab_field" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">Weather Tab: <input type="text" id="tab_weather" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">Misc Tab: <input type="text" id="tab_misc" class="map-input" value="" placeholder=""></label>
 
-      <div class="map-group-title">Pokémon Headers</div>
-      <label class="map-field">Pokemon: <input type="text" id="hdr_pokemon" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">Sprites: <input type="text" id="hdr_sprites" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">Types (/ sep): <input type="text" id="hdr_types_combined" class="map-input" value="" placeholder="Fire/Dragon"></label>
-      <label class="map-field">Type 1: <input type="text" id="hdr_type1" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">Type 2: <input type="text" id="hdr_type2" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">Abilities (/ sep) (Opt): <input type="text" id="hdr_abilities_combined" class="map-input" value="" placeholder="A/B/H"></label>
-      <label class="map-field">Ability 1: <input type="text" id="hdr_ability1" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">Ability 2: <input type="text" id="hdr_ability2" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">Ability 3: <input type="text" id="hdr_ability3" class="map-input" value="" placeholder=""></label>
+      <div class="map-group-title">Pokémon Headers (Header Name or Column Letter e.g. K, L, M)</div>
+      <label class="map-field">Pokemon: <input type="text" id="hdr_pokemon" class="map-input" value="" placeholder="Name or A"></label>
+      <label class="map-field">Sprites: <input type="text" id="hdr_sprites" class="map-input" value="" placeholder="Sprite or B"></label>
+      <label class="map-field">Types (/ sep): <input type="text" id="hdr_types_combined" class="map-input" value="" placeholder="Types or K"></label>
+      <label class="map-field">Type 1: <input type="text" id="hdr_type1" class="map-input" value="" placeholder="Type 1 or K"></label>
+      <label class="map-field">Type 2: <input type="text" id="hdr_type2" class="map-input" value="" placeholder="Type 2 or L"></label>
+      <label class="map-field">Abilities (/ sep) (Opt): <input type="text" id="hdr_abilities_combined" class="map-input" value="" placeholder="Abilities or M"></label>
+      <label class="map-field">Ability 1: <input type="text" id="hdr_ability1" class="map-input" value="" placeholder="Fused Ability / M"></label>
+      <label class="map-field">Ability 2: <input type="text" id="hdr_ability2" class="map-input" value="" placeholder="Ability 1 / N"></label>
+      <label class="map-field">Ability 3: <input type="text" id="hdr_ability3" class="map-input" value="" placeholder="Ability 2 / O"></label>
       <label class="map-field">Stats (100/100/...): <input type="text" id="hdr_stats_combined" class="map-input" value="" placeholder="100/100/100/100/100/100"></label>
-      <label class="map-field">HP: <input type="text" id="hdr_hp" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">Atk: <input type="text" id="hdr_atk" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">Def: <input type="text" id="hdr_def" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">SpA: <input type="text" id="hdr_spa" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">SpD: <input type="text" id="hdr_spd" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">Spe: <input type="text" id="hdr_spe" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">Weight: <input type="text" id="hdr_weight" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">Movepool: <input type="text" id="hdr_learnset" class="map-input" value="" placeholder=""></label>
+      <label class="map-field">HP: <input type="text" id="hdr_hp" class="map-input" value="" placeholder="HP or D"></label>
+      <label class="map-field">Atk: <input type="text" id="hdr_atk" class="map-input" value="" placeholder="ATK or E"></label>
+      <label class="map-field">Def: <input type="text" id="hdr_def" class="map-input" value="" placeholder="DEF or F"></label>
+      <label class="map-field">SpA: <input type="text" id="hdr_spa" class="map-input" value="" placeholder="SPA or G"></label>
+      <label class="map-field">SpD: <input type="text" id="hdr_spd" class="map-input" value="" placeholder="SPD or H"></label>
+      <label class="map-field">Spe: <input type="text" id="hdr_spe" class="map-input" value="" placeholder="SPE or I"></label>
+      <label class="map-field">Weight: <input type="text" id="hdr_weight" class="map-input" value="" placeholder="Weight or P"></label>
+      <label class="map-field">Movepool: <input type="text" id="hdr_learnset" class="map-input" value="" placeholder="Movepool or Q"></label>
       <label class="map-field">Movepool Additions (Opt): <input type="text" id="hdr_movepool_add" class="map-input" value="" placeholder=""></label>
       <label class="map-field">Movepool Removals (Opt): <input type="text" id="hdr_movepool_rem" class="map-input" value="" placeholder=""></label>
 
@@ -590,29 +617,14 @@
       <label class="map-field">Learned By: <input type="text" id="hdr_move_learnedby" class="map-input" value="" placeholder=""></label>
 
       <div class="map-group-title">Abilities Headers</div>
-      <label class="map-field">Ability Name: <input type="text" id="hdr_abilityname" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">Effect: <input type="text" id="hdr_ability_effect" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">Learned By: <input type="text" id="hdr_ability_learnedby" class="map-input" value="" placeholder=""></label>
+      <label class="map-field">Ability Name: <input type="text" id="hdr_abilityname" class="map-input" value="" placeholder="Fused Ability / Name"></label>
+      <label class="map-field">Effect: <input type="text" id="hdr_ability_effect" class="map-input" value="" placeholder="Ability Effect / Effect"></label>
+      <label class="map-field">Learned By: <input type="text" id="hdr_ability_learnedby" class="map-input" value="" placeholder="Optional if shared tab"></label>
 
       <div class="map-group-title">Items Headers</div>
       <label class="map-field">Item: <input type="text" id="hdr_item_name" class="map-input" value="" placeholder=""></label>
       <label class="map-field">Effect: <input type="text" id="hdr_item_effect" class="map-input" value="" placeholder=""></label>
       <label class="map-field">Fling Power: <input type="text" id="hdr_item_fling" class="map-input" value="" placeholder=""></label>
-
-      <div class="map-group-title">Field Condition Headers</div>
-      <label class="map-field">Field Condition: <input type="text" id="hdr_field_name" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">Effect: <input type="text" id="hdr_field_effect" class="map-input" value="" placeholder=""></label>
-
-      <div class="map-group-title">Weather Condition Headers</div>
-      <label class="map-field">Weather Condition: <input type="text" id="hdr_weather_name" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">Effect: <input type="text" id="hdr_weather_effect" class="map-input" value="" placeholder=""></label>
-
-      <div class="map-group-title">Misc Headers</div>
-      <label class="map-field">Column 1: <input type="text" id="hdr_misc_1" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">Column 2: <input type="text" id="hdr_misc_2" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">Column 3: <input type="text" id="hdr_misc_3" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">Column 4: <input type="text" id="hdr_misc_4" class="map-input" value="" placeholder=""></label>
-      <label class="map-field">Column 5: <input type="text" id="hdr_misc_5" class="map-input" value="" placeholder=""></label>
 
       <div class="map-footer">
         <button id="footerInitialLoadBtn" type="button">Initial Load</button>
@@ -635,9 +647,6 @@
     <button id="btnCustomMoves" type="button">Custom Moves</button>
     <button id="btnAbilities" type="button">Abilities</button>
     <button id="btnItems" type="button">Items</button>
-    <button id="btnEffects" type="button">Effects</button>
-    <button id="btnWeather" type="button">Weather</button>
-    <button id="btnMisc" type="button">Misc</button>
   </div>
 
   <div class="paste-drawer" id="pasteDrawer">
@@ -651,9 +660,6 @@
             <option value="moves">Moves Sheet</option>
             <option value="abilities">Abilities Sheet</option>
             <option value="items">Items Sheet</option>
-            <option value="field">Field Condition Sheet</option>
-            <option value="weather">Weather Condition Sheet</option>
-            <option value="misc">Misc Sheet</option>
           </select>
         </label>
         <button id="parsePasteBtn" type="button">Parse Pasted Data</button>
@@ -662,11 +668,11 @@
     <textarea id="pasteArea" placeholder="Paste TSV or CSV rows here..."></textarea>
   </div>
 
-  <div class="status" id="statusBar">Enter a public Google Sheets link (or paste TSV/CSV) and click Initial Load.</div>
+  <div class="status" id="statusBar">Enter a public Google Sheets link (or paste TSV/CSV) and click Initial Load or Final Load.</div>
 
   <div class="layout" id="mainLayout">
     <div class="mon-list" id="monList"></div>
-    <div class="detail-pane" id="detailPane">Load a Pet Mod Google Sheet or paste spreadsheet rows to inspect Pokémon, stats, abilities, moves, items, effects, weather, and misc mechanics.</div>
+    <div class="detail-pane" id="detailPane">Load a Pet Mod Google Sheet or paste spreadsheet rows to inspect Pokémon, stats, abilities, moves, and items.</div>
   </div>
 
   <script>
@@ -677,7 +683,7 @@
     const PRESET_STORAGE_KEY = 'petmods_dex_saved_combos_v1';
 
     const MAPPING_INPUT_IDS = [
-      'tab_pokemon', 'tab_moves', 'tab_abilities', 'tab_items', 'tab_field', 'tab_weather', 'tab_misc',
+      'tab_pokemon', 'tab_moves', 'tab_abilities', 'tab_items',
       'hdr_pokemon', 'hdr_sprites', 'hdr_types_combined', 'hdr_type1', 'hdr_type2',
       'hdr_abilities_combined', 'hdr_ability1', 'hdr_ability2', 'hdr_ability3',
       'hdr_stats_combined', 'hdr_hp', 'hdr_atk', 'hdr_def', 'hdr_spa', 'hdr_spd', 'hdr_spe',
@@ -685,14 +691,11 @@
       'hdr_movename', 'hdr_move_type', 'hdr_bp', 'hdr_pp', 'hdr_acc', 'hdr_category',
       'hdr_target', 'hdr_priority', 'hdr_flags', 'hdr_move_effect', 'hdr_move_learnedby',
       'hdr_abilityname', 'hdr_ability_effect', 'hdr_ability_learnedby',
-      'hdr_item_name', 'hdr_item_effect', 'hdr_item_fling',
-      'hdr_field_name', 'hdr_field_effect',
-      'hdr_weather_name', 'hdr_weather_effect',
-      'hdr_misc_1', 'hdr_misc_2', 'hdr_misc_3', 'hdr_misc_4', 'hdr_misc_5'
+      'hdr_item_name', 'hdr_item_effect', 'hdr_item_fling'
     ];
 
     const TAB_CANDIDATE_ALIASES = {
-      pokemon: ['Pokedex', 'New Pokemon', 'New Pokémon', 'Custom Pokemon', 'Custom Pokémon', 'Pokemon', 'Pokémon', 'Mons', 'Roster', 'Dex', 'Slates', 'Sheet1'],
+      pokemon: ['Pokedex', 'New Pokemon', 'New Pokémon', 'Custom Pokemon', 'Custom Pokémon', 'Pokemon', 'Pokémon', 'Mons', 'Roster', 'Dex', 'Slates', 'List of Fusions', 'Sheet1'],
       moves: ['Moves', 'New Moves', 'Custom Moves', 'Signature Moves', 'Move Changes'],
       abilities: ['Abilities', 'New Abilities', 'Custom Abilities', 'Ability Changes'],
       items: ['Items', 'New Items', 'Custom Items']
@@ -717,14 +720,18 @@
     let MOD_MOVES = {};
     let MOD_ABILITIES = {};
     let MOD_ITEMS = {};
-    let MOD_FIELD_CONDITIONS = {};
-    let MOD_WEATHER_CONDITIONS = {};
-    let MOD_MISC = [];
     let MOD_ADDED_MOVES = {};
     let MOD_REMOVED_MOVES = {};
     let MOD_FULL_LEARNSETS = {};
     let MOD_ABILITY_LEARNERS = {};
     let SHEET_ORDER_COUNTER = 0;
+
+    let SECTION_SOURCES = {
+      pokemon: { tab: '', fields: {} },
+      moves: { tab: '', fields: {} },
+      abilities: { tab: '', fields: {} },
+      items: { tab: '', fields: {} }
+    };
 
     let BASE_DEX = {};
     let BASE_LEARNSETS = {};
@@ -736,6 +743,14 @@
     let ACTIVE_MODE = 'pokemon';
     let SELECTED_ID = null;
 
+    function escHtml(str) {
+      return String(str ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
     function valOf(id) {
       return (document.getElementById(id)?.value || '').trim();
     }
@@ -745,6 +760,48 @@
       if (el && newVal && !el.value.trim()) {
         el.value = newVal;
       }
+    }
+
+    function columnLetterToIndex(str) {
+      const clean = String(str || '').trim().toUpperCase();
+      if (!/^[A-Z]{1,2}$/.test(clean)) return -1;
+      let idx = 0;
+      for (let i = 0; i < clean.length; i++) {
+        idx = idx * 26 + (clean.charCodeAt(i) - 64);
+      }
+      return idx - 1;
+    }
+
+    function indexToColumnLetter(idx) {
+      let n = idx + 1;
+      let out = '';
+      while (n > 0) {
+        const rem = (n - 1) % 26;
+        out = String.fromCharCode(65 + rem) + out;
+        n = Math.floor((n - 1) / 26);
+      }
+      return out;
+    }
+
+    function recordFieldSource(section, fieldLabel, tabName, headerLabel) {
+      if (!SECTION_SOURCES[section] || !headerLabel) return;
+      if (tabName) SECTION_SOURCES[section].tab = tabName;
+      SECTION_SOURCES[section].fields[fieldLabel] = headerLabel;
+    }
+
+    function renderSourceStripHtml(sectionKey) {
+      const info = SECTION_SOURCES[sectionKey];
+      if (!info || (!info.tab && Object.keys(info.fields).length === 0)) return '';
+      const tabText = info.tab ? `<strong>Tab:</strong> ${escHtml(info.tab)}` : '';
+      const pills = Object.entries(info.fields)
+        .map(([label, header]) => `<span class="source-pill">${escHtml(label)}: ${escHtml(header)}</span>`)
+        .join('');
+      return `
+        <div class="source-strip">
+          <div><strong>Pulled From:</strong> ${tabText}</div>
+          ${pills ? `<div style="margin-top:3px;">${pills}</div>` : ''}
+        </div>
+      `;
     }
 
     function getSavedCombos() {
@@ -769,7 +826,7 @@
       const combos = getSavedCombos();
       const names = Object.keys(combos);
       sel.innerHTML = `<option value="">-- Select Saved Combo --</option>` +
-        names.map(n => `<option value="${n.replace(/"/g, '&quot;')}">${n}</option>`).join('');
+        names.map(n => `<option value="${escHtml(n)}">${escHtml(n)}</option>`).join('');
       if (selectedName && combos[selectedName]) {
         sel.value = selectedName;
       }
@@ -945,7 +1002,7 @@
 
       return `
         <div class="sprite-slot">
-          <img src="${spriteUrl}" alt="${displayName}" style="display:block;margin-left:auto;margin-right:auto;" loading="lazy"
+          <img src="${spriteUrl}" alt="${escHtml(displayName)}" style="display:block;margin-left:auto;margin-right:auto;" loading="lazy"
                onerror="if(this.src!=='${fallbackUrl}'){this.src='${fallbackUrl}';}else{this.style.display='none';}">
         </div>
       `;
@@ -956,9 +1013,9 @@
         const rawSprite = mon.sprite.trim();
         const isUrl = /^https?:\/\//i.test(rawSprite) || rawSprite.startsWith('data:image/');
         if (isUrl) {
-          return `<img src="${rawSprite}" alt="${mon.name}" class="detail-sprite-img" loading="lazy" onerror="this.style.display='none';">`;
+          return `<img src="${escHtml(rawSprite)}" alt="${escHtml(mon.name)}" class="detail-sprite-img" loading="lazy" onerror="this.style.display='none';">`;
         }
-        return `<span class="type-pill">${rawSprite}</span>`;
+        return `<span class="type-pill">${escHtml(rawSprite)}</span>`;
       }
       if (mon.isInherited) {
         return renderSpriteHtml(id, mon, true);
@@ -980,14 +1037,14 @@
       if (!typeName || typeName === '?') return `<span>?</span>`;
       const cleanType = typeName.trim();
       const iconUrl = `${TYPE_ICON_BASE}/${encodeURIComponent(cleanType)}.png`;
-      return `<img src="${iconUrl}" alt="${cleanType}" title="${cleanType}" class="type-icon-img" loading="lazy" onerror="this.style.display='none';">`;
+      return `<img src="${iconUrl}" alt="${escHtml(cleanType)}" title="${escHtml(cleanType)}" class="type-icon-img" loading="lazy" onerror="this.style.display='none';">`;
     }
 
     function renderCategoryIconHtml(categoryName) {
       if (!categoryName) return '';
       const cleanCat = categoryName.trim();
       const iconUrl = `${CATEGORY_ICON_BASE}/${encodeURIComponent(cleanCat)}.png`;
-      return `<img src="${iconUrl}" alt="${cleanCat}" title="${cleanCat}" class="cat-icon" loading="lazy" onerror="this.style.display='none';">`;
+      return `<img src="${iconUrl}" alt="${escHtml(cleanCat)}" title="${escHtml(cleanCat)}" class="cat-icon" loading="lazy" onerror="this.style.display='none';">`;
     }
 
     function formatBpLabel(bpVal) {
@@ -1032,59 +1089,11 @@
       `;
     }
 
-    function renderCollapsibleWeatherSection(weatherItems) {
-      if (!valOf('tab_weather') && (!weatherItems || !weatherItems.length)) return '';
-      const rowsHtml = weatherItems && weatherItems.length
-        ? weatherItems.map(w => `<div class="entry-row">${w}</div>`).join('')
-        : '<div class="desc-text">no new field condition found</div>';
-      return `
-        <div class="section">
-          <details class="collapsible-section">
-            <summary>Weather (${weatherItems ? weatherItems.length : 0})</summary>
-            <div class="collapsible-body">${rowsHtml}</div>
-          </details>
-        </div>
-      `;
-    }
-
-    function renderCollapsibleFieldSection(fieldItems) {
-      if (!valOf('tab_field') && (!fieldItems || !fieldItems.length)) return '';
-      const rowsHtml = fieldItems && fieldItems.length
-        ? fieldItems.map(f => `<div class="entry-row">${f}</div>`).join('')
-        : '<div class="desc-text">no new field condition found</div>';
-      return `
-        <div class="section">
-          <details class="collapsible-section">
-            <summary>Field Conditions (${fieldItems ? fieldItems.length : 0})</summary>
-            <div class="collapsible-body">${rowsHtml}</div>
-          </details>
-        </div>
-      `;
-    }
-
-    function renderCollapsibleMiscSection(miscItems) {
-      if (!valOf('tab_misc') && (!miscItems || !miscItems.length)) return '';
-      const rowsHtml = miscItems && miscItems.length
-        ? miscItems.map(pairs => {
-            const text = pairs.map(p => `<strong>${p.label}:</strong> ${p.value}`).join(' · ');
-            return `<div class="entry-row">${text}</div>`;
-          }).join('')
-        : '<div class="desc-text">no new field condition found</div>';
-      return `
-        <div class="section">
-          <details class="collapsible-section">
-            <summary>Misc (${miscItems ? miscItems.length : 0})</summary>
-            <div class="collapsible-body">${rowsHtml}</div>
-          </details>
-        </div>
-      `;
-    }
-
     function renderCollapsibleMonList(title, monNames) {
       const uniqueNames = [...new Set(monNames)];
       const isUnder20 = uniqueNames.length < 20;
       const content = uniqueNames.length
-        ? uniqueNames.join(', ')
+        ? uniqueNames.map(escHtml).join(', ')
         : '<span class="desc-text">No Pokémon listed.</span>';
       return `
         <details class="collapsible-section mon-recipients-box" ${isUnder20 ? 'open' : ''}>
@@ -1099,10 +1108,7 @@
         pokemon: 'btnPokemon',
         moves: 'btnCustomMoves',
         abilities: 'btnAbilities',
-        items: 'btnItems',
-        effects: 'btnEffects',
-        weather: 'btnWeather',
-        misc: 'btnMisc'
+        items: 'btnItems'
       };
       Object.entries(map).forEach(([mode, btnId]) => {
         document.getElementById(btnId).classList.toggle('mode-active', ACTIVE_MODE === mode);
@@ -1186,15 +1192,19 @@
       const rows = [];
       for (let r = startRow; r < table.rows.length; r++) {
         const cells = table.rows[r].c || [];
-        const obj = {};
+        const obj = { __rawCells: [], __rawHeaders: rawHeaders };
+        const maxLen = Math.max(headers.length, cells.length);
         let hasContent = false;
-        headers.forEach((h, idx) => {
+        for (let idx = 0; idx < maxLen; idx++) {
           const cell = cells[idx];
           const val = cell ? (cell.f ?? cell.v ?? '') : '';
           const strVal = String(val).trim();
+          obj.__rawCells[idx] = strVal;
           if (strVal !== '') hasContent = true;
-          obj[h] = strVal;
-        });
+          if (headers[idx]) {
+            obj[headers[idx]] = strVal;
+          }
+        }
         if (hasContent) rows.push(obj);
       }
       return rows;
@@ -1216,35 +1226,57 @@
       return String(k || '').replace(/__\d+$/, '').toLowerCase().replace(/[^a-z0-9]+/g, '');
     }
 
-    function getField(row, candidates, allowFallback = true) {
+    function resolveField(row, candidates, allowFallback = true) {
       const list = Array.isArray(candidates) ? candidates : [candidates];
-      const entries = Object.entries(row);
+      const entries = Object.entries(row).filter(([k]) => k !== '__rawCells' && k !== '__rawHeaders');
+      const rawCells = Array.isArray(row.__rawCells) ? row.__rawCells : [];
+      const rawHeaders = Array.isArray(row.__rawHeaders) ? row.__rawHeaders : [];
+
       for (const cand of list) {
         if (!cand) continue;
         const normCand = normalizeHeaderKey(cand);
-        for (const [k, v] of entries) {
-          if (normalizeHeaderKey(k) === normCand && String(v).trim() !== '') {
-            return String(v).trim();
+
+        const exactEntry = entries.find(([k]) => normalizeHeaderKey(k) === normCand);
+        if (exactEntry) {
+          const cleanHeader = exactEntry[0].replace(/__\d+$/, '');
+          const val = String(exactEntry[1] ?? '').trim();
+          if (val !== '' || !allowFallback) {
+            return { value: val, source: cleanHeader };
+          }
+        }
+
+        const colIdx = columnLetterToIndex(cand);
+        if (colIdx >= 0 && colIdx < rawCells.length) {
+          const letter = indexToColumnLetter(colIdx);
+          const hdr = rawHeaders[colIdx] ? ` (${rawHeaders[colIdx]})` : '';
+          const val = String(rawCells[colIdx] ?? '').trim();
+          if (val !== '' || !allowFallback) {
+            return { value: val, source: `Col ${letter}${hdr}` };
           }
         }
       }
-      if (!allowFallback) return '';
+
+      if (!allowFallback) return { value: '', source: '' };
+
       for (const cand of list) {
-        if (!cand) continue;
+        if (!cand || columnLetterToIndex(cand) >= 0) continue;
         const normCand = normalizeHeaderKey(cand);
         if (normCand.length < 3) continue;
         for (const [k, v] of entries) {
           if (normalizeHeaderKey(k).includes(normCand) && String(v).trim() !== '') {
-            return String(v).trim();
+            return { value: String(v).trim(), source: k.replace(/__\d+$/, '') };
           }
         }
       }
-      return '';
+      return { value: '', source: '' };
     }
 
     function autofillHeadersFromRows(rows, section) {
       if (!rows || !rows.length) return;
-      const rawCols = Object.keys(rows[0]).filter(k => !k.startsWith('__col_')).map(k => k.replace(/__\d+$/, ''));
+      const rawCols = Object.keys(rows[0])
+        .filter(k => k !== '__rawCells' && k !== '__rawHeaders' && !k.startsWith('__col_'))
+        .map(k => k.replace(/__\d+$/, ''));
+
       const findCol = aliases => {
         for (const alias of aliases) {
           const na = normalizeHeaderKey(alias);
@@ -1261,13 +1293,13 @@
       };
 
       if (section === 'pokemon') {
-        setValIfEmpty('hdr_pokemon', findCol(['Name', 'Pokemon', 'Pokémon', 'Species', 'Mon']));
+        setValIfEmpty('hdr_pokemon', findCol(['Fusion Name', 'Name', 'Pokemon', 'Pokémon', 'Species', 'Mon']));
         setValIfEmpty('hdr_sprites', findCol(['Sprite', 'Sprites', 'Icon']));
         setValIfEmpty('hdr_types_combined', findCol(['Types', 'Typing']));
         setValIfEmpty('hdr_type1', findCol(['Type 1', 'Type1', 'Type A', 'Primary Type', 'Type']));
         setValIfEmpty('hdr_type2', findCol(['Type 2', 'Type2', 'Type B', 'Secondary Type']));
         setValIfEmpty('hdr_abilities_combined', findCol(['Abilities', 'Ability']));
-        setValIfEmpty('hdr_ability1', findCol(['Ability 1', 'Ability1', 'Ability A', 'Primary Ability']));
+        setValIfEmpty('hdr_ability1', findCol(['Fused Ability', 'Ability 1', 'Ability1', 'Ability A', 'Primary Ability']));
         setValIfEmpty('hdr_ability2', findCol(['Ability 2', 'Ability2', 'Ability B', 'Secondary Ability']));
         setValIfEmpty('hdr_ability3', findCol(['Ability 3', 'Ability3', 'Hidden Ability', 'HA']));
         setValIfEmpty('hdr_stats_combined', findCol(['Stats', 'Base Stats', 'Stat Spread', 'Spread']));
@@ -1294,8 +1326,8 @@
         setValIfEmpty('hdr_move_effect', findCol(['Effect', 'shortDesc', 'Description', 'Desc']));
         setValIfEmpty('hdr_move_learnedby', findCol(['Learned By', 'Distribution', 'User', 'Pokemon']));
       } else if (section === 'abilities') {
-        setValIfEmpty('hdr_abilityname', findCol(['Ability Name', 'Name', 'Ability']));
-        setValIfEmpty('hdr_ability_effect', findCol(['Effect', 'Description', 'Desc', 'shortDesc']));
+        setValIfEmpty('hdr_abilityname', findCol(['Fused Ability', 'Ability Name', 'Name', 'Ability']));
+        setValIfEmpty('hdr_ability_effect', findCol(['Ability Effect', 'Effect', 'shortDesc', 'Description', 'Desc']));
         setValIfEmpty('hdr_ability_learnedby', findCol(['Learned By', 'Distribution', 'User', 'Pokemon']));
       } else if (section === 'items') {
         setValIfEmpty('hdr_item_name', findCol(['Item', 'Name', 'Item Name']));
@@ -1312,42 +1344,37 @@
         .filter(s => s && s !== '-' && s.toLowerCase() !== 'none' && s.toLowerCase() !== 'n/a');
     }
 
-    function parseStatsFromRow(row, strictManual = false) {
-      const hpHeader = valOf('hdr_hp');
-      const atkHeader = valOf('hdr_atk');
-      const defHeader = valOf('hdr_def');
-      const spaHeader = valOf('hdr_spa');
-      const spdHeader = valOf('hdr_spd');
-      const speHeader = valOf('hdr_spe');
-      const combinedHeader = valOf('hdr_stats_combined');
-
-      const hpStr = getField(row, strictManual ? [hpHeader] : [hpHeader, 'HP'], !strictManual);
-      const atkStr = getField(row, strictManual ? [atkHeader] : [atkHeader, 'Atk', 'Attack'], !strictManual);
-      const defStr = getField(row, strictManual ? [defHeader] : [defHeader, 'Def', 'Defense'], !strictManual);
-      const spaStr = getField(row, strictManual ? [spaHeader] : [spaHeader, 'SpA', 'SpAtk', 'Special Attack', 'Sp. Atk'], !strictManual);
-      const spdStr = getField(row, strictManual ? [spdHeader] : [spdHeader, 'SpD', 'SpDef', 'Special Defense', 'Sp. Def'], !strictManual);
-      const speStr = getField(row, strictManual ? [speHeader] : [speHeader, 'Spe', 'Speed', 'Spd'], !strictManual);
+    function parseStatsFromRow(row, tabLabel, strictManual = false) {
+      const hpR = resolveField(row, strictManual ? [valOf('hdr_hp')] : [valOf('hdr_hp'), 'HP'], !strictManual);
+      const atkR = resolveField(row, strictManual ? [valOf('hdr_atk')] : [valOf('hdr_atk'), 'Atk', 'Attack'], !strictManual);
+      const defR = resolveField(row, strictManual ? [valOf('hdr_def')] : [valOf('hdr_def'), 'Def', 'Defense'], !strictManual);
+      const spaR = resolveField(row, strictManual ? [valOf('hdr_spa')] : [valOf('hdr_spa'), 'SpA', 'SpAtk', 'Special Attack', 'Sp. Atk'], !strictManual);
+      const spdR = resolveField(row, strictManual ? [valOf('hdr_spd')] : [valOf('hdr_spd'), 'SpD', 'SpDef', 'Special Defense', 'Sp. Def'], !strictManual);
+      const speR = resolveField(row, strictManual ? [valOf('hdr_spe')] : [valOf('hdr_spe'), 'Spe', 'Speed', 'Spd'], !strictManual);
 
       const parseNum = s => {
         const m = String(s || '').match(/-?\d+/);
         return m ? Number(m[0]) : null;
       };
 
-      const hp = parseNum(hpStr);
-      const atk = parseNum(atkStr);
-      const def = parseNum(defStr);
-      const spa = parseNum(spaStr);
-      const spd = parseNum(spdStr);
-      const spe = parseNum(speStr);
+      const hp = parseNum(hpR.value);
+      const atk = parseNum(atkR.value);
+      const def = parseNum(defR.value);
+      const spa = parseNum(spaR.value);
+      const spd = parseNum(spdR.value);
+      const spe = parseNum(speR.value);
 
       if ([hp, atk, def, spa, spd, spe].some(v => v !== null)) {
+        const statSrcs = [hpR.source, atkR.source, defR.source, spaR.source, spdR.source, speR.source].filter(Boolean);
+        if (statSrcs.length) recordFieldSource('pokemon', 'Stats', tabLabel, statSrcs.join('/'));
         return { hp, atk, def, spa, spd, spe };
       }
 
-      const combined = getField(row, strictManual ? [combinedHeader] : [combinedHeader, 'Stats', 'Base Stats', 'Stat Spread', 'Spread'], !strictManual);
-      if (combined) {
-        const nums = combined.match(/\d+/g);
+      const combR = resolveField(row, strictManual ? [valOf('hdr_stats_combined')] : [valOf('hdr_stats_combined'), 'Stats', 'Base Stats', 'Stat Spread', 'Spread'], !strictManual);
+      if (combR.value) {
+        const nums = combR.value.match(/\d+/g);
         if (nums && nums.length >= 6) {
+          recordFieldSource('pokemon', 'Stats', tabLabel, combR.source);
           return {
             hp: Number(nums[0]),
             atk: Number(nums[1]),
@@ -1361,97 +1388,79 @@
       return null;
     }
 
-    function parseTypesFromRow(row, strictManual = false) {
-      const keys = Object.keys(row);
+    function parseTypesFromRow(row, tabLabel, strictManual = false) {
       const types = [];
 
-      const combinedHeader = valOf('hdr_types_combined');
-      const combinedVal = getField(row, strictManual ? [combinedHeader] : [combinedHeader, 'Types', 'Typing'], !strictManual);
-      if (combinedVal && combinedVal.includes('/')) {
-        combinedVal.split(/[/,|&+]+/).map(s => s.trim()).filter(Boolean).forEach(part => {
+      const combR = resolveField(row, strictManual ? [valOf('hdr_types_combined')] : [valOf('hdr_types_combined'), 'Types', 'Typing'], !strictManual);
+      if (combR.value && combR.value.includes('/')) {
+        combR.value.split(/[/,|&+]+/).map(s => s.trim()).filter(Boolean).forEach(part => {
           if (part !== '-' && part.toLowerCase() !== 'none') types.push(part);
         });
-        if (types.length) return [...new Set(types)];
+        if (types.length) {
+          recordFieldSource('pokemon', 'Types', tabLabel, combR.source);
+          return [...new Set(types)];
+        }
       }
 
-      const t1Header = valOf('hdr_type1');
-      const t2Header = valOf('hdr_type2');
-      const explicit1 = getField(row, strictManual ? [t1Header] : [t1Header, 'Type 1', 'Type1', 'Type A', 'TypeA', 'Primary Type'], !strictManual);
-      const explicit2 = getField(row, strictManual ? [t2Header] : [t2Header, 'Type 2', 'Type2', 'Type B', 'TypeB', 'Secondary Type'], !strictManual);
-      if (explicit1 || explicit2) {
-        [explicit1, explicit2].forEach(t => {
+      const t1R = resolveField(row, strictManual ? [valOf('hdr_type1')] : [valOf('hdr_type1'), 'Type 1', 'Type1', 'Type A', 'Primary Type'], !strictManual);
+      const t2R = resolveField(row, strictManual ? [valOf('hdr_type2')] : [valOf('hdr_type2'), 'Type 2', 'Type2', 'Type B', 'Secondary Type'], !strictManual);
+      if (t1R.value || t2R.value) {
+        [t1R.value, t2R.value].forEach(t => {
           if (t && t !== '-' && t.toLowerCase() !== 'none') {
             t.split(/[/,|&+]+/).map(s => s.trim()).filter(Boolean).forEach(part => {
               if (part !== '-' && part.toLowerCase() !== 'none') types.push(part);
             });
           }
         });
-        if (types.length) return [...new Set(types)];
+        if (types.length) {
+          const srcs = [t1R.source, t2R.source].filter(Boolean).join(', ');
+          if (srcs) recordFieldSource('pokemon', 'Types', tabLabel, srcs);
+          return [...new Set(types)];
+        }
       }
 
-      if (combinedVal && combinedVal !== '-' && combinedVal.toLowerCase() !== 'none') {
-        combinedVal.split(/[/,|&+]+/).map(s => s.trim()).filter(Boolean).forEach(part => {
+      if (combR.value && combR.value !== '-' && combR.value.toLowerCase() !== 'none') {
+        combR.value.split(/[/,|&+]+/).map(s => s.trim()).filter(Boolean).forEach(part => {
           if (part !== '-' && part.toLowerCase() !== 'none') types.push(part);
         });
-        if (types.length) return [...new Set(types)];
-      }
-
-      if (!strictManual) {
-        for (let i = 0; i < keys.length; i++) {
-          const k = keys[i];
-          const nk = normalizeHeaderKey(k);
-          if (nk === 'type' || nk === 'types' || nk === 'typing') {
-            const val = String(row[k] || '').trim();
-            if (val && val !== '-' && val.toLowerCase() !== 'none') {
-              val.split(/[/,|&+]+/).map(s => s.trim()).filter(Boolean).forEach(part => {
-                if (part !== '-' && part.toLowerCase() !== 'none') types.push(part);
-              });
-            }
-            const nextKey = keys[i + 1];
-            if (nextKey && nextKey.startsWith('__col_')) {
-              const nextVal = String(row[nextKey] || '').trim();
-              if (nextVal && nextVal !== '-' && nextVal.toLowerCase() !== 'none') {
-                types.push(nextVal);
-              }
-            }
-          }
+        if (types.length) {
+          recordFieldSource('pokemon', 'Types', tabLabel, combR.source);
+          return [...new Set(types)];
         }
       }
 
       return [...new Set(types)];
     }
 
-    function parseAbilitiesFromRow(row, strictManual = false) {
+    function parseAbilitiesFromRow(row, tabLabel, strictManual = false) {
       const a1Header = valOf('hdr_ability1');
       const a2Header = valOf('hdr_ability2');
       const a3Header = valOf('hdr_ability3');
       const combinedHeader = valOf('hdr_abilities_combined');
 
-      const a1 = getField(row, strictManual ? [a1Header] : [a1Header, 'Ability 1', 'Ability1', 'Ability A', 'AbilityA', 'Primary Ability'], !strictManual);
-      const a2 = getField(row, strictManual ? [a2Header] : [a2Header, 'Ability 2', 'Ability2', 'Ability B', 'AbilityB', 'Secondary Ability'], !strictManual);
-      const a3 = getField(row, strictManual ? [a3Header] : [a3Header, 'Ability 3', 'Ability3', 'Hidden Ability', 'HA', 'Ability H'], !strictManual);
+      const a1R = resolveField(row, strictManual ? [a1Header] : [a1Header, 'Fused Ability', 'Ability 1', 'Ability1', 'Ability A', 'Primary Ability'], !strictManual);
+      const a2R = resolveField(row, strictManual ? [a2Header] : [a2Header, 'Ability 2', 'Ability2', 'Ability B', 'Secondary Ability'], !strictManual);
+      const a3R = resolveField(row, strictManual ? [a3Header] : [a3Header, 'Ability 3', 'Ability3', 'Hidden Ability', 'HA', 'Ability H'], !strictManual);
 
       const cleanVal = v => (v && v !== '-' && v.toLowerCase() !== 'none' && v.toLowerCase() !== 'n/a') ? v.trim() : '';
 
-      const c1 = cleanVal(a1);
-      const c2 = cleanVal(a2);
-      const c3 = cleanVal(a3);
+      const c1 = cleanVal(a1R.value);
+      const c2 = cleanVal(a2R.value);
+      const c3 = cleanVal(a3R.value);
 
       if (c1 || c2 || c3) {
         const out = {};
         if (c1) out['0'] = c1;
-        if (c2 && !c3 && normalizeHeaderKey(a2Header) === 'abilityb') {
-          out['1'] = c2;
-        } else if (c2) {
-          out['1'] = c2;
-        }
+        if (c2) out['1'] = c2;
         if (c3) out['H'] = c3;
+        const srcs = [a1R.source, a2R.source, a3R.source].filter(Boolean).join(', ');
+        if (srcs) recordFieldSource('pokemon', 'Abilities', tabLabel, srcs);
         return out;
       }
 
-      const combined = getField(row, strictManual ? [combinedHeader] : [combinedHeader, 'Abilities', 'Ability'], !strictManual);
-      if (combined) {
-        const parts = combined
+      const combR = resolveField(row, strictManual ? [combinedHeader] : [combinedHeader, 'Abilities', 'Ability'], !strictManual);
+      if (combR.value) {
+        const parts = combR.value
           .split(/[/,|;]+/)
           .map(s => s.replace(/\(H\)|\(Hidden\)/gi, '').trim())
           .filter(s => s && s !== '-' && s.toLowerCase() !== 'none');
@@ -1467,6 +1476,9 @@
           out['1'] = parts[1];
           out['H'] = parts[2];
         }
+        if (Object.keys(out).length) {
+          recordFieldSource('pokemon', 'Abilities', tabLabel, combR.source);
+        }
         return out;
       }
       return {};
@@ -1474,46 +1486,45 @@
 
     function classifyTableType(rows) {
       if (!rows || !rows.length) return 'unknown';
-      const keys = Object.keys(rows[0]).map(normalizeHeaderKey);
+      const keys = Object.keys(rows[0]).filter(k => k !== '__rawCells' && k !== '__rawHeaders').map(normalizeHeaderKey);
       const hasStats = keys.some(k => ['hp', 'atk', 'def', 'spa', 'spd', 'spe', 'basestats', 'stats'].includes(k));
       const hasBpOrCat = keys.some(k => ['bp', 'basepower', 'power', 'category', 'cat', 'pp', 'basepp', 'accuracy', 'acc'].includes(k));
-      const hasMonName = keys.some(k => ['pokemon', 'species', 'mon'].includes(k));
+      const hasMonName = keys.some(k => ['pokemon', 'species', 'mon', 'fusionname'].includes(k));
       const hasMoveName = keys.some(k => ['movename', 'move'].includes(k));
       const hasFling = keys.some(k => ['flingpower', 'fling'].includes(k));
       if (hasFling) return 'items';
       if (hasMoveName || hasBpOrCat) return 'moves';
       if (hasStats || hasMonName) return 'pokemon';
-      if (keys.some(k => ['ability', 'abilities', 'abilityname'].includes(k)) && !hasStats) return 'abilities';
+      if (keys.some(k => ['ability', 'abilities', 'abilityname', 'fusedability'].includes(k)) && !hasStats) return 'abilities';
       return 'pokemon';
     }
 
-    function ingestPokemonRows(rows, strictManual = false) {
+    function ingestPokemonRows(rows, tabLabel = 'Sheet', strictManual = false) {
       if (!strictManual) autofillHeadersFromRows(rows, 'pokemon');
-      const standardCols = new Set([
-        'num', 'dex', 'number', 'name', 'pokemon', 'species', 'mon', 'sprite', 'sprites',
-        'type', 'types', 'type1', 'type2', 'typea', 'typeb', 'typing', 'primarytype', 'secondarytype',
-        'hp', 'atk', 'attack', 'def', 'defense', 'spa', 'spatk', 'specialattack', 'spd', 'spdef', 'specialdefense', 'spe', 'speed', 'bst', 'stats', 'basestats',
-        'ability', 'abilities', 'ability1', 'ability2', 'ability3', 'abilitya', 'abilityb', 'abilityc', 'hiddenability', 'ha', 'abilityh',
-        'weight', 'weightkg', 'moves', 'learnset', 'movepool', 'newmoves', 'addedmoves', 'movepooladditions', 'moveadditions', 'additions',
-        'removedmoves', 'movepoolremovals', 'removals', 'deletedmoves',
-        'physical', 'special', 'status', 'custommove', 'signaturemove', 'genderratio', 'evolvesinto', 'notes', 'comments', 'slate', 'tier', 'role'
-      ]);
+      SECTION_SOURCES.pokemon.tab = tabLabel;
 
       for (const row of rows) {
-        const rawName = getField(row, strictManual ? [valOf('hdr_pokemon')] : [valOf('hdr_pokemon'), 'Name', 'Pokemon', 'Pokémon', 'Species', 'Mon'], !strictManual);
+        const nameR = resolveField(row, strictManual ? [valOf('hdr_pokemon')] : [valOf('hdr_pokemon'), 'Fusion Name', 'Name', 'Pokemon', 'Pokémon', 'Species', 'Mon'], !strictManual);
+        const rawName = nameR.value;
         if (!rawName) continue;
         const id = toId(rawName);
         if (!id) continue;
+        if (nameR.source) recordFieldSource('pokemon', 'Name', tabLabel, nameR.source);
 
         const baseFound = findBaseMonMatch(id, rawName);
         const baseMatch = baseFound?.mon || null;
         const resolvedId = baseFound?.key || id;
 
-        const parsedStats = parseStatsFromRow(row, strictManual);
-        const parsedTypes = parseTypesFromRow(row, strictManual);
-        const parsedAbilities = parseAbilitiesFromRow(row, strictManual);
-        const spriteVal = getField(row, strictManual ? [valOf('hdr_sprites')] : [valOf('hdr_sprites'), 'Sprite', 'Sprites'], !strictManual);
-        const weightVal = getField(row, strictManual ? [valOf('hdr_weight')] : [valOf('hdr_weight'), 'Weight', 'Weight (kg)', 'Weightkg'], !strictManual) || (baseMatch?.weightkg ? `${baseMatch.weightkg} kg` : '');
+        const parsedStats = parseStatsFromRow(row, tabLabel, strictManual);
+        const parsedTypes = parseTypesFromRow(row, tabLabel, strictManual);
+        const parsedAbilities = parseAbilitiesFromRow(row, tabLabel, strictManual);
+
+        const spriteR = resolveField(row, strictManual ? [valOf('hdr_sprites')] : [valOf('hdr_sprites'), 'Sprite', 'Sprites'], !strictManual);
+        if (spriteR.value && spriteR.source) recordFieldSource('pokemon', 'Sprite', tabLabel, spriteR.source);
+
+        const weightR = resolveField(row, strictManual ? [valOf('hdr_weight')] : [valOf('hdr_weight'), 'Weight', 'Weight (kg)', 'Weightkg'], !strictManual);
+        if (weightR.value && weightR.source) recordFieldSource('pokemon', 'Weight', tabLabel, weightR.source);
+        const weightVal = weightR.value || (baseMatch?.weightkg ? `${baseMatch.weightkg} kg` : '');
 
         const baseStats = baseMatch?.baseStats
           ? {
@@ -1533,61 +1544,44 @@
               spe: parsedStats?.spe ?? 0,
             };
 
-        const customElements = [];
-        for (const [k, v] of Object.entries(row)) {
-          if (k.startsWith('__col_')) continue;
-          const nk = normalizeHeaderKey(k);
-          if (!standardCols.has(nk) && String(v).trim() !== '') {
-            customElements.push(`${k.replace(/__\d+$/, '')}: ${v}`);
-          }
-        }
-
         const existingOrder = MOD_DEX[id]?.sheetOrder;
         MOD_DEX[id] = {
           sheetOrder: existingOrder !== undefined ? existingOrder : SHEET_ORDER_COUNTER++,
           baseId: resolvedId,
+          sourceTab: tabLabel,
           name: rawName,
-          sprite: spriteVal || MOD_DEX[id]?.sprite || '',
+          sprite: spriteR.value || MOD_DEX[id]?.sprite || '',
           weight: weightVal || MOD_DEX[id]?.weight || '',
           types: parsedTypes.length ? parsedTypes : (baseMatch?.types || []),
           baseStats,
           origStats: baseMatch?.baseStats || null,
           abilities: Object.keys(parsedAbilities).length ? parsedAbilities : (baseMatch?.abilities || {}),
-          isInherited: Boolean(baseMatch),
-          customElements
+          isInherited: Boolean(baseMatch)
         };
 
-        const addedRaw = getField(row, strictManual ? [valOf('hdr_movepool_add')] : [valOf('hdr_movepool_add'), 'Added Moves', 'Movepool Additions', 'New Moves', 'Move Additions', 'Additions', 'Custom Move', 'Signature Move'], !strictManual);
-        const removedRaw = getField(row, strictManual ? [valOf('hdr_movepool_rem')] : [valOf('hdr_movepool_rem'), 'Removed Moves', 'Movepool Removals', 'Deleted Moves', 'Move Removals', 'Removals'], !strictManual);
-        const fullLearnsetRaw = getField(row, strictManual ? [valOf('hdr_learnset')] : [valOf('hdr_learnset'), 'Movepool', 'Learnset', 'Moves'], !strictManual);
-        const physRaw = !strictManual ? getField(row, ['Physical']) : '';
-        const specRaw = !strictManual ? getField(row, ['Special']) : '';
-        const statRaw = !strictManual ? getField(row, ['Status']) : '';
+        const addR = resolveField(row, strictManual ? [valOf('hdr_movepool_add')] : [valOf('hdr_movepool_add'), 'Added Moves', 'Movepool Additions', 'New Moves', 'Move Additions', 'Additions'], !strictManual);
+        const remR = resolveField(row, strictManual ? [valOf('hdr_movepool_rem')] : [valOf('hdr_movepool_rem'), 'Removed Moves', 'Movepool Removals', 'Deleted Moves', 'Move Removals', 'Removals'], !strictManual);
+        const poolR = resolveField(row, strictManual ? [valOf('hdr_learnset')] : [valOf('hdr_learnset'), 'Movepool', 'Learnset', 'Moves'], !strictManual);
 
-        if (addedRaw) {
+        if (addR.value) {
+          if (addR.source) recordFieldSource('pokemon', 'Added Moves', tabLabel, addR.source);
           if (!MOD_ADDED_MOVES[id]) MOD_ADDED_MOVES[id] = new Set();
-          splitListItems(addedRaw).forEach(m => MOD_ADDED_MOVES[id].add(toId(m)));
+          splitListItems(addR.value).forEach(m => MOD_ADDED_MOVES[id].add(toId(m)));
         }
-        if (removedRaw) {
+        if (remR.value) {
+          if (remR.source) recordFieldSource('pokemon', 'Removed Moves', tabLabel, remR.source);
           if (!MOD_REMOVED_MOVES[id]) MOD_REMOVED_MOVES[id] = new Set();
-          splitListItems(removedRaw).forEach(m => MOD_REMOVED_MOVES[id].add(toId(m)));
+          splitListItems(remR.value).forEach(m => MOD_REMOVED_MOVES[id].add(toId(m)));
         }
 
-        const explicitPool = [
-          ...splitListItems(fullLearnsetRaw),
-          ...splitListItems(physRaw),
-          ...splitListItems(specRaw),
-          ...splitListItems(statRaw)
-        ].map(toId).filter(Boolean);
-
+        const explicitPool = splitListItems(poolR.value).map(toId).filter(Boolean);
         if (explicitPool.length > 0) {
+          if (poolR.source) recordFieldSource('pokemon', 'Movepool', tabLabel, poolR.source);
           const baseLearn = BASE_LEARNSETS[resolvedId]?.learnset || BASE_LEARNSETS[id]?.learnset;
           if (baseMatch && baseLearn) {
             if (!MOD_ADDED_MOVES[id]) MOD_ADDED_MOVES[id] = new Set();
             explicitPool.forEach(mId => {
-              if (!baseLearn[mId]) {
-                MOD_ADDED_MOVES[id].add(mId);
-              }
+              if (!baseLearn[mId]) MOD_ADDED_MOVES[id].add(mId);
             });
           } else {
             MOD_FULL_LEARNSETS[id] = new Set(explicitPool);
@@ -1596,64 +1590,59 @@
       }
     }
 
-    function ingestMoveRows(rows, strictManual = false) {
+    function ingestMoveRows(rows, tabLabel = 'Sheet', strictManual = false) {
       if (!strictManual) autofillHeadersFromRows(rows, 'moves');
-      const standardCols = new Set([
-        'name', 'movename', 'move', 'type', 'category', 'cat', 'split', 'bp', 'basepower', 'power', 'acc', 'accuracy', 'pp', 'basepp',
-        'priority', 'prio', 'target', 'flags', 'properties', 'shortdesc', 'desc', 'description', 'effect', 'notes', 'user', 'pokemon', 'learnedby', 'distribution'
-      ]);
+      SECTION_SOURCES.moves.tab = tabLabel;
 
       for (const row of rows) {
-        const rawName = getField(row, strictManual ? [valOf('hdr_movename')] : [valOf('hdr_movename'), 'Move Name', 'Name', 'Move'], !strictManual);
+        const nameR = resolveField(row, strictManual ? [valOf('hdr_movename')] : [valOf('hdr_movename'), 'Move Name', 'Name', 'Move'], !strictManual);
+        const rawName = nameR.value;
         if (!rawName) continue;
         const id = toId(rawName);
         if (!id) continue;
+        if (nameR.source) recordFieldSource('moves', 'Move Name', tabLabel, nameR.source);
 
         const baseM = BASE_MOVES[id] || {};
-        const type = getField(row, strictManual ? [valOf('hdr_move_type')] : [valOf('hdr_move_type'), 'Type'], !strictManual) || (strictManual ? '?' : (baseM.type || '?'));
-        const category = getField(row, strictManual ? [valOf('hdr_category')] : [valOf('hdr_category'), 'Category', 'Cat', 'Split'], !strictManual) || (strictManual ? 'Status' : (baseM.category || 'Status'));
-        const bpRaw = getField(row, strictManual ? [valOf('hdr_bp')] : [valOf('hdr_bp'), 'BP', 'Power', 'Base Power'], !strictManual);
-        const accRaw = getField(row, strictManual ? [valOf('hdr_acc')] : [valOf('hdr_acc'), 'Acc', 'Accuracy'], !strictManual);
-        const ppRaw = getField(row, strictManual ? [valOf('hdr_pp')] : [valOf('hdr_pp'), 'PP', 'Base PP'], !strictManual);
-        const target = getField(row, strictManual ? [valOf('hdr_target')] : [valOf('hdr_target'), 'Target'], !strictManual) || (strictManual ? '' : (baseM.target || ''));
-        const priority = getField(row, strictManual ? [valOf('hdr_priority')] : [valOf('hdr_priority'), 'Priority', 'Prio'], !strictManual) || (strictManual ? '' : (baseM.priority ?? ''));
-        const flags = getField(row, strictManual ? [valOf('hdr_flags')] : [valOf('hdr_flags'), 'Flags', 'Properties'], !strictManual) || (strictManual ? '' : (baseM.flags ? Object.keys(baseM.flags).join(', ') : ''));
-        const effect = getField(row, strictManual ? [valOf('hdr_move_effect')] : [valOf('hdr_move_effect'), 'Effect', 'shortDesc', 'Short Description', 'Short Desc'], !strictManual);
-        const desc = !strictManual ? getField(row, ['Description', 'Desc', 'Notes']) : '';
+        const typeR = resolveField(row, strictManual ? [valOf('hdr_move_type')] : [valOf('hdr_move_type'), 'Type'], !strictManual);
+        const catR = resolveField(row, strictManual ? [valOf('hdr_category')] : [valOf('hdr_category'), 'Category', 'Cat', 'Split'], !strictManual);
+        const bpR = resolveField(row, strictManual ? [valOf('hdr_bp')] : [valOf('hdr_bp'), 'BP', 'Power', 'Base Power'], !strictManual);
+        const accR = resolveField(row, strictManual ? [valOf('hdr_acc')] : [valOf('hdr_acc'), 'Acc', 'Accuracy'], !strictManual);
+        const ppR = resolveField(row, strictManual ? [valOf('hdr_pp')] : [valOf('hdr_pp'), 'PP', 'Base PP'], !strictManual);
+        const targetR = resolveField(row, strictManual ? [valOf('hdr_target')] : [valOf('hdr_target'), 'Target'], !strictManual);
+        const prioR = resolveField(row, strictManual ? [valOf('hdr_priority')] : [valOf('hdr_priority'), 'Priority', 'Prio'], !strictManual);
+        const flagsR = resolveField(row, strictManual ? [valOf('hdr_flags')] : [valOf('hdr_flags'), 'Flags', 'Properties'], !strictManual);
+        const effR = resolveField(row, strictManual ? [valOf('hdr_move_effect')] : [valOf('hdr_move_effect'), 'Effect', 'shortDesc', 'Short Description', 'Description', 'Desc'], !strictManual);
 
-        const customElements = [];
-        for (const [k, v] of Object.entries(row)) {
-          if (k.startsWith('__col_')) continue;
-          const nk = normalizeHeaderKey(k);
-          if (!standardCols.has(nk) && String(v).trim() !== '') {
-            customElements.push(`${k.replace(/__\d+$/, '')}: ${v}`);
-          }
-        }
+        if (typeR.source) recordFieldSource('moves', 'Type', tabLabel, typeR.source);
+        if (catR.source) recordFieldSource('moves', 'Category', tabLabel, catR.source);
+        if (bpR.source) recordFieldSource('moves', 'BP', tabLabel, bpR.source);
+        if (accR.source) recordFieldSource('moves', 'Acc', tabLabel, accR.source);
+        if (ppR.source) recordFieldSource('moves', 'PP', tabLabel, ppR.source);
+        if (targetR.source) recordFieldSource('moves', 'Target', tabLabel, targetR.source);
+        if (prioR.source) recordFieldSource('moves', 'Priority', tabLabel, prioR.source);
+        if (flagsR.source) recordFieldSource('moves', 'Flags', tabLabel, flagsR.source);
+        if (effR.source) recordFieldSource('moves', 'Effect', tabLabel, effR.source);
 
         MOD_MOVES[id] = {
           ...baseM,
           id,
           name: rawName,
-          type,
-          category,
-          basePower: bpRaw !== '' ? bpRaw : (strictManual ? '—' : (baseM.basePower ?? '—')),
-          accuracy: accRaw !== '' ? accRaw : (strictManual ? '—' : (baseM.accuracy === true ? '—' : (baseM.accuracy ?? '—'))),
-          pp: ppRaw !== '' ? ppRaw : (strictManual ? '—' : (baseM.pp ?? '—')),
-          target,
-          priority,
-          flags,
-          effect,
-          desc,
-          weather: !strictManual ? (getField(row, ['Weather']) || '') : '',
-          terrain: !strictManual ? (getField(row, ['Terrain']) || '') : '',
-          sideCondition: !strictManual ? (getField(row, ['Side Condition', 'Hazard']) || '') : '',
-          pseudoWeather: !strictManual ? (getField(row, ['Field', 'Field Condition', 'Room', 'Zone']) || '') : '',
-          customElements
+          type: typeR.value || (strictManual ? '?' : (baseM.type || '?')),
+          category: catR.value || (strictManual ? 'Status' : (baseM.category || 'Status')),
+          basePower: bpR.value !== '' ? bpR.value : (strictManual ? '—' : (baseM.basePower ?? '—')),
+          accuracy: accR.value !== '' ? accR.value : (strictManual ? '—' : (baseM.accuracy === true ? '—' : (baseM.accuracy ?? '—'))),
+          pp: ppR.value !== '' ? ppR.value : (strictManual ? '—' : (baseM.pp ?? '—')),
+          target: targetR.value || (strictManual ? '' : (baseM.target || '')),
+          priority: prioR.value || (strictManual ? '' : (baseM.priority ?? '')),
+          flags: flagsR.value || (strictManual ? '' : (baseM.flags ? Object.keys(baseM.flags).join(', ') : '')),
+          effect: effR.value,
+          sourceLabel: `${tabLabel} → ${effR.source || nameR.source || 'Moves'}`
         };
 
-        const learnedByRaw = getField(row, strictManual ? [valOf('hdr_move_learnedby')] : [valOf('hdr_move_learnedby'), 'Learned By', 'Distribution', 'User', 'Pokemon', 'Pokémon'], !strictManual);
-        if (learnedByRaw) {
-          splitListItems(learnedByRaw).forEach(uName => {
+        const learnedR = resolveField(row, strictManual ? [valOf('hdr_move_learnedby')] : [valOf('hdr_move_learnedby'), 'Learned By', 'Distribution', 'User', 'Pokemon', 'Pokémon'], !strictManual);
+        if (learnedR.value) {
+          if (learnedR.source) recordFieldSource('moves', 'Learned By', tabLabel, learnedR.source);
+          splitListItems(learnedR.value).forEach(uName => {
             const uId = toId(uName);
             if (uId) {
               if (!MOD_ADDED_MOVES[uId]) MOD_ADDED_MOVES[uId] = new Set();
@@ -1664,105 +1653,103 @@
       }
     }
 
-    function ingestAbilityRows(rows, strictManual = false) {
+    function ingestAbilityRows(rows, tabLabel = 'Sheet', strictManual = false) {
       if (!strictManual) autofillHeadersFromRows(rows, 'abilities');
-      const standardCols = new Set(['name', 'ability', 'abilityname', 'shortdesc', 'desc', 'description', 'effect', 'notes', 'user', 'pokemon', 'learnedby', 'distribution']);
+      SECTION_SOURCES.abilities.tab = tabLabel;
+
+      const isSharedWithPokemonTab =
+        tabLabel &&
+        SECTION_SOURCES.pokemon.tab &&
+        tabLabel.toLowerCase() === SECTION_SOURCES.pokemon.tab.toLowerCase();
 
       for (const row of rows) {
-        const rawName = getField(row, strictManual ? [valOf('hdr_abilityname')] : [valOf('hdr_abilityname'), 'Ability Name', 'Name', 'Ability'], !strictManual);
+        const nameR = resolveField(
+          row,
+          strictManual
+            ? [valOf('hdr_abilityname')]
+            : [valOf('hdr_abilityname'), 'Fused Ability', 'Ability Name', 'Name', 'Ability'],
+          !strictManual
+        );
+        const rawName = nameR.value;
         if (!rawName) continue;
         const id = toId(rawName);
         if (!id) continue;
+        if (nameR.source) recordFieldSource('abilities', 'Ability Name', tabLabel, nameR.source);
+
+        const effR = resolveField(
+          row,
+          strictManual
+            ? [valOf('hdr_ability_effect')]
+            : [valOf('hdr_ability_effect'), 'Ability Effect', 'Effect', 'shortDesc', 'Description', 'Desc'],
+          !strictManual
+        );
+        if (effR.source) recordFieldSource('abilities', 'Effect', tabLabel, effR.source);
 
         const baseA = BASE_ABILITIES[id] || {};
-        const effect = getField(row, strictManual ? [valOf('hdr_ability_effect')] : [valOf('hdr_ability_effect'), 'Effect', 'Description', 'Desc', 'shortDesc', 'Short Description'], !strictManual);
-        const desc = !strictManual ? getField(row, ['Description', 'Desc', 'Notes']) : '';
-
-        const customElements = [];
-        for (const [k, v] of Object.entries(row)) {
-          if (k.startsWith('__col_')) continue;
-          const nk = normalizeHeaderKey(k);
-          if (!standardCols.has(nk) && String(v).trim() !== '') {
-            customElements.push(`${k.replace(/__\d+$/, '')}: ${v}`);
-          }
-        }
+        const prev = MOD_ABILITIES[id];
+        const mergedEffect = effR.value || prev?.effect || '';
 
         MOD_ABILITIES[id] = {
           ...baseA,
+          ...(prev || {}),
           id,
           name: rawName,
-          effect,
-          desc,
-          customElements
+          effect: mergedEffect,
+          sourceLabel: `${tabLabel} → ${effR.source || nameR.source || 'Abilities'}`
         };
 
-        const learnedByRaw = getField(row, strictManual ? [valOf('hdr_ability_learnedby')] : [valOf('hdr_ability_learnedby'), 'Learned By', 'Distribution', 'User', 'Pokemon', 'Pokémon'], !strictManual);
-        if (learnedByRaw) {
+        const learnedR = resolveField(
+          row,
+          strictManual
+            ? [valOf('hdr_ability_learnedby')]
+            : [valOf('hdr_ability_learnedby'), 'Learned By', 'Distribution', 'User', 'Pokemon', 'Pokémon'],
+          !strictManual
+        );
+
+        if (learnedR.value) {
+          if (learnedR.source) recordFieldSource('abilities', 'Learned By', tabLabel, learnedR.source);
           if (!MOD_ABILITY_LEARNERS[id]) MOD_ABILITY_LEARNERS[id] = new Set();
-          splitListItems(learnedByRaw).forEach(uName => {
+          splitListItems(learnedR.value).forEach(uName => {
             if (uName) MOD_ABILITY_LEARNERS[id].add(uName);
           });
+        } else if (isSharedWithPokemonTab) {
+          const monNameR = resolveField(
+            row,
+            strictManual ? [valOf('hdr_pokemon')] : [valOf('hdr_pokemon'), 'Fusion Name', 'Name', 'Pokemon', 'Pokémon'],
+            !strictManual
+          );
+          if (monNameR.value) {
+            if (!MOD_ABILITY_LEARNERS[id]) MOD_ABILITY_LEARNERS[id] = new Set();
+            MOD_ABILITY_LEARNERS[id].add(monNameR.value);
+          }
         }
       }
     }
 
-    function ingestFieldConditionRows(rows) {
-      for (const row of rows) {
-        const rawName = getField(row, [valOf('hdr_field_name')], false);
-        if (!rawName) continue;
-        const id = toId(rawName);
-        if (!id) continue;
-        const effect = getField(row, [valOf('hdr_field_effect')], false);
-        MOD_FIELD_CONDITIONS[id] = { name: rawName, effect };
-      }
-    }
-
-    function ingestWeatherConditionRows(rows) {
-      for (const row of rows) {
-        const rawName = getField(row, [valOf('hdr_weather_name')], false);
-        if (!rawName) continue;
-        const id = toId(rawName);
-        if (!id) continue;
-        const effect = getField(row, [valOf('hdr_weather_effect')], false);
-        MOD_WEATHER_CONDITIONS[id] = { name: rawName, effect };
-      }
-    }
-
-    function ingestItemRows(rows, strictManual = false) {
+    function ingestItemRows(rows, tabLabel = 'Sheet', strictManual = false) {
       if (!strictManual) autofillHeadersFromRows(rows, 'items');
+      SECTION_SOURCES.items.tab = tabLabel;
       for (const row of rows) {
-        const rawName = getField(row, strictManual ? [valOf('hdr_item_name')] : [valOf('hdr_item_name'), 'Item', 'Name', 'Item Name'], !strictManual);
-        if (!rawName) continue;
-        const id = toId(rawName);
+        const nameR = resolveField(row, strictManual ? [valOf('hdr_item_name')] : [valOf('hdr_item_name'), 'Item', 'Name', 'Item Name'], !strictManual);
+        if (!nameR.value) continue;
+        const id = toId(nameR.value);
         if (!id) continue;
         const baseI = BASE_ITEMS[id] || {};
-        const effect = getField(row, strictManual ? [valOf('hdr_item_effect')] : [valOf('hdr_item_effect'), 'Effect', 'Description', 'Desc', 'shortDesc', 'Notes'], !strictManual);
-        const desc = !strictManual ? getField(row, ['Description', 'Desc', 'Notes']) : '';
-        const flingPower = getField(row, strictManual ? [valOf('hdr_item_fling')] : [valOf('hdr_item_fling'), 'Fling Power', 'Fling'], !strictManual) || (strictManual ? '' : (baseI.fling ? baseI.fling.basePower : ''));
+        const effR = resolveField(row, strictManual ? [valOf('hdr_item_effect')] : [valOf('hdr_item_effect'), 'Effect', 'Description', 'Desc', 'shortDesc'], !strictManual);
+        const flingR = resolveField(row, strictManual ? [valOf('hdr_item_fling')] : [valOf('hdr_item_fling'), 'Fling Power', 'Fling'], !strictManual);
+
+        if (nameR.source) recordFieldSource('items', 'Item', tabLabel, nameR.source);
+        if (effR.source) recordFieldSource('items', 'Effect', tabLabel, effR.source);
+        if (flingR.source) recordFieldSource('items', 'Fling Power', tabLabel, flingR.source);
+
         MOD_ITEMS[id] = {
           ...baseI,
           id,
-          name: rawName,
-          effect,
-          desc,
-          flingPower
+          name: nameR.value,
+          effect: effR.value,
+          flingPower: flingR.value || (strictManual ? '' : (baseI.fling ? baseI.fling.basePower : '')),
+          sourceLabel: `${tabLabel} → ${effR.source || nameR.source}`
         };
-      }
-    }
-
-    function ingestMiscRows(rows) {
-      const colIds = ['hdr_misc_1', 'hdr_misc_2', 'hdr_misc_3', 'hdr_misc_4', 'hdr_misc_5'];
-      for (const row of rows) {
-        const mappedPairs = [];
-        colIds.forEach(cid => {
-          const hName = valOf(cid);
-          if (!hName) return;
-          const v = getField(row, [hName], false);
-          if (v) mappedPairs.push({ label: hName, value: v });
-        });
-        if (mappedPairs.length) {
-          MOD_MISC.push(mappedPairs);
-        }
       }
     }
 
@@ -1771,13 +1758,16 @@
       MOD_MOVES = {};
       MOD_ABILITIES = {};
       MOD_ITEMS = {};
-      MOD_FIELD_CONDITIONS = {};
-      MOD_WEATHER_CONDITIONS = {};
-      MOD_MISC = [];
       MOD_ADDED_MOVES = {};
       MOD_REMOVED_MOVES = {};
       MOD_FULL_LEARNSETS = {};
       MOD_ABILITY_LEARNERS = {};
+      SECTION_SOURCES = {
+        pokemon: { tab: '', fields: {} },
+        moves: { tab: '', fields: {} },
+        abilities: { tab: '', fields: {} },
+        items: { tab: '', fields: {} }
+      };
       SHEET_ORDER_COUNTER = 0;
       SELECTED_ID = null;
     }
@@ -1791,10 +1781,19 @@
       }
 
       statusBar.textContent = isManualFinalLoad
-        ? 'Running Final Load with your manual tab and header mappings...'
+        ? 'Running Final Load with your exact tab & header mappings...'
         : 'Running Initial Load and auto-detecting tabs & headers...';
       await ensureBaseShowdownData();
       resetModState();
+
+      const tabRowsCache = new Map();
+      const getTabRowsCached = async tabName => {
+        const key = tabName.toLowerCase();
+        if (tabRowsCache.has(key)) return tabRowsCache.get(key);
+        const promise = fetchSheetTab(parsed.sheetId, { sheetName: tabName }).catch(() => null);
+        tabRowsCache.set(key, promise);
+        return promise;
+      };
 
       const tryTabSection = async (tabInputId, sectionKey, ingestFn) => {
         const configuredName = valOf(tabInputId);
@@ -1803,46 +1802,43 @@
           : (configuredName ? [configuredName] : (sectionKey ? (TAB_CANDIDATE_ALIASES[sectionKey] || []) : []));
 
         for (const tabName of candidates) {
-          try {
-            const rows = await fetchSheetTab(parsed.sheetId, { sheetName: tabName });
-            if (rows && rows.length) {
-              if (!isManualFinalLoad) {
-                const tabEl = document.getElementById(tabInputId);
-                if (tabEl && !tabEl.value.trim()) tabEl.value = tabName;
-              }
-              ingestFn(rows, isManualFinalLoad);
-              return true;
+          const rows = await getTabRowsCached(tabName);
+          if (rows && rows.length) {
+            if (!isManualFinalLoad) {
+              const tabEl = document.getElementById(tabInputId);
+              if (tabEl && !tabEl.value.trim()) tabEl.value = tabName;
             }
-          } catch (_) {}
+            ingestFn(rows, tabName, isManualFinalLoad);
+            return true;
+          }
         }
         return false;
       };
 
       let loadedTabsCount = 0;
-      if (parsed.gid) {
+      if (await tryTabSection('tab_pokemon', 'pokemon', ingestPokemonRows)) loadedTabsCount++;
+
+      const otherResults = await Promise.all([
+        tryTabSection('tab_moves', 'moves', ingestMoveRows),
+        tryTabSection('tab_abilities', 'abilities', ingestAbilityRows),
+        tryTabSection('tab_items', 'items', ingestItemRows)
+      ]);
+      loadedTabsCount += otherResults.filter(Boolean).length;
+
+      if (!isManualFinalLoad && loadedTabsCount === 0 && parsed.gid) {
         try {
           const rows = await fetchSheetTab(parsed.sheetId, { gid: parsed.gid });
-          if (rows.length) {
+          if (rows && rows.length) {
+            const gidLabel = `gid:${parsed.gid}`;
             const kind = classifyTableType(rows);
-            if (kind === 'pokemon') ingestPokemonRows(rows, isManualFinalLoad);
-            else if (kind === 'moves') ingestMoveRows(rows, isManualFinalLoad);
-            else if (kind === 'abilities') ingestAbilityRows(rows, isManualFinalLoad);
-            else if (kind === 'items') ingestItemRows(rows, isManualFinalLoad);
+            if (kind === 'pokemon') ingestPokemonRows(rows, gidLabel, false);
+            else if (kind === 'moves') ingestMoveRows(rows, gidLabel, false);
+            else if (kind === 'abilities') ingestAbilityRows(rows, gidLabel, false);
+            else if (kind === 'items') ingestItemRows(rows, gidLabel, false);
             loadedTabsCount++;
           }
         } catch (_) {}
       }
-
-      const results = await Promise.all([
-        tryTabSection('tab_pokemon', 'pokemon', ingestPokemonRows),
-        tryTabSection('tab_moves', 'moves', ingestMoveRows),
-        tryTabSection('tab_abilities', 'abilities', ingestAbilityRows),
-        tryTabSection('tab_items', 'items', ingestItemRows),
-        tryTabSection('tab_field', null, ingestFieldConditionRows),
-        tryTabSection('tab_weather', null, ingestWeatherConditionRows),
-        tryTabSection('tab_misc', null, ingestMiscRows)
-      ]);
-      loadedTabsCount += results.filter(Boolean).length;
 
       const totalMons = Object.keys(MOD_DEX).length;
       const newMons = Object.values(MOD_DEX).filter(m => !m.isInherited).length;
@@ -1851,7 +1847,7 @@
       const itemCount = Object.keys(MOD_ITEMS).length;
       const loadModeLabel = isManualFinalLoad ? 'Final Load' : 'Initial Load';
 
-      if (loadedTabsCount === 0 && totalMons === 0 && moveCount === 0 && ablCount === 0 && itemCount === 0 && MOD_MISC.length === 0) {
+      if (loadedTabsCount === 0 && totalMons === 0 && moveCount === 0 && ablCount === 0 && itemCount === 0) {
         statusBar.textContent = `${loadModeLabel}: Could not read tabs. Ensure the sheet is shared as "Anyone with the link can view", check tab names, or use Paste TSV/CSV.`;
       } else {
         statusBar.textContent = `${loadModeLabel}: Loaded ${newMons} new Pokémon and ${totalMons - newMons} modded Pokémon (${moveCount} custom moves, ${ablCount} abilities, ${itemCount} items).`;
@@ -1885,11 +1881,12 @@
         return out;
       };
 
-      const headers = makeUniqueHeaders(splitRow(lines[0]));
+      const rawHeaders = splitRow(lines[0]);
+      const headers = makeUniqueHeaders(rawHeaders);
       const rows = [];
       for (let i = 1; i < lines.length; i++) {
         const vals = splitRow(lines[i]);
-        const obj = {};
+        const obj = { __rawCells: vals, __rawHeaders: rawHeaders };
         let hasContent = false;
         headers.forEach((h, idx) => {
           const v = vals[idx] || '';
@@ -1913,13 +1910,11 @@
 
       await ensureBaseShowdownData();
       const detected = target === 'auto' ? classifyTableType(rows) : target;
-      if (detected === 'pokemon') ingestPokemonRows(rows, false);
-      else if (detected === 'moves') ingestMoveRows(rows, false);
-      else if (detected === 'abilities') ingestAbilityRows(rows, false);
-      else if (detected === 'items') ingestItemRows(rows, false);
-      else if (detected === 'weather') ingestWeatherConditionRows(rows);
-      else if (detected === 'misc') ingestMiscRows(rows);
-      else ingestFieldConditionRows(rows);
+      const tabLabel = `Pasted (${detected})`;
+      if (detected === 'pokemon') ingestPokemonRows(rows, tabLabel, false);
+      else if (detected === 'moves') ingestMoveRows(rows, tabLabel, false);
+      else if (detected === 'abilities') ingestAbilityRows(rows, tabLabel, false);
+      else if (detected === 'items') ingestItemRows(rows, tabLabel, false);
 
       const totalMons = Object.keys(MOD_DEX).length;
       const newMons = Object.values(MOD_DEX).filter(m => !m.isInherited).length;
@@ -2007,61 +2002,24 @@
     }
 
     function getCustomMovesList() {
-      return Object.values(MOD_MOVES)
-        .map(m => ({
-          ...m,
-          descText: pickEffectFirstDescription(m)
-        }));
+      return Object.values(MOD_MOVES).map(m => ({
+        ...m,
+        descText: pickEffectFirstDescription(m)
+      }));
     }
 
     function getAbilitiesList() {
-      return Object.values(MOD_ABILITIES)
-        .map(a => ({
-          ...a,
-          descText: pickEffectFirstDescription(a)
-        }));
+      return Object.values(MOD_ABILITIES).map(a => ({
+        ...a,
+        descText: pickEffectFirstDescription(a)
+      }));
     }
 
     function getItemsList() {
-      return Object.values(MOD_ITEMS)
-        .map(it => ({
-          ...it,
-          descText: pickEffectFirstDescription(it)
-        }));
-    }
-
-    function getEffectsList() {
-      return Object.values(MOD_FIELD_CONDITIONS)
-        .map(c => ({
-          ...c,
-          descText: pickEffectFirstDescription(c)
-        }));
-    }
-
-    function getWeatherList(moveList) {
-      const items = Object.values(MOD_WEATHER_CONDITIONS).map(w => {
-        const text = pickEffectFirstDescription(w);
-        return text ? `${w.name} — ${text}` : w.name;
-      });
-      (moveList || []).forEach(m => {
-        if (m.weather && !items.includes(String(m.weather))) {
-          items.push(String(m.weather));
-        }
-      });
-      return items;
-    }
-
-    function getFieldList(moveList) {
-      const items = Object.values(MOD_FIELD_CONDITIONS).map(c => {
-        const text = pickEffectFirstDescription(c);
-        return text ? `${c.name} — ${text}` : c.name;
-      });
-      (moveList || []).forEach(m => {
-        if (m.terrain) items.push(`Terrain: ${m.terrain}`);
-        if (m.sideCondition) items.push(`Side Condition: ${m.sideCondition}`);
-        if (m.pseudoWeather) items.push(`Field Condition: ${m.pseudoWeather}`);
-      });
-      return [...new Set(items)];
+      return Object.values(MOD_ITEMS).map(it => ({
+        ...it,
+        descText: pickEffectFirstDescription(it)
+      }));
     }
 
     function getPokemonWithMove(moveId) {
@@ -2092,8 +2050,6 @@
       const q = document.getElementById('searchInput').value.trim().toLowerCase();
       const pane = document.getElementById('detailPane');
       const allMoves = getCustomMovesList();
-      const weatherItems = getWeatherList(allMoves);
-      const fieldItems = getFieldList(allMoves);
 
       if (ACTIVE_MODE === 'moves') {
         const moves = allMoves.filter(m =>
@@ -2105,7 +2061,6 @@
           String(m.target || '').toLowerCase().includes(q) ||
           String(m.priority || '').toLowerCase().includes(q) ||
           String(m.flags || '').toLowerCase().includes(q) ||
-          (m.customElements || []).join(' ').toLowerCase().includes(q) ||
           getPokemonWithMove(m.id).some(p => p.toLowerCase().includes(q))
         );
 
@@ -2113,28 +2068,27 @@
           ? moves.map(m => {
               const monsWithMove = getPokemonWithMove(m.id);
               const tfParts = [
-                m.target ? `Target: ${m.target}` : '',
-                m.flags ? `Flags: ${m.flags}` : ''
+                m.target ? `Target: ${escHtml(m.target)}` : '',
+                m.flags ? `Flags: ${escHtml(m.flags)}` : ''
               ].filter(Boolean).join(' / ');
-              const extras = m.customElements?.length ? `<div class="desc-text" style="margin-top:4px;">${m.customElements.join('  ')}</div>` : '';
               return `
                 <div class="custom-card">
                   <div class="custom-card-header">
                     <div>
-                      <strong>${m.name}</strong>
+                      <strong>${escHtml(m.name)}</strong>
                       <span class="move-meta-inline">
                         ${renderTypeIconHtml(m.type)}
                         ${renderCategoryIconHtml(m.category)}
-                        <span>${formatBpLabel(m.basePower)}</span>
-                        <span>${formatAccLabel(m.accuracy)}</span>
-                        <span>${formatPpLabel(m.pp)}</span>
-                        ${m.priority !== '' && m.priority !== undefined ? `<span>Priority: ${m.priority}</span>` : ''}
+                        <span>${escHtml(formatBpLabel(m.basePower))}</span>
+                        <span>${escHtml(formatAccLabel(m.accuracy))}</span>
+                        <span>${escHtml(formatPpLabel(m.pp))}</span>
+                        ${m.priority !== '' && m.priority !== undefined ? `<span>Priority: ${escHtml(m.priority)}</span>` : ''}
                       </span>
                     </div>
+                    ${m.sourceLabel ? `<span class="inline-source-tag">${escHtml(m.sourceLabel)}</span>` : ''}
                   </div>
                   ${tfParts ? `<div class="move-target-flags">${tfParts}</div>` : ''}
-                  ${m.descText ? `<div class="desc-text">${m.descText}</div>` : ''}
-                  ${extras}
+                  ${m.descText ? `<div class="desc-text">${escHtml(m.descText)}</div>` : ''}
                   ${renderCollapsibleMonList('Distribution', monsWithMove)}
                 </div>
               `;
@@ -2142,13 +2096,11 @@
           : '<div class="desc-text">No custom moves found.</div>';
 
         pane.innerHTML = `
+          ${renderSourceStripHtml('moves')}
           <div class="detail-header">
             <div><strong style="font-size:1.15rem;">Custom Moves (${moves.length})</strong></div>
           </div>
           <div class="section">${cardsHtml}</div>
-          ${renderCollapsibleWeatherSection(weatherItems)}
-          ${renderCollapsibleFieldSection(fieldItems)}
-          ${renderCollapsibleMiscSection(MOD_MISC)}
         `;
         return;
       }
@@ -2158,22 +2110,22 @@
           !q ||
           a.name.toLowerCase().includes(q) ||
           a.descText.toLowerCase().includes(q) ||
-          (a.customElements || []).join(' ').toLowerCase().includes(q) ||
           getPokemonWithAbility(a.id).some(p => p.toLowerCase().includes(q))
         );
 
         const cardsHtml = abilities.length
           ? abilities.map(a => {
               const monsWithAbl = getPokemonWithAbility(a.id);
-              const extras = a.customElements?.length ? `<div class="desc-text" style="margin-top:4px;">${a.customElements.join(' · ')}</div>` : '';
               return `
                 <div class="custom-card">
                   <div class="custom-card-header">
-                    <strong>${a.name}</strong>
-                    <span class="custom-badge">Ability</span>
+                    <div>
+                      <strong>${escHtml(a.name)}</strong>
+                      <span class="custom-badge">Ability</span>
+                    </div>
+                    ${a.sourceLabel ? `<span class="inline-source-tag">${escHtml(a.sourceLabel)}</span>` : ''}
                   </div>
-                  ${a.descText ? `<div class="desc-text">${a.descText}</div>` : ''}
-                  ${extras}
+                  ${a.descText ? `<div class="desc-text">${escHtml(a.descText)}</div>` : ''}
                   ${renderCollapsibleMonList('Distribution', monsWithAbl)}
                 </div>
               `;
@@ -2181,13 +2133,11 @@
           : '<div class="desc-text">No abilities found.</div>';
 
         pane.innerHTML = `
+          ${renderSourceStripHtml('abilities')}
           <div class="detail-header">
             <div><strong style="font-size:1.15rem;">Abilities (${abilities.length})</strong></div>
           </div>
           <div class="section">${cardsHtml}</div>
-          ${renderCollapsibleWeatherSection(weatherItems)}
-          ${renderCollapsibleFieldSection(fieldItems)}
-          ${renderCollapsibleMiscSection(MOD_MISC)}
         `;
         return;
       }
@@ -2205,107 +2155,23 @@
               <div class="custom-card">
                 <div class="custom-card-header">
                   <div>
-                    <strong>${it.name}</strong>
-                    ${it.flingPower !== '' && it.flingPower !== undefined ? `<span style="color:#ffcf70; margin-left:8px;">Fling Power: ${it.flingPower}</span>` : ''}
+                    <strong>${escHtml(it.name)}</strong>
+                    ${it.flingPower !== '' && it.flingPower !== undefined ? `<span style="color:#ffcf70; margin-left:8px;">Fling Power: ${escHtml(it.flingPower)}</span>` : ''}
                   </div>
-                  <span class="custom-badge">Item</span>
+                  <div>
+                    <span class="custom-badge">Item</span>
+                    ${it.sourceLabel ? `<span class="inline-source-tag">${escHtml(it.sourceLabel)}</span>` : ''}
+                  </div>
                 </div>
-                ${it.descText ? `<div class="desc-text">${it.descText}</div>` : ''}
+                ${it.descText ? `<div class="desc-text">${escHtml(it.descText)}</div>` : ''}
               </div>
             `).join('')
           : '<div class="desc-text">No items found.</div>';
 
         pane.innerHTML = `
+          ${renderSourceStripHtml('items')}
           <div class="detail-header">
             <div><strong style="font-size:1.15rem;">Items (${items.length})</strong></div>
-          </div>
-          <div class="section">${cardsHtml}</div>
-          ${renderCollapsibleWeatherSection(weatherItems)}
-          ${renderCollapsibleFieldSection(fieldItems)}
-          ${renderCollapsibleMiscSection(MOD_MISC)}
-        `;
-        return;
-      }
-
-      if (ACTIVE_MODE === 'effects') {
-        const effects = getEffectsList().filter(c =>
-          !q ||
-          c.name.toLowerCase().includes(q) ||
-          c.descText.toLowerCase().includes(q)
-        );
-
-        const cardsHtml = effects.length
-          ? effects.map(c => `
-              <div class="custom-card">
-                <div class="custom-card-header">
-                  <strong>${c.name}</strong>
-                  <span class="custom-badge">Effect / Field</span>
-                </div>
-                ${c.descText ? `<div class="desc-text">${c.descText}</div>` : ''}
-              </div>
-            `).join('')
-          : '<div class="desc-text">no new field condition found</div>';
-
-        pane.innerHTML = `
-          <div class="detail-header">
-            <div><strong style="font-size:1.15rem;">Effects &amp; Field Conditions (${effects.length})</strong></div>
-          </div>
-          <div class="section">${cardsHtml}</div>
-          ${renderCollapsibleWeatherSection(weatherItems)}
-          ${renderCollapsibleFieldSection(fieldItems)}
-          ${renderCollapsibleMiscSection(MOD_MISC)}
-        `;
-        return;
-      }
-
-      if (ACTIVE_MODE === 'weather') {
-        const filteredWeather = weatherItems.filter(w => !q || w.toLowerCase().includes(q));
-        const cardsHtml = filteredWeather.length
-          ? filteredWeather.map(w => `
-              <div class="custom-card">
-                <div class="custom-card-header">
-                  <strong>${w}</strong>
-                  <span class="custom-badge">Weather</span>
-                </div>
-              </div>
-            `).join('')
-          : '<div class="desc-text">no new field condition found</div>';
-
-        pane.innerHTML = `
-          <div class="detail-header">
-            <div><strong style="font-size:1.15rem;">Weather Conditions (${filteredWeather.length})</strong></div>
-          </div>
-          <div class="section">${cardsHtml}</div>
-          ${renderCollapsibleFieldSection(fieldItems)}
-          ${renderCollapsibleMiscSection(MOD_MISC)}
-        `;
-        return;
-      }
-
-      if (ACTIVE_MODE === 'misc') {
-        const filteredMisc = MOD_MISC.filter(pairs =>
-          !q || pairs.some(p => p.label.toLowerCase().includes(q) || p.value.toLowerCase().includes(q))
-        );
-
-        const cardsHtml = filteredMisc.length
-          ? filteredMisc.map(pairs => {
-              const titlePair = pairs[0];
-              const rest = pairs.slice(1);
-              return `
-                <div class="custom-card">
-                  <div class="custom-card-header">
-                    <strong>${titlePair ? titlePair.value : 'Entry'}</strong>
-                    ${titlePair ? `<span class="custom-badge">${titlePair.label}</span>` : ''}
-                  </div>
-                  ${rest.map(p => `<div class="desc-text"><strong>${p.label}:</strong> ${p.value}</div>`).join('')}
-                </div>
-              `;
-            }).join('')
-          : '<div class="desc-text">no new field condition found</div>';
-
-        pane.innerHTML = `
-          <div class="detail-header">
-            <div><strong style="font-size:1.15rem;">Misc (${filteredMisc.length})</strong></div>
           </div>
           <div class="section">${cardsHtml}</div>
         `;
@@ -2345,11 +2211,11 @@
               ${renderSpriteHtml(id, mon, mon.isInherited)}
               <div class="mon-info">
                 <div class="mon-top-row">
-                  <strong>${mon.name}</strong>
-                  <span class="mon-meta">${typesLabel || (mon.isInherited ? 'Modded' : 'New')}</span>
+                  <strong>${escHtml(mon.name)}</strong>
+                  <span class="mon-meta">${escHtml(typesLabel || (mon.isInherited ? 'Modded' : 'New'))}</span>
                 </div>
-                <div class="mon-spread">${formatMonSpread(mon)}</div>
-                <div class="mon-abilities-sub">${formatMonAbilitiesLine(mon)}</div>
+                <div class="mon-spread">${escHtml(formatMonSpread(mon))}</div>
+                <div class="mon-abilities-sub">${escHtml(formatMonAbilitiesLine(mon))}</div>
               </div>
             </div>
           `;
@@ -2398,19 +2264,12 @@
         basePower: m.basePower ?? '—',
         accuracy: m.accuracy === true ? '—' : (m.accuracy ?? '—'),
         pp: m.pp ?? '—',
-        target: m.target || '',
-        priority: m.priority ?? '',
-        flags: m.flags || '',
         descText: pickEffectFirstDescription(m),
-        weather: m.weather || '',
-        terrain: m.terrain || '',
-        sideCondition: m.sideCondition || '',
-        pseudoWeather: m.pseudoWeather || '',
         isCustom: Boolean(modM && !baseM),
         isModded: Boolean(modM),
         isAdded: addedSet.has(moveId),
         isRemoved: removedSet.has(moveId),
-        customElements: modM?.customElements || [],
+        sourceLabel: modM?.sourceLabel || '',
         sortBucket
       };
     }
@@ -2426,7 +2285,7 @@
         descText: pickEffectFirstDescription(a),
         isCustom: Boolean(modA && !baseA),
         isModded: Boolean(modA),
-        customElements: modA?.customElements || []
+        sourceLabel: modA?.sourceLabel || (baseA ? 'Base Showdown' : '')
       };
     }
 
@@ -2435,9 +2294,9 @@
       return moveList
         .sort((a, b) => (a.sortBucket - b.sortBucket) || a.name.localeCompare(b.name))
         .map(m => {
-          if (m.isRemoved) return `<span class="move-removed">${m.name}</span>`;
-          if (m.isAdded) return `<span class="move-added">${m.name}</span>`;
-          return m.name;
+          if (m.isRemoved) return `<span class="move-removed">${escHtml(m.name)}</span>`;
+          if (m.isAdded) return `<span class="move-added">${escHtml(m.name)}</span>`;
+          return escHtml(m.name);
         })
         .join(', ');
     }
@@ -2480,11 +2339,11 @@
       const bstDiff = origBst !== null ? (bst - origBst) : 0;
 
       const typesHtml = (mon.types || []).length
-        ? mon.types.map(t => `<span class="type-pill">${t}</span>`).join('')
+        ? mon.types.map(t => `<span class="type-pill">${escHtml(t)}</span>`).join('')
         : '';
 
       const weightHtml = mon.weight
-        ? `<span class="weight-badge">(${mon.weight})</span>`
+        ? `<span class="weight-badge">(${escHtml(mon.weight)})</span>`
         : '';
 
       const monTypesSet = new Set(mon.types || []);
@@ -2492,39 +2351,32 @@
       const { activeIds, addedIds, removedIds } = getLearnsetDiff(SELECTED_ID);
       const moveDetailsList = activeIds.map(mId => getMoveDetails(mId, addedIds, removedIds, monTypesSet));
       const customMovesInSet = moveDetailsList.filter(m => !m.isRemoved && (m.isCustom || m.isModded));
-      const weatherItems = getWeatherList(moveDetailsList);
-      const fieldItems = getFieldList(moveDetailsList);
 
       const physicalMoves = moveDetailsList.filter(m => m.category === 'Physical');
       const specialMoves = moveDetailsList.filter(m => m.category === 'Special');
       const statusMoves = moveDetailsList.filter(m => m.category !== 'Physical' && m.category !== 'Special');
 
       const abilitiesHtml = abilitySlots.length
-        ? abilitySlots.map(a => {
-            const elemNote = a.customElements.length ? ` [${a.customElements.join(' · ')}]` : '';
-            return `
-              <div class="entry-row">
-                <strong>${a.name}</strong>${a.isCustom ? '<span class="custom-badge">Custom</span>' : (a.isModded ? '<span class="custom-badge">Modded</span>' : '')}
-                ${a.descText ? `— <span class="desc-text">${a.descText}</span>` : ''}${elemNote ? `<span class="desc-text">${elemNote}</span>` : ''}
-              </div>
-            `;
-          }).join('')
-        : '';
+        ? abilitySlots.map(a => `
+            <div class="entry-row">
+              <strong>${escHtml(a.name)}</strong>${a.isCustom ? '<span class="custom-badge">Custom</span>' : (a.isModded ? '<span class="custom-badge">Modded</span>' : '')}${a.sourceLabel ? `<span class="inline-source-tag">${escHtml(a.sourceLabel)}</span>` : ''}
+              ${a.descText ? `<div class="desc-text" style="margin-top:2px;">${escHtml(a.descText)}</div>` : ''}
+            </div>
+          `).join('')
+        : '<div class="desc-text">No abilities mapped.</div>';
 
-      const customElementsHtml = (mon.customElements || []).length
-        ? `<div class="entry-row"><strong>Pokémon Elements:</strong> <span class="desc-text">${mon.customElements.join(' · ')}</span></div>`
-        : '';
-
-      const customMovesHtml = customMovesInSet.length
-        ? customMovesInSet.map(m => {
-            const elemNote = m.customElements.length ? ` [${m.customElements.join(' · ')}]` : '';
-            return `
+      const customMovesSectionHtml = customMovesInSet.length
+        ? `
+          <div class="section">
+            <h2>Custom / Modded Moves (${customMovesInSet.length})</h2>
+            ${customMovesInSet.map(m => `
               <div class="entry-row">
-                <strong>${m.name}</strong> (${m.type} · ${m.category} · ${m.basePower} BP · ${m.accuracy}% Acc · ${m.pp} PP)${m.isCustom ? '<span class="custom-badge">Custom</span>' : '<span class="custom-badge">Modded</span>'}
-                ${m.descText ? `— <span class="desc-text">${m.descText}</span>` : ''}${elemNote ? `<span class="desc-text">${elemNote}</span>` : ''}
+                <strong>${escHtml(m.name)}</strong> (${escHtml(m.type)} · ${escHtml(m.category)} · ${escHtml(m.basePower)} BP · ${escHtml(m.accuracy)}% Acc · ${escHtml(m.pp)} PP)${m.isCustom ? '<span class="custom-badge">Custom</span>' : '<span class="custom-badge">Modded</span>'}${m.sourceLabel ? `<span class="inline-source-tag">${escHtml(m.sourceLabel)}</span>` : ''}
+                ${m.descText ? `<div class="desc-text" style="margin-top:2px;">${escHtml(m.descText)}</div>` : ''}
               </div>
-            `;
-          }).join('')
+            `).join('')}
+          </div>
+        `
         : '';
 
       const legendHtml = mon.isInherited
@@ -2532,11 +2384,12 @@
         : '';
 
       pane.innerHTML = `
+        ${renderSourceStripHtml('pokemon')}
         <div class="detail-header">
           <div class="detail-title-wrap">
             ${renderDetailSpriteHtml(SELECTED_ID, mon)}
             <div>
-              <strong style="font-size:1.15rem;">${mon.name}</strong>
+              <strong style="font-size:1.15rem;">${escHtml(mon.name)}</strong>
               ${weightHtml}
             </div>
           </div>
@@ -2571,11 +2424,7 @@
           </div>
         </div>
 
-        <div class="section">
-          <h2>Custom / Modded Moves &amp; Elements</h2>
-          ${customElementsHtml}
-          ${customMovesHtml}
-        </div>
+        ${customMovesSectionHtml}
 
         <div class="section">
           <h2>Moves (${moveDetailsList.length - removedIds.size})</h2>
@@ -2593,10 +2442,6 @@
             <div class="moves-line">${formatCommaMoves(statusMoves)}</div>
           </div>
         </div>
-
-        ${renderCollapsibleWeatherSection(weatherItems)}
-        ${renderCollapsibleFieldSection(fieldItems)}
-        ${renderCollapsibleMiscSection(MOD_MISC)}
       `;
     }
 
@@ -2625,9 +2470,6 @@
     document.getElementById('btnCustomMoves').addEventListener('click', () => setMode('moves'));
     document.getElementById('btnAbilities').addEventListener('click', () => setMode('abilities'));
     document.getElementById('btnItems').addEventListener('click', () => setMode('items'));
-    document.getElementById('btnEffects').addEventListener('click', () => setMode('effects'));
-    document.getElementById('btnWeather').addEventListener('click', () => setMode('weather'));
-    document.getElementById('btnMisc').addEventListener('click', () => setMode('misc'));
 
     document.getElementById('togglePasteBtn').addEventListener('click', () => {
       document.getElementById('pasteDrawer').classList.toggle('open');
