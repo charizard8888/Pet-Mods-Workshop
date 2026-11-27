@@ -330,6 +330,13 @@
       return String(str || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
     }
 
+    function pickDescription(obj) {
+      if (!obj) return '';
+      if (typeof obj.shortDesc === 'string' && obj.shortDesc.trim()) return obj.shortDesc.trim();
+      if (typeof obj.desc === 'string' && obj.desc.trim()) return obj.desc.trim();
+      return '';
+    }
+
     function normalizeModUrl(raw) {
       let clean = String(raw || '').trim().replace(/\/+$/, '');
       if (clean.includes('github.com/') && clean.includes('/tree/')) {
@@ -437,7 +444,7 @@
         const propMatch = line.match(/^([a-zA-Z0-9_]+)\s*:\s*(.+?)(?:,\s*)?$/);
         if (propMatch) {
           const prop = propMatch[1];
-          let valRaw = propMatch[2];
+          const valRaw = propMatch[2];
           if ((valRaw.startsWith('"') && valRaw.endsWith('"')) ||
               (valRaw.startsWith("'") && valRaw.endsWith("'")) ||
               (valRaw.startsWith('`') && valRaw.endsWith('`'))) {
@@ -809,7 +816,7 @@
         basePower: m.basePower ?? '—',
         accuracy: m.accuracy === true ? '—' : (m.accuracy ?? '—'),
         pp: m.pp ?? '—',
-        shortDesc: m.shortDesc || m.desc || '',
+        descText: pickDescription(m),
         isCustom: Boolean(modM && !modM.inherit && !baseM),
         isModded: Boolean(modM),
         isAdded: addedSet.has(moveId),
@@ -827,7 +834,7 @@
       return {
         id,
         name: a.name || abilityNameOrId,
-        shortDesc: a.shortDesc || a.desc || '',
+        descText: pickDescription(a),
         isCustom: Boolean(modA && !modA.inherit && !baseA),
         isModded: Boolean(modA),
         customElements: extractCustomElements(modA, BASE_KNOWN_KEYS.abilities, baseA)
@@ -902,7 +909,7 @@
             return `
               <div class="entry-row">
                 <strong>${a.name}</strong>${a.isCustom ? '<span class="custom-badge">Custom</span>' : (a.isModded ? '<span class="custom-badge">Modded</span>' : '')}
-                ${a.shortDesc ? `— <span class="desc-text">${a.shortDesc}</span>` : ''}${elemNote ? `<span class="desc-text">${elemNote}</span>` : ''}
+                ${a.descText ? `— <span class="desc-text">${a.descText}</span>` : ''}${elemNote ? `<span class="desc-text">${elemNote}</span>` : ''}
               </div>
             `;
           }).join('')
@@ -918,7 +925,7 @@
             return `
               <div class="entry-row">
                 <strong>${m.name}</strong> (${m.type} · ${m.category} · ${m.basePower} BP · ${m.accuracy}% Acc · ${m.pp} PP)${m.isCustom ? '<span class="custom-badge">Custom</span>' : '<span class="custom-badge">Modded</span>'}
-                ${m.shortDesc ? `— <span class="desc-text">${m.shortDesc}</span>` : ''}${elemNote ? `<span class="desc-text">${elemNote}</span>` : ''}
+                ${m.descText ? `— <span class="desc-text">${m.descText}</span>` : ''}${elemNote ? `<span class="desc-text">${elemNote}</span>` : ''}
               </div>
             `;
           }).join('')
