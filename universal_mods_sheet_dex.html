@@ -94,6 +94,12 @@
       padding-bottom: 2px;
       margin-top: 3px;
     }
+    .map-hint-note {
+      grid-column: 1 / -1;
+      font-size: 0.72rem;
+      color: #9aa0a6;
+      margin: 2px 0 3px 0;
+    }
     .map-field {
       display: flex;
       justify-content: space-between;
@@ -580,6 +586,7 @@
       <label class="map-field">Moves Tab: <input type="text" id="tab_moves" class="map-input" value="" placeholder="Moves / Custom Moves"></label>
       <label class="map-field">Abilities Tab: <input type="text" id="tab_abilities" class="map-input" value="" placeholder="Abilities / List of Fusions"></label>
       <label class="map-field">Items Tab: <input type="text" id="tab_items" class="map-input" value="" placeholder="Items"></label>
+      <div class="map-hint-note">Tabs = Sheets like Sheet 1 or Pokedex, Sheet 2 or Custom Moves</div>
 
       <div class="map-group-title">Pokémon Headers (Header Name or Column Letter e.g. K, L, M)</div>
       <label class="map-field">Pokemon: <input type="text" id="hdr_pokemon" class="map-input" value="" placeholder="Name or A"></label>
@@ -603,7 +610,7 @@
       <label class="map-field">Movepool Additions (Opt): <input type="text" id="hdr_movepool_add" class="map-input" value="" placeholder=""></label>
       <label class="map-field">Movepool Removals (Opt): <input type="text" id="hdr_movepool_rem" class="map-input" value="" placeholder=""></label>
 
-      <div class="map-group-title">Moves Headers</div>
+      <div class="map-group-title">Custom Moves Headers</div>
       <label class="map-field">Move Name: <input type="text" id="hdr_movename" class="map-input" value="" placeholder=""></label>
       <label class="map-field">Type: <input type="text" id="hdr_move_type" class="map-input" value="" placeholder=""></label>
       <label class="map-field">BP: <input type="text" id="hdr_bp" class="map-input" value="" placeholder=""></label>
@@ -616,12 +623,12 @@
       <label class="map-field">Effect: <input type="text" id="hdr_move_effect" class="map-input" value="" placeholder=""></label>
       <label class="map-field">Learned By: <input type="text" id="hdr_move_learnedby" class="map-input" value="" placeholder=""></label>
 
-      <div class="map-group-title">Abilities Headers</div>
+      <div class="map-group-title">Custom Abilities Headers</div>
       <label class="map-field">Ability Name: <input type="text" id="hdr_abilityname" class="map-input" value="" placeholder="Fused Ability / Name"></label>
       <label class="map-field">Effect: <input type="text" id="hdr_ability_effect" class="map-input" value="" placeholder="Ability Effect / Effect"></label>
       <label class="map-field">Learned By: <input type="text" id="hdr_ability_learnedby" class="map-input" value="" placeholder="Optional if shared tab"></label>
 
-      <div class="map-group-title">Items Headers</div>
+      <div class="map-group-title">Custom Items Headers</div>
       <label class="map-field">Item: <input type="text" id="hdr_item_name" class="map-input" value="" placeholder=""></label>
       <label class="map-field">Effect: <input type="text" id="hdr_item_effect" class="map-input" value="" placeholder=""></label>
       <label class="map-field">Fling Power: <input type="text" id="hdr_item_fling" class="map-input" value="" placeholder=""></label>
@@ -681,6 +688,150 @@
     const CATEGORY_ICON_BASE = 'https://play.pokemonshowdown.com/sprites/categories';
     const TYPE_ICON_BASE = 'https://play.pokemonshowdown.com/sprites/types';
     const PRESET_STORAGE_KEY = 'petmods_dex_saved_combos_v1';
+
+    const BUILTIN_PRESETS = {
+      "Fusion Revolution": {
+        "name": "Fusion Revolution",
+        "sheetUrl": "https://docs.google.com/spreadsheets/d/1l2bDNkESngmeoNFcVRfHj4cf-8AM0TIoprZu2m2xM-U/edit?gid=0#gid=0",
+        "mapping": {
+          "tab_pokemon": "List of Fusions",
+          "tab_moves": "",
+          "tab_abilities": "List of Fusions",
+          "tab_items": "",
+          "hdr_pokemon": "Fusion Name",
+          "hdr_sprites": "Sprite",
+          "hdr_types_combined": "",
+          "hdr_type1": "Type 1",
+          "hdr_type2": "Type 2",
+          "hdr_abilities_combined": "",
+          "hdr_ability1": "Fused Ability",
+          "hdr_ability2": "",
+          "hdr_ability3": "",
+          "hdr_stats_combined": "",
+          "hdr_hp": "HP",
+          "hdr_atk": "Atk",
+          "hdr_def": "Def",
+          "hdr_spa": "SpA",
+          "hdr_spd": "SpD",
+          "hdr_spe": "Spe",
+          "hdr_weight": "",
+          "hdr_learnset": "",
+          "hdr_movepool_add": "",
+          "hdr_movepool_rem": "",
+          "hdr_movename": "",
+          "hdr_move_type": "",
+          "hdr_bp": "",
+          "hdr_pp": "",
+          "hdr_acc": "",
+          "hdr_category": "",
+          "hdr_target": "",
+          "hdr_priority": "",
+          "hdr_flags": "",
+          "hdr_move_effect": "",
+          "hdr_move_learnedby": "",
+          "hdr_abilityname": "Fused Ability",
+          "hdr_ability_effect": "Ability Effect",
+          "hdr_ability_learnedby": "",
+          "hdr_item_name": "",
+          "hdr_item_effect": "",
+          "hdr_item_fling": ""
+        }
+      },
+      "Deltamon": {
+        "name": "Deltamon",
+        "sheetUrl": "https://docs.google.com/spreadsheets/d/1BEBnhDP6YXtgm3b-lXv4wIK7_mC847meN7O31AIAqVw/edit?gid=911103197#gid=911103197",
+        "mapping": {
+          "tab_pokemon": "Pokedex",
+          "tab_moves": "New Moves",
+          "tab_abilities": "New Abilities",
+          "tab_items": "New Items",
+          "hdr_pokemon": "Name",
+          "hdr_sprites": "Sprite",
+          "hdr_types_combined": "",
+          "hdr_type1": "Type 1",
+          "hdr_type2": "Type 2",
+          "hdr_abilities_combined": "",
+          "hdr_ability1": "Ability A",
+          "hdr_ability2": "Ability B",
+          "hdr_ability3": "Hidden Ability",
+          "hdr_stats_combined": "",
+          "hdr_hp": "HP",
+          "hdr_atk": "Atk",
+          "hdr_def": "Def",
+          "hdr_spa": "SpA",
+          "hdr_spd": "SpD",
+          "hdr_spe": "Spe",
+          "hdr_weight": "",
+          "hdr_learnset": "Movepool",
+          "hdr_movepool_add": "",
+          "hdr_movepool_rem": "",
+          "hdr_movename": "Move Name",
+          "hdr_move_type": "Type",
+          "hdr_bp": "Power",
+          "hdr_pp": "Base PP",
+          "hdr_acc": "Accuracy",
+          "hdr_category": "Category",
+          "hdr_target": "Target",
+          "hdr_priority": "",
+          "hdr_flags": "Properties",
+          "hdr_move_effect": "Effect",
+          "hdr_move_learnedby": "Learned By",
+          "hdr_abilityname": "Name",
+          "hdr_ability_effect": "Effect",
+          "hdr_ability_learnedby": "Learned By",
+          "hdr_item_name": "Name",
+          "hdr_item_effect": "Effect",
+          "hdr_item_fling": "Fling Power"
+        }
+      },
+      "Macrometa": {
+        "name": "Macrometa",
+        "sheetUrl": "https://docs.google.com/spreadsheets/d/1oat2S7xQgcG5UFYooZ8eFH5G0eJg2OOc_Vp6_h0t6ww/edit?gid=1434341628#gid=1434341628",
+        "mapping": {
+          "tab_pokemon": "Pokedex",
+          "tab_moves": "",
+          "tab_abilities": "",
+          "tab_items": "",
+          "hdr_pokemon": "Name",
+          "hdr_sprites": "",
+          "hdr_types_combined": "",
+          "hdr_type1": "K",
+          "hdr_type2": "L",
+          "hdr_abilities_combined": "",
+          "hdr_ability1": "M",
+          "hdr_ability2": "N",
+          "hdr_ability3": "O",
+          "hdr_stats_combined": "",
+          "hdr_hp": "HP",
+          "hdr_atk": "ATK",
+          "hdr_def": "DEF",
+          "hdr_spa": "SPA",
+          "hdr_spd": "SPD",
+          "hdr_spe": "SPE",
+          "hdr_weight": "kg",
+          "hdr_learnset": "Moves",
+          "hdr_movepool_add": "",
+          "hdr_movepool_rem": "",
+          "hdr_movename": "",
+          "hdr_move_type": "",
+          "hdr_bp": "",
+          "hdr_pp": "",
+          "hdr_acc": "",
+          "hdr_category": "",
+          "hdr_target": "",
+          "hdr_priority": "",
+          "hdr_flags": "",
+          "hdr_move_effect": "",
+          "hdr_move_learnedby": "",
+          "hdr_abilityname": "",
+          "hdr_ability_effect": "",
+          "hdr_ability_learnedby": "",
+          "hdr_item_name": "",
+          "hdr_item_effect": "",
+          "hdr_item_fling": ""
+        }
+      }
+    };
 
     const MAPPING_INPUT_IDS = [
       'tab_pokemon', 'tab_moves', 'tab_abilities', 'tab_items',
@@ -805,18 +956,27 @@
     }
 
     function getSavedCombos() {
+      let stored = {};
       try {
         const raw = localStorage.getItem(PRESET_STORAGE_KEY);
         const parsed = raw ? JSON.parse(raw) : {};
-        return parsed && typeof parsed === 'object' ? parsed : {};
-      } catch {
-        return {};
-      }
+        if (parsed && typeof parsed === 'object') stored = parsed;
+      } catch {}
+      return { ...BUILTIN_PRESETS, ...stored };
     }
 
     function persistCombos(combosObj) {
       try {
         localStorage.setItem(PRESET_STORAGE_KEY, JSON.stringify(combosObj));
+      } catch {}
+    }
+
+    function ensureBuiltinPresetsSeeded() {
+      try {
+        const raw = localStorage.getItem(PRESET_STORAGE_KEY);
+        const parsed = raw ? JSON.parse(raw) : {};
+        const merged = { ...BUILTIN_PRESETS, ...(parsed && typeof parsed === 'object' ? parsed : {}) };
+        localStorage.setItem(PRESET_STORAGE_KEY, JSON.stringify(merged));
       } catch {}
     }
 
@@ -880,7 +1040,7 @@
       const combos = getSavedCombos();
       if (combos[name]) {
         applyComboObject(combos[name]);
-        document.getElementById('statusBar').textContent = `Loaded saved combo "${name}".`;
+        document.getElementById('statusBar').textContent = `Loaded saved combo "${name}". Click Final Load to load the sheet.`;
       }
     }
 
@@ -2476,6 +2636,7 @@
     });
     document.getElementById('parsePasteBtn').addEventListener('click', handlePasteImport);
 
+    ensureBuiltinPresetsSeeded();
     refreshComboDropdown();
     syncModeButtons();
     ensureBaseShowdownData();
