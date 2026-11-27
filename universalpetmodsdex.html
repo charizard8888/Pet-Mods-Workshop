@@ -7,88 +7,150 @@
     body {
       font-family: monospace;
       margin: 0;
-      padding: 18px 22px;
+      padding: 16px 20px;
       background: #121212;
       color: #e0e0e0;
       box-sizing: border-box;
     }
     h1 {
       font-size: 1.3rem;
-      margin: 0 0 12px 0;
-      padding-bottom: 8px;
+      margin: 0 0 10px 0;
+      padding-bottom: 6px;
       border-bottom: 1px solid #333;
     }
-    .toolbar {
+    .top-url-bar {
       background: #181818;
       border: 1px solid #333;
-      padding: 10px 12px;
-      margin-bottom: 12px;
+      padding: 8px 10px;
+      margin-bottom: 8px;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-    }
-    .toolbar-right {
-      margin-left: auto;
-      flex: 1 1 54%;
-      min-width: 380px;
-      display: flex;
-      flex-wrap: nowrap;
-      gap: 10px;
+      gap: 8px;
       align-items: center;
     }
     .url-label {
       flex: 1 1 auto;
-      min-width: 0;
+      min-width: 260px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       white-space: nowrap;
     }
+    .nav-toolbar {
+      background: #181818;
+      border: 1px solid #333;
+      padding: 8px 10px;
+      margin-bottom: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
     label {
-      font-size: 0.88rem;
+      font-size: 0.82rem;
       color: #ccc;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
     }
-    input[type="text"], select {
+    input[type="text"], select, textarea {
       background: #1e1e1e;
       color: #fff;
       border: 1px solid #444;
       padding: 5px 8px;
       font-family: monospace;
-      font-size: 0.9rem;
+      font-size: 0.86rem;
       box-sizing: border-box;
     }
     input.url-input {
       width: 100%;
-      min-width: 320px;
+      min-width: 260px;
     }
-    input.search-input { width: 210px; }
+    input.search-input { width: 320px; }
     button {
       background: #2b2b2b;
       color: #fff;
       border: 1px solid #555;
-      padding: 5px 11px;
+      padding: 5px 10px;
       font-family: monospace;
-      font-size: 0.88rem;
+      font-size: 0.82rem;
       cursor: pointer;
       white-space: nowrap;
       flex-shrink: 0;
     }
     button:hover { background: #3b3b3b; }
-    .status {
+    button.mode-active {
+      background: #25382a;
+      border-color: #6fcf8b;
+      color: #8ce3a4;
+      font-weight: bold;
+    }
+    button.export-btn {
+      background: #1f2e3d;
+      border-color: #5b8ec9;
+      color: #a8d1ff;
+      font-weight: bold;
+    }
+    button.export-btn:hover {
+      background: #283c50;
+    }
+    .export-drawer {
+      background: #161616;
+      border: 1px solid #384a5e;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+      display: none;
+    }
+    .export-drawer.open {
+      display: block;
+    }
+    .export-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .export-title {
       font-size: 0.88rem;
+      font-weight: bold;
+      color: #8ab4f8;
+    }
+    .export-sub {
+      font-size: 0.76rem;
       color: #aaa;
-      margin-bottom: 12px;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+    .export-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+    .export-textarea {
+      width: 100%;
+      height: 190px;
+      resize: vertical;
+      font-size: 0.78rem;
+      color: #d6e4ff;
+      background: #111;
+      line-height: 1.4;
+    }
+    .status {
+      font-size: 0.86rem;
+      color: #aaa;
+      margin-bottom: 10px;
     }
     .layout {
       display: grid;
-      grid-template-columns: 320px minmax(0, 1fr);
+      grid-template-columns: 20% 80%;
       gap: 14px;
       align-items: start;
     }
     @media (max-width: 820px) {
       .layout { grid-template-columns: 1fr; }
-      .toolbar-right { flex: 1 1 100%; min-width: 0; }
     }
     .mon-list {
       background: #181818;
@@ -97,41 +159,67 @@
       overflow-y: auto;
     }
     .group-header {
-      padding: 6px 10px;
+      padding: 6px 8px;
       background: #202020;
       color: #ffcc66;
       font-weight: bold;
-      font-size: 0.8rem;
+      font-size: 0.76rem;
       border-bottom: 1px solid #333;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
     .mon-item {
-      padding: 7px 10px;
+      padding: 7px 8px;
       border-bottom: 1px solid #262626;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.88rem;
+      align-items: flex-start;
+      gap: 6px;
+      font-size: 0.82rem;
     }
     .mon-left {
       display: flex;
-      align-items: center;
-      gap: 8px;
+      align-items: flex-start;
+      gap: 6px;
       min-width: 0;
+      flex: 1 1 auto;
+    }
+    .mon-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+      word-break: break-word;
+    }
+    .mon-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    .mon-spread {
+      font-size: 0.74rem;
+      color: #d6e4ff;
+      line-height: 1.25;
+    }
+    .mon-abilities-sub {
+      font-size: 0.69rem;
+      color: #a8a8a8;
+      line-height: 1.25;
     }
     .sprite-slot {
-      width: 34px;
+      width: 28px;
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding-top: 1px;
     }
     .mon-item:hover { background: #222; }
     .mon-item.active { background: #293229; border-left: 3px solid #6fcf8b; }
-    .mon-meta { font-size: 0.75rem; color: #ffcf70; white-space: nowrap; }
+    .mon-meta { font-size: 0.7rem; color: #ffcf70; white-space: nowrap; }
     .detail-pane {
       background: #181818;
       border: 1px solid #333;
@@ -150,8 +238,15 @@
       align-items: center;
       gap: 10px;
     }
+    .weight-badge {
+      font-size: 0.78rem;
+      color: #bbb;
+      margin-left: 8px;
+    }
     .type-pill {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
       padding: 2px 8px;
       border-radius: 3px;
       font-size: 0.78rem;
@@ -171,17 +266,37 @@
       margin: 0 0 8px 0;
       color: #ffcc66;
     }
-    .section h3 {
-      font-size: 0.9rem;
-      margin: 10px 0 6px 0;
-      color: #8ab4f8;
+    details.collapsible-section > summary {
+      list-style: none;
+      cursor: pointer;
+      user-select: none;
+      font-size: 0.88rem;
+      font-weight: bold;
+      color: #ffcc66;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    details.collapsible-section > summary::-webkit-details-marker {
+      display: none;
+    }
+    details.collapsible-section > summary::before {
+      content: '▸';
+      font-size: 0.85rem;
+      color: #ffcc66;
+    }
+    details.collapsible-section[open] > summary::before {
+      content: '▾';
+    }
+    details.collapsible-section .collapsible-body {
+      margin-top: 6px;
     }
     .dex-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
       gap: 14px;
     }
-    @media (max-width: 700px) {
+    @media (max-width: 820px) {
       .dex-grid { grid-template-columns: 1fr; }
     }
     .dex-box {
@@ -192,21 +307,22 @@
     .stat-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.84rem;
+      font-size: 0.82rem;
     }
     .stat-table td {
-      padding: 4px 6px;
+      padding: 4px 5px;
       vertical-align: middle;
     }
-    .stat-label { width: 48px; color: #bbb; font-weight: bold; }
-    .stat-num { width: 36px; text-align: right; color: #fff; font-weight: bold; }
-    .stat-diff { width: 44px; text-align: right; font-weight: bold; font-size: 0.8rem; }
+    .stat-label { width: 42px; color: #bbb; font-weight: bold; }
+    .stat-num { width: 34px; text-align: right; color: #fff; font-weight: bold; }
+    .stat-diff { width: 38px; text-align: right; font-weight: bold; font-size: 0.78rem; }
+    .stat-bar-cell { width: 195px; max-width: 210px; }
     .diff-pos { color: #6fcf8b; }
     .diff-neg { color: #e07a7a; }
     .stat-bar-bg {
       background: #232323;
       height: 10px;
-      width: 100%;
+      width: 185px;
       border-radius: 2px;
       overflow: hidden;
     }
@@ -220,6 +336,19 @@
       color: #ffcf70;
       font-weight: bold;
     }
+    .speed-tier-box {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid #262626;
+      font-size: 0.8rem;
+      color: #c8d6e8;
+      line-height: 1.45;
+    }
+    .speed-tier-title {
+      font-weight: bold;
+      color: #ffcc66;
+      margin-bottom: 2px;
+    }
     .entry-row {
       margin: 6px 0;
       padding: 6px 8px;
@@ -227,6 +356,51 @@
       border: 1px solid #262626;
       line-height: 1.45;
       font-size: 0.86rem;
+    }
+    .custom-card {
+      margin: 10px 0;
+      padding: 10px 12px;
+      background: #151515;
+      border: 1px solid #2c2c2c;
+      line-height: 1.5;
+      font-size: 0.88rem;
+    }
+    .custom-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    .move-meta-inline {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-left: 8px;
+      color: #ffcf70;
+      vertical-align: middle;
+      flex-wrap: wrap;
+    }
+    .move-target-flags {
+      font-size: 0.8rem;
+      color: #c7d4e6;
+      margin-top: 3px;
+    }
+    .type-icon-img {
+      height: 14px;
+      width: auto;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .mon-recipients-box {
+      margin-top: 8px;
+      padding: 8px 10px;
+      background: #121212;
+      border: 1px solid #242424;
+      font-size: 0.82rem;
+      color: #d0d0d0;
+      line-height: 1.5;
     }
     .custom-badge {
       display: inline-block;
@@ -280,16 +454,35 @@
 
   <h1>Universal Pokémon Showdown Pet Mods Dex</h1>
 
-  <div class="toolbar">
-    <label>Search:
-      <input type="text" id="searchInput" class="search-input" placeholder="Name, type, move, ability...">
+  <div class="top-url-bar">
+    <label class="url-label">Mod Base URL:
+      <input type="text" id="modUrl" class="url-input" value="https://raw.githubusercontent.com/scoopapa/DH2/main/data/mods/worldbuilding">
     </label>
-    <label>View:
-      <select id="viewSelect">
-        <option value="pokemon" selected>Pokémon</option>
-        <option value="moves">Custom Moves</option>
-        <option value="abilities">Custom Abilities</option>
-      </select>
+    <button id="loadBtn" type="button">Load Mod Data</button>
+    <button id="exportSheetBtn" type="button" class="export-btn">Exporting Data to Spreadsheet</button>
+  </div>
+
+  <div class="export-drawer" id="exportDrawer">
+    <div class="export-header">
+      <span class="export-title">Export Mod Data to Google Sheets (Multi-Tab Apps Script &amp; TSV)</span>
+      <div class="export-actions">
+        <button type="button" id="copyAppsScriptBtn" class="export-btn">Click to Copy Google Apps Script</button>
+        <button type="button" id="copyPokedexTsvBtn">Copy Pokedex TSV</button>
+        <button type="button" id="copyMovesTsvBtn">Copy Moves TSV</button>
+        <button type="button" id="copyAbilitiesTsvBtn">Copy Abilities TSV</button>
+        <button type="button" id="copyItemsTsvBtn">Copy Items TSV</button>
+        <button type="button" id="closeExportBtn">Close</button>
+      </div>
+    </div>
+    <div class="export-sub">
+      In Google Sheets, open <strong>Extensions → Apps Script</strong>, paste this raw code, and click <strong>Run</strong> (`exportPetModToSheets`). It automatically creates and populates 4 tabs (<code>Pokedex</code>, <code>Custom Moves</code>, <code>Custom Abilities</code>, <code>Custom Items</code>) with clean headers.
+    </div>
+    <textarea id="exportCodeBox" class="export-textarea" readonly></textarea>
+  </div>
+
+  <div class="nav-toolbar">
+    <label>Search:
+      <input type="text" id="searchInput" class="search-input" placeholder="Name, type, move, ability, item...">
     </label>
     <label id="scopeLabel">Scope:
       <select id="scopeSelect">
@@ -297,17 +490,15 @@
         <option value="new">New Pokémon Only</option>
       </select>
     </label>
-    <div class="toolbar-right">
-      <label class="url-label">Mod Base URL:
-        <input type="text" id="modUrl" class="url-input" value="https://raw.githubusercontent.com/scoopapa/DH2/main/data/mods/worldbuilding">
-      </label>
-      <button id="loadBtn">Load Mod Data</button>
-    </div>
+    <button id="btnPokemon" type="button" class="mode-active">Pokémon</button>
+    <button id="btnCustomMoves" type="button">Custom Moves</button>
+    <button id="btnCustomAbilities" type="button">Custom Abilities</button>
+    <button id="btnCustomItems" type="button">Custom Items</button>
   </div>
 
   <div class="status" id="statusBar">Loading base Showdown reference and mod data...</div>
 
-  <div class="layout">
+  <div class="layout" id="mainLayout">
     <div class="mon-list" id="monList"></div>
     <div class="detail-pane" id="detailPane">Select an item from the list to view details.</div>
   </div>
@@ -316,12 +507,7 @@
     const BASE_SHOWDOWN_URL = 'https://play.pokemonshowdown.com/data';
     const MINISPRITE_BASE = 'https://www.smogon.com/forums/media/minisprites';
     const CATEGORY_ICON_BASE = 'https://play.pokemonshowdown.com/sprites/categories';
-
-    const BASE_KNOWN_KEYS = {
-      pokedex: new Set(['num', 'name', 'types', 'baseStats', 'abilities', 'heightm', 'weightkg', 'color', 'eggGroups', 'evos', 'evoType', 'evoLevel', 'evoCondition', 'evoItem', 'evoMove', 'prevo', 'baseSpecies', 'forme', 'formeOrder', 'otherFormes', 'cosmeticFormes', 'genderRatio', 'gender', 'maxHP', 'isNonstandard', 'inherit', 'tier', 'natDexTier', 'doublesTier']),
-      moves: new Set(['num', 'accuracy', 'basePower', 'category', 'name', 'pp', 'priority', 'flags', 'secondary', 'secondaries', 'target', 'type', 'shortDesc', 'desc', 'drain', 'heal', 'recoil', 'self', 'selfBoost', 'boosts', 'status', 'volatileStatus', 'weather', 'terrain', 'sideCondition', 'pseudoWeather', 'slotCondition', 'ohko', 'thko', 'multihit', 'multiaccuracy', 'noSketch', 'isZ', 'isMax', 'isNonstandard', 'contestType', 'inherit', 'critRatio', 'ignoreImmunity', 'ignoreDefensive', 'ignoreEvasion', 'ignoreAccuracy', 'forceSwitch', 'selfSwitch', 'breaksProtect', 'stallingMove', 'mindBlownRecoil', 'hasCrashDamage', 'struggleRecoil', 'sleepUsable', 'defrost', 'noPPBoosts', 'isFutureMove', 'stealsBoosts', 'tracksTarget', 'damage', 'willCrit', 'spreadModifier', 'smartTarget']),
-      abilities: new Set(['name', 'shortDesc', 'desc', 'rating', 'num', 'flags', 'isNonstandard', 'inherit'])
-    };
+    const TYPE_ICON_BASE = 'https://play.pokemonshowdown.com/sprites/types';
 
     const HIGH_UTILITY_STATUS = new Set([
       'stealthrock', 'spikes', 'toxicspikes', 'stickyweb', 'defog', 'rapidspin', 'tidyup', 'mortalspin', 'courtchange',
@@ -342,7 +528,6 @@
     let MOD_MOVES = {};
     let MOD_ABILITIES = {};
     let MOD_ITEMS = {};
-    let MOD_CONDITIONS = {};
     let MOD_LEARNSETS = {};
     let MOD_SCRIPTS_TEXT = '';
     let SCRIPT_ADDED_MOVES = {};
@@ -353,10 +538,18 @@
     let BASE_MOVES = {};
     let BASE_ABILITIES = {};
     let BASE_ITEMS = {};
+    let BASE_LOADED = false;
 
+    let ACTIVE_MODE = 'pokemon';
     let SELECTED_ID = null;
-    let SELECTED_CUSTOM_MOVE_ID = null;
-    let SELECTED_CUSTOM_ABILITY_ID = null;
+
+    function escHtml(str) {
+      return String(str ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
 
     function toId(str) {
       return String(str || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
@@ -405,7 +598,7 @@
 
       return `
         <div class="sprite-slot">
-          <img src="${spriteUrl}" alt="${displayName}" style="display:block;margin-left:auto;margin-right:auto;" loading="lazy"
+          <img src="${spriteUrl}" alt="${escHtml(displayName)}" style="display:block;margin-left:auto;margin-right:auto;" loading="lazy"
                onerror="if(this.src!=='${fallbackUrl}'){this.src='${fallbackUrl}';}else{this.style.display='none';}">
         </div>
       `;
@@ -415,10 +608,109 @@
       const iconUrl = `${CATEGORY_ICON_BASE}/${categoryName}.png`;
       return `
         <div class="cat-title">
-          <img src="${iconUrl}" alt="${categoryName}" class="cat-icon" loading="lazy" onerror="this.style.display='none';">
-          <span>${categoryName} (${count})</span>
+          <img src="${iconUrl}" alt="${escHtml(categoryName)}" class="cat-icon" loading="lazy" onerror="this.style.display='none';">
+          <span>${escHtml(categoryName)} (${count})</span>
         </div>
       `;
+    }
+
+    function renderTypeIconHtml(typeName) {
+      if (!typeName || typeName === '?') return `<span>?</span>`;
+      const cleanType = String(typeName).trim();
+      const iconUrl = `${TYPE_ICON_BASE}/${encodeURIComponent(cleanType)}.png`;
+      return `<img src="${iconUrl}" alt="${escHtml(cleanType)}" title="${escHtml(cleanType)}" class="type-icon-img" loading="lazy" onerror="this.style.display='none';">`;
+    }
+
+    function renderCategoryIconHtml(categoryName) {
+      if (!categoryName) return '';
+      const cleanCat = String(categoryName).trim();
+      const iconUrl = `${CATEGORY_ICON_BASE}/${encodeURIComponent(cleanCat)}.png`;
+      return `<img src="${iconUrl}" alt="${escHtml(cleanCat)}" title="${escHtml(cleanCat)}" class="cat-icon" loading="lazy" onerror="this.style.display='none';">`;
+    }
+
+    function formatBpLabel(bpVal) {
+      if (bpVal === '' || bpVal === undefined || bpVal === null || bpVal === '—') return '— BP';
+      const str = String(bpVal).trim();
+      return /bp$/i.test(str) ? str : `${str} BP`;
+    }
+
+    function formatAccLabel(accVal) {
+      if (accVal === '' || accVal === undefined || accVal === null || accVal === '—' || accVal === true) return '— Acc';
+      const str = String(accVal).trim();
+      return /%/.test(str) ? `${str} Acc` : `${str}% Acc`;
+    }
+
+    function formatPpLabel(ppVal) {
+      if (ppVal === '' || ppVal === undefined || ppVal === null || ppVal === '—') return '— PP';
+      const str = String(ppVal).trim();
+      return /pp$/i.test(str) ? str : `${str} PP`;
+    }
+
+    function formatFlagsList(flagsObj) {
+      if (!flagsObj) return '';
+      if (typeof flagsObj === 'string') return flagsObj;
+      if (typeof flagsObj === 'object') {
+        return Object.entries(flagsObj)
+          .filter(([, v]) => Boolean(v))
+          .map(([k]) => k)
+          .join(', ');
+      }
+      return '';
+    }
+
+    function calcLevel100Speed(baseSpe, ev, natureMult) {
+      const base = Number(baseSpe);
+      if (isNaN(base) || base <= 0) return null;
+      const step1 = Math.floor((2 * base + 31 + Math.floor(ev / 4)) * 100 / 100) + 5;
+      return Math.floor(step1 * natureMult);
+    }
+
+    function renderSpeedTierSection(baseSpe) {
+      const s252Plus = calcLevel100Speed(baseSpe, 252, 1.1);
+      const s252 = calcLevel100Speed(baseSpe, 252, 1.0);
+      const s0 = calcLevel100Speed(baseSpe, 0, 1.0);
+      if (s252Plus === null || s252 === null || s0 === null) return '';
+      const sBoost252Plus = Math.floor(s252Plus * 1.5);
+      return `
+        <div class="speed-tier-box">
+          <div class="speed-tier-title">Speed Tier:</div>
+          <div>${sBoost252Plus}: +1 252+</div>
+          <div>${s252Plus}: 252+</div>
+          <div>${s252}: 252</div>
+          <div>${s0}: 0 EVs</div>
+        </div>
+      `;
+    }
+
+    function renderCollapsibleMonList(title, monNames) {
+      const uniqueNames = [...new Set(monNames)];
+      const isUnder20 = uniqueNames.length < 20;
+      const content = uniqueNames.length
+        ? uniqueNames.map(escHtml).join(', ')
+        : '<span class="desc-text">No Pokémon listed.</span>';
+      return `
+        <details class="collapsible-section mon-recipients-box" ${isUnder20 ? 'open' : ''}>
+          <summary>${escHtml(title)} (${uniqueNames.length})</summary>
+          <div class="collapsible-body">${content}</div>
+        </details>
+      `;
+    }
+
+    function syncModeButtons() {
+      const map = {
+        pokemon: 'btnPokemon',
+        moves: 'btnCustomMoves',
+        abilities: 'btnCustomAbilities',
+        items: 'btnCustomItems'
+      };
+      Object.entries(map).forEach(([mode, btnId]) => {
+        document.getElementById(btnId).classList.toggle('mode-active', ACTIVE_MODE === mode);
+      });
+
+      const isPokemonMode = ACTIVE_MODE === 'pokemon';
+      document.getElementById('scopeLabel').style.display = isPokemonMode ? 'inline-flex' : 'none';
+      document.getElementById('monList').style.display = isPokemonMode ? 'block' : 'none';
+      document.getElementById('mainLayout').style.gridTemplateColumns = isPokemonMode ? '20% 80%' : '1fr';
     }
 
     function extractExportBlock(tsText, exportName) {
@@ -430,518 +722,647 @@
       if (braceStart === -1) return '';
 
       let depth = 0;
-      let inStr = null;
-      let escaped = false;
+      let inSingle = false;
+      let inDouble = false;
+      let inTemplate = false;
+      let inLineComment = false;
+      let inBlockComment = false;
+
       for (let i = braceStart; i < tsText.length; i++) {
         const ch = tsText[i];
-        if (escaped) { escaped = false; continue; }
-        if (ch === '\\') { escaped = true; continue; }
-        if (inStr) {
-          if (ch === inStr) inStr = null;
+        const next = tsText[i + 1];
+        const prev = tsText[i - 1];
+
+        if (inLineComment) {
+          if (ch === '\n') inLineComment = false;
           continue;
         }
-        if (ch === '"' || ch === "'" || ch === '`') {
-          inStr = ch;
+        if (inBlockComment) {
+          if (ch === '*' && next === '/') {
+            inBlockComment = false;
+            i++;
+          }
           continue;
         }
+        if (inSingle) {
+          if (ch === "'" && prev !== '\\') inSingle = false;
+          continue;
+        }
+        if (inDouble) {
+          if (ch === '"' && prev !== '\\') inDouble = false;
+          continue;
+        }
+        if (inTemplate) {
+          if (ch === '`' && prev !== '\\') inTemplate = false;
+          continue;
+        }
+
+        if (ch === '/' && next === '/') {
+          inLineComment = true;
+          i++;
+          continue;
+        }
+        if (ch === '/' && next === '*') {
+          inBlockComment = true;
+          i++;
+          continue;
+        }
+        if (ch === "'") { inSingle = true; continue; }
+        if (ch === '"') { inDouble = true; continue; }
+        if (ch === '`') { inTemplate = true; continue; }
+
         if (ch === '{') depth++;
         else if (ch === '}') {
           depth--;
-          if (depth === 0) return tsText.slice(braceStart, i + 1);
+          if (depth === 0) {
+            return tsText.slice(braceStart, i + 1);
+          }
         }
       }
       return '';
     }
 
-    function fallbackParseEntries(tsText, exportName) {
-      const block = extractExportBlock(tsText, exportName) || tsText;
-      if (!block) return {};
-      const result = {};
-      const lines = block.split('\n');
-      let currentKey = null;
-
-      for (const rawLine of lines) {
-        const line = rawLine.trim();
-        if (!line || line.startsWith('//') || line.startsWith('/*')) continue;
-
-        const topKeyMatch = line.match(/^(?:["']?)([a-zA-Z0-9_-]+)(?:["']?)\s*:\s*\{$/);
-        if (topKeyMatch) {
-          currentKey = toId(topKeyMatch[1]);
-          if (!result[currentKey]) result[currentKey] = {};
-          continue;
-        }
-
-        if (!currentKey) continue;
-
-        const propMatch = line.match(/^([a-zA-Z0-9_]+)\s*:\s*(.+?)(?:,\s*)?$/);
-        if (propMatch) {
-          const prop = propMatch[1];
-          const valRaw = propMatch[2];
-          if ((valRaw.startsWith('"') && valRaw.endsWith('"')) ||
-              (valRaw.startsWith("'") && valRaw.endsWith("'")) ||
-              (valRaw.startsWith('`') && valRaw.endsWith('`'))) {
-            result[currentKey][prop] = valRaw.slice(1, -1);
-          } else if (valRaw === 'true') {
-            result[currentKey][prop] = true;
-          } else if (valRaw === 'false') {
-            result[currentKey][prop] = false;
-          } else if (/^-?\d+(\.\d+)?$/.test(valRaw)) {
-            result[currentKey][prop] = Number(valRaw);
-          }
-        }
-      }
-      return result;
-    }
-
-    function evalTsObjectLiteral(objLiteral) {
-      if (!objLiteral) return {};
-      const code = objLiteral
-        .replace(/\/\*[\s\S]*?\*\//g, '')
-        .replace(/(^|[^:])\/\/[^\n]*/g, '$1')
-        .replace(/`([^`$]*)`/g, (_, inner) => JSON.stringify(inner));
-
-      const handler = new Proxy({}, {
-        get(_, prop) {
-          if (prop === Symbol.toPrimitive) return () => '';
-          return new Proxy(() => handler, {
-            get(__, p) {
-              if (p === Symbol.toPrimitive) return () => '';
-              return handler;
-            }
-          });
-        }
-      });
-
-      const sandboxFn = new Function('ctx', `
-        with (ctx) {
-          return (${code});
-        }
-      `);
-      return sandboxFn(handler);
-    }
-
-    function parseModSection(tsText, exportName) {
-      if (!tsText) return {};
+    function parseShowdownTsObject(tsText, exportName) {
       const block = extractExportBlock(tsText, exportName);
-      if (!block) return fallbackParseEntries(tsText, exportName);
+      if (!block) return {};
       try {
-        const evaluated = evalTsObjectLiteral(block);
-        const fallback = fallbackParseEntries(tsText, exportName);
-        for (const [k, fbVal] of Object.entries(fallback)) {
-          const id = toId(k);
-          if (!evaluated[id]) evaluated[id] = fbVal;
-          else {
-            for (const [pk, pv] of Object.entries(fbVal)) {
-              if (evaluated[id][pk] === undefined) evaluated[id][pk] = pv;
-            }
-          }
-        }
-        return evaluated;
-      } catch {
-        return fallbackParseEntries(tsText, exportName);
-      }
-    }
-
-    async function fetchTextSafe(url) {
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
-      return res.text();
-    }
-
-    function parseScriptLearnsetChanges(scriptsText) {
-      const added = {};
-      const removed = {};
-      if (!scriptsText) return { added, removed };
-
-      const addRegex = /this\.modData\(\s*["']Learnsets["']\s*,\s*["']([^"']+)["']\s*\)\.learnset(?:\.([a-z0-9_]+)|\[["']([^"']+)["']\])/gi;
-      let match;
-      while ((match = addRegex.exec(scriptsText)) !== null) {
-        const monId = toId(match[1]);
-        const moveId = toId(match[2] || match[3]);
-        if (!monId || !moveId) continue;
-        if (!added[monId]) added[monId] = new Set();
-        added[monId].add(moveId);
-        if (removed[monId]) removed[monId].delete(moveId);
-      }
-
-      const delRegex = /delete\s+this\.modData\(\s*["']Learnsets["']\s*,\s*["']([^"']+)["']\s*\)\.learnset(?:\.([a-z0-9_]+)|\[["']([^"']+)["']\])/gi;
-      while ((match = delRegex.exec(scriptsText)) !== null) {
-        const monId = toId(match[1]);
-        const moveId = toId(match[2] || match[3]);
-        if (!monId || !moveId) continue;
-        if (!removed[monId]) removed[monId] = new Set();
-        removed[monId].add(moveId);
-        if (added[monId]) added[monId].delete(moveId);
-      }
-
-      return { added, removed };
-    }
-
-    function getBaseComparisonMon(id, modMon) {
-      if (BASE_DEX[id]) return BASE_DEX[id];
-      if (modMon?.baseSpecies) {
-        const baseSpecId = toId(modMon.baseSpecies);
-        if (BASE_DEX[baseSpecId]) return BASE_DEX[baseSpecId];
-      }
-      return null;
-    }
-
-    function getResolvedMon(id) {
-      const modMon = MOD_DEX[id] || {};
-      const baseRefMon = getBaseComparisonMon(id, modMon);
-      const isInherited = Boolean(modMon.inherit || BASE_DEX[id]);
-      const baseMon = baseRefMon || {};
-      return {
-        ...baseMon,
-        ...modMon,
-        baseStats: {
-          ...(baseMon.baseStats || {}),
-          ...(modMon.baseStats || {}),
-        },
-        origStats: baseRefMon?.baseStats || null,
-        abilities: {
-          ...(baseMon.abilities || {}),
-          ...(modMon.abilities || {}),
-        },
-        types: modMon.types || baseMon.types || [],
-        name: modMon.name || baseMon.name || id,
-        num: modMon.num ?? baseMon.num ?? '?',
-        isInherited,
-      };
-    }
-
-    async function loadAllData() {
-      const rawUrl = normalizeModUrl(document.getElementById('modUrl').value);
-      const statusBar = document.getElementById('statusBar');
-      statusBar.textContent = 'Fetching mod files and base Showdown data...';
-
-      try {
-        const [
-          dexRes, movesRes, ablRes, itemsRes, condRes, learnRes, scriptsRes,
-          baseDexRes, baseLearnRes, baseMovesRes, baseAblRes, baseItemsRes
-        ] = await Promise.allSettled([
-          fetchTextSafe(`${rawUrl}/pokedex.ts`),
-          fetchTextSafe(`${rawUrl}/moves.ts`),
-          fetchTextSafe(`${rawUrl}/abilities.ts`),
-          fetchTextSafe(`${rawUrl}/items.ts`),
-          fetchTextSafe(`${rawUrl}/conditions.ts`),
-          fetchTextSafe(`${rawUrl}/learnsets.ts`),
-          fetchTextSafe(`${rawUrl}/scripts.ts`),
-          fetch(`${BASE_SHOWDOWN_URL}/pokedex.json`).then(r => r.ok ? r.json() : {}),
-          fetch(`${BASE_SHOWDOWN_URL}/learnsets.json`).then(r => r.ok ? r.json() : {}),
-          fetch(`${BASE_SHOWDOWN_URL}/moves.json`).then(r => r.ok ? r.json() : {}),
-          fetch(`${BASE_SHOWDOWN_URL}/abilities.json`).then(r => r.ok ? r.json() : {}),
-          fetch(`${BASE_SHOWDOWN_URL}/items.json`).then(r => r.ok ? r.json() : {})
-        ]);
-
-        const dexText = dexRes.status === 'fulfilled' ? dexRes.value : '';
-        const movesText = movesRes.status === 'fulfilled' ? movesRes.value : '';
-        const ablText = ablRes.status === 'fulfilled' ? ablRes.value : '';
-        const itemsText = itemsRes.status === 'fulfilled' ? itemsRes.value : '';
-        const condText = condRes.status === 'fulfilled' ? condRes.value : '';
-        const learnText = learnRes.status === 'fulfilled' ? learnRes.value : '';
-        MOD_SCRIPTS_TEXT = scriptsRes.status === 'fulfilled' ? scriptsRes.value : '';
-
-        BASE_DEX = baseDexRes.status === 'fulfilled' ? baseDexRes.value : {};
-        BASE_LEARNSETS = baseLearnRes.status === 'fulfilled' ? baseLearnRes.value : {};
-        BASE_MOVES = baseMovesRes.status === 'fulfilled' ? baseMovesRes.value : {};
-        BASE_ABILITIES = baseAblRes.status === 'fulfilled' ? baseAblRes.value : {};
-        BASE_ITEMS = baseItemsRes.status === 'fulfilled' ? baseItemsRes.value : {};
-
-        MOD_DEX = parseModSection(dexText, 'Pokedex');
-        MOD_MOVES = parseModSection(movesText, 'Moves');
-        MOD_ABILITIES = parseModSection(ablText, 'Abilities');
-        MOD_ITEMS = parseModSection(itemsText, 'Items');
-        MOD_CONDITIONS = parseModSection(condText, 'Conditions');
-        MOD_LEARNSETS = parseModSection(learnText, 'Learnsets');
-
-        const parsedChanges = parseScriptLearnsetChanges(MOD_SCRIPTS_TEXT);
-        SCRIPT_ADDED_MOVES = parsedChanges.added;
-        SCRIPT_REMOVED_MOVES = parsedChanges.removed;
-
-        for (const [monId, mSet] of Object.entries(SCRIPT_ADDED_MOVES)) {
-          if (!MOD_LEARNSETS[monId]) MOD_LEARNSETS[monId] = { learnset: {} };
-          if (!MOD_LEARNSETS[monId].learnset) MOD_LEARNSETS[monId].learnset = {};
-          for (const mId of mSet) {
-            if (!MOD_LEARNSETS[monId].learnset[mId]) MOD_LEARNSETS[monId].learnset[mId] = ['9L1'];
-          }
-        }
-
-        const totalMons = Object.keys(MOD_DEX).length;
-        const newMons = Object.values(MOD_DEX).filter(m => m && !m.inherit).length;
-        const customMoveCount = getCustomMovesList().length;
-        const customAblCount = getCustomAbilitiesList().length;
-        statusBar.textContent = `Loaded ${newMons} new Pokémon and ${totalMons - newMons} modded/inherited Pokémon (${customMoveCount} custom moves, ${customAblCount} custom abilities).`;
-
-        renderList();
+        const sanitized = block
+          .replace(/\bas\s+const\b/g, '')
+          .replace(/\bsatisfies\s+[A-Za-z0-9_<>[\]|&\s.]+/g, '');
+        return (new Function('return (' + sanitized + ')'))() || {};
       } catch (err) {
-        statusBar.textContent = `Error loading mod files: ${err.message}`;
+        console.warn(`Failed to evaluate ${exportName}:`, err);
+        return {};
       }
     }
 
-    function getCustomMovesList() {
-      return Object.entries(MOD_MOVES)
-        .filter(([id, m]) => m && (!BASE_MOVES[id] || !m.inherit))
-        .map(([id, m]) => {
-          const baseM = BASE_MOVES[id] || {};
-          const merged = Object.assign({}, baseM, m);
-          return {
-            id,
-            name: merged.name || id,
-            type: merged.type || '?',
-            category: merged.category || 'Status',
-            basePower: merged.basePower ?? '—',
-            accuracy: merged.accuracy === true ? '—' : (merged.accuracy ?? '—'),
-            pp: merged.pp ?? '—',
-            descText: pickDescription(merged),
-            weather: merged.weather || '',
-            terrain: merged.terrain || '',
-            sideCondition: merged.sideCondition || '',
-            pseudoWeather: merged.pseudoWeather || '',
-            slotCondition: merged.slotCondition || '',
-            customElements: extractCustomElements(m, BASE_KNOWN_KEYS.moves, baseM)
-          };
-        })
-        .sort((a, b) => a.name.localeCompare(b.name));
-    }
+    function parseLearnsetChangesFromScripts(scriptsText) {
+      SCRIPT_ADDED_MOVES = {};
+      SCRIPT_REMOVED_MOVES = {};
+      if (!scriptsText) return;
 
-    function getCustomAbilitiesList() {
-      return Object.entries(MOD_ABILITIES)
-        .filter(([id, a]) => a && (!BASE_ABILITIES[id] || !a.inherit))
-        .map(([id, a]) => {
-          const baseA = BASE_ABILITIES[id] || {};
-          const merged = Object.assign({}, baseA, a);
-          return {
-            id,
-            name: merged.name || id,
-            descText: pickDescription(merged),
-            customElements: extractCustomElements(a, BASE_KNOWN_KEYS.abilities, baseA)
-          };
-        })
-        .sort((a, b) => a.name.localeCompare(b.name));
-    }
-
-    function getWeatherAndFieldElements(moveList, customMoveList) {
-      const weatherSet = new Set();
-      const fieldSet = new Set();
-
-      const inspectMove = m => {
-        if (m.weather) weatherSet.add(String(m.weather));
-        if (m.terrain) fieldSet.add(`Terrain: ${m.terrain}`);
-        if (m.sideCondition) fieldSet.add(`Side Condition: ${m.sideCondition}`);
-        if (m.pseudoWeather) fieldSet.add(`Pseudo-Weather: ${m.pseudoWeather}`);
-        if (m.slotCondition) fieldSet.add(`Slot Condition: ${m.slotCondition}`);
-        if (Array.isArray(m.customElements)) {
-          m.customElements.forEach(el => {
-            const lower = el.toLowerCase();
-            if (lower.includes('weather')) weatherSet.add(el);
-            else if (lower.includes('field') || lower.includes('terrain') || lower.includes('hazard') || lower.includes('zone') || lower.includes('room')) {
-              fieldSet.add(el);
-            }
-          });
-        }
-      };
-
-      (moveList || []).forEach(inspectMove);
-      (customMoveList || []).forEach(inspectMove);
-
-      Object.entries(MOD_CONDITIONS || {}).forEach(([k, cond]) => {
-        if (!cond) return;
-        const label = cond.name ? `${cond.name} (${pickDescription(cond)})` : k;
-        if (k.includes('weather') || (cond.name && cond.name.toLowerCase().includes('weather'))) {
-          weatherSet.add(label.replace(/\s*\(\)$/, ''));
+      const modDataRegex = /this\.modData\(\s*['"]Learnsets['"]\s*,\s*['"]([a-z0-9]+)['"]\s*\)\.learnset\.([a-z0-9]+)\s*=\s*([^;]+);/gi;
+      let m;
+      while ((m = modDataRegex.exec(scriptsText)) !== null) {
+        const monId = toId(m[1]);
+        const moveId = toId(m[2]);
+        const rhs = m[3].trim();
+        if (!monId || !moveId) continue;
+        if (rhs === 'null' || rhs === 'undefined') {
+          if (!SCRIPT_REMOVED_MOVES[monId]) SCRIPT_REMOVED_MOVES[monId] = new Set();
+          SCRIPT_REMOVED_MOVES[monId].add(moveId);
         } else {
-          fieldSet.add(label.replace(/\s*\(\)$/, ''));
+          if (!SCRIPT_ADDED_MOVES[monId]) SCRIPT_ADDED_MOVES[monId] = new Set();
+          SCRIPT_ADDED_MOVES[monId].add(moveId);
         }
+      }
+
+      const deleteRegex = /delete\s+this\.modData\(\s*['"]Learnsets['"]\s*,\s*['"]([a-z0-9]+)['"]\s*\)\.learnset\.([a-z0-9]+)\s*;/gi;
+      while ((m = deleteRegex.exec(scriptsText)) !== null) {
+        const monId = toId(m[1]);
+        const moveId = toId(m[2]);
+        if (!monId || !moveId) continue;
+        if (!SCRIPT_REMOVED_MOVES[monId]) SCRIPT_REMOVED_MOVES[monId] = new Set();
+        SCRIPT_REMOVED_MOVES[monId].add(moveId);
+      }
+    }
+
+    async function fetchTextOrEmpty(url) {
+      try {
+        const res = await fetch(url);
+        if (!res.ok) return '';
+        return await res.text();
+      } catch {
+        return '';
+      }
+    }
+
+    async function ensureBaseShowdownData() {
+      if (BASE_LOADED && Object.keys(BASE_DEX).length > 0) return;
+      const [dexRes, learnRes, movesRes, ablRes, itemsRes] = await Promise.allSettled([
+        fetch(`${BASE_SHOWDOWN_URL}/pokedex.json`).then(r => r.ok ? r.json() : {}),
+        fetch(`${BASE_SHOWDOWN_URL}/learnsets.json`).then(r => r.ok ? r.json() : {}),
+        fetch(`${BASE_SHOWDOWN_URL}/moves.json`).then(r => r.ok ? r.json() : {}),
+        fetch(`${BASE_SHOWDOWN_URL}/abilities.json`).then(r => r.ok ? r.json() : {}),
+        fetch(`${BASE_SHOWDOWN_URL}/items.json`).then(r => r.ok ? r.json() : {})
+      ]);
+      BASE_DEX = dexRes.status === 'fulfilled' ? dexRes.value : {};
+      BASE_LEARNSETS = learnRes.status === 'fulfilled' ? learnRes.value : {};
+      BASE_MOVES = movesRes.status === 'fulfilled' ? movesRes.value : {};
+      BASE_ABILITIES = ablRes.status === 'fulfilled' ? ablRes.value : {};
+      BASE_ITEMS = itemsRes.status === 'fulfilled' ? itemsRes.value : {};
+      BASE_LOADED = true;
+    }
+
+    async function loadModData() {
+      const statusBar = document.getElementById('statusBar');
+      const baseModUrl = normalizeModUrl(document.getElementById('modUrl').value);
+      if (!baseModUrl) {
+        statusBar.textContent = 'Please enter a valid Mod Base URL.';
+        return;
+      }
+
+      statusBar.textContent = 'Loading base Showdown reference and mod files...';
+      await ensureBaseShowdownData();
+
+      const [dexTs, movesTs, abilitiesTs, itemsTs, learnsetsTs, scriptsTs] = await Promise.all([
+        fetchTextOrEmpty(`${baseModUrl}/pokedex.ts`),
+        fetchTextOrEmpty(`${baseModUrl}/moves.ts`),
+        fetchTextOrEmpty(`${baseModUrl}/abilities.ts`),
+        fetchTextOrEmpty(`${baseModUrl}/items.ts`),
+        fetchTextOrEmpty(`${baseModUrl}/learnsets.ts`),
+        fetchTextOrEmpty(`${baseModUrl}/scripts.ts`)
+      ]);
+
+      MOD_DEX = parseShowdownTsObject(dexTs, 'Pokedex');
+      MOD_MOVES = parseShowdownTsObject(movesTs, 'Moves');
+      MOD_ABILITIES = parseShowdownTsObject(abilitiesTs, 'Abilities');
+      MOD_ITEMS = parseShowdownTsObject(itemsTs, 'Items');
+      MOD_LEARNSETS = parseShowdownTsObject(learnsetsTs, 'Learnsets');
+      MOD_SCRIPTS_TEXT = scriptsTs;
+      parseLearnsetChangesFromScripts(scriptsTs);
+
+      const allMonIds = new Set([
+        ...Object.keys(MOD_DEX),
+        ...Object.keys(MOD_LEARNSETS),
+        ...Object.keys(SCRIPT_ADDED_MOVES),
+        ...Object.keys(SCRIPT_REMOVED_MOVES)
+      ]);
+
+      let newCount = 0;
+      let moddedCount = 0;
+      allMonIds.forEach(id => {
+        if (!MOD_DEX[id] && BASE_DEX[id]) {
+          MOD_DEX[id] = { inherit: true, name: BASE_DEX[id].name };
+        }
+        const entry = MOD_DEX[id];
+        if (!entry) return;
+        const isInherited = Boolean(entry.inherit || BASE_DEX[id]);
+        if (isInherited) moddedCount++;
+        else newCount++;
       });
 
-      return {
-        weather: [...weatherSet],
-        field: [...fieldSet]
-      };
+      const customMovesCount = Object.keys(MOD_MOVES).length;
+      const customAbilitiesCount = Object.keys(MOD_ABILITIES).length;
+      const customItemsCount = Object.keys(MOD_ITEMS).length;
+
+      if (allMonIds.size === 0 && customMovesCount === 0 && customAbilitiesCount === 0 && customItemsCount === 0) {
+        statusBar.textContent = 'No mod files found at that URL. Check the directory path (e.g. .../data/mods/<modname>).';
+      } else {
+        statusBar.textContent = `Loaded ${newCount} new Pokémon and ${moddedCount} modded Pokémon (${customMovesCount} custom/modded moves, ${customAbilitiesCount} abilities, ${customItemsCount} items).`;
+      }
+
+      SELECTED_ID = null;
+      if (document.getElementById('exportDrawer').classList.contains('open')) {
+        refreshExportCodeBox();
+      }
+      renderView();
     }
 
     function getLearnsetDiff(monId) {
-      const resolved = getResolvedMon(monId);
-      const baseSet = new Set(
-        resolved.isInherited && BASE_LEARNSETS[monId]?.learnset
-          ? Object.keys(BASE_LEARNSETS[monId].learnset)
-          : []
-      );
-      const modLearnsetObj = MOD_LEARNSETS[monId]?.learnset || {};
-      const modSet = new Set(Object.keys(modLearnsetObj));
-      const scriptRemoved = SCRIPT_REMOVED_MOVES[monId] || new Set();
+      const modEntry = MOD_DEX[monId] || {};
+      const lookupId = modEntry.baseSpecies ? toId(modEntry.baseSpecies) : monId;
+      const isInherited = Boolean(modEntry.inherit || BASE_DEX[monId]);
 
-      const addedIds = new Set();
-      const removedIds = new Set();
+      const baseLearnObj = BASE_LEARNSETS[monId]?.learnset || BASE_LEARNSETS[lookupId]?.learnset || {};
+      const baseSet = new Set(isInherited ? Object.keys(baseLearnObj) : []);
 
-      if (resolved.isInherited) {
-        modSet.forEach(mId => {
-          if (!baseSet.has(mId) && !scriptRemoved.has(mId)) {
-            addedIds.add(mId);
-          }
-        });
-        scriptRemoved.forEach(mId => {
-          if (baseSet.has(mId)) {
-            removedIds.add(mId);
-          }
-        });
-      }
+      const modLearnEntry = MOD_LEARNSETS[monId]?.learnset || {};
+      const addedIds = new Set(SCRIPT_ADDED_MOVES[monId] || []);
+      const removedIds = new Set(SCRIPT_REMOVED_MOVES[monId] || []);
+
+      Object.entries(modLearnEntry).forEach(([mId, sources]) => {
+        if (sources === null) {
+          removedIds.add(mId);
+        } else {
+          if (!baseSet.has(mId)) addedIds.add(mId);
+        }
+      });
 
       const activeIds = new Set();
-      baseSet.forEach(mId => {
-        if (!scriptRemoved.has(mId)) activeIds.add(mId);
-      });
-      modSet.forEach(mId => {
-        if (!scriptRemoved.has(mId)) activeIds.add(mId);
-      });
-      removedIds.forEach(mId => activeIds.add(mId));
+      if (isInherited) {
+        baseSet.forEach(mId => {
+          if (!removedIds.has(mId)) activeIds.add(mId);
+        });
+        addedIds.forEach(mId => {
+          if (!removedIds.has(mId)) activeIds.add(mId);
+        });
+        removedIds.forEach(mId => activeIds.add(mId));
+      } else {
+        Object.keys(modLearnEntry).forEach(mId => {
+          if (modLearnEntry[mId] !== null) activeIds.add(mId);
+        });
+        addedIds.forEach(mId => activeIds.add(mId));
+      }
 
       return {
         activeIds: [...activeIds],
-        addedIds,
-        removedIds
+        addedIds: isInherited ? addedIds : new Set(),
+        removedIds: isInherited ? removedIds : new Set(),
+        isInherited
       };
+    }
+
+    function getResolvedMon(id) {
+      const raw = MOD_DEX[id] || {};
+      const base = BASE_DEX[id] || {};
+      const isInherited = Boolean(raw.inherit || BASE_DEX[id]);
+
+      return {
+        id,
+        name: raw.name || base.name || id,
+        types: raw.types || base.types || [],
+        baseStats: Object.assign({ hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 }, base.baseStats || {}, raw.baseStats || {}),
+        origStats: isInherited && base.baseStats ? base.baseStats : null,
+        abilities: raw.abilities || base.abilities || {},
+        weightkg: raw.weightkg ?? base.weightkg ?? null,
+        isInherited
+      };
+    }
+
+    function formatMonSpread(mon) {
+      const s = mon.baseStats || {};
+      const bst = (s.hp || 0) + (s.atk || 0) + (s.def || 0) + (s.spa || 0) + (s.spd || 0) + (s.spe || 0);
+      return `${s.hp}/${s.atk}/${s.def}/${s.spa}/${s.spd}/${s.spe} [${bst}]`;
+    }
+
+    function formatMonAbilitiesLine(mon) {
+      const abils = Object.values(mon.abilities || {}).filter(Boolean);
+      return abils.length ? abils.join(' / ') : '—';
     }
 
     function getOrderedMons() {
       const scope = document.getElementById('scopeSelect').value;
       const q = document.getElementById('searchInput').value.trim().toLowerCase();
 
-      const entries = Object.entries(MOD_DEX).filter(([id, mon]) => {
-        if (!mon) return false;
-        if (scope === 'new' && mon.inherit) return false;
-        const resolved = getResolvedMon(id);
-        if (!q) return true;
+      const entries = Object.keys(MOD_DEX)
+        .map(id => getResolvedMon(id))
+        .filter(mon => {
+          if (scope === 'new' && mon.isInherited) return false;
+          if (!q) return true;
 
-        const nameMatch = resolved.name.toLowerCase().includes(q);
-        const typeMatch = resolved.types.join(' ').toLowerCase().includes(q);
-        const ablMatch = Object.values(resolved.abilities).join(' ').toLowerCase().includes(q);
-        const diff = getLearnsetDiff(id);
-        const moveMatch = diff.activeIds.some(mId => {
-          const mName = (MOD_MOVES[mId]?.name || BASE_MOVES[mId]?.name || mId).toLowerCase();
-          return mName.includes(q) || mId.includes(q);
+          const nameMatch = mon.name.toLowerCase().includes(q);
+          const typeMatch = (mon.types || []).join(' ').toLowerCase().includes(q);
+          const ablMatch = Object.values(mon.abilities || {}).join(' ').toLowerCase().includes(q);
+          const diff = getLearnsetDiff(mon.id);
+          const moveMatch = diff.activeIds.some(mId => {
+            const mName = (MOD_MOVES[mId]?.name || BASE_MOVES[mId]?.name || mId).toLowerCase();
+            return mName.includes(q) || mId.includes(q);
+          });
+          return nameMatch || typeMatch || ablMatch || moveMatch;
         });
-        return nameMatch || typeMatch || ablMatch || moveMatch;
-      });
 
-      const sortByNumAndName = (a, b) => {
-        const monA = getResolvedMon(a[0]);
-        const monB = getResolvedMon(b[0]);
-        const numA = typeof monA.num === 'number' ? monA.num : 999999;
-        const numB = typeof monB.num === 'number' ? monB.num : 999999;
-        return numA - numB || monA.name.localeCompare(monB.name);
-      };
-
-      const newMons = entries.filter(([, mon]) => !mon.inherit).sort(sortByNumAndName);
-      const moddedMons = entries.filter(([, mon]) => Boolean(mon.inherit)).sort(sortByNumAndName);
-
+      const newMons = entries.filter(m => !m.isInherited);
+      const moddedMons = entries.filter(m => m.isInherited);
       return { newMons, moddedMons, flat: [...newMons, ...moddedMons] };
     }
 
-    function renderList() {
-      const view = document.getElementById('viewSelect').value;
-      const scopeLabel = document.getElementById('scopeLabel');
-      scopeLabel.style.display = view === 'pokemon' ? 'inline-flex' : 'none';
+    function getPokemonWithMove(moveId) {
+      const matched = [];
+      for (const id of Object.keys(MOD_DEX)) {
+        const mon = getResolvedMon(id);
+        const diff = getLearnsetDiff(id);
+        if (diff.activeIds.includes(moveId) && !diff.removedIds.has(moveId)) {
+          matched.push(mon.name);
+        }
+      }
+      return matched;
+    }
 
-      const listEl = document.getElementById('monList');
-      const pane = document.getElementById('detailPane');
+    function getPokemonWithAbility(abilityNameOrId) {
+      const targetId = toId(abilityNameOrId);
+      const matched = [];
+      for (const id of Object.keys(MOD_DEX)) {
+        const mon = getResolvedMon(id);
+        const abils = Object.values(mon.abilities || {}).map(toId);
+        if (abils.includes(targetId)) {
+          matched.push(mon.name);
+        }
+      }
+      return matched;
+    }
+
+    function getCustomMovesList() {
+      return Object.entries(MOD_MOVES).map(([id, rawM]) => {
+        const baseM = BASE_MOVES[id] || {};
+        const merged = Object.assign({}, baseM, rawM);
+        return {
+          id,
+          name: merged.name || id,
+          type: merged.type || '?',
+          category: merged.category || 'Status',
+          basePower: merged.basePower ?? '—',
+          accuracy: merged.accuracy === true ? '—' : (merged.accuracy ?? '—'),
+          pp: merged.pp ?? '—',
+          target: merged.target || '',
+          priority: merged.priority ?? 0,
+          flagsText: formatFlagsList(merged.flags),
+          descText: pickDescription(merged),
+          isCustom: !BASE_MOVES[id]
+        };
+      });
+    }
+
+    function getCustomAbilitiesList() {
+      return Object.entries(MOD_ABILITIES).map(([id, rawA]) => {
+        const baseA = BASE_ABILITIES[id] || {};
+        const merged = Object.assign({}, baseA, rawA);
+        return {
+          id,
+          name: merged.name || id,
+          descText: pickDescription(merged),
+          isCustom: !BASE_ABILITIES[id]
+        };
+      });
+    }
+
+    function getCustomItemsList() {
+      return Object.entries(MOD_ITEMS).map(([id, rawI]) => {
+        const baseI = BASE_ITEMS[id] || {};
+        const merged = Object.assign({}, baseI, rawI);
+        const flingPower = merged.fling && merged.fling.basePower !== undefined ? merged.fling.basePower : '';
+        return {
+          id,
+          name: merged.name || id,
+          flingPower,
+          descText: pickDescription(merged),
+          isCustom: !BASE_ITEMS[id]
+        };
+      });
+    }
+
+    // --- SPREADSHEET EXPORT (MULTI-TAB APPS SCRIPT + TSV) ---
+    function buildSpreadsheetTables() {
+      const allMons = Object.keys(MOD_DEX).map(id => getResolvedMon(id));
+      const newMons = allMons.filter(m => !m.isInherited);
+      const moddedMons = allMons.filter(m => m.isInherited);
+      const orderedMons = [...newMons, ...moddedMons];
+
+      const pokedexRows = [
+        ['Status', 'Name', 'Type 1', 'Type 2', 'HP', 'Atk', 'Def', 'SpA', 'SpD', 'Spe', 'BST', 'Ability 1', 'Ability 2', 'Hidden Ability', 'Weight', 'Added Moves', 'Removed Moves', 'Full Movepool']
+      ];
+
+      orderedMons.forEach(mon => {
+        const s = mon.baseStats;
+        const bst = (s.hp || 0) + (s.atk || 0) + (s.def || 0) + (s.spa || 0) + (s.spd || 0) + (s.spe || 0);
+        const ab = mon.abilities || {};
+        const diff = getLearnsetDiff(mon.id);
+
+        const resolveMoveNames = idsArr => [...idsArr]
+          .map(mId => MOD_MOVES[mId]?.name || BASE_MOVES[mId]?.name || mId)
+          .sort((a, b) => a.localeCompare(b))
+          .join(', ');
+
+        const activeNames = diff.activeIds
+          .filter(mId => !diff.removedIds.has(mId))
+          .map(mId => MOD_MOVES[mId]?.name || BASE_MOVES[mId]?.name || mId)
+          .sort((a, b) => a.localeCompare(b))
+          .join(', ');
+
+        pokedexRows.push([
+          mon.isInherited ? 'Modded' : 'New',
+          mon.name,
+          mon.types[0] || '',
+          mon.types[1] || '',
+          s.hp ?? '',
+          s.atk ?? '',
+          s.def ?? '',
+          s.spa ?? '',
+          s.spd ?? '',
+          s.spe ?? '',
+          bst,
+          ab['0'] || '',
+          ab['1'] || '',
+          ab['H'] || '',
+          mon.weightkg ? `${mon.weightkg} kg` : '',
+          resolveMoveNames(diff.addedIds),
+          resolveMoveNames(diff.removedIds),
+          mon.isInherited ? '' : activeNames
+        ]);
+      });
+
+      const movesRows = [
+        ['Move Name', 'Type', 'Category', 'Power', 'Accuracy', 'Base PP', 'Priority', 'Target', 'Flags', 'Effect', 'Learned By']
+      ];
+      getCustomMovesList().forEach(m => {
+        movesRows.push([
+          m.name,
+          m.type,
+          m.category,
+          m.basePower,
+          m.accuracy,
+          m.pp,
+          m.priority ?? 0,
+          m.target,
+          m.flagsText,
+          m.descText,
+          getPokemonWithMove(m.id).join(', ')
+        ]);
+      });
+
+      const abilitiesRows = [
+        ['Ability Name', 'Effect', 'Learned By']
+      ];
+      getCustomAbilitiesList().forEach(a => {
+        abilitiesRows.push([
+          a.name,
+          a.descText,
+          getPokemonWithAbility(a.id).join(', ')
+        ]);
+      });
+
+      const itemsRows = [
+        ['Item Name', 'Fling Power', 'Effect']
+      ];
+      getCustomItemsList().forEach(it => {
+        itemsRows.push([
+          it.name,
+          it.flingPower,
+          it.descText
+        ]);
+      });
+
+      return { pokedexRows, movesRows, abilitiesRows, itemsRows };
+    }
+
+    function rowsToTsv(rows) {
+      return rows
+        .map(r => r.map(cell => String(cell ?? '').replace(/[\t\r\n]+/g, ' ')).join('\t'))
+        .join('\n');
+    }
+
+    function generateGoogleAppsScript() {
+      const { pokedexRows, movesRows, abilitiesRows, itemsRows } = buildSpreadsheetTables();
+      return `function exportPetModToSheets() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheetsData = {
+    "Pokedex": ${JSON.stringify(pokedexRows)},
+    "Custom Moves": ${JSON.stringify(movesRows)},
+    "Custom Abilities": ${JSON.stringify(abilitiesRows)},
+    "Custom Items": ${JSON.stringify(itemsRows)}
+  };
+
+  Object.entries(sheetsData).forEach(([tabName, rows]) => {
+    let sheet = ss.getSheetByName(tabName);
+    if (!sheet) {
+      sheet = ss.insertSheet(tabName);
+    } else {
+      sheet.clear();
+    }
+    if (rows.length > 0 && rows[0].length > 0) {
+      sheet.getRange(1, 1, rows.length, rows[0].length).setValues(rows);
+      sheet.getRange(1, 1, 1, rows[0].length).setFontWeight("bold");
+      sheet.setFrozenRows(1);
+    }
+  });
+}`;
+    }
+
+    function refreshExportCodeBox() {
+      const box = document.getElementById('exportCodeBox');
+      if (box) box.value = generateGoogleAppsScript();
+    }
+
+    function renderView() {
+      syncModeButtons();
       const q = document.getElementById('searchInput').value.trim().toLowerCase();
-      listEl.innerHTML = '';
+      const pane = document.getElementById('detailPane');
 
-      if (view === 'moves') {
+      if (ACTIVE_MODE === 'moves') {
         const moves = getCustomMovesList().filter(m =>
           !q ||
           m.name.toLowerCase().includes(q) ||
           m.type.toLowerCase().includes(q) ||
           m.category.toLowerCase().includes(q) ||
           m.descText.toLowerCase().includes(q) ||
-          m.customElements.join(' ').toLowerCase().includes(q)
+          String(m.target || '').toLowerCase().includes(q) ||
+          String(m.flagsText || '').toLowerCase().includes(q) ||
+          getPokemonWithMove(m.id).some(p => p.toLowerCase().includes(q))
         );
 
-        if (!moves.length) {
-          listEl.innerHTML = '<div class="mon-item">No matching custom moves found.</div>';
-          pane.innerHTML = '<div class="desc-text">No custom moves match your search.</div>';
-          return;
-        }
+        const cardsHtml = moves.length
+          ? moves.map(m => {
+              const monsWithMove = getPokemonWithMove(m.id);
+              const tfParts = [
+                m.target ? `Target: ${escHtml(m.target)}` : '',
+                m.flagsText ? `Flags: ${escHtml(m.flagsText)}` : ''
+              ].filter(Boolean).join(' / ');
+              return `
+                <div class="custom-card">
+                  <div class="custom-card-header">
+                    <div>
+                      <strong>${escHtml(m.name)}</strong>
+                      <span class="move-meta-inline">
+                        ${renderTypeIconHtml(m.type)}
+                        ${renderCategoryIconHtml(m.category)}
+                        <span>${escHtml(formatBpLabel(m.basePower))}</span>
+                        <span>${escHtml(formatAccLabel(m.accuracy))}</span>
+                        <span>${escHtml(formatPpLabel(m.pp))}</span>
+                        ${m.priority ? `<span>Priority: ${escHtml(m.priority)}</span>` : ''}
+                      </span>
+                    </div>
+                    <span class="custom-badge">${m.isCustom ? 'Custom' : 'Modded'}</span>
+                  </div>
+                  ${tfParts ? `<div class="move-target-flags">${tfParts}</div>` : ''}
+                  ${m.descText ? `<div class="desc-text">${escHtml(m.descText)}</div>` : ''}
+                  ${renderCollapsibleMonList('Distribution', monsWithMove)}
+                </div>
+              `;
+            }).join('')
+          : '<div class="desc-text">No custom or modded moves found.</div>';
 
-        if (!SELECTED_CUSTOM_MOVE_ID || !moves.some(m => m.id === SELECTED_CUSTOM_MOVE_ID)) {
-          SELECTED_CUSTOM_MOVE_ID = moves[0].id;
-        }
-
-        const gh = document.createElement('div');
-        gh.className = 'group-header';
-        gh.textContent = `Custom Moves (${moves.length})`;
-        listEl.appendChild(gh);
-
-        moves.forEach(m => {
-          const row = document.createElement('div');
-          row.className = 'mon-item' + (m.id === SELECTED_CUSTOM_MOVE_ID ? ' active' : '');
-          row.innerHTML = `
-            <span><strong>${m.name}</strong></span>
-            <span class="mon-meta">${m.type} · ${m.category}</span>
-          `;
-          row.addEventListener('click', () => {
-            SELECTED_CUSTOM_MOVE_ID = m.id;
-            renderList();
-          });
-          listEl.appendChild(row);
-        });
-
-        renderCustomMovesPane(moves);
+        pane.innerHTML = `
+          <div class="detail-header">
+            <div><strong style="font-size:1.15rem;">Custom Moves (${moves.length})</strong></div>
+          </div>
+          <div class="section">${cardsHtml}</div>
+        `;
         return;
       }
 
-      if (view === 'abilities') {
+      if (ACTIVE_MODE === 'abilities') {
         const abilities = getCustomAbilitiesList().filter(a =>
           !q ||
           a.name.toLowerCase().includes(q) ||
           a.descText.toLowerCase().includes(q) ||
-          a.customElements.join(' ').toLowerCase().includes(q)
+          getPokemonWithAbility(a.id).some(p => p.toLowerCase().includes(q))
         );
 
-        if (!abilities.length) {
-          listEl.innerHTML = '<div class="mon-item">No matching custom abilities found.</div>';
-          pane.innerHTML = '<div class="desc-text">No custom abilities match your search.</div>';
-          return;
-        }
+        const cardsHtml = abilities.length
+          ? abilities.map(a => {
+              const monsWithAbl = getPokemonWithAbility(a.id);
+              return `
+                <div class="custom-card">
+                  <div class="custom-card-header">
+                    <div>
+                      <strong>${escHtml(a.name)}</strong>
+                      <span class="custom-badge">${a.isCustom ? 'Custom Ability' : 'Modded Ability'}</span>
+                    </div>
+                  </div>
+                  ${a.descText ? `<div class="desc-text">${escHtml(a.descText)}</div>` : ''}
+                  ${renderCollapsibleMonList('Distribution', monsWithAbl)}
+                </div>
+              `;
+            }).join('')
+          : '<div class="desc-text">No custom or modded abilities found.</div>';
 
-        if (!SELECTED_CUSTOM_ABILITY_ID || !abilities.some(a => a.id === SELECTED_CUSTOM_ABILITY_ID)) {
-          SELECTED_CUSTOM_ABILITY_ID = abilities[0].id;
-        }
-
-        const gh = document.createElement('div');
-        gh.className = 'group-header';
-        gh.textContent = `Custom Abilities (${abilities.length})`;
-        listEl.appendChild(gh);
-
-        abilities.forEach(a => {
-          const row = document.createElement('div');
-          row.className = 'mon-item' + (a.id === SELECTED_CUSTOM_ABILITY_ID ? ' active' : '');
-          row.innerHTML = `
-            <span><strong>${a.name}</strong></span>
-            <span class="mon-meta">Ability</span>
-          `;
-          row.addEventListener('click', () => {
-            SELECTED_CUSTOM_ABILITY_ID = a.id;
-            renderList();
-          });
-          listEl.appendChild(row);
-        });
-
-        renderCustomAbilitiesPane(abilities);
+        pane.innerHTML = `
+          <div class="detail-header">
+            <div><strong style="font-size:1.15rem;">Custom Abilities (${abilities.length})</strong></div>
+          </div>
+          <div class="section">${cardsHtml}</div>
+        `;
         return;
       }
 
+      if (ACTIVE_MODE === 'items') {
+        const items = getCustomItemsList().filter(it =>
+          !q ||
+          it.name.toLowerCase().includes(q) ||
+          it.descText.toLowerCase().includes(q) ||
+          String(it.flingPower || '').toLowerCase().includes(q)
+        );
+
+        const cardsHtml = items.length
+          ? items.map(it => `
+              <div class="custom-card">
+                <div class="custom-card-header">
+                  <div>
+                    <strong>${escHtml(it.name)}</strong>
+                    ${it.flingPower !== '' && it.flingPower !== undefined ? `<span style="color:#ffcf70; margin-left:8px;">Fling Power: ${escHtml(it.flingPower)}</span>` : ''}
+                  </div>
+                  <span class="custom-badge">${it.isCustom ? 'Custom Item' : 'Modded Item'}</span>
+                </div>
+                ${it.descText ? `<div class="desc-text">${escHtml(it.descText)}</div>` : ''}
+              </div>
+            `).join('')
+          : '<div class="desc-text">No custom or modded items found.</div>';
+
+        pane.innerHTML = `
+          <div class="detail-header">
+            <div><strong style="font-size:1.15rem;">Custom Items (${items.length})</strong></div>
+          </div>
+          <div class="section">${cardsHtml}</div>
+        `;
+        return;
+      }
+
+      renderList();
+    }
+
+    function renderList() {
       const { newMons, moddedMons, flat } = getOrderedMons();
+      const listEl = document.getElementById('monList');
+      listEl.innerHTML = '';
+
       if (flat.length === 0) {
-        listEl.innerHTML = '<div class="mon-item">No matching Pokémon found.</div>';
-        pane.innerHTML = '';
+        listEl.innerHTML = '<div class="mon-item">No Pokémon found.</div>';
+        document.getElementById('detailPane').innerHTML = 'No Pokémon match your search/scope.';
         return;
       }
 
-      if (!SELECTED_ID || !flat.some(([id]) => id === SELECTED_ID)) {
-        SELECTED_ID = flat[0][0];
+      if (!SELECTED_ID || !flat.some(m => m.id === SELECTED_ID)) {
+        SELECTED_ID = flat[0].id;
       }
 
       const appendGroup = (title, items) => {
@@ -951,20 +1372,25 @@
         gh.textContent = `${title} (${items.length})`;
         listEl.appendChild(gh);
 
-        items.forEach(([id]) => {
-          const resolved = getResolvedMon(id);
+        items.forEach(mon => {
           const row = document.createElement('div');
-          row.className = 'mon-item' + (id === SELECTED_ID ? ' active' : '');
-          const typesLabel = resolved.types.join('/');
+          row.className = 'mon-item' + (mon.id === SELECTED_ID ? ' active' : '');
+          const typesLabel = (mon.types || []).join('/');
           row.innerHTML = `
             <div class="mon-left">
-              ${renderSpriteHtml(id, resolved, resolved.isInherited)}
-              <span><strong>#${resolved.num}</strong> ${resolved.name}</span>
+              ${renderSpriteHtml(mon.id, mon, mon.isInherited)}
+              <div class="mon-info">
+                <div class="mon-top-row">
+                  <strong>${escHtml(mon.name)}</strong>
+                  <span class="mon-meta">${escHtml(typesLabel || (mon.isInherited ? 'Modded' : 'New'))}</span>
+                </div>
+                <div class="mon-spread">${escHtml(formatMonSpread(mon))}</div>
+                <div class="mon-abilities-sub">${escHtml(formatMonAbilitiesLine(mon))}</div>
+              </div>
             </div>
-            <span class="mon-meta">${typesLabel || (resolved.isInherited ? 'Modded' : 'New')}</span>
           `;
           row.addEventListener('click', () => {
-            SELECTED_ID = id;
+            SELECTED_ID = mon.id;
             renderList();
             renderDetail();
           });
@@ -978,117 +1404,14 @@
       renderDetail();
     }
 
-    function renderCustomMovesPane(moves) {
-      const pane = document.getElementById('detailPane');
-      const selected = moves.find(m => m.id === SELECTED_CUSTOM_MOVE_ID) || moves[0];
-      const { weather, field } = getWeatherAndFieldElements(moves, []);
-
-      pane.innerHTML = `
-        <div class="detail-header">
-          <div>
-            <strong style="font-size:1.15rem;">${selected.name}</strong>
-            <span style="color:#ffcf70; margin-left:8px;">${selected.type} · ${selected.category}</span>
-          </div>
-          <span class="custom-badge">Custom Move</span>
-        </div>
-
-        <div class="section">
-          <div class="entry-row">
-            BP: <strong>${selected.basePower}</strong> · Acc: <strong>${selected.accuracy}</strong> · PP: <strong>${selected.pp}</strong>
-            ${selected.descText ? `<br><span class="desc-text">${selected.descText}</span>` : ''}
-            ${selected.customElements.length ? `<br><span class="desc-text">[${selected.customElements.join(' · ')}]</span>` : ''}
-          </div>
-        </div>
-
-        <div class="section">
-          <h2>Weather</h2>
-          ${weather.length ? weather.map(w => `<div class="entry-row">${w}</div>`).join('') : '<div class="desc-text">None</div>'}
-        </div>
-
-        <div class="section">
-          <h2>Field Conditions</h2>
-          ${field.length ? field.map(f => `<div class="entry-row">${f}</div>`).join('') : '<div class="desc-text">None</div>'}
-        </div>
-
-        <div class="section">
-          <h2>All Custom Moves (${moves.length})</h2>
-          ${moves.map(m => `
-            <div class="entry-row">
-              <strong>${m.name}</strong> (${m.type} · ${m.category} · ${m.basePower} BP · ${m.accuracy} Acc · ${m.pp} PP)
-              ${m.descText ? `— <span class="desc-text">${m.descText}</span>` : ''}
-              ${m.customElements.length ? `<span class="desc-text">[${m.customElements.join(' · ')}]</span>` : ''}
-            </div>
-          `).join('')}
-        </div>
-      `;
-    }
-
-    function renderCustomAbilitiesPane(abilities) {
-      const pane = document.getElementById('detailPane');
-      const selected = abilities.find(a => a.id === SELECTED_CUSTOM_ABILITY_ID) || abilities[0];
-      const { weather, field } = getWeatherAndFieldElements([], getCustomMovesList());
-
-      pane.innerHTML = `
-        <div class="detail-header">
-          <div><strong style="font-size:1.15rem;">${selected.name}</strong></div>
-          <span class="custom-badge">Custom Ability</span>
-        </div>
-
-        <div class="section">
-          <div class="entry-row">
-            ${selected.descText ? `<span class="desc-text">${selected.descText}</span>` : ''}
-            ${selected.customElements.length ? `<br><span class="desc-text">[${selected.customElements.join(' · ')}]</span>` : ''}
-          </div>
-        </div>
-
-        <div class="section">
-          <h2>Weather</h2>
-          ${weather.length ? weather.map(w => `<div class="entry-row">${w}</div>`).join('') : '<div class="desc-text">None</div>'}
-        </div>
-
-        <div class="section">
-          <h2>Field Conditions</h2>
-          ${field.length ? field.map(f => `<div class="entry-row">${f}</div>`).join('') : '<div class="desc-text">None</div>'}
-        </div>
-
-        <div class="section">
-          <h2>All Custom Abilities (${abilities.length})</h2>
-          ${abilities.map(a => `
-            <div class="entry-row">
-              <strong>${a.name}</strong>
-              ${a.descText ? `— <span class="desc-text">${a.descText}</span>` : ''}
-              ${a.customElements.length ? `<span class="desc-text">[${a.customElements.join(' · ')}]</span>` : ''}
-            </div>
-          `).join('')}
-        </div>
-      `;
-    }
-
     function isUsefulMove(moveId, m) {
       if (m.isNonstandard || m.isZ || m.isMax) return false;
       if (LOW_UTILITY_MOVES.has(moveId)) return false;
       if (m.category === 'Status') {
         return HIGH_UTILITY_STATUS.has(moveId);
       }
-      const bp = m.basePower || 0;
+      const bp = Number(m.basePower) || 0;
       return bp >= 60 || bp === 0 || Boolean(m.multihit) || ((m.priority || 0) > 0 && bp >= 40);
-    }
-
-    function extractCustomElements(obj, knownSet, baseObj) {
-      if (!obj || typeof obj !== 'object') return [];
-      const custom = [];
-      for (const [k, v] of Object.entries(obj)) {
-        if (knownSet.has(k)) continue;
-        if (baseObj && baseObj[k] !== undefined) continue;
-        if (typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean') {
-          custom.push(`${k}: ${v}`);
-        } else if (Array.isArray(v)) {
-          custom.push(`${k}: ${v.join(', ')}`);
-        } else if (v && typeof v === 'object') {
-          custom.push(k);
-        }
-      }
-      return custom;
     }
 
     function getMoveDetails(moveId, addedSet, removedSet, monTypesSet) {
@@ -1111,33 +1434,29 @@
         basePower: m.basePower ?? '—',
         accuracy: m.accuracy === true ? '—' : (m.accuracy ?? '—'),
         pp: m.pp ?? '—',
+        target: m.target || '',
+        priority: m.priority ?? 0,
+        flagsText: formatFlagsList(m.flags),
         descText: pickDescription(m),
-        weather: m.weather || '',
-        terrain: m.terrain || '',
-        sideCondition: m.sideCondition || '',
-        pseudoWeather: m.pseudoWeather || '',
-        slotCondition: m.slotCondition || '',
-        isCustom: Boolean(modM && !modM.inherit && !baseM),
+        isCustom: Boolean(modM && !baseM),
         isModded: Boolean(modM),
         isAdded: addedSet.has(moveId),
         isRemoved: removedSet.has(moveId),
-        customElements: extractCustomElements(modM, BASE_KNOWN_KEYS.moves, baseM),
         sortBucket
       };
     }
 
-    function getAbilityDetails(abilityNameOrId) {
-      const id = toId(abilityNameOrId);
+    function getAbilityDetails(abilityName) {
+      const id = toId(abilityName);
       const modA = MOD_ABILITIES[id];
       const baseA = BASE_ABILITIES[id];
       const a = Object.assign({}, baseA || {}, modA || {});
       return {
         id,
-        name: a.name || abilityNameOrId,
+        name: a.name || abilityName,
         descText: pickDescription(a),
-        isCustom: Boolean(modA && !modA.inherit && !baseA),
-        isModded: Boolean(modA),
-        customElements: extractCustomElements(modA, BASE_KNOWN_KEYS.abilities, baseA)
+        isCustom: Boolean(modA && !baseA),
+        isModded: Boolean(modA)
       };
     }
 
@@ -1146,9 +1465,9 @@
       return moveList
         .sort((a, b) => (a.sortBucket - b.sortBucket) || a.name.localeCompare(b.name))
         .map(m => {
-          if (m.isRemoved) return `<span class="move-removed">${m.name}</span>`;
-          if (m.isAdded) return `<span class="move-added">${m.name}</span>`;
-          return m.name;
+          if (m.isRemoved) return `<span class="move-removed">${escHtml(m.name)}</span>`;
+          if (m.isAdded) return `<span class="move-added">${escHtml(m.name)}</span>`;
+          return escHtml(m.name);
         })
         .join(', ');
     }
@@ -1169,75 +1488,86 @@
           <td class="stat-label">${label}</td>
           <td class="stat-num">${val ?? '?'}</td>
           <td class="stat-diff">${formatDiffBadge(diff)}</td>
-          <td><div class="stat-bar-bg"><div class="stat-bar-fill" style="width:${pct}%;"></div></div></td>
+          <td class="stat-bar-cell">
+            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:${pct}%;"></div></div>
+          </td>
         </tr>
       `;
     }
 
     function renderDetail() {
       const pane = document.getElementById('detailPane');
-      if (!MOD_DEX[SELECTED_ID]) {
+      if (!SELECTED_ID || !MOD_DEX[SELECTED_ID]) {
         pane.innerHTML = '';
         return;
       }
 
       const mon = getResolvedMon(SELECTED_ID);
-      const s = mon.baseStats || { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 };
+      const s = mon.baseStats;
       const orig = mon.origStats;
       const bst = (s.hp || 0) + (s.atk || 0) + (s.def || 0) + (s.spa || 0) + (s.spd || 0) + (s.spe || 0);
       const origBst = orig ? ((orig.hp || 0) + (orig.atk || 0) + (orig.def || 0) + (orig.spa || 0) + (orig.spd || 0) + (orig.spe || 0)) : null;
       const bstDiff = origBst !== null ? (bst - origBst) : 0;
 
-      const typesHtml = mon.types.length
-        ? mon.types.map(t => `<span class="type-pill">${t}</span>`).join('')
+      const typesHtml = (mon.types || []).length
+        ? mon.types.map(t => `<span class="type-pill">${renderTypeIconHtml(t)}<span>${escHtml(t)}</span></span>`).join('')
+        : '';
+
+      const weightHtml = mon.weightkg
+        ? `<span class="weight-badge">(${escHtml(mon.weightkg)} kg)</span>`
         : '';
 
       const monTypesSet = new Set(mon.types || []);
-      const abilitySlots = Object.values(mon.abilities || {}).map(getAbilityDetails);
+      const abilitySlots = Object.values(mon.abilities || {}).filter(Boolean).map(getAbilityDetails);
       const { activeIds, addedIds, removedIds } = getLearnsetDiff(SELECTED_ID);
       const moveDetailsList = activeIds.map(mId => getMoveDetails(mId, addedIds, removedIds, monTypesSet));
       const customMovesInSet = moveDetailsList.filter(m => !m.isRemoved && (m.isCustom || m.isModded));
-      const monCustomElements = extractCustomElements(MOD_DEX[SELECTED_ID], BASE_KNOWN_KEYS.pokedex, BASE_DEX[SELECTED_ID]);
-      const { weather, field } = getWeatherAndFieldElements(moveDetailsList, customMovesInSet);
 
       const physicalMoves = moveDetailsList.filter(m => m.category === 'Physical');
       const specialMoves = moveDetailsList.filter(m => m.category === 'Special');
       const statusMoves = moveDetailsList.filter(m => m.category !== 'Physical' && m.category !== 'Special');
 
       const abilitiesHtml = abilitySlots.length
-        ? abilitySlots.map(a => {
-            const elemNote = a.customElements.length ? ` [${a.customElements.join(' · ')}]` : '';
-            return `
-              <div class="entry-row">
-                <strong>${a.name}</strong>${a.isCustom ? '<span class="custom-badge">Custom</span>' : (a.isModded ? '<span class="custom-badge">Modded</span>' : '')}
-                ${a.descText ? `— <span class="desc-text">${a.descText}</span>` : ''}${elemNote ? `<span class="desc-text">${elemNote}</span>` : ''}
-              </div>
-            `;
-          }).join('')
-        : '';
+        ? abilitySlots.map(a => `
+            <div class="entry-row">
+              <strong>${escHtml(a.name)}</strong>${a.isCustom ? '<span class="custom-badge">Custom</span>' : (a.isModded ? '<span class="custom-badge">Modded</span>' : '')}
+              ${a.descText ? `<div class="desc-text" style="margin-top:2px;">${escHtml(a.descText)}</div>` : ''}
+            </div>
+          `).join('')
+        : '<div class="desc-text">None</div>';
 
-      const customElementsHtml = monCustomElements.length
-        ? `<div class="entry-row"><strong>Pokémon Elements:</strong> <span class="desc-text">${monCustomElements.join(' · ')}</span></div>`
-        : '';
-
-      const customMovesHtml = customMovesInSet.length
-        ? customMovesInSet.map(m => {
-            const elemNote = m.customElements.length ? ` [${m.customElements.join(' · ')}]` : '';
-            return `
-              <div class="entry-row">
-                <strong>${m.name}</strong> (${m.type} · ${m.category} · ${m.basePower} BP · ${m.accuracy}% Acc · ${m.pp} PP)${m.isCustom ? '<span class="custom-badge">Custom</span>' : '<span class="custom-badge">Modded</span>'}
-                ${m.descText ? `— <span class="desc-text">${m.descText}</span>` : ''}${elemNote ? `<span class="desc-text">${elemNote}</span>` : ''}
-              </div>
-            `;
-          }).join('')
-        : '';
-
-      const weatherSectionHtml = weather.length
-        ? `<div class="section"><h2>Weather</h2>${weather.map(w => `<div class="entry-row">${w}</div>`).join('')}</div>`
-        : '';
-
-      const fieldSectionHtml = field.length
-        ? `<div class="section"><h2>Field Conditions</h2>${field.map(f => `<div class="entry-row">${f}</div>`).join('')}</div>`
+      const customMovesSectionHtml = customMovesInSet.length
+        ? `
+          <div class="section">
+            <h2>Custom / Modded Moves (${customMovesInSet.length})</h2>
+            ${customMovesInSet.map(m => {
+              const tfParts = [
+                m.target ? `Target: ${escHtml(m.target)}` : '',
+                m.flagsText ? `Flags: ${escHtml(m.flagsText)}` : ''
+              ].filter(Boolean).join(' / ');
+              return `
+                <div class="custom-card">
+                  <div class="custom-card-header">
+                    <div>
+                      <strong>${escHtml(m.name)}</strong>
+                      <span class="move-meta-inline">
+                        ${renderTypeIconHtml(m.type)}
+                        ${renderCategoryIconHtml(m.category)}
+                        <span>${escHtml(formatBpLabel(m.basePower))}</span>
+                        <span>${escHtml(formatAccLabel(m.accuracy))}</span>
+                        <span>${escHtml(formatPpLabel(m.pp))}</span>
+                        ${m.priority ? `<span>Priority: ${escHtml(m.priority)}</span>` : ''}
+                      </span>
+                    </div>
+                    <span class="custom-badge">${m.isCustom ? 'Custom' : 'Modded'}</span>
+                  </div>
+                  ${tfParts ? `<div class="move-target-flags">${tfParts}</div>` : ''}
+                  ${m.descText ? `<div class="desc-text">${escHtml(m.descText)}</div>` : ''}
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `
         : '';
 
       const legendHtml = mon.isInherited
@@ -1247,10 +1577,10 @@
       pane.innerHTML = `
         <div class="detail-header">
           <div class="detail-title-wrap">
-            ${renderSpriteHtml(SELECTED_ID, mon, mon.isInherited)}
+            ${renderSpriteHtml(mon.id, mon, mon.isInherited)}
             <div>
-              <strong style="font-size:1.15rem;">${mon.name}</strong>
-              <span style="color:#ffcf70; margin-left:8px;">#${mon.num}</span>
+              <strong style="font-size:1.15rem;">${escHtml(mon.name)}</strong>
+              ${weightHtml}
             </div>
           </div>
           <div>${typesHtml}</div>
@@ -1274,6 +1604,7 @@
                   <td></td>
                 </tr>
               </table>
+              ${renderSpeedTierSection(s.spe)}
             </div>
 
             <div class="dex-box">
@@ -1283,14 +1614,7 @@
           </div>
         </div>
 
-        <div class="section">
-          <h2>Custom / Modded Moves &amp; Elements</h2>
-          ${customElementsHtml}
-          ${customMovesHtml}
-        </div>
-
-        ${weatherSectionHtml}
-        ${fieldSectionHtml}
+        ${customMovesSectionHtml}
 
         <div class="section">
           <h2>Moves (${moveDetailsList.length - removedIds.size})</h2>
@@ -1311,12 +1635,64 @@
       `;
     }
 
-    document.getElementById('loadBtn').addEventListener('click', loadAllData);
-    document.getElementById('viewSelect').addEventListener('change', renderList);
-    document.getElementById('scopeSelect').addEventListener('change', renderList);
-    document.getElementById('searchInput').addEventListener('input', renderList);
+    async function copyTextWithStatus(text, label) {
+      const statusBar = document.getElementById('statusBar');
+      const box = document.getElementById('exportCodeBox');
+      if (box) {
+        box.value = text;
+        box.focus();
+        box.select();
+      }
+      try {
+        await navigator.clipboard.writeText(text);
+        statusBar.textContent = `Copied ${label} to clipboard.`;
+      } catch {
+        document.execCommand('copy');
+        statusBar.textContent = `Copied ${label} to clipboard.`;
+      }
+    }
 
-    loadAllData();
+    const setMode = targetMode => {
+      ACTIVE_MODE = targetMode;
+      renderView();
+    };
+
+    document.getElementById('loadBtn').addEventListener('click', loadModData);
+    document.getElementById('searchInput').addEventListener('input', renderView);
+    document.getElementById('scopeSelect').addEventListener('change', renderView);
+    document.getElementById('btnPokemon').addEventListener('click', () => setMode('pokemon'));
+    document.getElementById('btnCustomMoves').addEventListener('click', () => setMode('moves'));
+    document.getElementById('btnCustomAbilities').addEventListener('click', () => setMode('abilities'));
+    document.getElementById('btnCustomItems').addEventListener('click', () => setMode('items'));
+
+    document.getElementById('exportSheetBtn').addEventListener('click', () => {
+      const drawer = document.getElementById('exportDrawer');
+      drawer.classList.toggle('open');
+      if (drawer.classList.contains('open')) {
+        refreshExportCodeBox();
+      }
+    });
+    document.getElementById('closeExportBtn').addEventListener('click', () => {
+      document.getElementById('exportDrawer').classList.remove('open');
+    });
+    document.getElementById('copyAppsScriptBtn').addEventListener('click', () => {
+      copyTextWithStatus(generateGoogleAppsScript(), 'Google Apps Script (4 tabs)');
+    });
+    document.getElementById('copyPokedexTsvBtn').addEventListener('click', () => {
+      copyTextWithStatus(rowsToTsv(buildSpreadsheetTables().pokedexRows), 'Pokedex tab TSV');
+    });
+    document.getElementById('copyMovesTsvBtn').addEventListener('click', () => {
+      copyTextWithStatus(rowsToTsv(buildSpreadsheetTables().movesRows), 'Custom Moves tab TSV');
+    });
+    document.getElementById('copyAbilitiesTsvBtn').addEventListener('click', () => {
+      copyTextWithStatus(rowsToTsv(buildSpreadsheetTables().abilitiesRows), 'Custom Abilities tab TSV');
+    });
+    document.getElementById('copyItemsTsvBtn').addEventListener('click', () => {
+      copyTextWithStatus(rowsToTsv(buildSpreadsheetTables().itemsRows), 'Custom Items tab TSV');
+    });
+
+    syncModeButtons();
+    loadModData();
   </script>
 </body>
 </html>
