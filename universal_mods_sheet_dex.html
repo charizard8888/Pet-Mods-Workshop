@@ -108,7 +108,172 @@
     .code-output-box { width: 100%; height: 390px; background: #101216; color: #d8e6f8; border: 1px solid #3a4659; padding: 10px; font-family: monospace; font-size: 0.82rem; line-height: 1.45; resize: vertical; box-sizing: border-box; tab-size: 2; }
     .code-output-small { width: 100%; height: 62px; background: #101216; color: #d8e6f8; border: 1px solid #3a4659; padding: 8px 10px; font-family: monospace; font-size: 0.82rem; line-height: 1.45; resize: vertical; box-sizing: border-box; }
     .code-sub-label { font-size: 0.82rem; font-weight: bold; color: #ffcc66; margin: 12px 0 6px 0; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-
+/* Teambuilder Live Dex Picker + Compact EVs */
+.tb-compact-evs {
+      background: #1c2026;
+      border: 1px solid #474e5c;
+      border-radius: 3px;
+      padding: 6px 8px;
+      font-size: 0.72rem;
+    }
+    .tb-compact-evs-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+      color: #b8c2d1;
+      font-size: 0.69rem;
+    }
+    .tb-compact-ev-row {
+      display: grid;
+      grid-template-columns: 30px 44px 1fr 34px;
+      align-items: center;
+      gap: 5px;
+      margin: 2px 0;
+    }
+    .tb-compact-ev-lbl {
+      color: #cbd5e1;
+      font-weight: bold;
+      font-size: 0.7rem;
+    }
+    .tb-compact-ev-inp {
+      width: 44px;
+      padding: 1px 3px;
+      font-size: 0.7rem;
+      background: #12151a;
+      color: #fff;
+      border: 1px solid #4f5868;
+      border-radius: 2px;
+      text-align: center;
+    }
+    .tb-compact-ev-slider {
+      width: 100%;
+      margin: 0;
+      accent-color: #77d4fc;
+      cursor: pointer;
+    }
+    .tb-compact-final {
+      text-align: right;
+      color: #fff;
+      font-weight: bold;
+      font-size: 0.72rem;
+    }
+    .tb-compact-ev-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      margin-top: 5px;
+      padding-top: 4px;
+      border-top: 1px solid #2e3440;
+      flex-wrap: wrap;
+    }
+    .tb-compact-ev-foot select {
+      padding: 2px 4px;
+      font-size: 0.7rem;
+      max-width: 145px;
+    }
+    .tb-picker-wrap {
+      margin-top: 10px;
+      background: #16181d;
+      border: 1px solid #3d4452;
+      border-radius: 4px;
+      padding: 10px;
+    }
+    .tb-picker-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .tb-picker-grid {
+      display: grid;
+      grid-template-columns: 270px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+    @media (max-width: 820px) {
+      .tb-picker-grid { grid-template-columns: 1fr; }
+    }
+    .tb-picker-list {
+      max-height: 520px;
+    }
+    .tb-picker-detail {
+      min-height: 300px;
+    }
+    .tb-moves-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      font-family: Verdana, sans-serif;
+    }
+    .tb-moves-table th {
+      text-align: left;
+      padding: 5px 6px;
+      background: #232730;
+      color: #c7d4e6;
+      border-bottom: 1px solid #3c4352;
+      font-size: 0.74rem;
+    }
+    .tb-moves-table td {
+      padding: 5px 6px;
+      border-bottom: 1px solid #252932;
+      vertical-align: middle;
+    }
+    .tb-moves-table tr:hover td {
+      background: #20252e;
+    }
+    .tb-move-name-btn {
+      font-weight: bold;
+      color: #e6e6e6;
+      cursor: pointer;
+    }
+    .tb-move-name-btn:hover {
+      color: #77b5fe;
+      text-decoration: underline;
+    }
+    .tb-compact-abilities .entry-row {
+      margin: 4px 0;
+      padding: 4px 7px;
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+    .tb-compact-abilities .entry-row {
+      margin: 4px 0;
+      padding: 4px 7px;
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+    .tb-move-line-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 5px 8px;
+      margin: 3px 0;
+      background: #151515;
+      border: 1px solid #262626;
+      font-size: 0.82rem;
+    }
+    .tb-move-name-btn {
+      font-weight: bold;
+      color: #e6e6e6;
+      cursor: pointer;
+    }
+    .tb-move-name-btn:hover {
+      color: #8ab4f8;
+      text-decoration: underline;
+    }
+    .tb-move-stat-meta {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #ffcf70;
+      font-size: 0.78rem;
+    }
     /* Showdown-style Teambuilder */
     .ps-tb-wrap { font-family: Verdana, Geneva, Tahoma, sans-serif; color: #e6e6e6; }
     .ps-tb-topbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; background: #252930; border: 1px solid #434954; padding: 6px 10px; margin-bottom: 10px; }
@@ -328,9 +493,7 @@
 
   <div class="status" id="statusBar">Enter a public Google Sheets link (or paste TSV/CSV) and click Initial Load or Final Load.</div>
 
-  <datalist id="tbMonOptions"></datalist>
   <datalist id="tbItemOptions"></datalist>
-  <datalist id="tbMoveOptions"></datalist>
 
   <div class="layout" id="mainLayout">
     <div class="mon-list" id="monList"></div>
@@ -1903,10 +2066,12 @@
 
       const moddedMoves = Object.values(MOD_MOVES).map(mv => mv?.name).filter(Boolean);
       const moddedMoveSet = new Set(moddedMoves.map(n => n.toLowerCase()));
-      const baseMoves = Object.values(BASE_MOVES).map(mv => mv?.name).filter(n => n && !moddedMoveSet.has(n.toLowerCase())).sort((a, b) => a.localeCompare(b));
+      const baseMoves = Object.values(BASE_MOVES)
+        .map(mv => mv?.name)
+        .filter(n => n && !moddedMoveSet.has(n.toLowerCase()))
+        .sort((a, b) => a.localeCompare(b));
 
-      const monDl = document.getElementById('tbMonOptions'), itemDl = document.getElementById('tbItemOptions'), moveDl = document.getElementById('tbMoveOptions');
-      if (monDl) monDl.innerHTML = [...moddedMons, ...baseMons].map(n => `<option value="${escHtml(n)}"></option>`).join('');
+      const itemDl = document.getElementById('tbItemOptions'), moveDl = document.getElementById('tbMoveOptions');
       if (itemDl) itemDl.innerHTML = [...moddedItems, ...baseItems].map(n => `<option value="${escHtml(n)}"></option>`).join('');
       if (moveDl) moveDl.innerHTML = [...moddedMoves, ...baseMoves].map(n => `<option value="${escHtml(n)}"></option>`).join('');
     }
@@ -1990,10 +2155,139 @@
       TEAM_SLOTS = nextSlots; ACTIVE_TB_SLOT = 0;
     }
 
+   function getTbOrderedPool(queryText) {
+      const allDex = getAllMergedDex();
+      const q = String(queryText || '').trim().toLowerCase();
+      const modEntries = [];
+      const baseEntries = [];
+
+      Object.entries(allDex).forEach(([id, mon]) => {
+        if (!mon || !mon.name) return;
+        const isModded = Boolean(MOD_DEX[id]);
+        if (q) {
+          const nameHit = mon.name.toLowerCase().includes(q);
+          const typeHit = (mon.types || []).join(' ').toLowerCase().includes(q);
+          const ablHit = Object.values(mon.abilities || {}).join(' ').toLowerCase().includes(q);
+          const statHit = Object.values(mon.baseStats || {}).join('/').includes(q);
+          if (!nameHit && !typeHit && !ablHit && !statHit) return;
+        }
+        const item = { id, mon, isModded };
+        if (isModded) modEntries.push(item);
+        else baseEntries.push(item);
+      });
+
+      modEntries.sort((a, b) => (a.mon.sheetOrder ?? 0) - (b.mon.sheetOrder ?? 0));
+      baseEntries.sort((a, b) => a.mon.name.localeCompare(b.mon.name));
+      return { modEntries, baseEntries, flat: [...modEntries, ...baseEntries] };
+    }
+
+function renderTbDexPreview(monId) {
+      const previewEl = document.getElementById('tbDexPreviewPane');
+      if (!previewEl) return;
+      const allDex = getAllMergedDex();
+      const mon = allDex[monId];
+      if (!mon) {
+        previewEl.innerHTML = '<div class="desc-text">Select or search a Pokémon to view its learnable moves, speed tiers, and abilities.</div>';
+        return;
+      }
+
+      const s = mon.baseStats || { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 };
+      const monTypesSet = new Set(mon.types || []);
+      const abilitySlots = Object.values(mon.abilities || {}).map(getAbilityDetails);
+
+      const hasSheetDiff = Boolean(MOD_DEX[monId]);
+      const { activeIds, addedIds, removedIds } = hasSheetDiff
+        ? getLearnsetDiff(monId)
+        : {
+            activeIds: Object.keys(BASE_LEARNSETS[monId]?.learnset || {}),
+            addedIds: new Set(),
+            removedIds: new Set()
+          };
+
+      const learnableMoves = activeIds
+        .filter(mId => !removedIds.has(mId))
+        .map(mId => getMoveDetails(mId, addedIds, removedIds, monTypesSet))
+        .sort((a, b) => (a.sortBucket - b.sortBucket) || a.name.localeCompare(b.name));
+
+      const moveRowsHtml = learnableMoves.length
+        ? learnableMoves.map(m => {
+            const nameCls = m.isAdded ? 'tb-move-name-btn move-added' : 'tb-move-name-btn';
+            const bpClean = String(m.basePower ?? '—').replace(/\s*bp$/i, '') || '—';
+            const accClean = String(m.accuracy ?? '—').replace(/%\s*acc$/i, '').replace(/%$/, '') || '—';
+            const ppClean = String(m.pp ?? '—').replace(/\s*pp$/i, '') || '—';
+            return `
+              <tr>
+                <td style="width:155px;"><span class="${nameCls}" data-move-name="${escHtml(m.name)}">${escHtml(m.name)}</span></td>
+                <td style="width:42px; text-align:center;">${renderTypeIconHtml(m.type)}</td>
+                <td style="width:36px; text-align:center;">${renderCategoryIconHtml(m.category)}</td>
+                <td style="width:42px; text-align:right; color:#ffcf70;">${escHtml(bpClean)}</td>
+                <td style="width:46px; text-align:right; color:#c8d6e8;">${escHtml(accClean === '—' ? '—' : `${accClean}%`)}</td>
+                <td style="width:36px; text-align:right; color:#bbb;">${escHtml(ppClean)}</td>
+                <td class="desc-text">${escHtml(m.descText || '')}</td>
+              </tr>
+            `;
+          }).join('')
+        : '<tr><td colspan="7" class="desc-text">No learnable moves listed.</td></tr>';
+
+      const abilitiesHtml = abilitySlots.length
+        ? abilitySlots.map(a => `
+            <div class="entry-row">
+              <strong>${escHtml(a.name)}</strong>${a.isCustom ? '<span class="custom-badge">Custom</span>' : (a.isModded ? '<span class="custom-badge">Modded</span>' : '')}
+              ${a.descText ? `<div class="desc-text" style="margin-top:2px;">${escHtml(a.descText)}</div>` : ''}
+            </div>
+          `).join('')
+        : '<div class="desc-text">No abilities listed.</div>';
+
+      previewEl.innerHTML = `
+        <div class="dex-box" style="padding: 8px 10px;">
+          <h2 style="font-size:0.9rem; margin-bottom:6px;">Moves (${learnableMoves.length})</h2>
+          <table class="tb-moves-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th style="text-align:center;">Type</th>
+                <th style="text-align:center;">Cat</th>
+                <th style="text-align:right;">Pow</th>
+                <th style="text-align:right;">Acc</th>
+                <th style="text-align:right;">PP</th>
+                <th>Effect</th>
+              </tr>
+            </thead>
+            <tbody>${moveRowsHtml}</tbody>
+          </table>
+        </div>
+
+        <div class="section">
+          <div class="dex-grid" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 10px;">
+            <div class="dex-box" style="padding: 8px 10px;">
+              ${renderSpeedTierSection(s.spe)}
+            </div>
+            <div class="dex-box tb-compact-abilities" style="padding: 8px 10px;">
+              <h2 style="font-size:0.88rem; margin-bottom:6px;">Abilities</h2>
+              ${abilitiesHtml}
+            </div>
+          </div>
+        </div>
+      `;
+
+      previewEl.querySelectorAll('.tb-move-name-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const mvName = btn.dataset.moveName;
+          if (!mvName) return;
+          const emptyIdx = slot.moves.findIndex(v => !v || !v.trim());
+          const targetIdx = emptyIdx !== -1 ? emptyIdx : 0;
+          slot.moves[targetIdx] = mvName;
+          renderTeambuilderPane();
+        });
+      });
+    }
+
     function renderTeambuilderPane() {
       refreshTeambuilderDatalists();
-      const pane = document.getElementById('detailPane'), allDex = getAllMergedDex();
-      const slot = TEAM_SLOTS[ACTIVE_TB_SLOT], mon = slot.speciesId ? allDex[slot.speciesId] : null;
+      const pane = document.getElementById('detailPane');
+      const allDex = getAllMergedDex();
+      const slot = TEAM_SLOTS[ACTIVE_TB_SLOT];
+      const mon = slot.speciesId ? allDex[slot.speciesId] : null;
       const baseStats = mon?.baseStats || { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 };
 
       if (mon && (!slot.teraType || slot.teraType === 'Normal') && mon.types?.[0]) slot.teraType = mon.types[0];
@@ -2006,24 +2300,25 @@
       const typesIconsHtml = (mon?.types || []).map(t => renderTypeIconHtml(t)).join(' ');
       const natInfo = NATURES[slot.nature] || {};
 
-      const statDefs = [['hp', 'HP', 'HP'], ['atk', 'Attack', 'Atk'], ['def', 'Defense', 'Def'], ['spa', 'Sp. Atk.', 'SpA'], ['spd', 'Sp. Def.', 'SpD'], ['spe', 'Speed', 'Spe']];
+      const statDefs = [['hp', 'HP'], ['atk', 'Atk'], ['def', 'Def'], ['spa', 'SpA'], ['spd', 'SpD'], ['spe', 'Spe']];
       const evUsed = Object.values(slot.evs).reduce((acc, v) => acc + (Number(v) || 0), 0);
       const evRemaining = Math.max(0, 510 - evUsed);
-      const guessed = guessShowdownSpread(baseStats);
 
-      const miniStatRowsHtml = statDefs.map(([k, , shortLbl]) => {
-        const bVal = baseStats[k] ?? 0, pct = Math.min(100, Math.max(4, Math.round((bVal / 200) * 100))), evVal = Number(slot.evs[k]) || 0;
-        const natMark = natInfo.plus === k ? '+' : (natInfo.minus === k ? '-' : '');
-        const evTag = evVal > 0 ? `${evVal}${natMark}` : (natMark || '—');
-        return `<div class="ps-mini-row"><span>${shortLbl}</span><div class="ps-mini-bar-wrap"><div class="ps-mini-bar" style="width:${pct}%; background:${getStatBarColor(bVal)};"></div></div><span class="ps-mini-ev">${evTag}</span></div>`;
-      }).join('');
-
-      const evTableRowsHtml = statDefs.map(([k, fullLbl]) => {
-        const bVal = baseStats[k] ?? 0, pct = Math.min(100, Math.max(3, Math.round((bVal / 200) * 100))), evVal = Number(slot.evs[k]) || 0, ivVal = slot.ivs[k] ?? 31;
+      const compactEvRowsHtml = statDefs.map(([k, shortLbl]) => {
+        const bVal = baseStats[k] ?? 0;
+        const evVal = Number(slot.evs[k]) || 0;
+        const ivVal = slot.ivs[k] ?? 31;
         const natMark = natInfo.plus === k ? '+' : (natInfo.minus === k ? '-' : '');
         const evDisplayStr = evVal > 0 ? `${evVal}${natMark}` : (natMark || '');
         const finalStat = mon ? calcActualStat(k, bVal, ivVal, evVal, slot.level, slot.nature) : '—';
-        return `<tr><td class="ps-ev-stat-name">${fullLbl}</td><td class="ps-ev-base-num">${bVal}</td><td class="ps-ev-bar-cell"><div class="ps-ev-bar-track"><div class="ps-ev-bar-fill" style="width:${pct}%; background:${getStatBarColor(bVal)};"></div></div></td><td class="ps-ev-box-cell"><input type="text" class="ps-ev-text-inp" data-stat="${k}" value="${evDisplayStr}" placeholder="0"></td><td class="ps-ev-slider-cell"><input type="range" class="ps-ev-slider" data-stat="${k}" min="0" max="252" step="4" value="${evVal}"></td><td class="ps-iv-cell"><input type="number" class="ps-iv-inp" data-stat="${k}" min="0" max="31" value="${ivVal}"></td><td class="ps-final-stat">${finalStat}</td></tr>`;
+        return `
+          <div class="tb-compact-ev-row">
+            <span class="tb-compact-ev-lbl">${shortLbl}</span>
+            <input type="text" class="tb-compact-ev-inp" data-stat="${k}" value="${evDisplayStr}" placeholder="0">
+            <input type="range" class="tb-compact-ev-slider" data-stat="${k}" min="0" max="252" step="4" value="${evVal}">
+            <span class="tb-compact-final">${finalStat}</span>
+          </div>
+        `;
       }).join('');
 
       const slotTabsHtml = TEAM_SLOTS.map((s, idx) => {
@@ -2055,7 +2350,7 @@
             <div class="ps-col">
               <div><label class="ps-lbl">Nickname</label><input type="text" id="psNicknameInp" class="ps-inp" value="${escHtml(slot.nickname)}" placeholder="Nickname"></div>
               <div class="ps-sprite-stage">${spriteUrl ? `<img src="${escHtml(spriteUrl)}" alt="${escHtml(mon.name)}" onerror="if(this.src!=='${fallbackMini}'){this.src='${fallbackMini}';}else{this.style.display='none';}">` : '<span style="font-size:0.75rem;color:#888;">No Pokémon</span>'}</div>
-              <div><label class="ps-lbl">Pokémon</label><input type="text" id="psSpeciesInp" class="ps-inp" list="tbMonOptions" value="${escHtml(mon ? mon.name : '')}" placeholder="Search Pokémon..."></div>
+              <div><label class="ps-lbl">Pokémon</label><input type="text" id="psSpeciesInp" class="ps-inp" value="${escHtml(mon ? mon.name : '')}" placeholder="Search Pokémon..."></div>
             </div>
 
             <div class="ps-col">
@@ -2070,7 +2365,7 @@
                 </div>
               </div>
               <div class="ps-mid-row"><div>${typesIconsHtml}</div></div>
-              <div class="ps-equip-grid">
+              <div class="ps-equip-grid" style="grid-template-columns: 1fr 1fr;">
                 <div><label class="ps-lbl">Item</label><input type="text" id="psItemInp" class="ps-inp" list="tbItemOptions" value="${escHtml(slot.item)}" placeholder="Item"></div>
                 <div><label class="ps-lbl">Ability</label><select id="psAbilitySel" class="ps-sel">${abilityOptions.map(a => `<option value="${escHtml(a)}" ${slot.ability === a ? 'selected' : ''}>${escHtml(a)}</option>`).join('')}</select></div>
               </div>
@@ -2079,29 +2374,28 @@
             <div class="ps-col">
               <div class="ps-moves-col">
                 <label class="ps-lbl">Moves</label>
-                ${[0, 1, 2, 3].map(idx => `<input type="text" class="ps-inp ps-move-inp" data-move-idx="${idx}" list="tbMoveOptions" value="${escHtml(slot.moves[idx] || '')}" placeholder="Move ${idx + 1}">`).join('')}
+                ${[0, 1, 2, 3].map(idx => `<input type="text" class="ps-inp ps-move-inp" data-move-idx="${idx}" value="${escHtml(slot.moves[idx] || '')}" placeholder="Move ${idx + 1}">`).join('')}
               </div>
             </div>
 
             <div class="ps-col">
-              <div class="ps-mini-stats"><div class="ps-mini-stats-hdr"><span>Stats</span><span>EV</span></div>${miniStatRowsHtml}</div>
-            </div>
-          </div>
-
-          <div class="ps-evs-panel">
-            <div class="ps-evs-banner">EVs</div>
-            <div class="ps-ev-top-controls">
-              <label style="color:#d6deeb; font-family:Verdana,sans-serif; font-size:0.8rem;"><input type="checkbox" id="psJumpPointsChk" checked> Jump points</label>
-              <div><span style="color:#aab2c0; margin-right:6px;">Guessed spread:</span><button type="button" class="ps-guessed-pill" id="psApplyGuessedBtn">${escHtml(guessed.label)}</button></div>
-            </div>
-            <table class="ps-ev-table">
-              <thead><tr><th></th><th style="text-align:right;">Base</th><th></th><th>EVs</th><th></th><th>IVs</th><th></th></tr></thead>
-              <tbody>${evTableRowsHtml}</tbody>
-            </table>
-            <div class="ps-ev-footer">
-              <div><span style="color:#aab2c0;">Remaining:</span><strong style="margin-left:8px; color:#fff;">${evRemaining}</strong></div>
-              <div><label style="font-family:Verdana,sans-serif; font-size:0.8rem;">Nature: <select id="psNatureSel" class="ps-sel" style="width:auto; min-width:190px;">${natureOptionsHtml}</select></label></div>
-              <div><select id="psIvPresetSel" class="ps-sel" style="width:auto;"><option value="">IV spreads</option><option value="31all">31 all (Max IVs)</option><option value="0atk">0 Atk</option><option value="0spe">0 Spe</option><option value="0atkspe">0 Atk &amp; 0 Spe</option></select></div>
+              <div class="tb-compact-evs">
+                <div class="tb-compact-evs-top">
+                  <strong style="color:#d6deeb;">EVs</strong>
+                  <span>Left: <strong id="tbCompactEvLeft" style="color:#fff;">${evRemaining}</strong></span>
+                </div>
+                ${compactEvRowsHtml}
+                <div class="tb-compact-ev-foot">
+                  <select id="psNatureSel" class="ps-sel">${natureOptionsHtml}</select>
+                  <select id="psIvPresetSel" class="ps-sel">
+                    <option value="">IVs</option>
+                    <option value="31all">31 All</option>
+                    <option value="0atk">0 Atk</option>
+                    <option value="0spe">0 Spe</option>
+                    <option value="0atkspe">0 Atk/Spe</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -2112,8 +2406,80 @@
             </div>
             <textarea id="psTeamTextArea">${escHtml(generateShowdownTeamExport())}</textarea>
           </div>
+
+          <div class="tb-picker-wrap">
+            <div class="tb-picker-bar">
+              <span class="desc-text" style="font-family:monospace;">Type in <strong>Pokémon</strong> to filter, or click any Pokémon on the left to load it into Slot ${ACTIVE_TB_SLOT + 1}. Click any move name on the right to add it to a move slot.</span>
+            </div>
+            <div class="tb-picker-grid">
+              <div class="mon-list tb-picker-list" id="tbDexPickerList"></div>
+              <div class="detail-pane tb-picker-detail" id="tbDexPreviewPane"></div>
+            </div>
+          </div>
         </div>
       `;
+
+      const selectMonIntoSlot = monId => {
+        if (!allDex[monId]) return;
+        slot.speciesId = monId;
+        slot.nickname = allDex[monId].name;
+        const abils = Object.values(allDex[monId].abilities || {}).filter(Boolean);
+        slot.ability = abils[0] || '';
+        slot.teraType = allDex[monId].types?.[0] || 'Normal';
+        renderTeambuilderPane();
+      };
+
+      const renderTbPickerList = (qOverride) => {
+        const listEl = document.getElementById('tbDexPickerList');
+        if (!listEl) return;
+        const qVal = qOverride !== undefined ? qOverride : (document.getElementById('psSpeciesInp')?.value || '');
+        const { modEntries, baseEntries, flat } = getTbOrderedPool(qVal);
+        listEl.innerHTML = '';
+
+        if (!flat.length) {
+          listEl.innerHTML = '<div class="mon-item">No matching Pokémon.</div>';
+          renderTbDexPreview('');
+          return;
+        }
+
+        const activePreviewId = (slot.speciesId && flat.some(x => x.id === slot.speciesId))
+          ? slot.speciesId
+          : flat[0].id;
+
+        const addGroup = (title, items) => {
+          if (!items.length) return;
+          const gh = document.createElement('div');
+          gh.className = 'group-header';
+          gh.textContent = `${title} (${items.length})`;
+          listEl.appendChild(gh);
+
+          items.forEach(({ id, mon, isModded }) => {
+            const row = document.createElement('div');
+            row.className = 'mon-item' + (id === activePreviewId ? ' active' : '');
+            row.innerHTML = `
+              <div class="mon-left">
+                ${renderSpriteHtml(id, mon, Boolean(mon.isInherited || isModded))}
+                <div class="mon-info">
+                  <div class="mon-top-row">
+                    <strong>${escHtml(mon.name)}</strong>
+                    <span class="mon-meta">${escHtml((mon.types || []).join('/') || (isModded ? 'Modded' : 'Base'))}</span>
+                  </div>
+                  <div class="mon-spread">${escHtml(formatMonSpread(mon))}</div>
+                  <div class="mon-abilities-sub">${escHtml(formatMonAbilitiesLine(mon))}</div>
+                </div>
+              </div>
+            `;
+            row.addEventListener('click', () => selectMonIntoSlot(id));
+            listEl.appendChild(row);
+          });
+        };
+
+        addGroup('Modded / New Pokémon', modEntries);
+        addGroup('Base Showdown Pokémon', baseEntries);
+        renderTbDexPreview(activePreviewId);
+      };
+
+      renderTbPickerList('');
 
       pane.querySelectorAll('.ps-tb-slot-tab').forEach(btn => btn.addEventListener('click', () => { ACTIVE_TB_SLOT = Number(btn.dataset.slotIdx); renderTeambuilderPane(); }));
       document.getElementById('psCopySlotBtn').addEventListener('click', () => { navigator.clipboard?.writeText(generateShowdownTeamExport()); document.getElementById('statusBar').textContent = 'Copied team text to clipboard.'; });
@@ -2121,14 +2487,19 @@
       document.getElementById('psMoveSlotBtn').addEventListener('click', () => { const n = (ACTIVE_TB_SLOT + 1) % 6; const t = TEAM_SLOTS[ACTIVE_TB_SLOT]; TEAM_SLOTS[ACTIVE_TB_SLOT] = TEAM_SLOTS[n]; TEAM_SLOTS[n] = t; ACTIVE_TB_SLOT = n; renderTeambuilderPane(); });
       document.getElementById('psDeleteSlotBtn').addEventListener('click', () => { TEAM_SLOTS[ACTIVE_TB_SLOT] = createEmptyTbSlot(); renderTeambuilderPane(); });
 
-      document.getElementById('psSpeciesInp').addEventListener('change', e => {
+      const psSpeciesEl = document.getElementById('psSpeciesInp');
+      psSpeciesEl.addEventListener('input', e => {
+        const rawVal = e.target.value;
+        renderTbPickerList(rawVal);
+        const enteredId = toId(rawVal);
+        if (enteredId && allDex[enteredId] && allDex[enteredId].name.toLowerCase() === rawVal.trim().toLowerCase()) {
+          selectMonIntoSlot(enteredId);
+        }
+      });
+      psSpeciesEl.addEventListener('change', e => {
         const enteredId = toId(e.target.value);
-        if (allDex[enteredId]) {
-          slot.speciesId = enteredId; slot.nickname = allDex[enteredId].name;
-          const abils = Object.values(allDex[enteredId].abilities || {}).filter(Boolean);
-          slot.ability = abils[0] || ''; slot.teraType = allDex[enteredId].types?.[0] || 'Normal';
-        } else if (!e.target.value.trim()) { slot.speciesId = ''; slot.nickname = ''; slot.ability = ''; }
-        renderTeambuilderPane();
+        if (allDex[enteredId]) selectMonIntoSlot(enteredId);
+        else if (!e.target.value.trim()) { slot.speciesId = ''; slot.nickname = ''; slot.ability = ''; renderTeambuilderPane(); }
       });
 
       document.getElementById('psNicknameInp').addEventListener('input', e => { slot.nickname = e.target.value; const ta = document.getElementById('psTeamTextArea'); if (ta) ta.value = generateShowdownTeamExport(); });
@@ -2140,7 +2511,6 @@
       document.getElementById('psItemInp').addEventListener('input', e => { slot.item = e.target.value; const ta = document.getElementById('psTeamTextArea'); if (ta) ta.value = generateShowdownTeamExport(); });
       document.getElementById('psAbilitySel').addEventListener('change', e => { slot.ability = e.target.value; const ta = document.getElementById('psTeamTextArea'); if (ta) ta.value = generateShowdownTeamExport(); });
       pane.querySelectorAll('.ps-move-inp').forEach(inp => inp.addEventListener('input', e => { slot.moves[Number(inp.dataset.moveIdx)] = e.target.value; const ta = document.getElementById('psTeamTextArea'); if (ta) ta.value = generateShowdownTeamExport(); }));
-      document.getElementById('psApplyGuessedBtn').addEventListener('click', () => { slot.evs = Object.assign({}, guessed.evs); slot.nature = guessed.nature; renderTeambuilderPane(); });
 
       const applyEvChange = (statKey, rawVal) => {
         const str = String(rawVal || '').trim();
@@ -2153,14 +2523,14 @@
         renderTeambuilderPane();
       };
 
-      pane.querySelectorAll('.ps-ev-text-inp').forEach(inp => inp.addEventListener('change', e => applyEvChange(inp.dataset.stat, e.target.value)));
-      pane.querySelectorAll('.ps-ev-slider').forEach(sl => sl.addEventListener('input', e => {
+      pane.querySelectorAll('.tb-compact-ev-inp').forEach(inp => inp.addEventListener('change', e => applyEvChange(inp.dataset.stat, e.target.value)));
+      pane.querySelectorAll('.tb-compact-ev-slider').forEach(sl => sl.addEventListener('input', e => {
         const statKey = sl.dataset.stat;
         const otherSum = Object.entries(slot.evs).filter(([k]) => k !== statKey).reduce((acc, [, v]) => acc + (Number(v) || 0), 0);
         slot.evs[statKey] = Math.min(Number(e.target.value) || 0, Math.min(252, Math.max(0, 510 - otherSum)));
         renderTeambuilderPane();
       }));
-      pane.querySelectorAll('.ps-iv-inp').forEach(inp => inp.addEventListener('input', e => { slot.ivs[inp.dataset.stat] = Math.min(31, Math.max(0, Number(e.target.value) || 0)); renderTeambuilderPane(); }));
+
       document.getElementById('psNatureSel').addEventListener('change', e => { slot.nature = e.target.value; renderTeambuilderPane(); });
       document.getElementById('psIvPresetSel').addEventListener('change', e => {
         const p = e.target.value; if (!p) return;
@@ -2169,6 +2539,7 @@
         if (p === '0spe' || p === '0atkspe') slot.ivs.spe = 0;
         renderTeambuilderPane();
       });
+
       document.getElementById('psCopyFullTeamBtn')?.addEventListener('click', () => { const ta = document.getElementById('psTeamTextArea'); ta.select(); navigator.clipboard?.writeText(ta.value); document.getElementById('statusBar').textContent = 'Copied full team text to clipboard.'; });
       document.getElementById('psApplyImportBtn')?.addEventListener('click', () => { parseShowdownTeamImport(document.getElementById('psTeamTextArea').value); renderTeambuilderPane(); document.getElementById('statusBar').textContent = 'Imported team text into Teambuilder.'; });
     }
