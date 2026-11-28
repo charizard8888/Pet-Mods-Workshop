@@ -162,6 +162,21 @@
     .ps-import-export-box { margin-top: 12px; background: #15181e; border: 1px solid #3c424f; padding: 10px 12px; display: none; }
     .ps-import-export-box.open { display: block; }
     .ps-import-export-box textarea { width: 100%; height: 175px; margin: 6px 0; font-family: monospace; font-size: 0.82rem; }
+    /* Speed Tiers View */
+    .st-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .st-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; margin-top: 10px; }
+    .st-table th { text-align: left; padding: 7px 8px; background: #202020; color: #ffcc66; border-bottom: 1px solid #383838; }
+    .st-table td { padding: 6px 8px; border-bottom: 1px solid #262626; vertical-align: middle; }
+    .st-table tr:hover td { background: #1e2228; }
+    .st-num-col { text-align: right !important; font-weight: bold; white-space: nowrap; }
+    .st-mon-cell { display: flex; align-items: center; gap: 8px; }
+    .st-mon-link { color: #e0e0e0; cursor: pointer; text-decoration: none; font-weight: bold; }
+    .st-mon-link:hover { color: #8ab4f8; text-decoration: underline; }
+    .st-tier-tag { display: inline-block; padding: 1px 6px; font-size: 0.72rem; border-radius: 3px; border: 1px solid #3a4659; background: #1a212b; color: #c7ddf7; }
+    .st-tag-boost { border-color: #6b4e2e; background: #2b2116; color: #ffcf70; }
+    .st-tag-plus { border-color: #375741; background: #1d2d22; color: #8ce3a4; }
+    .st-tag-252 { border-color: #364b66; background: #1a2433; color: #9cc2f8; }
+    .st-tag-0 { border-color: #444; background: #222; color: #bbb; }
   </style>
 </head>
 <body>
@@ -277,6 +292,7 @@
     <button id="btnAbilities" type="button">Abilities</button>
     <button id="btnItems" type="button">Items</button>
     <button id="btnTeambuilder" type="button">Teambuilder</button>
+    <button id="btnSpeedTiers" type="button">Speed Tiers</button>
 
     <div class="nav-break"></div>
 
@@ -770,7 +786,7 @@
     }
 
     function syncModeButtons() {
-      const map = { pokemon: 'btnPokemon', moves: 'btnCustomMoves', abilities: 'btnAbilities', items: 'btnItems', teambuilder: 'btnTeambuilder' };
+      const map = { pokemon: 'btnPokemon', moves: 'btnCustomMoves', abilities: 'btnAbilities', items: 'btnItems', teambuilder: 'btnTeambuilder', speedtiers: 'btnSpeedTiers' };
       Object.entries(map).forEach(([mode, btnId]) => document.getElementById(btnId)?.classList.toggle('mode-active', ACTIVE_MODE === mode));
       const codeMap = {
         code_formats: 'btnCodeFormats', code_formats_data: 'btnCodeFormatsData', code_pokedex: 'btnCodePokedex',
@@ -2156,6 +2172,139 @@
       document.getElementById('psCopyFullTeamBtn')?.addEventListener('click', () => { const ta = document.getElementById('psTeamTextArea'); ta.select(); navigator.clipboard?.writeText(ta.value); document.getElementById('statusBar').textContent = 'Copied full team text to clipboard.'; });
       document.getElementById('psApplyImportBtn')?.addEventListener('click', () => { parseShowdownTeamImport(document.getElementById('psTeamTextArea').value); renderTeambuilderPane(); document.getElementById('statusBar').textContent = 'Imported team text into Teambuilder.'; });
     }
+    // ==================== SPEED TIERS ====================
+    let SPEED_TIER_VIEW = 'combined'; // 'table' | 'combined'
+
+    function renderSpeedTiersPane() {
+      const pane = document.getElementById('detailPane');
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+
+      const entries = Object.entries(MOD_DEX)
+        .map(([id, mon]) => {
+          const baseSpe = Number(mon?.baseStats?.spe);
+          if (isNaN(baseSpe) || baseSpe <= 0) return null;
+          const s252Plus = calcLevel100Speed(baseSpe, 252, 1.1);
+          const s252 = calcLevel100Speed(baseSpe, 252, 1.0);
+          const s0 = calcLevel100Speed(baseSpe, 0, 1.0);
+          const sBoost = Math.floor(s252Plus * 1.5);
+          return { id, mon, baseSpe, sBoost, s252Plus, s252, s0 };
+        })
+        .filter(Boolean)
+        .filter(e =>
+          !q ||
+          e.mon.name.toLowerCase().includes(q) ||
+          (e.mon.types || []).join(' ').toLowerCase().includes(q) ||
+          String(e.baseSpe).includes(q) ||
+          String(e.sBoost).includes(q) ||
+          String(e.s252Plus).includes(q) ||
+          String(e.s252).includes(q) ||
+          String(e.s0).includes(q)
+        );
+
+      let bodyHtml = '';
+
+      if (!entries.length) {
+        bodyHtml = '<div class="desc-text" style="margin-top:10px;">No Pokémon with valid Speed stats loaded.</div>';
+      } else if (SPEED_TIER_VIEW === 'table') {
+        entries.sort((a, b) => (b.baseSpe - a.baseSpe) || a.mon.name.localeCompare(b.mon.name));
+        const rowsHtml = entries.map(e => `
+          <tr>
+            <td>
+              <div class="st-mon-cell">
+                ${renderSpriteHtml(e.id, e.mon, e.mon.isInherited)}
+                <span class="st-mon-link" data-mon-id="${escHtml(e.id)}">${escHtml(e.mon.name)}</span>
+                <span class="custom-badge">${e.mon.isInherited ? 'Modded' : 'New'}</span>
+              </div>
+            </td>
+            <td class="st-num-col" style="color:#d6e4ff;">${e.baseSpe}</td>
+            <td class="st-num-col" style="color:#ffcf70;">${e.sBoost}</td>
+            <td class="st-num-col" style="color:#8ce3a4;">${e.s252Plus}</td>
+            <td class="st-num-col" style="color:#9cc2f8;">${e.s252}</td>
+            <td class="st-num-col" style="color:#ccc;">${e.s0}</td>
+          </tr>
+        `).join('');
+
+        bodyHtml = `
+          <table class="st-table">
+            <thead>
+              <tr>
+                <th>Pokémon</th>
+                <th class="st-num-col">Base Spe</th>
+                <th class="st-num-col">+1 252+ EVs</th>
+                <th class="st-num-col">252+ EVs</th>
+                <th class="st-num-col">252</th>
+                <th class="st-num-col">0 EVs</th>
+              </tr>
+            </thead>
+            <tbody>${rowsHtml}</tbody>
+          </table>
+        `;
+      } else {
+        const benchmarks = [];
+        entries.forEach(e => {
+          benchmarks.push({ stat: e.sBoost, label: '+1 252+ EVs', cls: 'st-tag-boost', ...e });
+          benchmarks.push({ stat: e.s252Plus, label: '252+ EVs', cls: 'st-tag-plus', ...e });
+          benchmarks.push({ stat: e.s252, label: '252', cls: 'st-tag-252', ...e });
+          benchmarks.push({ stat: e.s0, label: '0 EVs', cls: 'st-tag-0', ...e });
+        });
+        benchmarks.sort((a, b) => (b.stat - a.stat) || (b.baseSpe - a.baseSpe) || a.mon.name.localeCompare(b.mon.name));
+
+const rowsHtml = benchmarks.map(b => `
+          <tr>
+            <td class="st-num-col" style="width:64px; color:#ffcf70;">${b.stat}</td>
+            <td><span class="st-tier-tag ${b.cls}">${b.label}</span></td>
+            <td>
+              <div class="st-mon-cell">
+                ${renderSpriteHtml(b.id, b.mon, b.mon.isInherited)}
+                <span class="st-mon-link" data-mon-id="${escHtml(b.id)}">${escHtml(b.mon.name)}</span>
+                <span class="custom-badge">${b.mon.isInherited ? 'Modded' : 'New'}</span>
+              </div>
+            </td>
+            <td class="st-num-col" style="color:#d6e4ff;">${b.baseSpe}</td>
+          </tr>
+        `).join('');
+
+        bodyHtml = `
+          <table class="st-table">
+            <thead>
+              <tr>
+                <th class="st-num-col">Speed</th>
+                <th>Investment</th>
+                <th>Pokémon</th>
+                <th class="st-num-col">Base Spe</th>
+              </tr>
+            </thead>
+            <tbody>${rowsHtml}</tbody>
+          </table>
+        `;
+      }
+
+      pane.innerHTML = `
+        <div class="detail-header">
+          <div><strong style="font-size:1.15rem;">Speed Tiers (${entries.length} Pokémon · Lvl 100, 31 IVs)</strong></div>
+          <div class="st-controls">
+            <button type="button" id="stModeCombinedBtn" class="${SPEED_TIER_VIEW === 'combined' ? 'mode-active' : ''}">Combined Tiers</button>
+            <button type="button" id="stModeTableBtn" class="${SPEED_TIER_VIEW === 'table' ? 'mode-active' : ''}">Table View</button>
+          </div>
+        </div>
+        <div class="section">${bodyHtml}</div>
+      `;
+
+      document.getElementById('stModeTableBtn').addEventListener('click', () => {
+        SPEED_TIER_VIEW = 'table';
+        renderSpeedTiersPane();
+      });
+      document.getElementById('stModeCombinedBtn').addEventListener('click', () => {
+        SPEED_TIER_VIEW = 'combined';
+        renderSpeedTiersPane();
+      });
+      pane.querySelectorAll('.st-mon-link').forEach(el => {
+        el.addEventListener('click', () => {
+          SELECTED_ID = el.dataset.monId;
+          setMode('pokemon');
+        });
+      });
+    }
 
     // ==================== MAIN VIEW RENDERING ====================
     function renderView() {
@@ -2164,6 +2313,7 @@
       const pane = document.getElementById('detailPane');
 
       if (ACTIVE_MODE === 'teambuilder') { renderTeambuilderPane(); return; }
+      if (ACTIVE_MODE === 'speedtiers') { renderSpeedTiersPane(); return; }
       if (ACTIVE_MODE.startsWith('code_')) { renderCodeGeneratorView(pane, ACTIVE_MODE.replace('code_', '')); return; }
 
       if (ACTIVE_MODE === 'moves') {
@@ -2344,6 +2494,7 @@
     document.getElementById('btnAbilities').addEventListener('click', () => setMode('abilities'));
     document.getElementById('btnItems').addEventListener('click', () => setMode('items'));
     document.getElementById('btnTeambuilder').addEventListener('click', () => setMode('teambuilder'));
+    document.getElementById('btnSpeedTiers').addEventListener('click', () => setMode('speedtiers'));
 
     document.getElementById('btnCodeFormats').addEventListener('click', () => setMode('code_formats'));
     document.getElementById('btnCodeFormatsData').addEventListener('click', () => setMode('code_formats_data'));
