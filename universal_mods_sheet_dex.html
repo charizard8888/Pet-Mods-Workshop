@@ -4,619 +4,164 @@
   <meta charset="UTF-8">
   <title>Universal Pokémon Showdown Pet Mods Dex (Google Sheets)</title>
   <style>
-    body {
-      font-family: monospace;
-      margin: 0;
-      padding: 16px 20px;
-      background: #121212;
-      color: #e0e0e0;
-      box-sizing: border-box;
-    }
-    h1 {
-      font-size: 1.3rem;
-      margin: 0 0 10px 0;
-      padding-bottom: 6px;
-      border-bottom: 1px solid #333;
-    }
-    .top-url-bar {
-      background: #181818;
-      border: 1px solid #333;
-      padding: 8px 10px;
-      margin-bottom: 8px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-    }
-    .url-label {
-      flex: 1 1 auto;
-      min-width: 260px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      white-space: nowrap;
-    }
-    .mapping-panel {
-      background: #161616;
-      border: 1px solid #2e2e2e;
-      padding: 7px 9px;
-      margin-bottom: 8px;
-    }
-    .mapping-header-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.82rem;
-      font-weight: bold;
-      color: #ffcc66;
-      margin-bottom: 6px;
-      gap: 8px;
-    }
-    .mapping-actions-right {
-      display: inline-flex;
-      gap: 6px;
-      align-items: center;
-    }
-    .preset-bar {
-      background: #141414;
-      border: 1px solid #262626;
-      padding: 6px 8px;
-      margin-bottom: 6px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      align-items: center;
-      font-size: 0.74rem;
-    }
-    .preset-io-box {
-      width: 100%;
-      height: 64px;
-      margin-top: 5px;
-      font-size: 0.72rem;
-      resize: vertical;
-      display: none;
-    }
-    .preset-io-box.open {
-      display: block;
-    }
-    .mapping-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
-      gap: 3px 6px;
-    }
-    .map-group-title {
-      grid-column: 1 / -1;
-      font-size: 0.7rem;
-      font-weight: bold;
-      color: #8ab4f8;
-      text-transform: uppercase;
-      border-bottom: 1px solid #262626;
-      padding-bottom: 2px;
-      margin-top: 3px;
-    }
-    .map-hint-note {
-      grid-column: 1 / -1;
-      font-size: 0.72rem;
-      color: #9aa0a6;
-      margin: 2px 0 3px 0;
-    }
-    .map-field {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 3px;
-      font-size: 0.72rem;
-    }
-    .map-input {
-      width: 112px;
-      font-size: 0.72rem;
-      padding: 2px 5px;
-    }
-    .preset-name-input {
-      width: 165px;
-      font-size: 0.74rem;
-      padding: 3px 6px;
-    }
-    .preset-select {
-      font-size: 0.74rem;
-      padding: 3px 6px;
-      min-width: 150px;
-    }
-    .map-footer {
-      grid-column: 1 / -1;
-      display: flex;
-      justify-content: flex-end;
-      gap: 8px;
-      margin-top: 6px;
-      padding-top: 5px;
-      border-top: 1px solid #262626;
-    }
-    .nav-toolbar {
-      background: #181818;
-      border: 1px solid #333;
-      padding: 8px 10px;
-      margin-bottom: 8px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-    }
-    .nav-break {
-      flex-basis: 100%;
-      height: 0;
-      border-top: 1px solid #2a2a2a;
-      margin: 2px 0;
-    }
-    .code-row-label {
-      font-size: 0.82rem;
-      font-weight: bold;
-      color: #8ab4f8;
-      margin-right: 2px;
-    }
-    label {
-      font-size: 0.82rem;
-      color: #ccc;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-    input[type="text"], input[type="number"], select, textarea {
-      background: #1e1e1e;
-      color: #fff;
-      border: 1px solid #444;
-      padding: 5px 8px;
-      font-family: monospace;
-      font-size: 0.86rem;
-      box-sizing: border-box;
-    }
-    input.url-input {
-      width: 100%;
-      min-width: 240px;
-    }
+    body { font-family: monospace; margin: 0; padding: 16px 20px; background: #121212; color: #e0e0e0; box-sizing: border-box; }
+    h1 { font-size: 1.3rem; margin: 0 0 10px 0; padding-bottom: 6px; border-bottom: 1px solid #333; }
+    .top-url-bar { background: #181818; border: 1px solid #333; padding: 8px 10px; margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .url-label { flex: 1 1 auto; min-width: 260px; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+    .mapping-panel { background: #161616; border: 1px solid #2e2e2e; padding: 7px 9px; margin-bottom: 8px; }
+    .mapping-header-bar { display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; font-weight: bold; color: #ffcc66; margin-bottom: 6px; gap: 8px; }
+    .mapping-actions-right { display: inline-flex; gap: 6px; align-items: center; }
+    .preset-bar { background: #141414; border: 1px solid #262626; padding: 6px 8px; margin-bottom: 6px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 0.74rem; }
+    .preset-io-box { width: 100%; height: 64px; margin-top: 5px; font-size: 0.72rem; resize: vertical; display: none; }
+    .preset-io-box.open { display: block; }
+    .mapping-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(225px, 1fr)); gap: 3px 6px; }
+    .map-group-title { grid-column: 1 / -1; font-size: 0.7rem; font-weight: bold; color: #8ab4f8; text-transform: uppercase; border-bottom: 1px solid #262626; padding-bottom: 2px; margin-top: 3px; }
+    .map-hint-note { grid-column: 1 / -1; font-size: 0.72rem; color: #9aa0a6; margin: 2px 0 3px 0; }
+    .map-field { display: flex; justify-content: space-between; align-items: center; gap: 3px; font-size: 0.72rem; }
+    .map-input { width: 112px; font-size: 0.72rem; padding: 2px 5px; }
+    .preset-name-input { width: 165px; font-size: 0.74rem; padding: 3px 6px; }
+    .preset-select { font-size: 0.74rem; padding: 3px 6px; min-width: 150px; }
+    .map-footer { grid-column: 1 / -1; display: flex; justify-content: flex-end; gap: 8px; margin-top: 6px; padding-top: 5px; border-top: 1px solid #262626; }
+    .nav-toolbar { background: #181818; border: 1px solid #333; padding: 8px 10px; margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .nav-break { flex-basis: 100%; height: 0; border-top: 1px solid #2a2a2a; margin: 2px 0; }
+    .code-row-label { font-size: 0.82rem; font-weight: bold; color: #8ab4f8; margin-right: 2px; }
+    label { font-size: 0.82rem; color: #ccc; display: inline-flex; align-items: center; gap: 4px; }
+    input[type="text"], input[type="number"], select, textarea { background: #1e1e1e; color: #fff; border: 1px solid #444; padding: 5px 8px; font-family: monospace; font-size: 0.86rem; box-sizing: border-box; }
+    input.url-input { width: 100%; min-width: 240px; }
     input.search-input { width: 320px; }
-    button {
-      background: #2b2b2b;
-      color: #fff;
-      border: 1px solid #555;
-      padding: 4px 9px;
-      font-family: monospace;
-      font-size: 0.78rem;
-      cursor: pointer;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
+    button { background: #2b2b2b; color: #fff; border: 1px solid #555; padding: 4px 9px; font-family: monospace; font-size: 0.78rem; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
     button:hover { background: #3b3b3b; }
-    button.mode-active {
-      background: #25382a;
-      border-color: #6fcf8b;
-      color: #8ce3a4;
-      font-weight: bold;
-    }
-    button.code-btn-active {
-      background: #1e2d3f;
-      border-color: #8ab4f8;
-      color: #a8c7fa;
-      font-weight: bold;
-    }
-    .paste-drawer {
-      background: #161616;
-      border: 1px solid #333;
-      padding: 10px 12px;
-      margin-bottom: 10px;
-      display: none;
-    }
+    button.mode-active { background: #25382a; border-color: #6fcf8b; color: #8ce3a4; font-weight: bold; }
+    button.code-btn-active { background: #1e2d3f; border-color: #8ab4f8; color: #a8c7fa; font-weight: bold; }
+    .paste-drawer { background: #161616; border: 1px solid #333; padding: 10px 12px; margin-bottom: 10px; display: none; }
     .paste-drawer.open { display: block; }
-    .paste-drawer textarea {
-      width: 100%;
-      height: 120px;
-      margin: 6px 0;
-      resize: vertical;
-      font-size: 0.82rem;
-    }
-    .status {
-      font-size: 0.86rem;
-      color: #aaa;
-      margin-bottom: 10px;
-    }
-    .source-strip {
-      background: #141414;
-      border: 1px solid #2a3441;
-      padding: 6px 10px;
-      margin-bottom: 12px;
-      font-size: 0.75rem;
-      color: #a9c4e4;
-      line-height: 1.5;
-    }
-    .source-strip strong {
-      color: #8ab4f8;
-    }
-    .source-pill {
-      display: inline-block;
-      background: #1c2430;
-      border: 1px solid #324358;
-      color: #c7ddf7;
-      padding: 1px 5px;
-      margin: 2px 4px 2px 0;
-      font-size: 0.72rem;
-    }
-    .inline-source-tag {
-      display: inline-block;
-      background: #1b222c;
-      border: 1px solid #303d4f;
-      color: #9bbce0;
-      padding: 0 5px;
-      font-size: 0.7rem;
-      margin-left: 6px;
-    }
-    .layout {
-      display: grid;
-      grid-template-columns: 20% 80%;
-      gap: 14px;
-      align-items: start;
-    }
-    @media (max-width: 820px) {
-      .layout { grid-template-columns: 1fr; }
-    }
-    .mon-list {
-      background: #181818;
-      border: 1px solid #333;
-      max-height: 78vh;
-      overflow-y: auto;
-    }
-    .group-header {
-      padding: 6px 8px;
-      background: #202020;
-      color: #ffcc66;
-      font-weight: bold;
-      font-size: 0.76rem;
-      border-bottom: 1px solid #333;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .mon-item {
-      padding: 7px 8px;
-      border-bottom: 1px solid #262626;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 6px;
-      font-size: 0.82rem;
-    }
-    .mon-left {
-      display: flex;
-      align-items: flex-start;
-      gap: 6px;
-      min-width: 0;
-      flex: 1 1 auto;
-    }
-    .mon-info {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      min-width: 0;
-      word-break: break-word;
-    }
-    .mon-top-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 4px;
-      flex-wrap: wrap;
-    }
-    .mon-spread {
-      font-size: 0.74rem;
-      color: #d6e4ff;
-      line-height: 1.25;
-    }
-    .mon-abilities-sub {
-      font-size: 0.69rem;
-      color: #a8a8a8;
-      line-height: 1.25;
-    }
-    .sprite-slot {
-      width: 28px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding-top: 1px;
-    }
-    .detail-sprite-img {
-      max-height: 56px;
-      max-width: 64px;
-      width: auto;
-      height: auto;
-      display: block;
-    }
+    .paste-drawer textarea { width: 100%; height: 120px; margin: 6px 0; resize: vertical; font-size: 0.82rem; }
+    .status { font-size: 0.86rem; color: #aaa; margin-bottom: 10px; }
+    .source-strip { background: #141414; border: 1px solid #2a3441; padding: 6px 10px; margin-bottom: 12px; font-size: 0.75rem; color: #a9c4e4; line-height: 1.5; }
+    .source-strip strong { color: #8ab4f8; }
+    .source-pill { display: inline-block; background: #1c2430; border: 1px solid #324358; color: #c7ddf7; padding: 1px 5px; margin: 2px 4px 2px 0; font-size: 0.72rem; }
+    .inline-source-tag { display: inline-block; background: #1b222c; border: 1px solid #303d4f; color: #9bbce0; padding: 0 5px; font-size: 0.7rem; margin-left: 6px; }
+    .layout { display: grid; grid-template-columns: 20% 80%; gap: 14px; align-items: start; }
+    @media (max-width: 820px) { .layout { grid-template-columns: 1fr; } }
+    .mon-list { background: #181818; border: 1px solid #333; max-height: 78vh; overflow-y: auto; }
+    .group-header { padding: 6px 8px; background: #202020; color: #ffcc66; font-weight: bold; font-size: 0.76rem; border-bottom: 1px solid #333; text-transform: uppercase; letter-spacing: 0.5px; }
+    .mon-item { padding: 7px 8px; border-bottom: 1px solid #262626; cursor: pointer; display: flex; justify-content: space-between; align-items: flex-start; gap: 6px; font-size: 0.82rem; }
+    .mon-left { display: flex; align-items: flex-start; gap: 6px; min-width: 0; flex: 1 1 auto; }
+    .mon-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; word-break: break-word; }
+    .mon-top-row { display: flex; align-items: center; justify-content: space-between; gap: 4px; flex-wrap: wrap; }
+    .mon-spread { font-size: 0.74rem; color: #d6e4ff; line-height: 1.25; }
+    .mon-abilities-sub { font-size: 0.69rem; color: #a8a8a8; line-height: 1.25; }
+    .sprite-slot { width: 28px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding-top: 1px; }
+    .detail-sprite-img { max-height: 56px; max-width: 64px; width: auto; height: auto; display: block; }
     .mon-item:hover { background: #222; }
     .mon-item.active { background: #293229; border-left: 3px solid #6fcf8b; }
     .mon-meta { font-size: 0.7rem; color: #ffcf70; white-space: nowrap; }
-    .detail-pane {
-      background: #181818;
-      border: 1px solid #333;
-      padding: 14px 16px;
-      min-height: 320px;
-    }
-    .detail-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .detail-title-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .weight-badge {
-      font-size: 0.78rem;
-      color: #bbb;
-      margin-left: 8px;
-    }
-    .type-pill {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 3px;
-      font-size: 0.78rem;
-      font-weight: bold;
-      background: #262626;
-      border: 1px solid #444;
-      color: #fff;
-      margin-right: 4px;
-    }
-    .section {
-      margin-top: 14px;
-      padding-top: 12px;
-      border-top: 1px solid #2b2b2b;
-    }
-    .section h2 {
-      font-size: 0.98rem;
-      margin: 0 0 8px 0;
-      color: #ffcc66;
-    }
-    details.collapsible-section > summary {
-      list-style: none;
-      cursor: pointer;
-      user-select: none;
-      font-size: 0.94rem;
-      font-weight: bold;
-      color: #ffcc66;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    details.collapsible-section > summary::-webkit-details-marker {
-      display: none;
-    }
-    details.collapsible-section > summary::before {
-      content: '▸';
-      font-size: 0.85rem;
-      color: #ffcc66;
-    }
-    details.collapsible-section[open] > summary::before {
-      content: '▾';
-    }
-    details.collapsible-section .collapsible-body {
-      margin-top: 8px;
-    }
-    .dex-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-      gap: 14px;
-    }
-    @media (max-width: 820px) {
-      .dex-grid { grid-template-columns: 1fr; }
-    }
-    .dex-box {
-      background: #151515;
-      border: 1px solid #2b2b2b;
-      padding: 10px 12px;
-    }
-    .stat-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.82rem;
-    }
-    .stat-table td {
-      padding: 4px 5px;
-      vertical-align: middle;
-    }
+    .detail-pane { background: #181818; border: 1px solid #333; padding: 14px 16px; min-height: 320px; }
+    .detail-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    .detail-title-wrap { display: flex; align-items: center; gap: 10px; }
+    .weight-badge { font-size: 0.78rem; color: #bbb; margin-left: 8px; }
+    .type-pill { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 0.78rem; font-weight: bold; background: #262626; border: 1px solid #444; color: #fff; margin-right: 4px; }
+    .section { margin-top: 14px; padding-top: 12px; border-top: 1px solid #2b2b2b; }
+    .section h2 { font-size: 0.98rem; margin: 0 0 8px 0; color: #ffcc66; }
+    details.collapsible-section > summary { list-style: none; cursor: pointer; user-select: none; font-size: 0.94rem; font-weight: bold; color: #ffcc66; display: inline-flex; align-items: center; gap: 6px; }
+    details.collapsible-section > summary::-webkit-details-marker { display: none; }
+    details.collapsible-section > summary::before { content: '▸'; font-size: 0.85rem; color: #ffcc66; }
+    details.collapsible-section[open] > summary::before { content: '▾'; }
+    details.collapsible-section .collapsible-body { margin-top: 8px; }
+    .dex-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 14px; }
+    @media (max-width: 820px) { .dex-grid { grid-template-columns: 1fr; } }
+    .dex-box { background: #151515; border: 1px solid #2b2b2b; padding: 10px 12px; }
+    .stat-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    .stat-table td { padding: 4px 5px; vertical-align: middle; }
     .stat-label { width: 42px; color: #bbb; font-weight: bold; }
     .stat-num { width: 34px; text-align: right; color: #fff; font-weight: bold; }
     .stat-diff { width: 38px; text-align: right; font-weight: bold; font-size: 0.78rem; }
     .stat-bar-cell { width: 195px; max-width: 210px; }
     .diff-pos { color: #6fcf8b; }
     .diff-neg { color: #e07a7a; }
-    .stat-bar-bg {
-      background: #232323;
-      height: 10px;
-      width: 185px;
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    .stat-bar-fill {
-      height: 100%;
-      background: #77b5fe;
-    }
-    .stat-bst-row td {
-      border-top: 1px solid #2b2b2b;
-      padding-top: 6px;
-      color: #ffcf70;
-      font-weight: bold;
-    }
-    .speed-tier-box {
-      margin-top: 10px;
-      padding-top: 8px;
-      border-top: 1px solid #262626;
-      font-size: 0.8rem;
-      color: #c8d6e8;
-      line-height: 1.45;
-    }
-    .speed-tier-title {
-      font-weight: bold;
-      color: #ffcc66;
-      margin-bottom: 2px;
-    }
-    .entry-row {
-      margin: 6px 0;
-      padding: 6px 8px;
-      background: #151515;
-      border: 1px solid #262626;
-      line-height: 1.45;
-      font-size: 0.86rem;
-    }
-    .custom-card {
-      margin: 10px 0;
-      padding: 10px 12px;
-      background: #151515;
-      border: 1px solid #2c2c2c;
-      line-height: 1.5;
-      font-size: 0.88rem;
-    }
-    .custom-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 4px;
-    }
-    .move-meta-inline {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      margin-left: 8px;
-      color: #ffcf70;
-      vertical-align: middle;
-      flex-wrap: wrap;
-    }
-    .move-target-flags {
-      font-size: 0.8rem;
-      color: #c7d4e6;
-      margin-top: 3px;
-    }
-    .type-icon-img {
-      height: 14px;
-      width: auto;
-      display: inline-block;
-      vertical-align: middle;
-    }
-    .mon-recipients-box {
-      margin-top: 8px;
-      padding: 8px 10px;
-      background: #121212;
-      border: 1px solid #242424;
-      font-size: 0.82rem;
-      color: #d0d0d0;
-      line-height: 1.5;
-    }
-    .custom-badge {
-      display: inline-block;
-      background: #203125;
-      color: #6fcf8b;
-      border: 1px solid #375741;
-      padding: 0 5px;
-      font-size: 0.72rem;
-      margin-left: 4px;
-    }
+    .stat-bar-bg { background: #232323; height: 10px; width: 185px; border-radius: 2px; overflow: hidden; }
+    .stat-bar-fill { height: 100%; background: #77b5fe; }
+    .stat-bst-row td { border-top: 1px solid #2b2b2b; padding-top: 6px; color: #ffcf70; font-weight: bold; }
+    .speed-tier-box { margin-top: 10px; padding-top: 8px; border-top: 1px solid #262626; font-size: 0.8rem; color: #c8d6e8; line-height: 1.45; }
+    .speed-tier-title { font-weight: bold; color: #ffcc66; margin-bottom: 2px; }
+    .entry-row { margin: 6px 0; padding: 6px 8px; background: #151515; border: 1px solid #262626; line-height: 1.45; font-size: 0.86rem; }
+    .custom-card { margin: 10px 0; padding: 10px 12px; background: #151515; border: 1px solid #2c2c2c; line-height: 1.5; font-size: 0.88rem; }
+    .custom-card-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+    .move-meta-inline { display: inline-flex; align-items: center; gap: 7px; margin-left: 8px; color: #ffcf70; vertical-align: middle; flex-wrap: wrap; }
+    .move-target-flags { font-size: 0.8rem; color: #c7d4e6; margin-top: 3px; }
+    .type-icon-img, .cat-icon { height: 14px; width: auto; display: inline-block; vertical-align: middle; }
+    .mon-recipients-box { margin-top: 8px; padding: 8px 10px; background: #121212; border: 1px solid #242424; font-size: 0.82rem; color: #d0d0d0; line-height: 1.5; }
+    .custom-badge { display: inline-block; background: #203125; color: #6fcf8b; border: 1px solid #375741; padding: 0 5px; font-size: 0.72rem; margin-left: 4px; }
     .desc-text { color: #bbb; }
-    .cat-block {
-      margin-bottom: 10px;
-    }
-    .cat-title {
-      font-size: 0.88rem;
-      font-weight: bold;
-      color: #ddd;
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .cat-icon {
-      height: 14px;
-      width: auto;
-      display: inline-block;
-      vertical-align: middle;
-    }
-    .moves-line {
-      line-height: 1.65;
-      font-size: 0.86rem;
-      color: #e0e0e0;
-    }
-    .move-added {
-      color: #6fcf8b;
-      font-weight: bold;
-    }
-    .move-removed {
-      color: #e07a7a;
-      text-decoration: line-through;
-    }
-    .legend-note {
-      font-size: 0.78rem;
-      color: #999;
-      margin-bottom: 8px;
-    }
-    .code-gen-controls {
-      background: #151515;
-      border: 1px solid #2c3542;
-      padding: 10px 12px;
-      margin: 10px 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px 16px;
-      align-items: center;
-    }
-    .code-gen-controls input[type="text"] {
-      width: 180px;
-      font-size: 0.82rem;
-      padding: 4px 7px;
-    }
-    .code-gen-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-      margin: 8px 0;
-    }
-    .code-output-box {
-      width: 100%;
-      height: 390px;
-      background: #101216;
-      color: #d8e6f8;
-      border: 1px solid #3a4659;
-      padding: 10px;
-      font-family: monospace;
-      font-size: 0.82rem;
-      line-height: 1.45;
-      resize: vertical;
-      box-sizing: border-box;
-      tab-size: 2;
-    }
-    .code-output-small {
-      width: 100%;
-      height: 62px;
-      background: #101216;
-      color: #d8e6f8;
-      border: 1px solid #3a4659;
-      padding: 8px 10px;
-      font-family: monospace;
-      font-size: 0.82rem;
-      line-height: 1.45;
-      resize: vertical;
-      box-sizing: border-box;
-    }
-    .code-sub-label {
-      font-size: 0.82rem;
-      font-weight: bold;
-      color: #ffcc66;
-      margin: 12px 0 6px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-    }
+    .cat-block { margin-bottom: 10px; }
+    .cat-title { font-size: 0.88rem; font-weight: bold; color: #ddd; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+    .moves-line { line-height: 1.65; font-size: 0.86rem; color: #e0e0e0; }
+    .move-added { color: #6fcf8b; font-weight: bold; }
+    .move-removed { color: #e07a7a; text-decoration: line-through; }
+    .legend-note { font-size: 0.78rem; color: #999; margin-bottom: 8px; }
+
+    /* Code Generator Styles */
+    .code-gen-controls { background: #151515; border: 1px solid #2c3542; padding: 10px 12px; margin: 10px 0; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; }
+    .code-gen-controls input[type="text"] { width: 185px; font-size: 0.82rem; padding: 4px 7px; }
+    .code-gen-controls input.wide-input { width: 340px; }
+    .code-gen-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0; }
+    .code-output-box { width: 100%; height: 390px; background: #101216; color: #d8e6f8; border: 1px solid #3a4659; padding: 10px; font-family: monospace; font-size: 0.82rem; line-height: 1.45; resize: vertical; box-sizing: border-box; tab-size: 2; }
+    .code-output-small { width: 100%; height: 62px; background: #101216; color: #d8e6f8; border: 1px solid #3a4659; padding: 8px 10px; font-family: monospace; font-size: 0.82rem; line-height: 1.45; resize: vertical; box-sizing: border-box; }
+    .code-sub-label { font-size: 0.82rem; font-weight: bold; color: #ffcc66; margin: 12px 0 6px 0; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+
+    /* Showdown-style Teambuilder */
+    .ps-tb-wrap { font-family: Verdana, Geneva, Tahoma, sans-serif; color: #e6e6e6; }
+    .ps-tb-topbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; background: #252930; border: 1px solid #434954; padding: 6px 10px; margin-bottom: 10px; }
+    .ps-tb-slots { display: flex; flex-wrap: wrap; gap: 5px; }
+    .ps-tb-slot-tab { background: #1c1f24; border: 1px solid #464c56; color: #ccc; padding: 4px 9px; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 5px; }
+    .ps-tb-slot-tab.active { background: #334354; border-color: #77b5fe; color: #fff; font-weight: bold; }
+    .ps-tb-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ps-tb-actions button { background: #2f343d; border: 1px solid #525966; font-family: Verdana, sans-serif; font-size: 0.78rem; padding: 4px 9px; }
+    .ps-set-card { background: linear-gradient(180deg, #323741 0%, #242830 100%); border: 1px solid #4c5361; border-radius: 4px; padding: 10px 12px; display: grid; grid-template-columns: 165px 255px 190px minmax(195px, 1fr); gap: 12px; align-items: stretch; }
+    @media (max-width: 1050px) { .ps-set-card { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 640px) { .ps-set-card { grid-template-columns: 1fr; } }
+    .ps-col { display: flex; flex-direction: column; justify-content: space-between; gap: 6px; }
+    .ps-lbl { font-size: 0.74rem; color: #c2c9d6; font-weight: bold; margin-bottom: 2px; display: block; }
+    .ps-inp, .ps-sel { width: 100%; background: #171a1f; color: #fff; border: 1px solid #58606e; border-radius: 3px; padding: 4px 7px; font-family: Verdana, sans-serif; font-size: 0.82rem; }
+    .ps-inp:focus, .ps-sel:focus { outline: none; border-color: #77b5fe; }
+    .ps-sprite-stage { height: 82px; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.22); border: 1px solid #3c424d; border-radius: 3px; }
+    .ps-sprite-stage img { max-height: 76px; max-width: 96px; image-rendering: pixelated; }
+    .ps-details-box { background: #1d2127; border: 1px solid #474e5c; border-radius: 3px; padding: 4px 6px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; text-align: center; }
+    .ps-det-cell span { display: block; font-size: 0.66rem; color: #aab2c0; margin-bottom: 2px; }
+    .ps-det-cell input, .ps-det-cell select { width: 100%; padding: 2px 3px; font-size: 0.76rem; text-align: center; background: #14161a; border: 1px solid #3c424d; color: #fff; }
+    .ps-mid-row { display: flex; justify-content: space-between; align-items: center; min-height: 24px; padding: 2px 0; }
+    .ps-equip-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .ps-moves-col { display: flex; flex-direction: column; gap: 5px; }
+    .ps-mini-stats { background: #1c2026; border: 1px solid #474e5c; border-radius: 3px; padding: 6px 8px; font-size: 0.74rem; }
+    .ps-mini-stats-hdr { display: flex; justify-content: space-between; color: #aab2c0; font-size: 0.7rem; margin-bottom: 4px; }
+    .ps-mini-row { display: grid; grid-template-columns: 32px 1fr 38px; align-items: center; gap: 6px; margin: 3px 0; }
+    .ps-mini-bar-wrap { background: #121417; height: 7px; border-radius: 2px; overflow: hidden; }
+    .ps-mini-bar { height: 100%; }
+    .ps-mini-ev { text-align: right; color: #d6deeb; font-size: 0.72rem; }
+    .ps-evs-panel { margin-top: 10px; background: #1b1e24; border: 1px solid #454c59; border-radius: 4px; padding: 10px 14px; }
+    .ps-evs-banner { background: #2b303a; border: 1px solid #495160; padding: 4px 10px; font-weight: bold; font-size: 0.84rem; color: #fff; margin-bottom: 8px; }
+    .ps-ev-top-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 10px; font-size: 0.8rem; }
+    .ps-guessed-pill { background: #262b33; border: 1px solid #4b5362; border-radius: 4px; padding: 5px 10px; color: #e4eaf5; font-size: 0.8rem; cursor: pointer; }
+    .ps-guessed-pill:hover { background: #323945; }
+    .ps-ev-table { width: 100%; max-width: 780px; border-collapse: collapse; font-size: 0.82rem; }
+    .ps-ev-table th { color: #b7c0cf; font-weight: bold; font-size: 0.76rem; padding: 3px 6px; text-align: left; }
+    .ps-ev-table td { padding: 5px 6px; vertical-align: middle; }
+    .ps-ev-stat-name { width: 78px; text-align: right; color: #d0d7e3; font-weight: bold; }
+    .ps-ev-base-num { width: 38px; text-align: right; font-weight: bold; color: #fff; }
+    .ps-ev-bar-cell { width: 140px; }
+    .ps-ev-bar-track { width: 130px; height: 10px; background: #121418; border: 1px solid #2d323b; overflow: hidden; }
+    .ps-ev-bar-fill { height: 100%; }
+    .ps-ev-box-cell { width: 64px; }
+    .ps-ev-text-inp { width: 56px; padding: 3px 5px; background: #12151a; border: 1px solid #565f70; color: #fff; text-align: left; font-size: 0.8rem; }
+    .ps-ev-slider-cell { width: 245px; }
+    .ps-ev-slider { width: 235px; accent-color: #77d4fc; cursor: pointer; }
+    .ps-iv-cell { width: 54px; }
+    .ps-iv-inp { width: 46px; padding: 3px 5px; background: #12151a; border: 1px solid #565f70; color: #fff; text-align: left; font-size: 0.8rem; }
+    .ps-final-stat { width: 48px; text-align: right; font-weight: bold; font-size: 0.86rem; color: #fff; }
+    .ps-ev-footer { margin-top: 10px; padding-top: 8px; border-top: 1px solid #323844; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; max-width: 780px; font-size: 0.82rem; }
+    .ps-import-export-box { margin-top: 12px; background: #15181e; border: 1px solid #3c424f; padding: 10px 12px; display: none; }
+    .ps-import-export-box.open { display: block; }
+    .ps-import-export-box textarea { width: 100%; height: 175px; margin: 6px 0; font-family: monospace; font-size: 0.82rem; }
   </style>
 </head>
 <body>
@@ -672,7 +217,7 @@
       <label class="map-field">Type 1: <input type="text" id="hdr_type1" class="map-input" value="" placeholder="Type 1 or K"></label>
       <label class="map-field">Type 2: <input type="text" id="hdr_type2" class="map-input" value="" placeholder="Type 2 or L"></label>
       <label class="map-field">Abilities (/ sep) (Opt): <input type="text" id="hdr_abilities_combined" class="map-input" value="" placeholder="Abilities or M"></label>
-      <label class="map-field">Ability 1: <input type="text" id="hdr_ability1" class="map-input" value="" placeholder="Fused Ability / M"></label>
+      <label class="map-field">Ability 1: <input type="text" id="hdr_ability1" class="map-input" value="" placeholder="Ability Name / M"></label>
       <label class="map-field">Ability 2: <input type="text" id="hdr_ability2" class="map-input" value="" placeholder="Ability 1 / N"></label>
       <label class="map-field">Ability 3: <input type="text" id="hdr_ability3" class="map-input" value="" placeholder="Ability 2 / O"></label>
       <label class="map-field">Stats (100/100/...): <input type="text" id="hdr_stats_combined" class="map-input" value="" placeholder="100/100/100/100/100/100"></label>
@@ -701,7 +246,7 @@
       <label class="map-field">Learned By: <input type="text" id="hdr_move_learnedby" class="map-input" value="" placeholder=""></label>
 
       <div class="map-group-title">Custom Abilities Headers</div>
-      <label class="map-field">Ability Name: <input type="text" id="hdr_abilityname" class="map-input" value="" placeholder="Fused Ability / Name"></label>
+      <label class="map-field">Ability Name: <input type="text" id="hdr_abilityname" class="map-input" value="" placeholder="Ability Name / Name"></label>
       <label class="map-field">Effect: <input type="text" id="hdr_ability_effect" class="map-input" value="" placeholder="Ability Effect / Effect"></label>
       <label class="map-field">Learned By: <input type="text" id="hdr_ability_learnedby" class="map-input" value="" placeholder="Optional if shared tab"></label>
 
@@ -731,6 +276,7 @@
     <button id="btnCustomMoves" type="button">Custom Moves</button>
     <button id="btnAbilities" type="button">Abilities</button>
     <button id="btnItems" type="button">Items</button>
+    <button id="btnTeambuilder" type="button">Teambuilder</button>
 
     <div class="nav-break"></div>
 
@@ -738,11 +284,11 @@
     <button id="btnCodeFormats" type="button">formats.ts</button>
     <button id="btnCodeFormatsData" type="button">formats-data.ts</button>
     <button id="btnCodePokedex" type="button">pokedex.ts</button>
-    <button id="btnCodeMoves" type="button">moves.ts</button>
     <button id="btnCodeItems" type="button">items.ts</button>
     <button id="btnCodeLearnsets" type="button">learnsets.ts</button>
     <button id="btnCodeScripts" type="button">scripts.ts</button>
     <button id="btnCodeAbilities" type="button">abilities.ts</button>
+    <button id="btnCodeMoves" type="button">moves.ts</button>
   </div>
 
   <div class="paste-drawer" id="pasteDrawer">
@@ -766,158 +312,83 @@
 
   <div class="status" id="statusBar">Enter a public Google Sheets link (or paste TSV/CSV) and click Initial Load or Final Load.</div>
 
+  <datalist id="tbMonOptions"></datalist>
+  <datalist id="tbItemOptions"></datalist>
+  <datalist id="tbMoveOptions"></datalist>
+
   <div class="layout" id="mainLayout">
     <div class="mon-list" id="monList"></div>
-    <div class="detail-pane" id="detailPane">Load a Pet Mod Google Sheet or paste spreadsheet rows to inspect Pokémon, stats, abilities, moves, and items, or generate Showdown <code>.ts</code> code.</div>
+    <div class="detail-pane" id="detailPane">Load a Pet Mod Google Sheet or paste spreadsheet rows to inspect Pokémon, stats, abilities, moves, items, build teams, or generate Showdown <code>.ts</code> code.</div>
   </div>
 
   <script>
     const BASE_SHOWDOWN_URL = 'https://play.pokemonshowdown.com/data';
     const MINISPRITE_BASE = 'https://www.smogon.com/forums/media/minisprites';
+    const BW_SPRITE_BASE = 'https://play.pokemonshowdown.com/sprites/gen5';
     const CATEGORY_ICON_BASE = 'https://play.pokemonshowdown.com/sprites/categories';
     const TYPE_ICON_BASE = 'https://play.pokemonshowdown.com/sprites/types';
     const PRESET_STORAGE_KEY = 'petmods_dex_saved_combos_v1';
+
+    const ALL_TYPES = [
+      'Normal', 'Fire', 'Water', 'Electric', 'Grass', 'Ice', 'Fighting', 'Poison', 'Ground',
+      'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dragon', 'Dark', 'Steel', 'Fairy', 'Stellar'
+    ];
+
+    const NATURES = {
+      Adamant: { plus: 'atk', minus: 'spa' }, Bashful: {}, Bold: { plus: 'def', minus: 'atk' },
+      Brave: { plus: 'atk', minus: 'spe' }, Calm: { plus: 'spd', minus: 'atk' }, Careful: { plus: 'spd', minus: 'spa' },
+      Docile: {}, Gentle: { plus: 'spd', minus: 'def' }, Hardy: {}, Hasty: { plus: 'spe', minus: 'def' },
+      Impish: { plus: 'def', minus: 'spa' }, Jolly: { plus: 'spe', minus: 'spa' }, Lax: { plus: 'def', minus: 'spd' },
+      Lonely: { plus: 'atk', minus: 'def' }, Mild: { plus: 'spa', minus: 'def' }, Modest: { plus: 'spa', minus: 'atk' },
+      Naive: { plus: 'spe', minus: 'spd' }, Naughty: { plus: 'atk', minus: 'spd' }, Quiet: { plus: 'spa', minus: 'spe' },
+      Quirky: {}, Rash: { plus: 'spa', minus: 'spd' }, Relaxed: { plus: 'def', minus: 'spe' },
+      Sassy: { plus: 'spd', minus: 'spe' }, Serious: {}, Timid: { plus: 'spe', minus: 'atk' }
+    };
 
     const BUILTIN_PRESETS = {
       "Fusion Revolution": {
         "name": "Fusion Revolution",
         "sheetUrl": "https://docs.google.com/spreadsheets/d/1l2bDNkESngmeoNFcVRfHj4cf-8AM0TIoprZu2m2xM-U/edit?gid=0#gid=0",
         "mapping": {
-          "tab_pokemon": "List of Fusions",
-          "tab_moves": "",
-          "tab_abilities": "List of Fusions",
-          "tab_items": "",
-          "hdr_pokemon": "Fusion Name",
-          "hdr_sprites": "Sprite",
-          "hdr_types_combined": "",
-          "hdr_type1": "Type 1",
-          "hdr_type2": "Type 2",
-          "hdr_abilities_combined": "",
-          "hdr_ability1": "Fused Ability",
-          "hdr_ability2": "",
-          "hdr_ability3": "",
-          "hdr_stats_combined": "",
-          "hdr_hp": "HP",
-          "hdr_atk": "Atk",
-          "hdr_def": "Def",
-          "hdr_spa": "SpA",
-          "hdr_spd": "SpD",
-          "hdr_spe": "Spe",
-          "hdr_weight": "",
-          "hdr_learnset": "",
-          "hdr_movepool_add": "",
-          "hdr_movepool_rem": "",
-          "hdr_movename": "",
-          "hdr_move_type": "",
-          "hdr_bp": "",
-          "hdr_pp": "",
-          "hdr_acc": "",
-          "hdr_category": "",
-          "hdr_target": "",
-          "hdr_priority": "",
-          "hdr_flags": "",
-          "hdr_move_effect": "",
-          "hdr_move_learnedby": "",
-          "hdr_abilityname": "Fused Ability",
-          "hdr_ability_effect": "Ability Effect",
-          "hdr_ability_learnedby": "",
-          "hdr_item_name": "",
-          "hdr_item_effect": "",
-          "hdr_item_fling": ""
+          "tab_pokemon": "List of Fusions", "tab_moves": "", "tab_abilities": "List of Fusions", "tab_items": "",
+          "hdr_pokemon": "Fusion Name", "hdr_sprites": "Sprite", "hdr_types_combined": "", "hdr_type1": "Type 1", "hdr_type2": "Type 2",
+          "hdr_abilities_combined": "", "hdr_ability1": "Fused Ability", "hdr_ability2": "", "hdr_ability3": "",
+          "hdr_stats_combined": "", "hdr_hp": "HP", "hdr_atk": "Atk", "hdr_def": "Def", "hdr_spa": "SpA", "hdr_spd": "SpD", "hdr_spe": "Spe",
+          "hdr_weight": "", "hdr_learnset": "", "hdr_movepool_add": "", "hdr_movepool_rem": "",
+          "hdr_movename": "", "hdr_move_type": "", "hdr_bp": "", "hdr_pp": "", "hdr_acc": "", "hdr_category": "",
+          "hdr_target": "", "hdr_priority": "", "hdr_flags": "", "hdr_move_effect": "", "hdr_move_learnedby": "",
+          "hdr_abilityname": "Fused Ability", "hdr_ability_effect": "Ability Effect", "hdr_ability_learnedby": "",
+          "hdr_item_name": "", "hdr_item_effect": "", "hdr_item_fling": ""
         }
       },
       "Deltamon": {
         "name": "Deltamon",
         "sheetUrl": "https://docs.google.com/spreadsheets/d/1BEBnhDP6YXtgm3b-lXv4wIK7_mC847meN7O31AIAqVw/edit?gid=911103197#gid=911103197",
         "mapping": {
-          "tab_pokemon": "Pokedex",
-          "tab_moves": "New Moves",
-          "tab_abilities": "New Abilities",
-          "tab_items": "New Items",
-          "hdr_pokemon": "Name",
-          "hdr_sprites": "Sprite",
-          "hdr_types_combined": "",
-          "hdr_type1": "Type 1",
-          "hdr_type2": "Type 2",
-          "hdr_abilities_combined": "",
-          "hdr_ability1": "Ability A",
-          "hdr_ability2": "Ability B",
-          "hdr_ability3": "Hidden Ability",
-          "hdr_stats_combined": "",
-          "hdr_hp": "HP",
-          "hdr_atk": "Atk",
-          "hdr_def": "Def",
-          "hdr_spa": "SpA",
-          "hdr_spd": "SpD",
-          "hdr_spe": "Spe",
-          "hdr_weight": "",
-          "hdr_learnset": "Movepool",
-          "hdr_movepool_add": "",
-          "hdr_movepool_rem": "",
-          "hdr_movename": "Move Name",
-          "hdr_move_type": "Type",
-          "hdr_bp": "Power",
-          "hdr_pp": "Base PP",
-          "hdr_acc": "Accuracy",
-          "hdr_category": "Category",
-          "hdr_target": "Target",
-          "hdr_priority": "",
-          "hdr_flags": "Properties",
-          "hdr_move_effect": "Effect",
-          "hdr_move_learnedby": "Learned By",
-          "hdr_abilityname": "Name",
-          "hdr_ability_effect": "Effect",
-          "hdr_ability_learnedby": "Learned By",
-          "hdr_item_name": "Name",
-          "hdr_item_effect": "Effect",
-          "hdr_item_fling": "Fling Power"
+          "tab_pokemon": "Pokedex", "tab_moves": "New Moves", "tab_abilities": "New Abilities", "tab_items": "New Items",
+          "hdr_pokemon": "Name", "hdr_sprites": "Sprite", "hdr_types_combined": "", "hdr_type1": "Type 1", "hdr_type2": "Type 2",
+          "hdr_abilities_combined": "", "hdr_ability1": "Ability A", "hdr_ability2": "Ability B", "hdr_ability3": "Hidden Ability",
+          "hdr_stats_combined": "", "hdr_hp": "HP", "hdr_atk": "Atk", "hdr_def": "Def", "hdr_spa": "SpA", "hdr_spd": "SpD", "hdr_spe": "Spe",
+          "hdr_weight": "", "hdr_learnset": "Movepool", "hdr_movepool_add": "", "hdr_movepool_rem": "",
+          "hdr_movename": "Move Name", "hdr_move_type": "Type", "hdr_bp": "Power", "hdr_pp": "Base PP", "hdr_acc": "Accuracy", "hdr_category": "Category",
+          "hdr_target": "Target", "hdr_priority": "", "hdr_flags": "Properties", "hdr_move_effect": "Effect", "hdr_move_learnedby": "Learned By",
+          "hdr_abilityname": "Name", "hdr_ability_effect": "Effect", "hdr_ability_learnedby": "Learned By",
+          "hdr_item_name": "Name", "hdr_item_effect": "Effect", "hdr_item_fling": "Fling Power"
         }
       },
       "Macrometa": {
         "name": "Macrometa",
         "sheetUrl": "https://docs.google.com/spreadsheets/d/1oat2S7xQgcG5UFYooZ8eFH5G0eJg2OOc_Vp6_h0t6ww/edit?gid=1434341628#gid=1434341628",
         "mapping": {
-          "tab_pokemon": "Pokedex",
-          "tab_moves": "",
-          "tab_abilities": "",
-          "tab_items": "",
-          "hdr_pokemon": "Name",
-          "hdr_sprites": "",
-          "hdr_types_combined": "",
-          "hdr_type1": "K",
-          "hdr_type2": "L",
-          "hdr_abilities_combined": "",
-          "hdr_ability1": "M",
-          "hdr_ability2": "N",
-          "hdr_ability3": "O",
-          "hdr_stats_combined": "",
-          "hdr_hp": "HP",
-          "hdr_atk": "ATK",
-          "hdr_def": "DEF",
-          "hdr_spa": "SPA",
-          "hdr_spd": "SPD",
-          "hdr_spe": "SPE",
-          "hdr_weight": "kg",
-          "hdr_learnset": "Moves",
-          "hdr_movepool_add": "",
-          "hdr_movepool_rem": "",
-          "hdr_movename": "",
-          "hdr_move_type": "",
-          "hdr_bp": "",
-          "hdr_pp": "",
-          "hdr_acc": "",
-          "hdr_category": "",
-          "hdr_target": "",
-          "hdr_priority": "",
-          "hdr_flags": "",
-          "hdr_move_effect": "",
-          "hdr_move_learnedby": "",
-          "hdr_abilityname": "",
-          "hdr_ability_effect": "",
-          "hdr_ability_learnedby": "",
-          "hdr_item_name": "",
-          "hdr_item_effect": "",
-          "hdr_item_fling": ""
+          "tab_pokemon": "Pokedex", "tab_moves": "", "tab_abilities": "", "tab_items": "",
+          "hdr_pokemon": "Name", "hdr_sprites": "", "hdr_types_combined": "", "hdr_type1": "K", "hdr_type2": "L",
+          "hdr_abilities_combined": "", "hdr_ability1": "M", "hdr_ability2": "N", "hdr_ability3": "O",
+          "hdr_stats_combined": "", "hdr_hp": "HP", "hdr_atk": "ATK", "hdr_def": "DEF", "hdr_spa": "SPA", "hdr_spd": "SPD", "hdr_spe": "SPE",
+          "hdr_weight": "kg", "hdr_learnset": "Moves", "hdr_movepool_add": "", "hdr_movepool_rem": "",
+          "hdr_movename": "", "hdr_move_type": "", "hdr_bp": "", "hdr_pp": "", "hdr_acc": "", "hdr_category": "",
+          "hdr_target": "", "hdr_priority": "", "hdr_flags": "", "hdr_move_effect": "", "hdr_move_learnedby": "",
+          "hdr_abilityname": "", "hdr_ability_effect": "", "hdr_ability_learnedby": "",
+          "hdr_item_name": "", "hdr_item_effect": "", "hdr_item_fling": ""
         }
       }
     };
@@ -991,6 +462,20 @@
     let ACTIVE_MODE = 'pokemon';
     let SELECTED_ID = null;
 
+    function createEmptyTbSlot() {
+      return {
+        speciesId: '', nickname: '', item: '', ability: '', level: 100,
+        gender: '—', happiness: 255, shiny: 'No', teraType: 'Normal', nature: 'Serious',
+        moves: ['', '', '', ''],
+        evs: { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 },
+        ivs: { hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31 }
+      };
+    }
+
+    let TEAM_SLOTS = Array.from({ length: 6 }, createEmptyTbSlot);
+    let ACTIVE_TB_SLOT = 0;
+    let TB_IMPORT_EXPORT_OPEN = false;
+
     const CODE_STATE = {
       pokedexStartDex: '750001',
       pokedexDefaultWeight: '50',
@@ -1014,59 +499,42 @@
 
       formatsFolderName: 'mods_folder_name_here',
       formatsModName: 'Pet Mod Name',
+      formatsDesc: 'A format where DESCRIBE!',
+      formatsThreadLink: 'PasteLinkHere',
       formatsTierName: 'Tier Name',
       formatsCode: '',
       formatsImportLine: ''
     };
 
     function escHtml(str) {
-      return String(str ?? '')
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
+      return String(str ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
     function escapeTsDoubleQuotes(str) {
-      return String(str ?? '')
-        .replace(/\\/g, '\\\\')
-        .replace(/"/g, '\\"')
-        .replace(/\r?\n/g, ' ')
-        .trim();
+      return String(str ?? '').replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\r?\n/g, ' ').trim();
     }
 
     function escapeTsSingleQuotes(str) {
-      return String(str ?? '')
-        .replace(/\\/g, '\\\\')
-        .replace(/'/g, "\\'")
-        .replace(/\r?\n/g, ' ')
-        .trim();
+      return String(str ?? '').replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\r?\n/g, ' ').trim();
     }
 
-    function valOf(id) {
-      return (document.getElementById(id)?.value || '').trim();
-    }
+    function valOf(id) { return (document.getElementById(id)?.value || '').trim(); }
 
     function setValIfEmpty(id, newVal) {
       const el = document.getElementById(id);
-      if (el && newVal && !el.value.trim()) {
-        el.value = newVal;
-      }
+      if (el && newVal && !el.value.trim()) el.value = newVal;
     }
 
     function columnLetterToIndex(str) {
       const clean = String(str || '').trim().toUpperCase();
       if (!/^[A-Z]{1,2}$/.test(clean)) return -1;
       let idx = 0;
-      for (let i = 0; i < clean.length; i++) {
-        idx = idx * 26 + (clean.charCodeAt(i) - 64);
-      }
+      for (let i = 0; i < clean.length; i++) idx = idx * 26 + (clean.charCodeAt(i) - 64);
       return idx - 1;
     }
 
     function indexToColumnLetter(idx) {
-      let n = idx + 1;
-      let out = '';
+      let n = idx + 1, out = '';
       while (n > 0) {
         const rem = (n - 1) % 26;
         out = String.fromCharCode(65 + rem) + out;
@@ -1085,15 +553,8 @@
       const info = SECTION_SOURCES[sectionKey];
       if (!info || (!info.tab && Object.keys(info.fields).length === 0)) return '';
       const tabText = info.tab ? `<strong>Tab:</strong> ${escHtml(info.tab)}` : '';
-      const pills = Object.entries(info.fields)
-        .map(([label, header]) => `<span class="source-pill">${escHtml(label)}: ${escHtml(header)}</span>`)
-        .join('');
-      return `
-        <div class="source-strip">
-          <div><strong>Pulled From:</strong> ${tabText}</div>
-          ${pills ? `<div style="margin-top:3px;">${pills}</div>` : ''}
-        </div>
-      `;
+      const pills = Object.entries(info.fields).map(([label, header]) => `<span class="source-pill">${escHtml(label)}: ${escHtml(header)}</span>`).join('');
+      return `<div class="source-strip"><div><strong>Pulled From:</strong> ${tabText}</div>${pills ? `<div style="margin-top:3px;">${pills}</div>` : ''}</div>`;
     }
 
     function getSavedCombos() {
@@ -1107,9 +568,7 @@
     }
 
     function persistCombos(combosObj) {
-      try {
-        localStorage.setItem(PRESET_STORAGE_KEY, JSON.stringify(combosObj));
-      } catch {}
+      try { localStorage.setItem(PRESET_STORAGE_KEY, JSON.stringify(combosObj)); } catch {}
     }
 
     function ensureBuiltinPresetsSeeded() {
@@ -1126,48 +585,30 @@
       if (!sel) return;
       const combos = getSavedCombos();
       const names = Object.keys(combos);
-      sel.innerHTML = `<option value="">-- Select Saved Combo --</option>` +
-        names.map(n => `<option value="${escHtml(n)}">${escHtml(n)}</option>`).join('');
-      if (selectedName && combos[selectedName]) {
-        sel.value = selectedName;
-      }
+      sel.innerHTML = `<option value="">-- Select Saved Combo --</option>` + names.map(n => `<option value="${escHtml(n)}">${escHtml(n)}</option>`).join('');
+      if (selectedName && combos[selectedName]) sel.value = selectedName;
     }
 
     function collectCurrentCombo(name) {
       const mapping = {};
-      MAPPING_INPUT_IDS.forEach(id => {
-        mapping[id] = valOf(id);
-      });
-      return {
-        name: name.trim(),
-        sheetUrl: valOf('sheetUrl'),
-        mapping
-      };
+      MAPPING_INPUT_IDS.forEach(id => { mapping[id] = valOf(id); });
+      return { name: name.trim(), sheetUrl: valOf('sheetUrl'), mapping };
     }
 
     function applyComboObject(combo) {
       if (!combo || typeof combo !== 'object') return;
-      if (typeof combo.sheetUrl === 'string') {
-        document.getElementById('sheetUrl').value = combo.sheetUrl;
-      }
+      if (typeof combo.sheetUrl === 'string') document.getElementById('sheetUrl').value = combo.sheetUrl;
       MAPPING_INPUT_IDS.forEach(id => {
         const el = document.getElementById(id);
-        if (el) {
-          el.value = combo.mapping && typeof combo.mapping[id] === 'string' ? combo.mapping[id] : '';
-        }
+        if (el) el.value = combo.mapping && typeof combo.mapping[id] === 'string' ? combo.mapping[id] : '';
       });
-      if (combo.name) {
-        document.getElementById('presetNameInput').value = combo.name;
-      }
+      if (combo.name) document.getElementById('presetNameInput').value = combo.name;
     }
 
     function handleSaveCombo() {
       const statusBar = document.getElementById('statusBar');
       const name = valOf('presetNameInput') || valOf('presetSelect');
-      if (!name) {
-        statusBar.textContent = 'Enter a name for the link + mapping combo before saving.';
-        return;
-      }
+      if (!name) { statusBar.textContent = 'Enter a name for the link + mapping combo before saving.'; return; }
       const combos = getSavedCombos();
       combos[name] = collectCurrentCombo(name);
       persistCombos(combos);
@@ -1215,15 +656,11 @@
       const box = document.getElementById('presetIoBox');
       box.classList.add('open');
       const raw = box.value.trim();
-      if (!raw) {
-        statusBar.textContent = 'Paste exported JSON into the box first, then click Import JSON.';
-        return;
-      }
+      if (!raw) { statusBar.textContent = 'Paste exported JSON into the box first, then click Import JSON.'; return; }
       try {
         const parsed = JSON.parse(raw);
         const combos = getSavedCombos();
         let lastImportedName = '';
-
         if (parsed && typeof parsed === 'object' && parsed.mapping && typeof parsed.mapping === 'object') {
           const entryName = String(parsed.name || valOf('presetNameInput') || 'Imported Combo').trim();
           combos[entryName] = { name: entryName, sheetUrl: String(parsed.sheetUrl || ''), mapping: parsed.mapping };
@@ -1232,21 +669,12 @@
           for (const [k, v] of Object.entries(parsed)) {
             if (v && typeof v === 'object') {
               const entryName = String(v.name || k).trim();
-              combos[entryName] = {
-                name: entryName,
-                sheetUrl: String(v.sheetUrl || ''),
-                mapping: v.mapping && typeof v.mapping === 'object' ? v.mapping : v
-              };
+              combos[entryName] = { name: entryName, sheetUrl: String(v.sheetUrl || ''), mapping: v.mapping && typeof v.mapping === 'object' ? v.mapping : v };
               lastImportedName = entryName;
             }
           }
         }
-
-        if (!lastImportedName) {
-          statusBar.textContent = 'Invalid JSON structure for combo import.';
-          return;
-        }
-
+        if (!lastImportedName) { statusBar.textContent = 'Invalid JSON structure for combo import.'; return; }
         persistCombos(combos);
         refreshComboDropdown(lastImportedName);
         applyComboObject(combos[lastImportedName]);
@@ -1256,9 +684,7 @@
       }
     }
 
-    function toId(str) {
-      return String(str || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
-    }
+    function toId(str) { return String(str || '').toLowerCase().replace(/[^a-z0-9]+/g, ''); }
 
     function findBaseMonMatch(id, rawName) {
       if (BASE_DEX[id]) return { key: id, mon: BASE_DEX[id] };
@@ -1266,9 +692,7 @@
       if (nameId && BASE_DEX[nameId]) return { key: nameId, mon: BASE_DEX[nameId] };
       const cleanName = String(rawName || '').trim().toLowerCase();
       for (const [k, m] of Object.entries(BASE_DEX)) {
-        if (m && String(m.name || '').toLowerCase() === cleanName) {
-          return { key: k, mon: m };
-        }
+        if (m && String(m.name || '').toLowerCase() === cleanName) return { key: k, mon: m };
       }
       return null;
     }
@@ -1283,14 +707,7 @@
 
     function getMinispriteSlug(name, pokeId) {
       if (!name) return pokeId;
-      return name
-        .toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/['’:.]/g, '')
-        .replace(/[^a-z0-9-]+/g, '-')
-        .replace(/-+/g, '-')
-        .replace(/^-|-$/g, '');
+      return name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/['’:.]/g, '').replace(/[^a-z0-9-]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
     }
 
     function renderSpriteHtml(id, mon, isInherited) {
@@ -1298,79 +715,44 @@
       const displayName = mon.name || BASE_DEX[id]?.name || id;
       const slug = getMinispriteSlug(displayName, id);
       const baseSlug = BASE_DEX[id]?.baseSpecies ? getMinispriteSlug(BASE_DEX[id].baseSpecies, id) : slug;
-      const spriteUrl = `${MINISPRITE_BASE}/${slug}.png`;
-      const fallbackUrl = `${MINISPRITE_BASE}/${baseSlug}.png`;
-
-      return `
-        <div class="sprite-slot">
-          <img src="${spriteUrl}" alt="${escHtml(displayName)}" style="display:block;margin-left:auto;margin-right:auto;" loading="lazy"
-               onerror="if(this.src!=='${fallbackUrl}'){this.src='${fallbackUrl}';}else{this.style.display='none';}">
-        </div>
-      `;
+      return `<div class="sprite-slot"><img src="${MINISPRITE_BASE}/${slug}.png" alt="${escHtml(displayName)}" style="display:block;margin-left:auto;margin-right:auto;" loading="lazy" onerror="if(this.src!=='${MINISPRITE_BASE}/${baseSlug}.png'){this.src='${MINISPRITE_BASE}/${baseSlug}.png';}else{this.style.display='none';}"></div>`;
     }
 
     function renderDetailSpriteHtml(id, mon) {
       if (mon.sprite) {
         const rawSprite = mon.sprite.trim();
-        const isUrl = /^https?:\/\//i.test(rawSprite) || rawSprite.startsWith('data:image/');
-        if (isUrl) {
+        if (/^https?:\/\//i.test(rawSprite) || rawSprite.startsWith('data:image/')) {
           return `<img src="${escHtml(rawSprite)}" alt="${escHtml(mon.name)}" class="detail-sprite-img" loading="lazy" onerror="this.style.display='none';">`;
         }
         return `<span class="type-pill">${escHtml(rawSprite)}</span>`;
       }
-      if (mon.isInherited) {
-        return renderSpriteHtml(id, mon, true);
-      }
-      return '';
+      return mon.isInherited ? renderSpriteHtml(id, mon, true) : '';
     }
 
     function renderCategoryHeader(categoryName, count) {
-      const iconUrl = `${CATEGORY_ICON_BASE}/${categoryName}.png`;
-      return `
-        <div class="cat-title">
-          <img src="${iconUrl}" alt="${categoryName}" class="cat-icon" loading="lazy" onerror="this.style.display='none';">
-          <span>${categoryName} (${count})</span>
-        </div>
-      `;
+      return `<div class="cat-title"><img src="${CATEGORY_ICON_BASE}/${categoryName}.png" alt="${categoryName}" class="cat-icon" loading="lazy" onerror="this.style.display='none';"><span>${categoryName} (${count})</span></div>`;
     }
 
     function renderTypeIconHtml(typeName) {
       if (!typeName || typeName === '?') return `<span>?</span>`;
       const cleanType = typeName.trim();
-      const iconUrl = `${TYPE_ICON_BASE}/${encodeURIComponent(cleanType)}.png`;
-      return `<img src="${iconUrl}" alt="${escHtml(cleanType)}" title="${escHtml(cleanType)}" class="type-icon-img" loading="lazy" onerror="this.style.display='none';">`;
+      return `<img src="${TYPE_ICON_BASE}/${encodeURIComponent(cleanType)}.png" alt="${escHtml(cleanType)}" title="${escHtml(cleanType)}" class="type-icon-img" loading="lazy" onerror="this.style.display='none';">`;
     }
 
     function renderCategoryIconHtml(categoryName) {
       if (!categoryName) return '';
       const cleanCat = categoryName.trim();
-      const iconUrl = `${CATEGORY_ICON_BASE}/${encodeURIComponent(cleanCat)}.png`;
-      return `<img src="${iconUrl}" alt="${escHtml(cleanCat)}" title="${escHtml(cleanCat)}" class="cat-icon" loading="lazy" onerror="this.style.display='none';">`;
+      return `<img src="${CATEGORY_ICON_BASE}/${encodeURIComponent(cleanCat)}.png" alt="${escHtml(cleanCat)}" title="${escHtml(cleanCat)}" class="cat-icon" loading="lazy" onerror="this.style.display='none';">`;
     }
 
-    function formatBpLabel(bpVal) {
-      if (bpVal === '' || bpVal === undefined || bpVal === null || bpVal === '—') return '— BP';
-      const str = String(bpVal).trim();
-      return /bp$/i.test(str) ? str : `${str} BP`;
-    }
-
-    function formatAccLabel(accVal) {
-      if (accVal === '' || accVal === undefined || accVal === null || accVal === '—' || accVal === true) return '— Acc';
-      const str = String(accVal).trim();
-      return /%/.test(str) ? `${str} Acc` : `${str}% Acc`;
-    }
-
-    function formatPpLabel(ppVal) {
-      if (ppVal === '' || ppVal === undefined || ppVal === null || ppVal === '—') return '— PP';
-      const str = String(ppVal).trim();
-      return /pp$/i.test(str) ? str : `${str} PP`;
-    }
+    function formatBpLabel(v) { if (v === '' || v === undefined || v === null || v === '—') return '— BP'; const s = String(v).trim(); return /bp$/i.test(s) ? s : `${s} BP`; }
+    function formatAccLabel(v) { if (v === '' || v === undefined || v === null || v === '—' || v === true) return '— Acc'; const s = String(v).trim(); return /%/.test(s) ? `${s} Acc` : `${s}% Acc`; }
+    function formatPpLabel(v) { if (v === '' || v === undefined || v === null || v === '—') return '— PP'; const s = String(v).trim(); return /pp$/i.test(s) ? s : `${s} PP`; }
 
     function calcLevel100Speed(baseSpe, ev, natureMult) {
       const base = Number(baseSpe);
       if (isNaN(base) || base <= 0) return null;
-      const step1 = Math.floor((2 * base + 31 + Math.floor(ev / 4)) * 100 / 100) + 5;
-      return Math.floor(step1 * natureMult);
+      return Math.floor((Math.floor((2 * base + 31 + Math.floor(ev / 4)) * 100 / 100) + 5) * natureMult);
     }
 
     function renderSpeedTierSection(baseSpe) {
@@ -1378,57 +760,24 @@
       const s252 = calcLevel100Speed(baseSpe, 252, 1.0);
       const s0 = calcLevel100Speed(baseSpe, 0, 1.0);
       if (s252Plus === null || s252 === null || s0 === null) return '';
-      const sBoost252Plus = Math.floor(s252Plus * 1.5);
-      return `
-        <div class="speed-tier-box">
-          <div class="speed-tier-title">Speed Tier:</div>
-          <div>${sBoost252Plus}: +1 252+</div>
-          <div>${s252Plus}: 252+</div>
-          <div>${s252}: 252</div>
-          <div>${s0}: 0 EVs</div>
-        </div>
-      `;
+      return `<div class="speed-tier-box"><div class="speed-tier-title">Speed Tier:</div><div>${Math.floor(s252Plus * 1.5)}: +1 252+</div><div>${s252Plus}: 252+</div><div>${s252}: 252</div><div>${s0}: 0 EVs</div></div>`;
     }
 
     function renderCollapsibleMonList(title, monNames) {
       const uniqueNames = [...new Set(monNames)];
-      const isUnder20 = uniqueNames.length < 20;
-      const content = uniqueNames.length
-        ? uniqueNames.map(escHtml).join(', ')
-        : '<span class="desc-text">No Pokémon listed.</span>';
-      return `
-        <details class="collapsible-section mon-recipients-box" ${isUnder20 ? 'open' : ''}>
-          <summary>${title} (${uniqueNames.length})</summary>
-          <div class="collapsible-body">${content}</div>
-        </details>
-      `;
+      const content = uniqueNames.length ? uniqueNames.map(escHtml).join(', ') : '<span class="desc-text">No Pokémon listed.</span>';
+      return `<details class="collapsible-section mon-recipients-box" ${uniqueNames.length < 20 ? 'open' : ''}><summary>${title} (${uniqueNames.length})</summary><div class="collapsible-body">${content}</div></details>`;
     }
 
     function syncModeButtons() {
-      const map = {
-        pokemon: 'btnPokemon',
-        moves: 'btnCustomMoves',
-        abilities: 'btnAbilities',
-        items: 'btnItems'
-      };
-      Object.entries(map).forEach(([mode, btnId]) => {
-        document.getElementById(btnId)?.classList.toggle('mode-active', ACTIVE_MODE === mode);
-      });
-
+      const map = { pokemon: 'btnPokemon', moves: 'btnCustomMoves', abilities: 'btnAbilities', items: 'btnItems', teambuilder: 'btnTeambuilder' };
+      Object.entries(map).forEach(([mode, btnId]) => document.getElementById(btnId)?.classList.toggle('mode-active', ACTIVE_MODE === mode));
       const codeMap = {
-        code_formats: 'btnCodeFormats',
-        code_formats_data: 'btnCodeFormatsData',
-        code_pokedex: 'btnCodePokedex',
-        code_moves: 'btnCodeMoves',
-        code_items: 'btnCodeItems',
-        code_learnsets: 'btnCodeLearnsets',
-        code_scripts: 'btnCodeScripts',
-        code_abilities: 'btnCodeAbilities'
+        code_formats: 'btnCodeFormats', code_formats_data: 'btnCodeFormatsData', code_pokedex: 'btnCodePokedex',
+        code_items: 'btnCodeItems', code_learnsets: 'btnCodeLearnsets', code_scripts: 'btnCodeScripts',
+        code_abilities: 'btnCodeAbilities', code_moves: 'btnCodeMoves'
       };
-      Object.entries(codeMap).forEach(([mode, btnId]) => {
-        document.getElementById(btnId)?.classList.toggle('code-btn-active', ACTIVE_MODE === mode);
-      });
-
+      Object.entries(codeMap).forEach(([mode, btnId]) => document.getElementById(btnId)?.classList.toggle('code-btn-active', ACTIVE_MODE === mode));
       const isPokemonMode = ACTIVE_MODE === 'pokemon';
       document.getElementById('scopeLabel').style.display = isPokemonMode ? 'inline-flex' : 'none';
       document.getElementById('monList').style.display = isPokemonMode ? 'block' : 'none';
@@ -1444,13 +793,13 @@
         fetch(`${BASE_SHOWDOWN_URL}/abilities.json`).then(r => r.ok ? r.json() : {}),
         fetch(`${BASE_SHOWDOWN_URL}/items.json`).then(r => r.ok ? r.json() : {})
       ]);
-
       BASE_DEX = baseDexRes.status === 'fulfilled' ? baseDexRes.value : {};
       BASE_LEARNSETS = baseLearnRes.status === 'fulfilled' ? baseLearnRes.value : {};
       BASE_MOVES = baseMovesRes.status === 'fulfilled' ? baseMovesRes.value : {};
       BASE_ABILITIES = baseAblRes.status === 'fulfilled' ? baseAblRes.value : {};
       BASE_ITEMS = baseItemsRes.status === 'fulfilled' ? baseItemsRes.value : {};
       BASE_LOADED = true;
+      if (typeof refreshTeambuilderDatalists === 'function') refreshTeambuilderDatalists();
     }
 
     function parseSheetUrl(input) {
@@ -1458,12 +807,8 @@
       if (!raw) return null;
       const idMatch = raw.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/);
       const gidMatch = raw.match(/[?#&]gid=(\d+)/);
-      if (idMatch) {
-        return { sheetId: idMatch[1], gid: gidMatch ? gidMatch[1] : null };
-      }
-      if (/^[a-zA-Z0-9-_]{20,}$/.test(raw)) {
-        return { sheetId: raw, gid: null };
-      }
+      if (idMatch) return { sheetId: idMatch[1], gid: gidMatch ? gidMatch[1] : null };
+      if (/^[a-zA-Z0-9-_]{20,}$/.test(raw)) return { sheetId: raw, gid: null };
       return null;
     }
 
@@ -1479,27 +824,19 @@
     }
 
     function parseGvizResponse(text) {
-      const jsonStart = text.indexOf('{');
-      const jsonEnd = text.lastIndexOf('}');
+      const jsonStart = text.indexOf('{'), jsonEnd = text.lastIndexOf('}');
       if (jsonStart === -1 || jsonEnd === -1) throw new Error('Invalid Google Visualization response');
       const payload = JSON.parse(text.slice(jsonStart, jsonEnd + 1));
-      if (payload.status === 'error') {
-        throw new Error(payload.errors?.[0]?.detailed_message || 'Sheet access error');
-      }
+      if (payload.status === 'error') throw new Error(payload.errors?.[0]?.detailed_message || 'Sheet access error');
       const table = payload.table;
       if (!table || !table.rows || !table.rows.length) return [];
 
       let rawHeaders = (table.cols || []).map(c => String(c.label || '').trim());
       let startRow = 0;
-
       if (rawHeaders.every(h => !h)) {
         for (let r = 0; r < table.rows.length; r++) {
           const vals = (table.rows[r].c || []).map(cell => cell ? String(cell.f ?? cell.v ?? '').trim() : '');
-          if (vals.filter(Boolean).length >= 2) {
-            rawHeaders = vals;
-            startRow = r + 1;
-            break;
-          }
+          if (vals.filter(Boolean).length >= 2) { rawHeaders = vals; startRow = r + 1; break; }
         }
       }
 
@@ -1512,13 +849,10 @@
         let hasContent = false;
         for (let idx = 0; idx < maxLen; idx++) {
           const cell = cells[idx];
-          const val = cell ? (cell.f ?? cell.v ?? '') : '';
-          const strVal = String(val).trim();
+          const strVal = String(cell ? (cell.f ?? cell.v ?? '') : '').trim();
           obj.__rawCells[idx] = strVal;
           if (strVal !== '') hasContent = true;
-          if (headers[idx]) {
-            obj[headers[idx]] = strVal;
-          }
+          if (headers[idx]) obj[headers[idx]] = strVal;
         }
         if (hasContent) rows.push(obj);
       }
@@ -1529,17 +863,12 @@
       const params = new URLSearchParams({ tqx: 'out:json' });
       if (sheetName) params.set('sheet', sheetName);
       else if (gid) params.set('gid', gid);
-
-      const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?${params.toString()}`;
-      const res = await fetch(url);
+      const res = await fetch(`https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?${params.toString()}`);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const txt = await res.text();
-      return parseGvizResponse(txt);
+      return parseGvizResponse(await res.text());
     }
 
-    function normalizeHeaderKey(k) {
-      return String(k || '').replace(/__\d+$/, '').toLowerCase().replace(/[^a-z0-9]+/g, '');
-    }
+    function normalizeHeaderKey(k) { return String(k || '').replace(/__\d+$/, '').toLowerCase().replace(/[^a-z0-9]+/g, ''); }
 
     function resolveField(row, candidates, allowFallback = true) {
       const list = Array.isArray(candidates) ? candidates : [candidates];
@@ -1550,29 +879,21 @@
       for (const cand of list) {
         if (!cand) continue;
         const normCand = normalizeHeaderKey(cand);
-
         const exactEntry = entries.find(([k]) => normalizeHeaderKey(k) === normCand);
         if (exactEntry) {
-          const cleanHeader = exactEntry[0].replace(/__\d+$/, '');
           const val = String(exactEntry[1] ?? '').trim();
-          if (val !== '' || !allowFallback) {
-            return { value: val, source: cleanHeader };
-          }
+          if (val !== '' || !allowFallback) return { value: val, source: exactEntry[0].replace(/__\d+$/, '') };
         }
-
         const colIdx = columnLetterToIndex(cand);
         if (colIdx >= 0 && colIdx < rawCells.length) {
-          const letter = indexToColumnLetter(colIdx);
-          const hdr = rawHeaders[colIdx] ? ` (${rawHeaders[colIdx]})` : '';
           const val = String(rawCells[colIdx] ?? '').trim();
           if (val !== '' || !allowFallback) {
-            return { value: val, source: `Col ${letter}${hdr}` };
+            const hdr = rawHeaders[colIdx] ? ` (${rawHeaders[colIdx]})` : '';
+            return { value: val, source: `Col ${indexToColumnLetter(colIdx)}${hdr}` };
           }
         }
       }
-
       if (!allowFallback) return { value: '', source: '' };
-
       for (const cand of list) {
         if (!cand || columnLetterToIndex(cand) >= 0) continue;
         const normCand = normalizeHeaderKey(cand);
@@ -1588,25 +909,12 @@
 
     function autofillHeadersFromRows(rows, section) {
       if (!rows || !rows.length) return;
-      const rawCols = Object.keys(rows[0])
-        .filter(k => k !== '__rawCells' && k !== '__rawHeaders' && !k.startsWith('__col_'))
-        .map(k => k.replace(/__\d+$/, ''));
-
+      const rawCols = Object.keys(rows[0]).filter(k => k !== '__rawCells' && k !== '__rawHeaders' && !k.startsWith('__col_')).map(k => k.replace(/__\d+$/, ''));
       const findCol = aliases => {
-        for (const alias of aliases) {
-          const na = normalizeHeaderKey(alias);
-          const hit = rawCols.find(c => normalizeHeaderKey(c) === na);
-          if (hit) return hit;
-        }
-        for (const alias of aliases) {
-          const na = normalizeHeaderKey(alias);
-          if (na.length < 3) continue;
-          const hit = rawCols.find(c => normalizeHeaderKey(c).includes(na));
-          if (hit) return hit;
-        }
+        for (const alias of aliases) { const hit = rawCols.find(c => normalizeHeaderKey(c) === normalizeHeaderKey(alias)); if (hit) return hit; }
+        for (const alias of aliases) { const na = normalizeHeaderKey(alias); if (na.length < 3) continue; const hit = rawCols.find(c => normalizeHeaderKey(c).includes(na)); if (hit) return hit; }
         return '';
       };
-
       if (section === 'pokemon') {
         setValIfEmpty('hdr_pokemon', findCol(['Fusion Name', 'Name', 'Pokemon', 'Pokémon', 'Species', 'Mon']));
         setValIfEmpty('hdr_sprites', findCol(['Sprite', 'Sprites', 'Icon']));
@@ -1614,7 +922,7 @@
         setValIfEmpty('hdr_type1', findCol(['Type 1', 'Type1', 'Type A', 'Primary Type', 'Type']));
         setValIfEmpty('hdr_type2', findCol(['Type 2', 'Type2', 'Type B', 'Secondary Type']));
         setValIfEmpty('hdr_abilities_combined', findCol(['Abilities', 'Ability']));
-        setValIfEmpty('hdr_ability1', findCol(['Fused Ability', 'Ability 1', 'Ability1', 'Ability A', 'Primary Ability']));
+        setValIfEmpty('hdr_ability1', findCol(['Ability Name', 'Fused Ability', 'Ability 1', 'Ability1', 'Ability A', 'Primary Ability']));
         setValIfEmpty('hdr_ability2', findCol(['Ability 2', 'Ability2', 'Ability B', 'Secondary Ability']));
         setValIfEmpty('hdr_ability3', findCol(['Ability 3', 'Ability3', 'Hidden Ability', 'HA']));
         setValIfEmpty('hdr_stats_combined', findCol(['Stats', 'Base Stats', 'Stat Spread', 'Spread']));
@@ -1641,7 +949,7 @@
         setValIfEmpty('hdr_move_effect', findCol(['Effect', 'shortDesc', 'Description', 'Desc']));
         setValIfEmpty('hdr_move_learnedby', findCol(['Learned By', 'Distribution', 'User', 'Pokemon']));
       } else if (section === 'abilities') {
-        setValIfEmpty('hdr_abilityname', findCol(['Fused Ability', 'Ability Name', 'Name', 'Ability']));
+        setValIfEmpty('hdr_abilityname', findCol(['Ability Name', 'Fused Ability', 'Name', 'Ability']));
         setValIfEmpty('hdr_ability_effect', findCol(['Ability Effect', 'Effect', 'shortDesc', 'Description', 'Desc']));
         setValIfEmpty('hdr_ability_learnedby', findCol(['Learned By', 'Distribution', 'User', 'Pokemon']));
       } else if (section === 'items') {
@@ -1653,10 +961,7 @@
 
     function splitListItems(str) {
       if (!str) return [];
-      return String(str)
-        .split(/[,|\n;/]+/)
-        .map(s => s.replace(/\s*\([^)]*\)/g, '').trim())
-        .filter(s => s && s !== '-' && s.toLowerCase() !== 'none' && s.toLowerCase() !== 'n/a');
+      return String(str).split(/[,|\n;/]+/).map(s => s.replace(/\s*\([^)]*\)/g, '').trim()).filter(s => s && s !== '-' && s.toLowerCase() !== 'none' && s.toLowerCase() !== 'n/a');
     }
 
     function parseNumericWeight(rawW) {
@@ -1672,38 +977,19 @@
       const spaR = resolveField(row, strictManual ? [valOf('hdr_spa')] : [valOf('hdr_spa'), 'SpA', 'SpAtk', 'Special Attack', 'Sp. Atk'], !strictManual);
       const spdR = resolveField(row, strictManual ? [valOf('hdr_spd')] : [valOf('hdr_spd'), 'SpD', 'SpDef', 'Special Defense', 'Sp. Def'], !strictManual);
       const speR = resolveField(row, strictManual ? [valOf('hdr_spe')] : [valOf('hdr_spe'), 'Spe', 'Speed', 'Spd'], !strictManual);
-
-      const parseNum = s => {
-        const m = String(s || '').match(/-?\d+/);
-        return m ? Number(m[0]) : null;
-      };
-
-      const hp = parseNum(hpR.value);
-      const atk = parseNum(atkR.value);
-      const def = parseNum(defR.value);
-      const spa = parseNum(spaR.value);
-      const spd = parseNum(spdR.value);
-      const spe = parseNum(speR.value);
-
+      const parseNum = s => { const m = String(s || '').match(/-?\d+/); return m ? Number(m[0]) : null; };
+      const hp = parseNum(hpR.value), atk = parseNum(atkR.value), def = parseNum(defR.value), spa = parseNum(spaR.value), spd = parseNum(spdR.value), spe = parseNum(speR.value);
       if ([hp, atk, def, spa, spd, spe].some(v => v !== null)) {
         const statSrcs = [hpR.source, atkR.source, defR.source, spaR.source, spdR.source, speR.source].filter(Boolean);
         if (statSrcs.length) recordFieldSource('pokemon', 'Stats', tabLabel, statSrcs.join('/'));
         return { hp, atk, def, spa, spd, spe };
       }
-
       const combR = resolveField(row, strictManual ? [valOf('hdr_stats_combined')] : [valOf('hdr_stats_combined'), 'Stats', 'Base Stats', 'Stat Spread', 'Spread'], !strictManual);
       if (combR.value) {
         const nums = combR.value.match(/\d+/g);
         if (nums && nums.length >= 6) {
           recordFieldSource('pokemon', 'Stats', tabLabel, combR.source);
-          return {
-            hp: Number(nums[0]),
-            atk: Number(nums[1]),
-            def: Number(nums[2]),
-            spa: Number(nums[3]),
-            spd: Number(nums[4]),
-            spe: Number(nums[5]),
-          };
+          return { hp: Number(nums[0]), atk: Number(nums[1]), def: Number(nums[2]), spa: Number(nums[3]), spd: Number(nums[4]), spe: Number(nums[5]) };
         }
       }
       return null;
@@ -1711,95 +997,45 @@
 
     function parseTypesFromRow(row, tabLabel, strictManual = false) {
       const types = [];
-
       const combR = resolveField(row, strictManual ? [valOf('hdr_types_combined')] : [valOf('hdr_types_combined'), 'Types', 'Typing'], !strictManual);
       if (combR.value && combR.value.includes('/')) {
-        combR.value.split(/[/,|&+]+/).map(s => s.trim()).filter(Boolean).forEach(part => {
-          if (part !== '-' && part.toLowerCase() !== 'none') types.push(part);
-        });
-        if (types.length) {
-          recordFieldSource('pokemon', 'Types', tabLabel, combR.source);
-          return [...new Set(types)];
-        }
+        combR.value.split(/[/,|&+]+/).map(s => s.trim()).filter(Boolean).forEach(p => { if (p !== '-' && p.toLowerCase() !== 'none') types.push(p); });
+        if (types.length) { recordFieldSource('pokemon', 'Types', tabLabel, combR.source); return [...new Set(types)]; }
       }
-
       const t1R = resolveField(row, strictManual ? [valOf('hdr_type1')] : [valOf('hdr_type1'), 'Type 1', 'Type1', 'Type A', 'Primary Type'], !strictManual);
       const t2R = resolveField(row, strictManual ? [valOf('hdr_type2')] : [valOf('hdr_type2'), 'Type 2', 'Type2', 'Type B', 'Secondary Type'], !strictManual);
       if (t1R.value || t2R.value) {
-        [t1R.value, t2R.value].forEach(t => {
-          if (t && t !== '-' && t.toLowerCase() !== 'none') {
-            t.split(/[/,|&+]+/).map(s => s.trim()).filter(Boolean).forEach(part => {
-              if (part !== '-' && part.toLowerCase() !== 'none') types.push(part);
-            });
-          }
-        });
-        if (types.length) {
-          const srcs = [t1R.source, t2R.source].filter(Boolean).join(', ');
-          if (srcs) recordFieldSource('pokemon', 'Types', tabLabel, srcs);
-          return [...new Set(types)];
-        }
+        [t1R.value, t2R.value].forEach(t => { if (t && t !== '-' && t.toLowerCase() !== 'none') t.split(/[/,|&+]+/).map(s => s.trim()).filter(Boolean).forEach(p => { if (p !== '-' && p.toLowerCase() !== 'none') types.push(p); }); });
+        if (types.length) { const srcs = [t1R.source, t2R.source].filter(Boolean).join(', '); if (srcs) recordFieldSource('pokemon', 'Types', tabLabel, srcs); return [...new Set(types)]; }
       }
-
       if (combR.value && combR.value !== '-' && combR.value.toLowerCase() !== 'none') {
-        combR.value.split(/[/,|&+]+/).map(s => s.trim()).filter(Boolean).forEach(part => {
-          if (part !== '-' && part.toLowerCase() !== 'none') types.push(part);
-        });
-        if (types.length) {
-          recordFieldSource('pokemon', 'Types', tabLabel, combR.source);
-          return [...new Set(types)];
-        }
+        combR.value.split(/[/,|&+]+/).map(s => s.trim()).filter(Boolean).forEach(p => { if (p !== '-' && p.toLowerCase() !== 'none') types.push(p); });
+        if (types.length) { recordFieldSource('pokemon', 'Types', tabLabel, combR.source); return [...new Set(types)]; }
       }
-
       return [...new Set(types)];
     }
 
     function parseAbilitiesFromRow(row, tabLabel, strictManual = false) {
-      const a1Header = valOf('hdr_ability1');
-      const a2Header = valOf('hdr_ability2');
-      const a3Header = valOf('hdr_ability3');
-      const combinedHeader = valOf('hdr_abilities_combined');
-
-      const a1R = resolveField(row, strictManual ? [a1Header] : [a1Header, 'Fused Ability', 'Ability 1', 'Ability1', 'Ability A', 'Primary Ability'], !strictManual);
-      const a2R = resolveField(row, strictManual ? [a2Header] : [a2Header, 'Ability 2', 'Ability2', 'Ability B', 'Secondary Ability'], !strictManual);
-      const a3R = resolveField(row, strictManual ? [a3Header] : [a3Header, 'Ability 3', 'Ability3', 'Hidden Ability', 'HA', 'Ability H'], !strictManual);
-
+      const a1R = resolveField(row, strictManual ? [valOf('hdr_ability1')] : [valOf('hdr_ability1'), 'Ability Name', 'Fused Ability', 'Ability 1', 'Ability1', 'Ability A', 'Primary Ability'], !strictManual);
+      const a2R = resolveField(row, strictManual ? [valOf('hdr_ability2')] : [valOf('hdr_ability2'), 'Ability 2', 'Ability2', 'Ability B', 'Secondary Ability'], !strictManual);
+      const a3R = resolveField(row, strictManual ? [valOf('hdr_ability3')] : [valOf('hdr_ability3'), 'Ability 3', 'Ability3', 'Hidden Ability', 'HA', 'Ability H'], !strictManual);
       const cleanVal = v => (v && v !== '-' && v.toLowerCase() !== 'none' && v.toLowerCase() !== 'n/a') ? v.trim() : '';
-
-      const c1 = cleanVal(a1R.value);
-      const c2 = cleanVal(a2R.value);
-      const c3 = cleanVal(a3R.value);
-
+      const c1 = cleanVal(a1R.value), c2 = cleanVal(a2R.value), c3 = cleanVal(a3R.value);
       if (c1 || c2 || c3) {
         const out = {};
-        if (c1) out['0'] = c1;
-        if (c2) out['1'] = c2;
-        if (c3) out['H'] = c3;
+        if (c1) out['0'] = c1; if (c2) out['1'] = c2; if (c3) out['H'] = c3;
         const srcs = [a1R.source, a2R.source, a3R.source].filter(Boolean).join(', ');
         if (srcs) recordFieldSource('pokemon', 'Abilities', tabLabel, srcs);
         return out;
       }
-
-      const combR = resolveField(row, strictManual ? [combinedHeader] : [combinedHeader, 'Abilities', 'Ability'], !strictManual);
+      const combR = resolveField(row, strictManual ? [valOf('hdr_abilities_combined')] : [valOf('hdr_abilities_combined'), 'Abilities', 'Ability'], !strictManual);
       if (combR.value) {
-        const parts = combR.value
-          .split(/[/,|;]+/)
-          .map(s => s.replace(/\(H\)|\(Hidden\)/gi, '').trim())
-          .filter(s => s && s !== '-' && s.toLowerCase() !== 'none');
-
+        const parts = combR.value.split(/[/,|;]+/).map(s => s.replace(/\(H\)|\(Hidden\)/gi, '').trim()).filter(s => s && s !== '-' && s.toLowerCase() !== 'none');
         const out = {};
-        if (parts.length === 1) {
-          out['0'] = parts[0];
-        } else if (parts.length === 2) {
-          out['0'] = parts[0];
-          out['H'] = parts[1];
-        } else if (parts.length >= 3) {
-          out['0'] = parts[0];
-          out['1'] = parts[1];
-          out['H'] = parts[2];
-        }
-        if (Object.keys(out).length) {
-          recordFieldSource('pokemon', 'Abilities', tabLabel, combR.source);
-        }
+        if (parts.length === 1) out['0'] = parts[0];
+        else if (parts.length === 2) { out['0'] = parts[0]; out['H'] = parts[1]; }
+        else if (parts.length >= 3) { out['0'] = parts[0]; out['1'] = parts[1]; out['H'] = parts[2]; }
+        if (Object.keys(out).length) recordFieldSource('pokemon', 'Abilities', tabLabel, combR.source);
         return out;
       }
       return {};
@@ -1823,7 +1059,6 @@
     function ingestPokemonRows(rows, tabLabel = 'Sheet', strictManual = false) {
       if (!strictManual) autofillHeadersFromRows(rows, 'pokemon');
       SECTION_SOURCES.pokemon.tab = tabLabel;
-
       for (const row of rows) {
         const nameR = resolveField(row, strictManual ? [valOf('hdr_pokemon')] : [valOf('hdr_pokemon'), 'Fusion Name', 'Name', 'Pokemon', 'Pokémon', 'Species', 'Mon'], !strictManual);
         const rawName = nameR.value;
@@ -1835,7 +1070,6 @@
         const baseFound = findBaseMonMatch(id, rawName);
         const baseMatch = baseFound?.mon || null;
         const resolvedId = baseFound?.key || id;
-
         const parsedStats = parseStatsFromRow(row, tabLabel, strictManual);
         const parsedTypes = parseTypesFromRow(row, tabLabel, strictManual);
         const parsedAbilities = parseAbilitiesFromRow(row, tabLabel, strictManual);
@@ -1849,35 +1083,18 @@
         const weightVal = weightR.value || (baseMatch?.weightkg ? `${baseMatch.weightkg} kg` : '');
 
         const baseStats = baseMatch?.baseStats
-          ? {
-              hp: parsedStats?.hp ?? baseMatch.baseStats.hp,
-              atk: parsedStats?.atk ?? baseMatch.baseStats.atk,
-              def: parsedStats?.def ?? baseMatch.baseStats.def,
-              spa: parsedStats?.spa ?? baseMatch.baseStats.spa,
-              spd: parsedStats?.spd ?? baseMatch.baseStats.spd,
-              spe: parsedStats?.spe ?? baseMatch.baseStats.spe,
-            }
-          : {
-              hp: parsedStats?.hp ?? 0,
-              atk: parsedStats?.atk ?? 0,
-              def: parsedStats?.def ?? 0,
-              spa: parsedStats?.spa ?? 0,
-              spd: parsedStats?.spd ?? 0,
-              spe: parsedStats?.spe ?? 0,
-            };
+          ? { hp: parsedStats?.hp ?? baseMatch.baseStats.hp, atk: parsedStats?.atk ?? baseMatch.baseStats.atk, def: parsedStats?.def ?? baseMatch.baseStats.def, spa: parsedStats?.spa ?? baseMatch.baseStats.spa, spd: parsedStats?.spd ?? baseMatch.baseStats.spd, spe: parsedStats?.spe ?? baseMatch.baseStats.spe }
+          : { hp: parsedStats?.hp ?? 0, atk: parsedStats?.atk ?? 0, def: parsedStats?.def ?? 0, spa: parsedStats?.spa ?? 0, spd: parsedStats?.spd ?? 0, spe: parsedStats?.spe ?? 0 };
 
         const existingOrder = MOD_DEX[id]?.sheetOrder;
         MOD_DEX[id] = {
           sheetOrder: existingOrder !== undefined ? existingOrder : SHEET_ORDER_COUNTER++,
-          baseId: resolvedId,
-          sourceTab: tabLabel,
-          name: rawName,
+          baseId: resolvedId, sourceTab: tabLabel, name: rawName,
           sprite: spriteR.value || MOD_DEX[id]?.sprite || '',
           weight: weightVal || MOD_DEX[id]?.weight || '',
           explicitWeightKg: explicitWeightKg !== null ? explicitWeightKg : (MOD_DEX[id]?.explicitWeightKg ?? null),
           types: parsedTypes.length ? parsedTypes : (baseMatch?.types || []),
-          baseStats,
-          origStats: baseMatch?.baseStats || null,
+          baseStats, origStats: baseMatch?.baseStats || null,
           abilities: Object.keys(parsedAbilities).length ? parsedAbilities : (baseMatch?.abilities || {}),
           isInherited: Boolean(baseMatch)
         };
@@ -1896,16 +1113,13 @@
           if (!MOD_REMOVED_MOVES[id]) MOD_REMOVED_MOVES[id] = new Set();
           splitListItems(remR.value).forEach(m => MOD_REMOVED_MOVES[id].add(toId(m)));
         }
-
         const explicitPool = splitListItems(poolR.value).map(toId).filter(Boolean);
         if (explicitPool.length > 0) {
           if (poolR.source) recordFieldSource('pokemon', 'Movepool', tabLabel, poolR.source);
           const baseLearn = BASE_LEARNSETS[resolvedId]?.learnset || BASE_LEARNSETS[id]?.learnset;
           if (baseMatch && baseLearn) {
             if (!MOD_ADDED_MOVES[id]) MOD_ADDED_MOVES[id] = new Set();
-            explicitPool.forEach(mId => {
-              if (!baseLearn[mId]) MOD_ADDED_MOVES[id].add(mId);
-            });
+            explicitPool.forEach(mId => { if (!baseLearn[mId]) MOD_ADDED_MOVES[id].add(mId); });
           } else {
             MOD_FULL_LEARNSETS[id] = new Set(explicitPool);
           }
@@ -1916,16 +1130,14 @@
     function ingestMoveRows(rows, tabLabel = 'Sheet', strictManual = false) {
       if (!strictManual) autofillHeadersFromRows(rows, 'moves');
       SECTION_SOURCES.moves.tab = tabLabel;
-
       for (const row of rows) {
         const nameR = resolveField(row, strictManual ? [valOf('hdr_movename')] : [valOf('hdr_movename'), 'Move Name', 'Name', 'Move'], !strictManual);
-        const rawName = nameR.value;
-        if (!rawName) continue;
-        const id = toId(rawName);
+        if (!nameR.value) continue;
+        const id = toId(nameR.value);
         if (!id) continue;
         if (nameR.source) recordFieldSource('moves', 'Move Name', tabLabel, nameR.source);
 
-        const baseM = BASE_MOVES[id] || {};
+        const baseM = BASE_MOVES[id] || null;
         const typeR = resolveField(row, strictManual ? [valOf('hdr_move_type')] : [valOf('hdr_move_type'), 'Type'], !strictManual);
         const catR = resolveField(row, strictManual ? [valOf('hdr_category')] : [valOf('hdr_category'), 'Category', 'Cat', 'Split'], !strictManual);
         const bpR = resolveField(row, strictManual ? [valOf('hdr_bp')] : [valOf('hdr_bp'), 'BP', 'Power', 'Base Power'], !strictManual);
@@ -1947,17 +1159,15 @@
         if (effR.source) recordFieldSource('moves', 'Effect', tabLabel, effR.source);
 
         MOD_MOVES[id] = {
-          ...baseM,
-          id,
-          name: rawName,
-          type: typeR.value || (strictManual ? '?' : (baseM.type || '?')),
-          category: catR.value || (strictManual ? 'Status' : (baseM.category || 'Status')),
-          basePower: bpR.value !== '' ? bpR.value : (strictManual ? '—' : (baseM.basePower ?? '—')),
-          accuracy: accR.value !== '' ? accR.value : (strictManual ? '—' : (baseM.accuracy === true ? '—' : (baseM.accuracy ?? '—'))),
-          pp: ppR.value !== '' ? ppR.value : (strictManual ? '—' : (baseM.pp ?? '—')),
-          target: targetR.value || (strictManual ? '' : (baseM.target || '')),
-          priority: prioR.value || (strictManual ? '' : (baseM.priority ?? '')),
-          flags: flagsR.value || (strictManual ? '' : (baseM.flags ? Object.keys(baseM.flags).join(', ') : '')),
+          ...(baseM || {}), id, name: nameR.value, isInherited: Boolean(baseM),
+          type: typeR.value || (strictManual ? '?' : (baseM?.type || '?')),
+          category: catR.value || (strictManual ? 'Status' : (baseM?.category || 'Status')),
+          basePower: bpR.value !== '' ? bpR.value : (strictManual ? '—' : (baseM?.basePower ?? '—')),
+          accuracy: accR.value !== '' ? accR.value : (strictManual ? '—' : (baseM?.accuracy === true ? '—' : (baseM?.accuracy ?? '—'))),
+          pp: ppR.value !== '' ? ppR.value : (strictManual ? '—' : (baseM?.pp ?? '—')),
+          target: targetR.value || (strictManual ? '' : (baseM?.target || '')),
+          priority: prioR.value || (strictManual ? '' : (baseM?.priority ?? '')),
+          flags: flagsR.value || (strictManual ? '' : (baseM?.flags ? Object.keys(baseM.flags).join(', ') : '')),
           effect: effR.value,
           sourceLabel: `${tabLabel} → ${effR.source || nameR.source || 'Moves'}`
         };
@@ -1967,10 +1177,7 @@
           if (learnedR.source) recordFieldSource('moves', 'Learned By', tabLabel, learnedR.source);
           splitListItems(learnedR.value).forEach(uName => {
             const uId = toId(uName);
-            if (uId) {
-              if (!MOD_ADDED_MOVES[uId]) MOD_ADDED_MOVES[uId] = new Set();
-              MOD_ADDED_MOVES[uId].add(id);
-            }
+            if (uId) { if (!MOD_ADDED_MOVES[uId]) MOD_ADDED_MOVES[uId] = new Set(); MOD_ADDED_MOVES[uId].add(id); }
           });
         }
       }
@@ -1979,72 +1186,33 @@
     function ingestAbilityRows(rows, tabLabel = 'Sheet', strictManual = false) {
       if (!strictManual) autofillHeadersFromRows(rows, 'abilities');
       SECTION_SOURCES.abilities.tab = tabLabel;
-
-      const isSharedWithPokemonTab =
-        tabLabel &&
-        SECTION_SOURCES.pokemon.tab &&
-        tabLabel.toLowerCase() === SECTION_SOURCES.pokemon.tab.toLowerCase();
-
+      const isSharedWithPokemonTab = tabLabel && SECTION_SOURCES.pokemon.tab && tabLabel.toLowerCase() === SECTION_SOURCES.pokemon.tab.toLowerCase();
       for (const row of rows) {
-        const nameR = resolveField(
-          row,
-          strictManual
-            ? [valOf('hdr_abilityname')]
-            : [valOf('hdr_abilityname'), 'Fused Ability', 'Ability Name', 'Name', 'Ability'],
-          !strictManual
-        );
-        const rawName = nameR.value;
-        if (!rawName) continue;
-        const id = toId(rawName);
+        const nameR = resolveField(row, strictManual ? [valOf('hdr_abilityname')] : [valOf('hdr_abilityname'), 'Ability Name', 'Fused Ability', 'Name', 'Ability'], !strictManual);
+        if (!nameR.value) continue;
+        const id = toId(nameR.value);
         if (!id) continue;
         if (nameR.source) recordFieldSource('abilities', 'Ability Name', tabLabel, nameR.source);
 
-        const effR = resolveField(
-          row,
-          strictManual
-            ? [valOf('hdr_ability_effect')]
-            : [valOf('hdr_ability_effect'), 'Ability Effect', 'Effect', 'shortDesc', 'Description', 'Desc'],
-          !strictManual
-        );
+        const effR = resolveField(row, strictManual ? [valOf('hdr_ability_effect')] : [valOf('hdr_ability_effect'), 'Ability Effect', 'Effect', 'shortDesc', 'Description', 'Desc'], !strictManual);
         if (effR.source) recordFieldSource('abilities', 'Effect', tabLabel, effR.source);
 
-        const baseA = BASE_ABILITIES[id] || {};
+        const baseA = BASE_ABILITIES[id] || null;
         const prev = MOD_ABILITIES[id];
-        const mergedEffect = effR.value || prev?.effect || '';
-
         MOD_ABILITIES[id] = {
-          ...baseA,
-          ...(prev || {}),
-          id,
-          name: rawName,
-          effect: mergedEffect,
+          ...(baseA || {}), ...(prev || {}), id, name: nameR.value, isInherited: Boolean(baseA),
+          effect: effR.value || prev?.effect || '',
           sourceLabel: `${tabLabel} → ${effR.source || nameR.source || 'Abilities'}`
         };
 
-        const learnedR = resolveField(
-          row,
-          strictManual
-            ? [valOf('hdr_ability_learnedby')]
-            : [valOf('hdr_ability_learnedby'), 'Learned By', 'Distribution', 'User', 'Pokemon', 'Pokémon'],
-          !strictManual
-        );
-
+        const learnedR = resolveField(row, strictManual ? [valOf('hdr_ability_learnedby')] : [valOf('hdr_ability_learnedby'), 'Learned By', 'Distribution', 'User', 'Pokemon', 'Pokémon'], !strictManual);
         if (learnedR.value) {
           if (learnedR.source) recordFieldSource('abilities', 'Learned By', tabLabel, learnedR.source);
           if (!MOD_ABILITY_LEARNERS[id]) MOD_ABILITY_LEARNERS[id] = new Set();
-          splitListItems(learnedR.value).forEach(uName => {
-            if (uName) MOD_ABILITY_LEARNERS[id].add(uName);
-          });
+          splitListItems(learnedR.value).forEach(uName => { if (uName) MOD_ABILITY_LEARNERS[id].add(uName); });
         } else if (isSharedWithPokemonTab) {
-          const monNameR = resolveField(
-            row,
-            strictManual ? [valOf('hdr_pokemon')] : [valOf('hdr_pokemon'), 'Fusion Name', 'Name', 'Pokemon', 'Pokémon'],
-            !strictManual
-          );
-          if (monNameR.value) {
-            if (!MOD_ABILITY_LEARNERS[id]) MOD_ABILITY_LEARNERS[id] = new Set();
-            MOD_ABILITY_LEARNERS[id].add(monNameR.value);
-          }
+          const monNameR = resolveField(row, strictManual ? [valOf('hdr_pokemon')] : [valOf('hdr_pokemon'), 'Fusion Name', 'Name', 'Pokemon', 'Pokémon'], !strictManual);
+          if (monNameR.value) { if (!MOD_ABILITY_LEARNERS[id]) MOD_ABILITY_LEARNERS[id] = new Set(); MOD_ABILITY_LEARNERS[id].add(monNameR.value); }
         }
       }
     }
@@ -2057,7 +1225,7 @@
         if (!nameR.value) continue;
         const id = toId(nameR.value);
         if (!id) continue;
-        const baseI = BASE_ITEMS[id] || {};
+        const baseI = BASE_ITEMS[id] || null;
         const effR = resolveField(row, strictManual ? [valOf('hdr_item_effect')] : [valOf('hdr_item_effect'), 'Effect', 'Description', 'Desc', 'shortDesc'], !strictManual);
         const flingR = resolveField(row, strictManual ? [valOf('hdr_item_fling')] : [valOf('hdr_item_fling'), 'Fling Power', 'Fling'], !strictManual);
 
@@ -2066,50 +1234,29 @@
         if (flingR.source) recordFieldSource('items', 'Fling Power', tabLabel, flingR.source);
 
         const flingNumMatch = String(flingR.value || '').match(/\d+/);
-        const explicitFlingPower = flingNumMatch ? Number(flingNumMatch[0]) : null;
-
         MOD_ITEMS[id] = {
-          ...baseI,
-          id,
-          name: nameR.value,
+          ...(baseI || {}), id, name: nameR.value, isInherited: Boolean(baseI),
           effect: effR.value,
-          explicitFlingPower,
-          flingPower: flingR.value || (strictManual ? '' : (baseI.fling ? baseI.fling.basePower : '')),
+          explicitFlingPower: flingNumMatch ? Number(flingNumMatch[0]) : null,
+          flingPower: flingR.value || (strictManual ? '' : (baseI?.fling ? baseI.fling.basePower : '')),
           sourceLabel: `${tabLabel} → ${effR.source || nameR.source}`
         };
       }
     }
 
     function resetModState() {
-      MOD_DEX = {};
-      MOD_MOVES = {};
-      MOD_ABILITIES = {};
-      MOD_ITEMS = {};
-      MOD_ADDED_MOVES = {};
-      MOD_REMOVED_MOVES = {};
-      MOD_FULL_LEARNSETS = {};
-      MOD_ABILITY_LEARNERS = {};
-      SECTION_SOURCES = {
-        pokemon: { tab: '', fields: {} },
-        moves: { tab: '', fields: {} },
-        abilities: { tab: '', fields: {} },
-        items: { tab: '', fields: {} }
-      };
-      SHEET_ORDER_COUNTER = 0;
-      SELECTED_ID = null;
+      MOD_DEX = {}; MOD_MOVES = {}; MOD_ABILITIES = {}; MOD_ITEMS = {};
+      MOD_ADDED_MOVES = {}; MOD_REMOVED_MOVES = {}; MOD_FULL_LEARNSETS = {}; MOD_ABILITY_LEARNERS = {};
+      SECTION_SOURCES = { pokemon: { tab: '', fields: {} }, moves: { tab: '', fields: {} }, abilities: { tab: '', fields: {} }, items: { tab: '', fields: {} } };
+      SHEET_ORDER_COUNTER = 0; SELECTED_ID = null;
     }
 
     async function runSheetLoad(isManualFinalLoad) {
       const parsed = parseSheetUrl(document.getElementById('sheetUrl').value);
       const statusBar = document.getElementById('statusBar');
-      if (!parsed) {
-        statusBar.textContent = 'Please enter a valid Google Sheets URL or Spreadsheet ID.';
-        return;
-      }
+      if (!parsed) { statusBar.textContent = 'Please enter a valid Google Sheets URL or Spreadsheet ID.'; return; }
 
-      statusBar.textContent = isManualFinalLoad
-        ? 'Running Final Load with your exact tab & header mappings...'
-        : 'Running Initial Load and auto-detecting tabs & headers...';
+      statusBar.textContent = isManualFinalLoad ? 'Running Final Load with your exact tab & header mappings...' : 'Running Initial Load and auto-detecting tabs & headers...';
       await ensureBaseShowdownData();
       resetModState();
 
@@ -2127,14 +1274,10 @@
         const candidates = isManualFinalLoad
           ? (configuredName ? [configuredName] : [])
           : (configuredName ? [configuredName] : (sectionKey ? (TAB_CANDIDATE_ALIASES[sectionKey] || []) : []));
-
         for (const tabName of candidates) {
           const rows = await getTabRowsCached(tabName);
           if (rows && rows.length) {
-            if (!isManualFinalLoad) {
-              const tabEl = document.getElementById(tabInputId);
-              if (tabEl && !tabEl.value.trim()) tabEl.value = tabName;
-            }
+            if (!isManualFinalLoad) { const tabEl = document.getElementById(tabInputId); if (tabEl && !tabEl.value.trim()) tabEl.value = tabName; }
             ingestFn(rows, tabName, isManualFinalLoad);
             return true;
           }
@@ -2144,7 +1287,6 @@
 
       let loadedTabsCount = 0;
       if (await tryTabSection('tab_pokemon', 'pokemon', ingestPokemonRows)) loadedTabsCount++;
-
       const otherResults = await Promise.all([
         tryTabSection('tab_moves', 'moves', ingestMoveRows),
         tryTabSection('tab_abilities', 'abilities', ingestAbilityRows),
@@ -2156,8 +1298,7 @@
         try {
           const rows = await fetchSheetTab(parsed.sheetId, { gid: parsed.gid });
           if (rows && rows.length) {
-            const gidLabel = `gid:${parsed.gid}`;
-            const kind = classifyTableType(rows);
+            const gidLabel = `gid:${parsed.gid}`, kind = classifyTableType(rows);
             if (kind === 'pokemon') ingestPokemonRows(rows, gidLabel, false);
             else if (kind === 'moves') ingestMoveRows(rows, gidLabel, false);
             else if (kind === 'abilities') ingestAbilityRows(rows, gidLabel, false);
@@ -2167,18 +1308,16 @@
         } catch (_) {}
       }
 
+      if (typeof refreshTeambuilderDatalists === 'function') refreshTeambuilderDatalists();
+
       const totalMons = Object.keys(MOD_DEX).length;
       const newMons = Object.values(MOD_DEX).filter(m => !m.isInherited).length;
-      const moveCount = Object.keys(MOD_MOVES).length;
-      const ablCount = Object.keys(MOD_ABILITIES).length;
-      const itemCount = Object.keys(MOD_ITEMS).length;
+      const moveCount = Object.keys(MOD_MOVES).length, ablCount = Object.keys(MOD_ABILITIES).length, itemCount = Object.keys(MOD_ITEMS).length;
       const loadModeLabel = isManualFinalLoad ? 'Final Load' : 'Initial Load';
 
-      if (loadedTabsCount === 0 && totalMons === 0 && moveCount === 0 && ablCount === 0 && itemCount === 0) {
-        statusBar.textContent = `${loadModeLabel}: Could not read tabs. Ensure the sheet is shared as "Anyone with the link can view", check tab names, or use Paste TSV/CSV.`;
-      } else {
-        statusBar.textContent = `${loadModeLabel}: Loaded ${newMons} new Pokémon and ${totalMons - newMons} modded Pokémon (${moveCount} custom moves, ${ablCount} abilities, ${itemCount} items).`;
-      }
+      statusBar.textContent = (loadedTabsCount === 0 && totalMons === 0 && moveCount === 0 && ablCount === 0 && itemCount === 0)
+        ? `${loadModeLabel}: Could not read tabs. Ensure the sheet is shared as "Anyone with the link can view", check tab names, or use Paste TSV/CSV.`
+        : `${loadModeLabel}: Loaded ${newMons} new Pokémon and ${totalMons - newMons} modded Pokémon (${moveCount} custom moves, ${ablCount} abilities, ${itemCount} items).`;
 
       renderView();
     }
@@ -2187,27 +1326,18 @@
       const lines = rawText.split(/\r?\n/).filter(l => l.trim() !== '');
       if (lines.length < 2) return [];
       const delimiter = lines[0].includes('\t') ? '\t' : ',';
-
       const splitRow = line => {
         if (delimiter === '\t') return line.split('\t').map(c => c.trim());
-        const out = [];
-        let cur = '';
-        let inQuotes = false;
+        const out = []; let cur = '', inQuotes = false;
         for (let i = 0; i < line.length; i++) {
           const ch = line[i];
-          if (ch === '"') {
-            inQuotes = !inQuotes;
-          } else if (ch === ',' && !inQuotes) {
-            out.push(cur.trim());
-            cur = '';
-          } else {
-            cur += ch;
-          }
+          if (ch === '"') inQuotes = !inQuotes;
+          else if (ch === ',' && !inQuotes) { out.push(cur.trim()); cur = ''; }
+          else cur += ch;
         }
         out.push(cur.trim());
         return out;
       };
-
       const rawHeaders = splitRow(lines[0]);
       const headers = makeUniqueHeaders(rawHeaders);
       const rows = [];
@@ -2215,11 +1345,7 @@
         const vals = splitRow(lines[i]);
         const obj = { __rawCells: vals, __rawHeaders: rawHeaders };
         let hasContent = false;
-        headers.forEach((h, idx) => {
-          const v = vals[idx] || '';
-          if (v !== '') hasContent = true;
-          obj[h] = v;
-        });
+        headers.forEach((h, idx) => { const v = vals[idx] || ''; if (v !== '') hasContent = true; obj[h] = v; });
         if (hasContent) rows.push(obj);
       }
       return rows;
@@ -2230,10 +1356,7 @@
       const target = document.getElementById('pasteTarget').value;
       const statusBar = document.getElementById('statusBar');
       const rows = parseDelimitedText(raw);
-      if (!rows.length) {
-        statusBar.textContent = 'Paste at least a header row and one data row.';
-        return;
-      }
+      if (!rows.length) { statusBar.textContent = 'Paste at least a header row and one data row.'; return; }
 
       await ensureBaseShowdownData();
       const detected = target === 'auto' ? classifyTableType(rows) : target;
@@ -2243,54 +1366,44 @@
       else if (detected === 'abilities') ingestAbilityRows(rows, tabLabel, false);
       else if (detected === 'items') ingestItemRows(rows, tabLabel, false);
 
+      if (typeof refreshTeambuilderDatalists === 'function') refreshTeambuilderDatalists();
+
       const totalMons = Object.keys(MOD_DEX).length;
       const newMons = Object.values(MOD_DEX).filter(m => !m.isInherited).length;
       statusBar.textContent = `Imported ${rows.length} rows (${detected}). Total: ${newMons} new Pokémon, ${totalMons - newMons} modded Pokémon, ${Object.keys(MOD_MOVES).length} custom moves, ${Object.keys(MOD_ABILITIES).length} abilities, ${Object.keys(MOD_ITEMS).length} items.`;
       renderView();
     }
 
+    // === PART 2 STARTS HERE ===
+    
     function getLearnsetDiff(monId) {
       const mon = MOD_DEX[monId];
       const lookupKey = mon?.baseId || monId;
-      const baseSet = new Set(
-        mon?.isInherited && (BASE_LEARNSETS[lookupKey]?.learnset || BASE_LEARNSETS[monId]?.learnset)
-          ? Object.keys((BASE_LEARNSETS[lookupKey] || BASE_LEARNSETS[monId]).learnset)
-          : []
-      );
+      const baseLearnObj = (mon?.isInherited && (BASE_LEARNSETS[lookupKey]?.learnset || BASE_LEARNSETS[monId]?.learnset)) || {};
+      const baseSet = new Set(Object.keys(baseLearnObj));
       const addedIds = new Set(MOD_ADDED_MOVES[monId] || []);
       const removedIds = new Set(MOD_REMOVED_MOVES[monId] || []);
       const explicitFull = MOD_FULL_LEARNSETS[monId] || new Set();
 
       const activeIds = new Set();
       if (mon?.isInherited) {
-        baseSet.forEach(mId => {
-          if (!removedIds.has(mId)) activeIds.add(mId);
-        });
-        addedIds.forEach(mId => {
-          if (!removedIds.has(mId)) activeIds.add(mId);
-        });
+        baseSet.forEach(mId => { if (!removedIds.has(mId)) activeIds.add(mId); });
+        addedIds.forEach(mId => { if (!removedIds.has(mId)) activeIds.add(mId); });
         removedIds.forEach(mId => activeIds.add(mId));
       } else {
         explicitFull.forEach(mId => activeIds.add(mId));
         addedIds.forEach(mId => activeIds.add(mId));
       }
-
-      return {
-        activeIds: [...activeIds],
-        addedIds: mon?.isInherited ? addedIds : new Set(),
-        removedIds: mon?.isInherited ? removedIds : new Set()
-      };
+      return { activeIds: [...activeIds], addedIds: mon?.isInherited ? addedIds : new Set(), removedIds: mon?.isInherited ? removedIds : new Set() };
     }
 
     function getOrderedMons() {
       const scope = document.getElementById('scopeSelect').value;
       const q = document.getElementById('searchInput').value.trim().toLowerCase();
-
       const entries = Object.entries(MOD_DEX).filter(([id, mon]) => {
         if (!mon) return false;
         if (scope === 'new' && mon.isInherited) return false;
         if (!q) return true;
-
         const nameMatch = mon.name.toLowerCase().includes(q);
         const typeMatch = (mon.types || []).join(' ').toLowerCase().includes(q);
         const ablMatch = Object.values(mon.abilities || {}).join(' ').toLowerCase().includes(q);
@@ -2301,26 +1414,17 @@
         });
         return nameMatch || typeMatch || ablMatch || moveMatch;
       });
-
-      const sortBySheetOrder = (a, b) => (a[1].sheetOrder ?? 0) - (b[1].sheetOrder ?? 0);
-
-      const newMons = entries.filter(([, mon]) => !mon.isInherited).sort(sortBySheetOrder);
-      const moddedMons = entries.filter(([, mon]) => Boolean(mon.isInherited)).sort(sortBySheetOrder);
-
+      const sortByOrder = (a, b) => (a[1].sheetOrder ?? 0) - (b[1].sheetOrder ?? 0);
+      const newMons = entries.filter(([, mon]) => !mon.isInherited).sort(sortByOrder);
+      const moddedMons = entries.filter(([, mon]) => Boolean(mon.isInherited)).sort(sortByOrder);
       return { newMons, moddedMons, flat: [...newMons, ...moddedMons] };
     }
 
     function formatMonSpread(mon) {
       const s = mon.baseStats || {};
-      const hp = s.hp ?? '?';
-      const atk = s.atk ?? '?';
-      const def = s.def ?? '?';
-      const spa = s.spa ?? '?';
-      const spd = s.spd ?? '?';
-      const spe = s.spe ?? '?';
-      const nums = [s.hp, s.atk, s.def, s.spa, s.spd, s.spe].filter(v => typeof v === 'number');
-      const bst = nums.length === 6 ? nums.reduce((a, b) => a + b, 0) : '?';
-      return `${hp}/${atk}/${def}/${spa}/${spd}/${spe} [${bst}]`;
+      const vals = [s.hp, s.atk, s.def, s.spa, s.spd, s.spe];
+      const bst = vals.every(v => typeof v === 'number') ? vals.reduce((a, b) => a + b, 0) : '?';
+      return `${s.hp ?? '?'}/${s.atk ?? '?'}/${s.def ?? '?'}/${s.spa ?? '?'}/${s.spd ?? '?'}/${s.spe ?? '?'} [${bst}]`;
     }
 
     function formatMonAbilitiesLine(mon) {
@@ -2328,34 +1432,15 @@
       return abils.length ? abils.join(' / ') : '—';
     }
 
-    function getCustomMovesList() {
-      return Object.values(MOD_MOVES).map(m => ({
-        ...m,
-        descText: pickEffectFirstDescription(m)
-      }));
-    }
-
-    function getAbilitiesList() {
-      return Object.values(MOD_ABILITIES).map(a => ({
-        ...a,
-        descText: pickEffectFirstDescription(a)
-      }));
-    }
-
-    function getItemsList() {
-      return Object.values(MOD_ITEMS).map(it => ({
-        ...it,
-        descText: pickEffectFirstDescription(it)
-      }));
-    }
+    function getCustomMovesList() { return Object.values(MOD_MOVES).map(m => ({ ...m, descText: pickEffectFirstDescription(m) })); }
+    function getAbilitiesList() { return Object.values(MOD_ABILITIES).map(a => ({ ...a, descText: pickEffectFirstDescription(a) })); }
+    function getItemsList() { return Object.values(MOD_ITEMS).map(it => ({ ...it, descText: pickEffectFirstDescription(it) })); }
 
     function getPokemonWithMove(moveId) {
       const matched = [];
       for (const [monId, mon] of Object.entries(MOD_DEX)) {
         const diff = getLearnsetDiff(monId);
-        if (diff.activeIds.includes(moveId) && !diff.removedIds.has(moveId)) {
-          matched.push(mon.name);
-        }
+        if (diff.activeIds.includes(moveId) && !diff.removedIds.has(moveId)) matched.push(mon.name);
       }
       return matched;
     }
@@ -2364,58 +1449,42 @@
       const targetId = toId(abilityNameOrId);
       const matched = [...(MOD_ABILITY_LEARNERS[targetId] || [])];
       for (const [, mon] of Object.entries(MOD_DEX)) {
-        const monAbils = Object.values(mon.abilities || {}).map(toId);
-        if (monAbils.includes(targetId)) {
-          matched.push(mon.name);
-        }
+        if (Object.values(mon.abilities || {}).map(toId).includes(targetId)) matched.push(mon.name);
       }
       return matched;
     }
+
     // ==================== TYPESCRIPT CODE GENERATORS ====================
     function generatePokedexTsCode() {
       let dexNum = parseInt(CODE_STATE.pokedexStartDex, 10);
       if (isNaN(dexNum)) dexNum = 750001;
+      const parsedW = parseFloat(CODE_STATE.pokedexDefaultWeight);
+      const fallbackWeight = !isNaN(parsedW) && parsedW > 0 ? parsedW : 50;
 
-      const parsedWeight = parseFloat(CODE_STATE.pokedexDefaultWeight);
-      const fallbackWeight = !isNaN(parsedWeight) && parsedWeight > 0 ? parsedWeight : 50;
-
-      const sortedEntries = Object.entries(MOD_DEX).sort((a, b) => (a[1].sheetOrder ?? 0) - (b[1].sheetOrder ?? 0));
+      const sorted = Object.entries(MOD_DEX).sort((a, b) => (a[1].sheetOrder ?? 0) - (b[1].sheetOrder ?? 0));
       const lines = ['export const Pokedex: {[k: string]: ModdedSpeciesData} = {'];
 
-      sortedEntries.forEach(([id, mon]) => {
+      sorted.forEach(([id, mon]) => {
         const baseMatch = BASE_DEX[mon.baseId || id] || null;
         lines.push(`\t${id}: {`);
-
         if (mon.isInherited && baseMatch) {
           lines.push(`\t\tinherit: true,`);
-
-          const baseTypes = baseMatch.types || [];
           const curTypes = mon.types || [];
-          if (curTypes.length && JSON.stringify(curTypes) !== JSON.stringify(baseTypes)) {
+          if (curTypes.length && JSON.stringify(curTypes) !== JSON.stringify(baseMatch.types || [])) {
             lines.push(`\t\ttypes: [${curTypes.map(t => `"${escapeTsDoubleQuotes(t)}"`).join(', ')}],`);
           }
-
-          const s = mon.baseStats || {};
-          const bs = baseMatch.baseStats || {};
-          if (
-            s.hp !== bs.hp || s.atk !== bs.atk || s.def !== bs.def ||
-            s.spa !== bs.spa || s.spd !== bs.spd || s.spe !== bs.spe
-          ) {
+          const s = mon.baseStats || {}, bs = baseMatch.baseStats || {};
+          if (s.hp !== bs.hp || s.atk !== bs.atk || s.def !== bs.def || s.spa !== bs.spa || s.spd !== bs.spd || s.spe !== bs.spe) {
             lines.push(`\t\tbaseStats: {hp: ${s.hp ?? bs.hp}, atk: ${s.atk ?? bs.atk}, def: ${s.def ?? bs.def}, spa: ${s.spa ?? bs.spa}, spd: ${s.spd ?? bs.spd}, spe: ${s.spe ?? bs.spe}},`);
           }
-
           const curAbils = mon.abilities || {};
-          const baseAbils = baseMatch.abilities || {};
-          if (JSON.stringify(curAbils) !== JSON.stringify(baseAbils) && Object.keys(curAbils).length > 0) {
-            const abilParts = [];
-            if (curAbils['0']) abilParts.push(`0: "${escapeTsDoubleQuotes(curAbils['0'])}"`);
-            if (curAbils['1']) abilParts.push(`1: "${escapeTsDoubleQuotes(curAbils['1'])}"`);
-            if (curAbils['H']) abilParts.push(`H: "${escapeTsDoubleQuotes(curAbils['H'])}"`);
-            if (abilParts.length) {
-              lines.push(`\t\tabilities: {${abilParts.join(', ')}},`);
-            }
+          if (JSON.stringify(curAbils) !== JSON.stringify(baseMatch.abilities || {}) && Object.keys(curAbils).length > 0) {
+            const parts = [];
+            if (curAbils['0']) parts.push(`0: "${escapeTsDoubleQuotes(curAbils['0'])}"`);
+            if (curAbils['1']) parts.push(`1: "${escapeTsDoubleQuotes(curAbils['1'])}"`);
+            if (curAbils['H']) parts.push(`H: "${escapeTsDoubleQuotes(curAbils['H'])}"`);
+            if (parts.length) lines.push(`\t\tabilities: {${parts.join(', ')}},`);
           }
-
           if (mon.explicitWeightKg !== null && mon.explicitWeightKg !== baseMatch.weightkg) {
             lines.push(`\t\tweightkg: ${mon.explicitWeightKg},`);
           }
@@ -2426,16 +1495,13 @@
           lines.push(`\t\ttypes: [${typesArr.map(t => `"${escapeTsDoubleQuotes(t)}"`).join(', ')}],`);
           const s = mon.baseStats || {};
           lines.push(`\t\tbaseStats: {hp: ${s.hp || 50}, atk: ${s.atk || 50}, def: ${s.def || 50}, spa: ${s.spa || 50}, spd: ${s.spd || 50}, spe: ${s.spe || 50}},`);
-          const curAbils = mon.abilities || {};
-          const abilParts = [];
-          if (curAbils['0']) abilParts.push(`0: "${escapeTsDoubleQuotes(curAbils['0'])}"`);
-          if (curAbils['1']) abilParts.push(`1: "${escapeTsDoubleQuotes(curAbils['1'])}"`);
-          if (curAbils['H']) abilParts.push(`H: "${escapeTsDoubleQuotes(curAbils['H'])}"`);
-          lines.push(`\t\tabilities: {${abilParts.join(', ')}},`);
-          const wVal = mon.explicitWeightKg !== null ? mon.explicitWeightKg : fallbackWeight;
-          lines.push(`\t\tweightkg: ${wVal},`);
+          const curAbils = mon.abilities || {}, parts = [];
+          if (curAbils['0']) parts.push(`0: "${escapeTsDoubleQuotes(curAbils['0'])}"`);
+          if (curAbils['1']) parts.push(`1: "${escapeTsDoubleQuotes(curAbils['1'])}"`);
+          if (curAbils['H']) parts.push(`H: "${escapeTsDoubleQuotes(curAbils['H'])}"`);
+          lines.push(`\t\tabilities: {${parts.join(', ')}},`);
+          lines.push(`\t\tweightkg: ${mon.explicitWeightKg !== null ? mon.explicitWeightKg : fallbackWeight},`);
         }
-
         lines.push(`\t},`);
       });
 
@@ -2446,39 +1512,26 @@
     function generateItemsTsCode() {
       const parsedFling = parseInt(CODE_STATE.itemsDefaultFling, 10);
       const fallbackFling = !isNaN(parsedFling) && parsedFling >= 0 ? parsedFling : 30;
-
       const lines = ['export const Items: {[k: string]: ModdedItemData} = {'];
 
       Object.entries(MOD_ITEMS).forEach(([id, it]) => {
         const baseI = BASE_ITEMS[id] || null;
         const shortDesc = pickEffectFirstDescription(it);
         const flingBp = it.explicitFlingPower !== null && it.explicitFlingPower !== undefined
-          ? it.explicitFlingPower
-          : (baseI?.fling?.basePower ?? fallbackFling);
+          ? it.explicitFlingPower : (baseI?.fling?.basePower ?? fallbackFling);
 
         lines.push(`\t${id}: {`);
         if (baseI) {
           lines.push(`\t\tinherit: true,`);
-          if (it.name && it.name !== baseI.name) {
-            lines.push(`\t\tname: "${escapeTsDoubleQuotes(it.name)}",`);
-          }
+          if (it.name && it.name !== baseI.name) lines.push(`\t\tname: "${escapeTsDoubleQuotes(it.name)}",`);
           if (it.explicitFlingPower !== null && it.explicitFlingPower !== baseI.fling?.basePower) {
-            lines.push(`\t\tfling: {`);
-            lines.push(`\t\t\tbasePower: ${flingBp},`);
-            lines.push(`\t\t},`);
-          }
-          if (shortDesc) {
-            lines.push(`\t\tshortDesc: "${escapeTsDoubleQuotes(shortDesc)}",`);
+            lines.push(`\t\tfling: {`, `\t\t\tbasePower: ${flingBp},`, `\t\t},`);
           }
         } else {
           lines.push(`\t\tname: "${escapeTsDoubleQuotes(it.name)}",`);
-          lines.push(`\t\tfling: {`);
-          lines.push(`\t\t\tbasePower: ${flingBp},`);
-          lines.push(`\t\t},`);
-          if (shortDesc) {
-            lines.push(`\t\tshortDesc: "${escapeTsDoubleQuotes(shortDesc)}",`);
-          }
+          lines.push(`\t\tfling: {`, `\t\t\tbasePower: ${flingBp},`, `\t\t},`);
         }
+        if (shortDesc) lines.push(`\t\tshortDesc: "${escapeTsDoubleQuotes(shortDesc)}",`);
         lines.push(`\t},`);
       });
 
@@ -2488,26 +1541,20 @@
 
     function generateAbilitiesTsCode() {
       const lines = ['export const Abilities: {[k: string]: ModdedAbilityData} = {'];
-
       Object.entries(MOD_ABILITIES).forEach(([id, a]) => {
         const baseA = BASE_ABILITIES[id] || null;
         const shortDesc = pickEffectFirstDescription(a);
         lines.push(`\t${id}: {`);
         if (baseA) {
           lines.push(`\t\tinherit: true,`);
-          if (a.name && a.name !== baseA.name) {
-            lines.push(`\t\tname: "${escapeTsDoubleQuotes(a.name)}",`);
-          }
+          if (a.name && a.name !== baseA.name) lines.push(`\t\tname: "${escapeTsDoubleQuotes(a.name)}",`);
         } else {
           lines.push(`\t\tname: "${escapeTsDoubleQuotes(a.name)}",`);
         }
-        if (shortDesc) {
-          lines.push(`\t\tshortDesc: "${escapeTsDoubleQuotes(shortDesc)}",`);
-        }
+        if (shortDesc) lines.push(`\t\tshortDesc: "${escapeTsDoubleQuotes(shortDesc)}",`);
         lines.push(`\t\tflags: {},`);
         lines.push(`\t},`);
       });
-
       lines.push('};');
       return lines.join('\n');
     }
@@ -2516,40 +1563,24 @@
       const catLower = String(move.category || '').trim().toLowerCase();
       const rawFlagsStr = String(move.flags || '').trim();
       const flagsObj = {};
-
-      if (catLower === 'physical') {
-        flagsObj.contact = 1;
-      }
+      if (catLower === 'physical') flagsObj.contact = 1;
       flagsObj.protect = 1;
       flagsObj.mirror = 1;
       flagsObj.metronome = 1;
-
       if (rawFlagsStr) {
-        const lowerRaw = rawFlagsStr.toLowerCase();
-        if (lowerRaw.includes('non-contact') || lowerRaw.includes('noncontact') || lowerRaw.includes('no contact')) {
-          delete flagsObj.contact;
-        }
-        rawFlagsStr
-          .split(/[,;/|]+/)
-          .map(s => s.trim().toLowerCase().replace(/[^a-z0-9]/g, ''))
-          .filter(Boolean)
-          .forEach(tok => {
-            if (KNOWN_MOVE_FLAGS.has(tok)) {
-              flagsObj[tok] = 1;
-            }
-          });
+        const low = rawFlagsStr.toLowerCase();
+        if (low.includes('non-contact') || low.includes('noncontact') || low.includes('no contact')) delete flagsObj.contact;
+        rawFlagsStr.split(/[,;/|]+/).map(s => s.trim().toLowerCase().replace(/[^a-z0-9]/g, '')).filter(Boolean).forEach(tok => {
+          if (KNOWN_MOVE_FLAGS.has(tok)) flagsObj[tok] = 1;
+        });
       }
-
-      const orderedKeys = Object.keys(flagsObj);
-      return `{${orderedKeys.map(k => `${k}: ${flagsObj[k]}`).join(', ')}}`;
+      return `{${Object.keys(flagsObj).map(k => `${k}: ${flagsObj[k]}`).join(', ')}}`;
     }
 
     function parseMoveAccuracyForCode(accVal) {
       if (accVal === true) return 'true';
       const str = String(accVal ?? '').trim().toLowerCase();
-      if (!str || str === '—' || str === '-' || str === '--' || str === 'true' || str.includes('never') || str.includes('always')) {
-        return 'true';
-      }
+      if (!str || str === '—' || str === '-' || str === '--' || str === 'true' || str.includes('never') || str.includes('always')) return 'true';
       const m = str.match(/\d+/);
       return m ? String(Number(m[0])) : '100';
     }
@@ -2561,8 +1592,8 @@
 
     function generateMovesTsCode() {
       const lines = ['export const Moves: {[k: string]: ModdedMoveData} = {'];
-
       Object.entries(MOD_MOVES).forEach(([id, m]) => {
+        const baseM = BASE_MOVES[id] || null;
         const cleanType = (m.type && m.type !== '?') ? m.type.trim() : 'Normal';
         const cleanCat = m.category ? m.category.trim() : 'Status';
         const bpNum = cleanCat.toLowerCase() === 'status' ? 0 : parseNumericOrDefault(m.basePower, 0);
@@ -2571,12 +1602,15 @@
         const prioNum = parseNumericOrDefault(m.priority, 0);
         const shortDesc = pickEffectFirstDescription(m);
         const flagsStr = buildMoveFlagsObjectString(m);
-        const targetVal = (m.target && String(m.target).trim() && String(m.target).trim() !== '-')
-          ? String(m.target).trim()
-          : 'normal';
+        const targetVal = (m.target && String(m.target).trim() && String(m.target).trim() !== '-') ? String(m.target).trim() : 'normal';
 
         lines.push(`\t${id}: {`);
-        lines.push(`\t\tname: "${escapeTsDoubleQuotes(m.name)}",`);
+        if (baseM) {
+          lines.push(`\t\tinherit: true,`);
+          if (m.name && m.name !== baseM.name) lines.push(`\t\tname: "${escapeTsDoubleQuotes(m.name)}",`);
+        } else {
+          lines.push(`\t\tname: "${escapeTsDoubleQuotes(m.name)}",`);
+        }
         lines.push(`\t\ttype: "${escapeTsDoubleQuotes(cleanType)}",`);
         lines.push(`\t\tcategory: "${escapeTsDoubleQuotes(cleanCat)}",`);
         lines.push(`\t\tbasePower: ${bpNum},`);
@@ -2593,95 +1627,60 @@
         lines.push(`\t\ttarget: "${escapeTsDoubleQuotes(targetVal)}",`);
         lines.push(`\t},`);
       });
-
       lines.push('};');
       return lines.join('\n');
     }
 
     function generateLearnsetsTsCode() {
       const learnTag = (CODE_STATE.learnsetsDefaultSource || '9L1').trim() || '9L1';
-      const sortedEntries = Object.entries(MOD_DEX).sort((a, b) => (a[1].sheetOrder ?? 0) - (b[1].sheetOrder ?? 0));
+      const sorted = Object.entries(MOD_DEX).sort((a, b) => (a[1].sheetOrder ?? 0) - (b[1].sheetOrder ?? 0));
       const lines = ['export const Learnsets: {[k: string]: ModdedLearnsetData} = {'];
-
-      sortedEntries.forEach(([id, mon]) => {
+      sorted.forEach(([id, mon]) => {
         if (mon.isInherited) return;
         const diff = getLearnsetDiff(id);
         const pool = diff.activeIds.filter(mId => !diff.removedIds.has(mId)).sort();
-        lines.push(`\t${id}: {`);
-        lines.push(`\t\tlearnset: {`);
-        pool.forEach(mId => {
-          lines.push(`\t\t\t${mId}: ["${escapeTsDoubleQuotes(learnTag)}"],`);
-        });
-        lines.push(`\t\t},`);
-        lines.push(`\t},`);
+        lines.push(`\t${id}: {`, `\t\tlearnset: {`);
+        pool.forEach(mId => lines.push(`\t\t\t${mId}: ["${escapeTsDoubleQuotes(learnTag)}"],`));
+        lines.push(`\t\t},`, `\t},`);
       });
-
       lines.push('};');
       return lines.join('\n');
     }
 
     function generateScriptsTsCode() {
       const learnTag = (CODE_STATE.scriptsDefaultSource || CODE_STATE.learnsetsDefaultSource || '9L1').trim() || '9L1';
-      const lines = [
-        'export const Scripts: ModdedBattleScriptsData = {',
-        '\tgen: 9,',
-        '\tinit() {'
-      ];
-
-      const monIdsToCheck = new Set([
-        ...Object.keys(MOD_DEX),
-        ...Object.keys(MOD_ADDED_MOVES),
-        ...Object.keys(MOD_REMOVED_MOVES)
-      ]);
-
-      const orderedIds = [...monIdsToCheck].sort((a, b) => {
-        const oa = MOD_DEX[a]?.sheetOrder ?? 999999;
-        const ob = MOD_DEX[b]?.sheetOrder ?? 999999;
-        return oa - ob;
-      });
+      const lines = ['export const Scripts: ModdedBattleScriptsData = {', '\tgen: 9,', '\tinit() {'];
+      const monIds = [...new Set([...Object.keys(MOD_DEX), ...Object.keys(MOD_ADDED_MOVES), ...Object.keys(MOD_REMOVED_MOVES)])]
+        .sort((a, b) => (MOD_DEX[a]?.sheetOrder ?? 999999) - (MOD_DEX[b]?.sheetOrder ?? 999999));
 
       let anyEdits = false;
-      orderedIds.forEach(id => {
+      monIds.forEach(id => {
         const mon = MOD_DEX[id];
         if (mon && !mon.isInherited) return;
         const added = [...(MOD_ADDED_MOVES[id] || [])].sort();
         const removed = [...(MOD_REMOVED_MOVES[id] || [])].sort();
         if (!added.length && !removed.length) return;
-
         anyEdits = true;
         const targetId = mon?.baseId || id;
         const displayName = mon?.name || BASE_DEX[targetId]?.name || BASE_DEX[id]?.name || id;
-
         lines.push(`\t\t// ${displayName}`);
-        added.forEach(mId => {
-          lines.push(`\t\tthis.modData('Learnsets', '${escapeTsSingleQuotes(targetId)}').learnset.${mId} = ['${escapeTsSingleQuotes(learnTag)}'];`);
-        });
-        removed.forEach(mId => {
-          lines.push(`\t\tdelete this.modData('Learnsets', '${escapeTsSingleQuotes(targetId)}').learnset.${mId};`);
-        });
+        added.forEach(mId => lines.push(`\t\tthis.modData('Learnsets', '${escapeTsSingleQuotes(targetId)}').learnset.${mId} = ['${escapeTsSingleQuotes(learnTag)}'];`));
+        removed.forEach(mId => lines.push(`\t\tdelete this.modData('Learnsets', '${escapeTsSingleQuotes(targetId)}').learnset.${mId};`));
         lines.push('');
       });
 
-      if (!anyEdits) {
-        lines.push('\t\t// No learnset additions or removals found for existing Pokémon.');
-      }
-
-      lines.push('\t},');
-      lines.push('};');
+      if (!anyEdits) lines.push('\t\t// No learnset additions or removals found for existing Pokémon.');
+      lines.push('\t},', '};');
       return lines.join('\n');
     }
 
     function generateFormatsDataTsCode() {
       const tierVal = (CODE_STATE.formatsDataTier || 'PetMod').trim() || 'PetMod';
       const doublesTierVal = (CODE_STATE.formatsDataDoublesTier || 'DPetMod').trim() || 'DPetMod';
-      const sortedEntries = Object.entries(MOD_DEX).sort((a, b) => (a[1].sheetOrder ?? 0) - (b[1].sheetOrder ?? 0));
-
+      const sorted = Object.entries(MOD_DEX).sort((a, b) => (a[1].sheetOrder ?? 0) - (b[1].sheetOrder ?? 0));
       const lines = ['export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {'];
-      sortedEntries.forEach(([id]) => {
-        lines.push(`\t${id}: {`);
-        lines.push(`\t\ttier: "${escapeTsDoubleQuotes(tierVal)}",`);
-        lines.push(`\t\tdoublesTier: "${escapeTsDoubleQuotes(doublesTierVal)}",`);
-        lines.push(`\t},`);
+      sorted.forEach(([id]) => {
+        lines.push(`\t${id}: {`, `\t\ttier: "${escapeTsDoubleQuotes(tierVal)}",`, `\t\tdoublesTier: "${escapeTsDoubleQuotes(doublesTierVal)}",`, `\t},`);
       });
       lines.push('};');
       return lines.join('\n');
@@ -2690,8 +1689,10 @@
     function generateFormatsTsCode() {
       const folderName = (CODE_STATE.formatsFolderName || 'mods_folder_name_here').trim() || 'mods_folder_name_here';
       const modTitle = (CODE_STATE.formatsModName || 'Pet Mod Name').trim() || 'Pet Mod Name';
-      const tierName = (CODE_STATE.formatsTierName || CODE_STATE.formatsDataTier || 'Tier Name').trim() || 'Tier Name';
+      const modDesc = (CODE_STATE.formatsDesc || 'A format where DESCRIBE!').trim() || 'A format where DESCRIBE!';
+      const threadLink = (CODE_STATE.formatsThreadLink || 'PasteLinkHere').trim() || 'PasteLinkHere';
       const sheetLink = valOf('sheetUrl') || 'PasteLinkHere';
+      const tierName = (CODE_STATE.formatsTierName || CODE_STATE.formatsDataTier || 'Tier Name').trim() || 'Tier Name';
 
       return [
         "import { FormatData } from '../../../sim/dex-formats';",
@@ -2700,9 +1701,10 @@
         '\t{',
         `\t\tname: "[Gen 9] ${escapeTsDoubleQuotes(modTitle)}",`,
         `\t\tmod: '${escapeTsSingleQuotes(folderName)}',`,
-        '\t\tdesc: "A format where DESCRIBE!",',
+        `\t\tdesc: "${escapeTsDoubleQuotes(modDesc)}",`,
         '\t\tthreads: [',
-        `\t\t\t\`&bullet; <a href= "${escapeTsDoubleQuotes(sheetLink)}"> Pet Mod Spreadsheet /Links</a>\`,`,
+        `\t\t\t\`&bullet; <a href= "${escapeTsDoubleQuotes(threadLink)}"> Pet Mod Thread</a>\`,`,
+        `\t\t\t\`&bullet; <a href= "${escapeTsDoubleQuotes(sheetLink)}"> Pet Mod Spreadsheet</a>\`,`,
         '\t\t],',
         "\t\truleset: ['Standard NatDex', 'Terastal Clause', 'Data Mod', 'Mega Data Mod', 'Species Clause', 'Sleep Clause Mod', 'Evasion Clause', 'OHKO Clause'],",
         '\t\tbanlist: [',
@@ -2728,65 +1730,37 @@
     function generateFormatsImportLine() {
       const folderName = (CODE_STATE.formatsFolderName || 'mods_folder_name_here').trim() || 'mods_folder_name_here';
       const modTitle = (CODE_STATE.formatsModName || '').trim();
-      const pascalFrom = str =>
-        String(str || '')
-          .replace(/[^a-zA-Z0-9]+/g, ' ')
-          .trim()
-          .split(/\s+/)
-          .filter(Boolean)
-          .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-          .join('');
-      const aliasSuffix = pascalFrom(modTitle && modTitle !== 'Pet Mod Name' ? modTitle : folderName) || 'PetMod';
-      const aliasIdent = `gen9${aliasSuffix}`;
+      const pascal = str => String(str || '').replace(/[^a-zA-Z0-9]+/g, ' ').trim().split(/\s+/).filter(Boolean).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('');
+      const aliasIdent = `gen9${pascal(modTitle && modTitle !== 'Pet Mod Name' ? modTitle : folderName) || 'PetMod'}`;
       const paddedAlias = aliasIdent.length < 19 ? aliasIdent.padEnd(19, ' ') : aliasIdent;
       return `import { Formats as ${paddedAlias} } from '../data/mods/${escapeTsSingleQuotes(folderName)}/formats';`;
     }
 
     function renderCodeGeneratorView(pane, fileType) {
-      let title = '';
-      let controlsHtml = '';
-      let currentCode = '';
-      let extraBoxHtml = '';
+      let title = '', controlsHtml = '', currentCode = '', extraBoxHtml = '';
 
       if (fileType === 'pokedex') {
         title = 'Code: pokedex.ts';
         if (!CODE_STATE.pokedexCode) CODE_STATE.pokedexCode = generatePokedexTsCode();
         currentCode = CODE_STATE.pokedexCode;
         controlsHtml = `
-          <label>Starting Dex Number:
-            <input type="text" id="cgPokedexDexNum" value="${escHtml(CODE_STATE.pokedexStartDex)}" placeholder="750001">
-          </label>
-          <label>Default Weight (kg) if not in sheet:
-            <input type="text" id="cgPokedexWeight" value="${escHtml(CODE_STATE.pokedexDefaultWeight)}" placeholder="50">
-          </label>
-        `;
+          <label>Starting Dex Number: <input type="text" id="cgPokedexDexNum" value="${escHtml(CODE_STATE.pokedexStartDex)}" placeholder="750001"></label>
+          <label>Default Weight (kg) if not in sheet: <input type="text" id="cgPokedexWeight" value="${escHtml(CODE_STATE.pokedexDefaultWeight)}" placeholder="50"></label>`;
       } else if (fileType === 'items') {
         title = 'Code: items.ts';
         if (!CODE_STATE.itemsCode) CODE_STATE.itemsCode = generateItemsTsCode();
         currentCode = CODE_STATE.itemsCode;
-        controlsHtml = `
-          <label>Default Fling Base Power if not in sheet:
-            <input type="text" id="cgItemsFling" value="${escHtml(CODE_STATE.itemsDefaultFling)}" placeholder="30">
-          </label>
-        `;
+        controlsHtml = `<label>Default Fling Base Power if not in sheet: <input type="text" id="cgItemsFling" value="${escHtml(CODE_STATE.itemsDefaultFling)}" placeholder="30"></label>`;
       } else if (fileType === 'learnsets') {
         title = 'Code: learnsets.ts';
         if (!CODE_STATE.learnsetsCode) CODE_STATE.learnsetsCode = generateLearnsetsTsCode();
         currentCode = CODE_STATE.learnsetsCode;
-        controlsHtml = `
-          <label>Default Learning Source:
-            <input type="text" id="cgLearnsetsSource" value="${escHtml(CODE_STATE.learnsetsDefaultSource)}" placeholder="9L1">
-          </label>
-        `;
+        controlsHtml = `<label>Default Learning Source: <input type="text" id="cgLearnsetsSource" value="${escHtml(CODE_STATE.learnsetsDefaultSource)}" placeholder="9L1"></label>`;
       } else if (fileType === 'scripts') {
         title = 'Code: scripts.ts';
         if (!CODE_STATE.scriptsCode) CODE_STATE.scriptsCode = generateScriptsTsCode();
         currentCode = CODE_STATE.scriptsCode;
-        controlsHtml = `
-          <label>Default Added Move Source:
-            <input type="text" id="cgScriptsSource" value="${escHtml(CODE_STATE.scriptsDefaultSource)}" placeholder="9L1">
-          </label>
-        `;
+        controlsHtml = `<label>Default Added Move Source: <input type="text" id="cgScriptsSource" value="${escHtml(CODE_STATE.scriptsDefaultSource)}" placeholder="9L1"></label>`;
       } else if (fileType === 'abilities') {
         title = 'Code: abilities.ts';
         if (!CODE_STATE.abilitiesCode) CODE_STATE.abilitiesCode = generateAbilitiesTsCode();
@@ -2800,56 +1774,38 @@
         if (!CODE_STATE.formatsDataCode) CODE_STATE.formatsDataCode = generateFormatsDataTsCode();
         currentCode = CODE_STATE.formatsDataCode;
         controlsHtml = `
-          <label>Tier Name:
-            <input type="text" id="cgFormatsDataTier" value="${escHtml(CODE_STATE.formatsDataTier)}" placeholder="PetMod">
-          </label>
-          <label>Doubles Tier Name:
-            <input type="text" id="cgFormatsDataDoublesTier" value="${escHtml(CODE_STATE.formatsDataDoublesTier)}" placeholder="DPetMod">
-          </label>
-        `;
+          <label>Tier Name: <input type="text" id="cgFormatsDataTier" value="${escHtml(CODE_STATE.formatsDataTier)}" placeholder="PetMod"></label>
+          <label>Doubles Tier Name: <input type="text" id="cgFormatsDataDoublesTier" value="${escHtml(CODE_STATE.formatsDataDoublesTier)}" placeholder="DPetMod"></label>`;
       } else if (fileType === 'formats') {
         title = 'Code: formats.ts';
         if (!CODE_STATE.formatsCode) CODE_STATE.formatsCode = generateFormatsTsCode();
         if (!CODE_STATE.formatsImportLine) CODE_STATE.formatsImportLine = generateFormatsImportLine();
         currentCode = CODE_STATE.formatsCode;
         controlsHtml = `
-          <label>Mods Folder Name:
-            <input type="text" id="cgFormatsFolder" value="${escHtml(CODE_STATE.formatsFolderName)}" placeholder="mods_folder_name_here">
-          </label>
-          <label>Pet Mod Name:
-            <input type="text" id="cgFormatsModName" value="${escHtml(CODE_STATE.formatsModName)}" placeholder="Pet Mod Name">
-          </label>
-          <label>Allowed Tier Name:
-            <input type="text" id="cgFormatsTierName" value="${escHtml(CODE_STATE.formatsTierName)}" placeholder="Tier Name">
-          </label>
-        `;
+          <label>Mods Folder Name: <input type="text" id="cgFormatsFolder" value="${escHtml(CODE_STATE.formatsFolderName)}" placeholder="mods_folder_name_here"></label>
+          <label>Pet Mod Name: <input type="text" id="cgFormatsModName" value="${escHtml(CODE_STATE.formatsModName)}" placeholder="Pet Mod Name"></label>
+          <label>Allowed Tier Name: <input type="text" id="cgFormatsTierName" value="${escHtml(CODE_STATE.formatsTierName)}" placeholder="Tier Name"></label>
+          <label>One-Line Description: <input type="text" id="cgFormatsDesc" class="wide-input" value="${escHtml(CODE_STATE.formatsDesc)}" placeholder="A format where DESCRIBE!"></label>
+          <label>Pet Mod Thread Link: <input type="text" id="cgFormatsThreadLink" class="wide-input" value="${escHtml(CODE_STATE.formatsThreadLink)}" placeholder="PasteLinkHere"></label>`;
         extraBoxHtml = `
-          <div class="code-sub-label">
-            <span>config/formats.ts Import Line:</span>
-            <button type="button" id="cgCopyImportLineBtn">Click to Copy Import Line</button>
-          </div>
-          <textarea id="cgImportLineBox" class="code-output-small" spellcheck="false">${escHtml(CODE_STATE.formatsImportLine)}</textarea>
-        `;
+          <div class="code-sub-label"><span>config/formats.ts Import Line:</span><button type="button" id="cgCopyImportLineBtn">Click to Copy Import Line</button></div>
+          <textarea id="cgImportLineBox" class="code-output-small" spellcheck="false">${escHtml(CODE_STATE.formatsImportLine)}</textarea>`;
       }
 
       pane.innerHTML = `
-        <div class="detail-header">
-          <div><strong style="font-size:1.15rem;">${title}</strong></div>
-        </div>
-
+        <div class="detail-header"><div><strong style="font-size:1.15rem;">${title}</strong></div></div>
         ${controlsHtml ? `<div class="code-gen-controls">${controlsHtml}</div>` : ''}
-
         <div class="code-gen-actions">
           <button type="button" id="cgGenerateBtn">Generate</button>
           <button type="button" id="cgCopyBtn">Click to Copy</button>
         </div>
-
         <textarea id="cgOutputBox" class="code-output-box" spellcheck="false">${escHtml(currentCode)}</textarea>
         ${extraBoxHtml}
       `;
 
       const outBox = document.getElementById('cgOutputBox');
       const importBox = document.getElementById('cgImportLineBox');
+      const displayFileName = fileType === 'formats_data' ? 'formats-data.ts' : `${fileType}.ts`;
 
       outBox.addEventListener('input', () => {
         if (fileType === 'pokedex') CODE_STATE.pokedexCode = outBox.value;
@@ -2861,47 +1817,36 @@
         else if (fileType === 'formats_data') CODE_STATE.formatsDataCode = outBox.value;
         else if (fileType === 'formats') CODE_STATE.formatsCode = outBox.value;
       });
-
-      if (importBox) {
-        importBox.addEventListener('input', () => {
-          CODE_STATE.formatsImportLine = importBox.value;
-        });
-      }
+      if (importBox) importBox.addEventListener('input', () => { CODE_STATE.formatsImportLine = importBox.value; });
 
       document.getElementById('cgGenerateBtn').addEventListener('click', () => {
-        const displayFileName = fileType === 'formats_data' ? 'formats-data.ts' : `${fileType}.ts`;
         if (fileType === 'pokedex') {
           CODE_STATE.pokedexStartDex = document.getElementById('cgPokedexDexNum').value.trim() || '750001';
           CODE_STATE.pokedexDefaultWeight = document.getElementById('cgPokedexWeight').value.trim() || '50';
-          CODE_STATE.pokedexCode = generatePokedexTsCode();
-          outBox.value = CODE_STATE.pokedexCode;
+          CODE_STATE.pokedexCode = generatePokedexTsCode(); outBox.value = CODE_STATE.pokedexCode;
         } else if (fileType === 'items') {
           CODE_STATE.itemsDefaultFling = document.getElementById('cgItemsFling').value.trim() || '30';
-          CODE_STATE.itemsCode = generateItemsTsCode();
-          outBox.value = CODE_STATE.itemsCode;
+          CODE_STATE.itemsCode = generateItemsTsCode(); outBox.value = CODE_STATE.itemsCode;
         } else if (fileType === 'learnsets') {
           CODE_STATE.learnsetsDefaultSource = document.getElementById('cgLearnsetsSource').value.trim() || '9L1';
-          CODE_STATE.learnsetsCode = generateLearnsetsTsCode();
-          outBox.value = CODE_STATE.learnsetsCode;
+          CODE_STATE.learnsetsCode = generateLearnsetsTsCode(); outBox.value = CODE_STATE.learnsetsCode;
         } else if (fileType === 'scripts') {
           CODE_STATE.scriptsDefaultSource = document.getElementById('cgScriptsSource').value.trim() || '9L1';
-          CODE_STATE.scriptsCode = generateScriptsTsCode();
-          outBox.value = CODE_STATE.scriptsCode;
+          CODE_STATE.scriptsCode = generateScriptsTsCode(); outBox.value = CODE_STATE.scriptsCode;
         } else if (fileType === 'abilities') {
-          CODE_STATE.abilitiesCode = generateAbilitiesTsCode();
-          outBox.value = CODE_STATE.abilitiesCode;
+          CODE_STATE.abilitiesCode = generateAbilitiesTsCode(); outBox.value = CODE_STATE.abilitiesCode;
         } else if (fileType === 'moves') {
-          CODE_STATE.movesCode = generateMovesTsCode();
-          outBox.value = CODE_STATE.movesCode;
+          CODE_STATE.movesCode = generateMovesTsCode(); outBox.value = CODE_STATE.movesCode;
         } else if (fileType === 'formats_data') {
           CODE_STATE.formatsDataTier = document.getElementById('cgFormatsDataTier').value.trim() || 'PetMod';
           CODE_STATE.formatsDataDoublesTier = document.getElementById('cgFormatsDataDoublesTier').value.trim() || 'DPetMod';
-          CODE_STATE.formatsDataCode = generateFormatsDataTsCode();
-          outBox.value = CODE_STATE.formatsDataCode;
+          CODE_STATE.formatsDataCode = generateFormatsDataTsCode(); outBox.value = CODE_STATE.formatsDataCode;
         } else if (fileType === 'formats') {
           CODE_STATE.formatsFolderName = document.getElementById('cgFormatsFolder').value.trim() || 'mods_folder_name_here';
           CODE_STATE.formatsModName = document.getElementById('cgFormatsModName').value.trim() || 'Pet Mod Name';
           CODE_STATE.formatsTierName = document.getElementById('cgFormatsTierName').value.trim() || 'Tier Name';
+          CODE_STATE.formatsDesc = document.getElementById('cgFormatsDesc').value.trim() || 'A format where DESCRIBE!';
+          CODE_STATE.formatsThreadLink = document.getElementById('cgFormatsThreadLink').value.trim() || 'PasteLinkHere';
           CODE_STATE.formatsCode = generateFormatsTsCode();
           CODE_STATE.formatsImportLine = generateFormatsImportLine();
           outBox.value = CODE_STATE.formatsCode;
@@ -2911,18 +1856,305 @@
       });
 
       document.getElementById('cgCopyBtn').addEventListener('click', () => {
-        const displayFileName = fileType === 'formats_data' ? 'formats-data.ts' : `${fileType}.ts`;
-        outBox.select();
-        navigator.clipboard?.writeText(outBox.value);
+        outBox.select(); navigator.clipboard?.writeText(outBox.value);
         document.getElementById('statusBar').textContent = `Copied ${displayFileName} code to clipboard.`;
       });
 
       document.getElementById('cgCopyImportLineBtn')?.addEventListener('click', () => {
         if (!importBox) return;
-        importBox.select();
-        navigator.clipboard?.writeText(importBox.value);
+        importBox.select(); navigator.clipboard?.writeText(importBox.value);
         document.getElementById('statusBar').textContent = 'Copied formats.ts import line to clipboard.';
       });
+    }
+
+    // ==================== SHOWDOWN-STYLE TEAMBUILDER ====================
+    function getStatBarColor(val) {
+      const v = Number(val) || 0;
+      if (v >= 150) return '#00c2b8'; if (v >= 120) return '#23cd5e'; if (v >= 90) return '#a0e515';
+      if (v >= 60) return '#ffdd57'; if (v >= 30) return '#ff7f0f'; return '#f34444';
+    }
+
+    function getAllMergedDex() { return Object.assign({}, BASE_DEX, MOD_DEX); }
+
+    function refreshTeambuilderDatalists() {
+      const moddedMons = Object.values(MOD_DEX).sort((a, b) => (a.sheetOrder ?? 0) - (b.sheetOrder ?? 0)).map(m => m?.name).filter(Boolean);
+      const moddedSet = new Set(moddedMons.map(n => n.toLowerCase()));
+      const baseMons = Object.values(BASE_DEX).map(m => m?.name).filter(n => n && !moddedSet.has(n.toLowerCase())).sort((a, b) => a.localeCompare(b));
+
+      const moddedItems = Object.values(MOD_ITEMS).map(it => it?.name).filter(Boolean);
+      const moddedItemSet = new Set(moddedItems.map(n => n.toLowerCase()));
+      const baseItems = Object.values(BASE_ITEMS).map(it => it?.name).filter(n => n && !moddedItemSet.has(n.toLowerCase())).sort((a, b) => a.localeCompare(b));
+
+      const moddedMoves = Object.values(MOD_MOVES).map(mv => mv?.name).filter(Boolean);
+      const moddedMoveSet = new Set(moddedMoves.map(n => n.toLowerCase()));
+      const baseMoves = Object.values(BASE_MOVES).map(mv => mv?.name).filter(n => n && !moddedMoveSet.has(n.toLowerCase())).sort((a, b) => a.localeCompare(b));
+
+      const monDl = document.getElementById('tbMonOptions'), itemDl = document.getElementById('tbItemOptions'), moveDl = document.getElementById('tbMoveOptions');
+      if (monDl) monDl.innerHTML = [...moddedMons, ...baseMons].map(n => `<option value="${escHtml(n)}"></option>`).join('');
+      if (itemDl) itemDl.innerHTML = [...moddedItems, ...baseItems].map(n => `<option value="${escHtml(n)}"></option>`).join('');
+      if (moveDl) moveDl.innerHTML = [...moddedMoves, ...baseMoves].map(n => `<option value="${escHtml(n)}"></option>`).join('');
+    }
+
+    function calcActualStat(statKey, base, iv, ev, level, natureName) {
+      const b = Number(base) || 0, i = Math.min(31, Math.max(0, Number(iv) || 0)), e = Math.min(252, Math.max(0, Number(ev) || 0)), lvl = Math.min(100, Math.max(1, Number(level) || 100));
+      if (statKey === 'hp') return b === 1 ? 1 : Math.floor(((2 * b + i + Math.floor(e / 4)) * lvl) / 100) + lvl + 10;
+      let raw = Math.floor(((2 * b + i + Math.floor(e / 4)) * lvl) / 100) + 5;
+      const nat = NATURES[natureName] || {};
+      if (nat.plus === statKey) raw = Math.floor(raw * 1.1);
+      else if (nat.minus === statKey) raw = Math.floor(raw * 0.9);
+      return raw;
+    }
+
+    function guessShowdownSpread(baseStats) {
+      const s = baseStats || { hp: 80, atk: 80, def: 80, spa: 80, spd: 80, spe: 80 };
+      const isPhys = (s.atk || 0) >= (s.spa || 0), isFast = (s.spe || 0) >= 85;
+      if (isFast && isPhys) return { label: 'Fast Physical Sweeper: 252 Atk / 4 SpD / 252 Spe (+Spe, -SpA)', evs: { hp: 0, atk: 252, def: 0, spa: 0, spd: 4, spe: 252 }, nature: 'Jolly' };
+      if (isFast && !isPhys) return { label: 'Fast Special Sweeper: 252 SpA / 4 SpD / 252 Spe (+Spe, -Atk)', evs: { hp: 0, atk: 0, def: 0, spa: 252, spd: 4, spe: 252 }, nature: 'Timid' };
+      if (!isFast && isPhys) return { label: 'Bulky Physical Attacker: 252 HP / 252 Atk / 4 SpD (+Atk, -SpA)', evs: { hp: 252, atk: 252, def: 0, spa: 0, spd: 4, spe: 0 }, nature: 'Adamant' };
+      return { label: 'Bulky Special Attacker: 252 HP / 252 SpA / 4 SpD (+SpA, -Atk)', evs: { hp: 252, atk: 0, def: 0, spa: 252, spd: 4, spe: 0 }, nature: 'Modest' };
+    }
+
+    function generateShowdownTeamExport() {
+      const allDex = getAllMergedDex(), blocks = [];
+      for (const slot of TEAM_SLOTS) {
+        if (!slot.speciesId) continue;
+        const mon = allDex[slot.speciesId], speciesName = mon?.name || slot.speciesId, lines = [];
+        const titlePart = slot.nickname.trim() && slot.nickname.trim().toLowerCase() !== speciesName.toLowerCase() ? `${slot.nickname.trim()} (${speciesName})` : speciesName;
+        lines.push(slot.item.trim() ? `${titlePart} @ ${slot.item.trim()}` : titlePart);
+        if (slot.ability.trim()) lines.push(`Ability: ${slot.ability.trim()}`);
+        if (Number(slot.level) && Number(slot.level) !== 100) lines.push(`Level: ${slot.level}`);
+        if (slot.shiny === 'Yes') lines.push('Shiny: Yes');
+        if (Number(slot.happiness) !== 255) lines.push(`Happiness: ${slot.happiness}`);
+        if (slot.teraType) lines.push(`Tera Type: ${slot.teraType}`);
+        const statLabels = [['hp', 'HP'], ['atk', 'Atk'], ['def', 'Def'], ['spa', 'SpA'], ['spd', 'SpD'], ['spe', 'Spe']];
+        const evParts = statLabels.filter(([k]) => (Number(slot.evs[k]) || 0) > 0).map(([k, lbl]) => `${slot.evs[k]} ${lbl}`);
+        if (evParts.length) lines.push(`EVs: ${evParts.join(' / ')}`);
+        if (slot.nature) lines.push(`${slot.nature} Nature`);
+        const ivParts = statLabels.filter(([k]) => (Number(slot.ivs[k]) ?? 31) !== 31).map(([k, lbl]) => `${slot.ivs[k]} ${lbl}`);
+        if (ivParts.length) lines.push(`IVs: ${ivParts.join(' / ')}`);
+        slot.moves.forEach(mv => { if (mv && mv.trim()) lines.push(`- ${mv.trim()}`); });
+        blocks.push(lines.join('\n'));
+      }
+      return blocks.join('\n\n');
+    }
+
+    function parseShowdownTeamImport(rawText) {
+      const allDex = getAllMergedDex();
+      const blocks = String(rawText || '').trim().split(/\n\s*\n/).filter(Boolean).slice(0, 6);
+      const nextSlots = Array.from({ length: 6 }, createEmptyTbSlot);
+      blocks.forEach((block, idx) => {
+        const lines = block.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+        if (!lines.length) return;
+        const slot = nextSlots[idx];
+        const [leftPart, itemPart] = lines[0].split('@').map(s => s.trim());
+        if (itemPart) slot.item = itemPart;
+        const parenMatch = leftPart.match(/^(.*?)\(([^()]+)\)\s*$/);
+        if (parenMatch) {
+          slot.nickname = parenMatch[1].trim();
+          const spId = toId(parenMatch[2]);
+          if (allDex[spId]) slot.speciesId = spId;
+        } else {
+          const spId = toId(leftPart);
+          if (allDex[spId]) { slot.speciesId = spId; slot.nickname = allDex[spId].name; }
+        }
+        let moveCursor = 0;
+        for (let i = 1; i < lines.length; i++) {
+          const line = lines[i];
+          if (line.startsWith('Ability:')) slot.ability = line.slice(8).trim();
+          else if (line.startsWith('Level:')) slot.level = Number(line.slice(6).trim()) || 100;
+          else if (line.startsWith('Shiny:')) slot.shiny = line.slice(6).trim();
+          else if (line.startsWith('Happiness:')) slot.happiness = Number(line.slice(10).trim()) ?? 255;
+          else if (line.startsWith('Tera Type:')) slot.teraType = line.slice(10).trim();
+          else if (line.endsWith('Nature')) { const nat = line.replace(/Nature$/, '').trim(); if (NATURES[nat]) slot.nature = nat; }
+          else if (line.startsWith('EVs:')) line.slice(4).split('/').forEach(seg => { const m = seg.trim().match(/^(\d+)\s+(HP|Atk|Def|SpA|SpD|Spe)$/i); if (m) slot.evs[m[2].toLowerCase()] = Math.min(252, Number(m[1])); });
+          else if (line.startsWith('IVs:')) line.slice(4).split('/').forEach(seg => { const m = seg.trim().match(/^(\d+)\s+(HP|Atk|Def|SpA|SpD|Spe)$/i); if (m) slot.ivs[m[2].toLowerCase()] = Math.min(31, Number(m[1])); });
+          else if (line.startsWith('-') && moveCursor < 4) slot.moves[moveCursor++] = line.replace(/^-+\s*/, '').trim();
+        }
+      });
+      TEAM_SLOTS = nextSlots; ACTIVE_TB_SLOT = 0;
+    }
+
+    function renderTeambuilderPane() {
+      refreshTeambuilderDatalists();
+      const pane = document.getElementById('detailPane'), allDex = getAllMergedDex();
+      const slot = TEAM_SLOTS[ACTIVE_TB_SLOT], mon = slot.speciesId ? allDex[slot.speciesId] : null;
+      const baseStats = mon?.baseStats || { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 };
+
+      if (mon && (!slot.teraType || slot.teraType === 'Normal') && mon.types?.[0]) slot.teraType = mon.types[0];
+      const abilityOptions = mon ? Object.values(mon.abilities || {}).filter(Boolean) : Object.values(MOD_ABILITIES).map(a => a.name);
+      if (mon && abilityOptions.length && !abilityOptions.includes(slot.ability)) slot.ability = abilityOptions[0];
+
+      const slug = mon ? getMinispriteSlug(mon.name, slot.speciesId) : '';
+      const spriteUrl = mon?.sprite && /^https?:\/\//i.test(mon.sprite) ? mon.sprite : (slug ? `${BW_SPRITE_BASE}/${slug}.png` : '');
+      const fallbackMini = slug ? `${MINISPRITE_BASE}/${slug}.png` : '';
+      const typesIconsHtml = (mon?.types || []).map(t => renderTypeIconHtml(t)).join(' ');
+      const natInfo = NATURES[slot.nature] || {};
+
+      const statDefs = [['hp', 'HP', 'HP'], ['atk', 'Attack', 'Atk'], ['def', 'Defense', 'Def'], ['spa', 'Sp. Atk.', 'SpA'], ['spd', 'Sp. Def.', 'SpD'], ['spe', 'Speed', 'Spe']];
+      const evUsed = Object.values(slot.evs).reduce((acc, v) => acc + (Number(v) || 0), 0);
+      const evRemaining = Math.max(0, 510 - evUsed);
+      const guessed = guessShowdownSpread(baseStats);
+
+      const miniStatRowsHtml = statDefs.map(([k, , shortLbl]) => {
+        const bVal = baseStats[k] ?? 0, pct = Math.min(100, Math.max(4, Math.round((bVal / 200) * 100))), evVal = Number(slot.evs[k]) || 0;
+        const natMark = natInfo.plus === k ? '+' : (natInfo.minus === k ? '-' : '');
+        const evTag = evVal > 0 ? `${evVal}${natMark}` : (natMark || '—');
+        return `<div class="ps-mini-row"><span>${shortLbl}</span><div class="ps-mini-bar-wrap"><div class="ps-mini-bar" style="width:${pct}%; background:${getStatBarColor(bVal)};"></div></div><span class="ps-mini-ev">${evTag}</span></div>`;
+      }).join('');
+
+      const evTableRowsHtml = statDefs.map(([k, fullLbl]) => {
+        const bVal = baseStats[k] ?? 0, pct = Math.min(100, Math.max(3, Math.round((bVal / 200) * 100))), evVal = Number(slot.evs[k]) || 0, ivVal = slot.ivs[k] ?? 31;
+        const natMark = natInfo.plus === k ? '+' : (natInfo.minus === k ? '-' : '');
+        const evDisplayStr = evVal > 0 ? `${evVal}${natMark}` : (natMark || '');
+        const finalStat = mon ? calcActualStat(k, bVal, ivVal, evVal, slot.level, slot.nature) : '—';
+        return `<tr><td class="ps-ev-stat-name">${fullLbl}</td><td class="ps-ev-base-num">${bVal}</td><td class="ps-ev-bar-cell"><div class="ps-ev-bar-track"><div class="ps-ev-bar-fill" style="width:${pct}%; background:${getStatBarColor(bVal)};"></div></div></td><td class="ps-ev-box-cell"><input type="text" class="ps-ev-text-inp" data-stat="${k}" value="${evDisplayStr}" placeholder="0"></td><td class="ps-ev-slider-cell"><input type="range" class="ps-ev-slider" data-stat="${k}" min="0" max="252" step="4" value="${evVal}"></td><td class="ps-iv-cell"><input type="number" class="ps-iv-inp" data-stat="${k}" min="0" max="31" value="${ivVal}"></td><td class="ps-final-stat">${finalStat}</td></tr>`;
+      }).join('');
+
+      const slotTabsHtml = TEAM_SLOTS.map((s, idx) => {
+        const m = s.speciesId ? allDex[s.speciesId] : null;
+        return `<button type="button" class="ps-tb-slot-tab ${idx === ACTIVE_TB_SLOT ? 'active' : ''}" data-slot-idx="${idx}">${idx + 1}. ${escHtml(m ? m.name : `Slot ${idx + 1}`)}</button>`;
+      }).join('');
+
+      const natureOptionsHtml = Object.keys(NATURES).map(n => {
+        const info = NATURES[n];
+        const tag = info.plus ? ` (+${info.plus.charAt(0).toUpperCase() + info.plus.slice(1)}, -${info.minus.charAt(0).toUpperCase() + info.minus.slice(1)})` : '';
+        return `<option value="${n}" ${slot.nature === n ? 'selected' : ''}>${n}${tag}</option>`;
+      }).join('');
+
+      const teraOptionsHtml = ALL_TYPES.map(t => `<option value="${t}" ${slot.teraType === t ? 'selected' : ''}>${t}</option>`).join('');
+
+      pane.innerHTML = `
+        <div class="ps-tb-wrap">
+          <div class="ps-tb-topbar">
+            <div class="ps-tb-slots">${slotTabsHtml}</div>
+            <div class="ps-tb-actions">
+              <button type="button" id="psCopySlotBtn">Copy</button>
+              <button type="button" id="psImportExportToggleBtn">Import/Export</button>
+              <button type="button" id="psMoveSlotBtn">Move</button>
+              <button type="button" id="psDeleteSlotBtn">Delete</button>
+            </div>
+          </div>
+
+          <div class="ps-set-card">
+            <div class="ps-col">
+              <div><label class="ps-lbl">Nickname</label><input type="text" id="psNicknameInp" class="ps-inp" value="${escHtml(slot.nickname)}" placeholder="Nickname"></div>
+              <div class="ps-sprite-stage">${spriteUrl ? `<img src="${escHtml(spriteUrl)}" alt="${escHtml(mon.name)}" onerror="if(this.src!=='${fallbackMini}'){this.src='${fallbackMini}';}else{this.style.display='none';}">` : '<span style="font-size:0.75rem;color:#888;">No Pokémon</span>'}</div>
+              <div><label class="ps-lbl">Pokémon</label><input type="text" id="psSpeciesInp" class="ps-inp" list="tbMonOptions" value="${escHtml(mon ? mon.name : '')}" placeholder="Search Pokémon..."></div>
+            </div>
+
+            <div class="ps-col">
+              <div>
+                <label class="ps-lbl">Details</label>
+                <div class="ps-details-box">
+                  <div class="ps-det-cell"><span>Level</span><input type="number" id="psLevelInp" min="1" max="100" value="${slot.level}"></div>
+                  <div class="ps-det-cell"><span>Gender</span><select id="psGenderSel"><option value="—" ${slot.gender === '—' ? 'selected' : ''}>—</option><option value="M" ${slot.gender === 'M' ? 'selected' : ''}>M</option><option value="F" ${slot.gender === 'F' ? 'selected' : ''}>F</option></select></div>
+                  <div class="ps-det-cell"><span>Happiness</span><input type="number" id="psHappyInp" min="0" max="255" value="${slot.happiness}"></div>
+                  <div class="ps-det-cell"><span>Shiny</span><select id="psShinySel"><option value="No" ${slot.shiny === 'No' ? 'selected' : ''}>No</option><option value="Yes" ${slot.shiny === 'Yes' ? 'selected' : ''}>Yes</option></select></div>
+                  <div class="ps-det-cell"><span>Tera Type</span><select id="psTeraSel">${teraOptionsHtml}</select></div>
+                </div>
+              </div>
+              <div class="ps-mid-row"><div>${typesIconsHtml}</div></div>
+              <div class="ps-equip-grid">
+                <div><label class="ps-lbl">Item</label><input type="text" id="psItemInp" class="ps-inp" list="tbItemOptions" value="${escHtml(slot.item)}" placeholder="Item"></div>
+                <div><label class="ps-lbl">Ability</label><select id="psAbilitySel" class="ps-sel">${abilityOptions.map(a => `<option value="${escHtml(a)}" ${slot.ability === a ? 'selected' : ''}>${escHtml(a)}</option>`).join('')}</select></div>
+              </div>
+            </div>
+
+            <div class="ps-col">
+              <div class="ps-moves-col">
+                <label class="ps-lbl">Moves</label>
+                ${[0, 1, 2, 3].map(idx => `<input type="text" class="ps-inp ps-move-inp" data-move-idx="${idx}" list="tbMoveOptions" value="${escHtml(slot.moves[idx] || '')}" placeholder="Move ${idx + 1}">`).join('')}
+              </div>
+            </div>
+
+            <div class="ps-col">
+              <div class="ps-mini-stats"><div class="ps-mini-stats-hdr"><span>Stats</span><span>EV</span></div>${miniStatRowsHtml}</div>
+            </div>
+          </div>
+
+          <div class="ps-evs-panel">
+            <div class="ps-evs-banner">EVs</div>
+            <div class="ps-ev-top-controls">
+              <label style="color:#d6deeb; font-family:Verdana,sans-serif; font-size:0.8rem;"><input type="checkbox" id="psJumpPointsChk" checked> Jump points</label>
+              <div><span style="color:#aab2c0; margin-right:6px;">Guessed spread:</span><button type="button" class="ps-guessed-pill" id="psApplyGuessedBtn">${escHtml(guessed.label)}</button></div>
+            </div>
+            <table class="ps-ev-table">
+              <thead><tr><th></th><th style="text-align:right;">Base</th><th></th><th>EVs</th><th></th><th>IVs</th><th></th></tr></thead>
+              <tbody>${evTableRowsHtml}</tbody>
+            </table>
+            <div class="ps-ev-footer">
+              <div><span style="color:#aab2c0;">Remaining:</span><strong style="margin-left:8px; color:#fff;">${evRemaining}</strong></div>
+              <div><label style="font-family:Verdana,sans-serif; font-size:0.8rem;">Nature: <select id="psNatureSel" class="ps-sel" style="width:auto; min-width:190px;">${natureOptionsHtml}</select></label></div>
+              <div><select id="psIvPresetSel" class="ps-sel" style="width:auto;"><option value="">IV spreads</option><option value="31all">31 all (Max IVs)</option><option value="0atk">0 Atk</option><option value="0spe">0 Spe</option><option value="0atkspe">0 Atk &amp; 0 Spe</option></select></div>
+            </div>
+          </div>
+
+          <div class="ps-import-export-box ${TB_IMPORT_EXPORT_OPEN ? 'open' : ''}">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">
+              <strong style="color:#ffcc66; font-family:monospace;">Team Export / Import (Showdown Format)</strong>
+              <div style="display:flex;gap:6px;"><button type="button" id="psCopyFullTeamBtn">Copy Export Text</button><button type="button" id="psApplyImportBtn">Import From Text</button></div>
+            </div>
+            <textarea id="psTeamTextArea">${escHtml(generateShowdownTeamExport())}</textarea>
+          </div>
+        </div>
+      `;
+
+      pane.querySelectorAll('.ps-tb-slot-tab').forEach(btn => btn.addEventListener('click', () => { ACTIVE_TB_SLOT = Number(btn.dataset.slotIdx); renderTeambuilderPane(); }));
+      document.getElementById('psCopySlotBtn').addEventListener('click', () => { navigator.clipboard?.writeText(generateShowdownTeamExport()); document.getElementById('statusBar').textContent = 'Copied team text to clipboard.'; });
+      document.getElementById('psImportExportToggleBtn').addEventListener('click', () => { TB_IMPORT_EXPORT_OPEN = !TB_IMPORT_EXPORT_OPEN; renderTeambuilderPane(); });
+      document.getElementById('psMoveSlotBtn').addEventListener('click', () => { const n = (ACTIVE_TB_SLOT + 1) % 6; const t = TEAM_SLOTS[ACTIVE_TB_SLOT]; TEAM_SLOTS[ACTIVE_TB_SLOT] = TEAM_SLOTS[n]; TEAM_SLOTS[n] = t; ACTIVE_TB_SLOT = n; renderTeambuilderPane(); });
+      document.getElementById('psDeleteSlotBtn').addEventListener('click', () => { TEAM_SLOTS[ACTIVE_TB_SLOT] = createEmptyTbSlot(); renderTeambuilderPane(); });
+
+      document.getElementById('psSpeciesInp').addEventListener('change', e => {
+        const enteredId = toId(e.target.value);
+        if (allDex[enteredId]) {
+          slot.speciesId = enteredId; slot.nickname = allDex[enteredId].name;
+          const abils = Object.values(allDex[enteredId].abilities || {}).filter(Boolean);
+          slot.ability = abils[0] || ''; slot.teraType = allDex[enteredId].types?.[0] || 'Normal';
+        } else if (!e.target.value.trim()) { slot.speciesId = ''; slot.nickname = ''; slot.ability = ''; }
+        renderTeambuilderPane();
+      });
+
+      document.getElementById('psNicknameInp').addEventListener('input', e => { slot.nickname = e.target.value; const ta = document.getElementById('psTeamTextArea'); if (ta) ta.value = generateShowdownTeamExport(); });
+      document.getElementById('psLevelInp').addEventListener('input', e => { slot.level = Math.min(100, Math.max(1, Number(e.target.value) || 100)); renderTeambuilderPane(); });
+      document.getElementById('psGenderSel').addEventListener('change', e => { slot.gender = e.target.value; });
+      document.getElementById('psHappyInp').addEventListener('input', e => { slot.happiness = Math.min(255, Math.max(0, Number(e.target.value) || 0)); });
+      document.getElementById('psShinySel').addEventListener('change', e => { slot.shiny = e.target.value; });
+      document.getElementById('psTeraSel').addEventListener('change', e => { slot.teraType = e.target.value; });
+      document.getElementById('psItemInp').addEventListener('input', e => { slot.item = e.target.value; const ta = document.getElementById('psTeamTextArea'); if (ta) ta.value = generateShowdownTeamExport(); });
+      document.getElementById('psAbilitySel').addEventListener('change', e => { slot.ability = e.target.value; const ta = document.getElementById('psTeamTextArea'); if (ta) ta.value = generateShowdownTeamExport(); });
+      pane.querySelectorAll('.ps-move-inp').forEach(inp => inp.addEventListener('input', e => { slot.moves[Number(inp.dataset.moveIdx)] = e.target.value; const ta = document.getElementById('psTeamTextArea'); if (ta) ta.value = generateShowdownTeamExport(); }));
+      document.getElementById('psApplyGuessedBtn').addEventListener('click', () => { slot.evs = Object.assign({}, guessed.evs); slot.nature = guessed.nature; renderTeambuilderPane(); });
+
+      const applyEvChange = (statKey, rawVal) => {
+        const str = String(rawVal || '').trim();
+        if (str.endsWith('+')) { const hit = Object.entries(NATURES).find(([, v]) => v.plus === statKey); if (hit) slot.nature = hit[0]; }
+        else if (str.endsWith('-')) { const hit = Object.entries(NATURES).find(([, v]) => v.minus === statKey); if (hit) slot.nature = hit[0]; }
+        const m = str.match(/\d+/);
+        const desired = Math.min(252, Math.max(0, m ? Number(m[0]) : 0));
+        const otherSum = Object.entries(slot.evs).filter(([k]) => k !== statKey).reduce((acc, [, v]) => acc + (Number(v) || 0), 0);
+        slot.evs[statKey] = Math.min(desired, Math.max(0, 510 - otherSum));
+        renderTeambuilderPane();
+      };
+
+      pane.querySelectorAll('.ps-ev-text-inp').forEach(inp => inp.addEventListener('change', e => applyEvChange(inp.dataset.stat, e.target.value)));
+      pane.querySelectorAll('.ps-ev-slider').forEach(sl => sl.addEventListener('input', e => {
+        const statKey = sl.dataset.stat;
+        const otherSum = Object.entries(slot.evs).filter(([k]) => k !== statKey).reduce((acc, [, v]) => acc + (Number(v) || 0), 0);
+        slot.evs[statKey] = Math.min(Number(e.target.value) || 0, Math.min(252, Math.max(0, 510 - otherSum)));
+        renderTeambuilderPane();
+      }));
+      pane.querySelectorAll('.ps-iv-inp').forEach(inp => inp.addEventListener('input', e => { slot.ivs[inp.dataset.stat] = Math.min(31, Math.max(0, Number(e.target.value) || 0)); renderTeambuilderPane(); }));
+      document.getElementById('psNatureSel').addEventListener('change', e => { slot.nature = e.target.value; renderTeambuilderPane(); });
+      document.getElementById('psIvPresetSel').addEventListener('change', e => {
+        const p = e.target.value; if (!p) return;
+        slot.ivs = { hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31 };
+        if (p === '0atk' || p === '0atkspe') slot.ivs.atk = 0;
+        if (p === '0spe' || p === '0atkspe') slot.ivs.spe = 0;
+        renderTeambuilderPane();
+      });
+      document.getElementById('psCopyFullTeamBtn')?.addEventListener('click', () => { const ta = document.getElementById('psTeamTextArea'); ta.select(); navigator.clipboard?.writeText(ta.value); document.getElementById('statusBar').textContent = 'Copied full team text to clipboard.'; });
+      document.getElementById('psApplyImportBtn')?.addEventListener('click', () => { parseShowdownTeamImport(document.getElementById('psTeamTextArea').value); renderTeambuilderPane(); document.getElementById('statusBar').textContent = 'Imported team text into Teambuilder.'; });
     }
 
     // ==================== MAIN VIEW RENDERING ====================
@@ -2931,138 +2163,35 @@
       const q = document.getElementById('searchInput').value.trim().toLowerCase();
       const pane = document.getElementById('detailPane');
 
-      if (ACTIVE_MODE.startsWith('code_')) {
-        const fileType = ACTIVE_MODE.replace('code_', '');
-        renderCodeGeneratorView(pane, fileType);
-        return;
-      }
-
-      const allMoves = getCustomMovesList();
+      if (ACTIVE_MODE === 'teambuilder') { renderTeambuilderPane(); return; }
+      if (ACTIVE_MODE.startsWith('code_')) { renderCodeGeneratorView(pane, ACTIVE_MODE.replace('code_', '')); return; }
 
       if (ACTIVE_MODE === 'moves') {
-        const moves = allMoves.filter(m =>
-          !q ||
-          m.name.toLowerCase().includes(q) ||
-          m.type.toLowerCase().includes(q) ||
-          m.category.toLowerCase().includes(q) ||
-          m.descText.toLowerCase().includes(q) ||
-          String(m.target || '').toLowerCase().includes(q) ||
-          String(m.priority || '').toLowerCase().includes(q) ||
-          String(m.flags || '').toLowerCase().includes(q) ||
+        const moves = getCustomMovesList().filter(m =>
+          !q || m.name.toLowerCase().includes(q) || m.type.toLowerCase().includes(q) || m.category.toLowerCase().includes(q) ||
+          m.descText.toLowerCase().includes(q) || String(m.target || '').toLowerCase().includes(q) ||
+          String(m.priority || '').toLowerCase().includes(q) || String(m.flags || '').toLowerCase().includes(q) ||
           getPokemonWithMove(m.id).some(p => p.toLowerCase().includes(q))
         );
-
-        const cardsHtml = moves.length
-          ? moves.map(m => {
-              const monsWithMove = getPokemonWithMove(m.id);
-              const tfParts = [
-                m.target ? `Target: ${escHtml(m.target)}` : '',
-                m.flags ? `Flags: ${escHtml(m.flags)}` : ''
-              ].filter(Boolean).join(' / ');
-              return `
-                <div class="custom-card">
-                  <div class="custom-card-header">
-                    <div>
-                      <strong>${escHtml(m.name)}</strong>
-                      <span class="move-meta-inline">
-                        ${renderTypeIconHtml(m.type)}
-                        ${renderCategoryIconHtml(m.category)}
-                        <span>${escHtml(formatBpLabel(m.basePower))}</span>
-                        <span>${escHtml(formatAccLabel(m.accuracy))}</span>
-                        <span>${escHtml(formatPpLabel(m.pp))}</span>
-                        ${m.priority !== '' && m.priority !== undefined ? `<span>Priority: ${escHtml(m.priority)}</span>` : ''}
-                      </span>
-                    </div>
-                    ${m.sourceLabel ? `<span class="inline-source-tag">${escHtml(m.sourceLabel)}</span>` : ''}
-                  </div>
-                  ${tfParts ? `<div class="move-target-flags">${tfParts}</div>` : ''}
-                  ${m.descText ? `<div class="desc-text">${escHtml(m.descText)}</div>` : ''}
-                  ${renderCollapsibleMonList('Distribution', monsWithMove)}
-                </div>
-              `;
-            }).join('')
-          : '<div class="desc-text">No custom moves found.</div>';
-
-        pane.innerHTML = `
-          ${renderSourceStripHtml('moves')}
-          <div class="detail-header">
-            <div><strong style="font-size:1.15rem;">Custom Moves (${moves.length})</strong></div>
-          </div>
-          <div class="section">${cardsHtml}</div>
-        `;
+        const cardsHtml = moves.length ? moves.map(m => {
+          const tfParts = [m.target ? `Target: ${escHtml(m.target)}` : '', m.flags ? `Flags: ${escHtml(m.flags)}` : ''].filter(Boolean).join(' / ');
+          return `<div class="custom-card"><div class="custom-card-header"><div><strong>${escHtml(m.name)}</strong><span class="move-meta-inline">${renderTypeIconHtml(m.type)}${renderCategoryIconHtml(m.category)}<span>${escHtml(formatBpLabel(m.basePower))}</span><span>${escHtml(formatAccLabel(m.accuracy))}</span><span>${escHtml(formatPpLabel(m.pp))}</span>${m.priority !== '' && m.priority !== undefined ? `<span>Priority: ${escHtml(m.priority)}</span>` : ''}</span></div>${m.sourceLabel ? `<span class="inline-source-tag">${escHtml(m.sourceLabel)}</span>` : ''}</div>${tfParts ? `<div class="move-target-flags">${tfParts}</div>` : ''}${m.descText ? `<div class="desc-text">${escHtml(m.descText)}</div>` : ''}${renderCollapsibleMonList('Distribution', getPokemonWithMove(m.id))}</div>`;
+        }).join('') : '<div class="desc-text">No custom moves found.</div>';
+        pane.innerHTML = `${renderSourceStripHtml('moves')}<div class="detail-header"><div><strong style="font-size:1.15rem;">Custom Moves (${moves.length})</strong></div></div><div class="section">${cardsHtml}</div>`;
         return;
       }
 
       if (ACTIVE_MODE === 'abilities') {
-        const abilities = getAbilitiesList().filter(a =>
-          !q ||
-          a.name.toLowerCase().includes(q) ||
-          a.descText.toLowerCase().includes(q) ||
-          getPokemonWithAbility(a.id).some(p => p.toLowerCase().includes(q))
-        );
-
-        const cardsHtml = abilities.length
-          ? abilities.map(a => {
-              const monsWithAbl = getPokemonWithAbility(a.id);
-              return `
-                <div class="custom-card">
-                  <div class="custom-card-header">
-                    <div>
-                      <strong>${escHtml(a.name)}</strong>
-                      <span class="custom-badge">Ability</span>
-                    </div>
-                    ${a.sourceLabel ? `<span class="inline-source-tag">${escHtml(a.sourceLabel)}</span>` : ''}
-                  </div>
-                  ${a.descText ? `<div class="desc-text">${escHtml(a.descText)}</div>` : ''}
-                  ${renderCollapsibleMonList('Distribution', monsWithAbl)}
-                </div>
-              `;
-            }).join('')
-          : '<div class="desc-text">No abilities found.</div>';
-
-        pane.innerHTML = `
-          ${renderSourceStripHtml('abilities')}
-          <div class="detail-header">
-            <div><strong style="font-size:1.15rem;">Abilities (${abilities.length})</strong></div>
-          </div>
-          <div class="section">${cardsHtml}</div>
-        `;
+        const abilities = getAbilitiesList().filter(a => !q || a.name.toLowerCase().includes(q) || a.descText.toLowerCase().includes(q) || getPokemonWithAbility(a.id).some(p => p.toLowerCase().includes(q)));
+        const cardsHtml = abilities.length ? abilities.map(a => `<div class="custom-card"><div class="custom-card-header"><div><strong>${escHtml(a.name)}</strong><span class="custom-badge">Ability</span></div>${a.sourceLabel ? `<span class="inline-source-tag">${escHtml(a.sourceLabel)}</span>` : ''}</div>${a.descText ? `<div class="desc-text">${escHtml(a.descText)}</div>` : ''}${renderCollapsibleMonList('Distribution', getPokemonWithAbility(a.id))}</div>`).join('') : '<div class="desc-text">No abilities found.</div>';
+        pane.innerHTML = `${renderSourceStripHtml('abilities')}<div class="detail-header"><div><strong style="font-size:1.15rem;">Abilities (${abilities.length})</strong></div></div><div class="section">${cardsHtml}</div>`;
         return;
       }
 
       if (ACTIVE_MODE === 'items') {
-        const items = getItemsList().filter(it =>
-          !q ||
-          it.name.toLowerCase().includes(q) ||
-          it.descText.toLowerCase().includes(q) ||
-          String(it.flingPower || '').toLowerCase().includes(q)
-        );
-
-        const cardsHtml = items.length
-          ? items.map(it => `
-              <div class="custom-card">
-                <div class="custom-card-header">
-                  <div>
-                    <strong>${escHtml(it.name)}</strong>
-                    ${it.flingPower !== '' && it.flingPower !== undefined ? `<span style="color:#ffcf70; margin-left:8px;">Fling Power: ${escHtml(it.flingPower)}</span>` : ''}
-                  </div>
-                  <div>
-                    <span class="custom-badge">Item</span>
-                    ${it.sourceLabel ? `<span class="inline-source-tag">${escHtml(it.sourceLabel)}</span>` : ''}
-                  </div>
-                </div>
-                ${it.descText ? `<div class="desc-text">${escHtml(it.descText)}</div>` : ''}
-              </div>
-            `).join('')
-          : '<div class="desc-text">No items found.</div>';
-
-        pane.innerHTML = `
-          ${renderSourceStripHtml('items')}
-          <div class="detail-header">
-            <div><strong style="font-size:1.15rem;">Items (${items.length})</strong></div>
-          </div>
-          <div class="section">${cardsHtml}</div>
-        `;
+        const items = getItemsList().filter(it => !q || it.name.toLowerCase().includes(q) || it.descText.toLowerCase().includes(q) || String(it.flingPower || '').toLowerCase().includes(q));
+        const cardsHtml = items.length ? items.map(it => `<div class="custom-card"><div class="custom-card-header"><div><strong>${escHtml(it.name)}</strong>${it.flingPower !== '' && it.flingPower !== undefined ? `<span style="color:#ffcf70; margin-left:8px;">Fling Power: ${escHtml(it.flingPower)}</span>` : ''}</div><div><span class="custom-badge">Item</span>${it.sourceLabel ? `<span class="inline-source-tag">${escHtml(it.sourceLabel)}</span>` : ''}</div></div>${it.descText ? `<div class="desc-text">${escHtml(it.descText)}</div>` : ''}</div>`).join('') : '<div class="desc-text">No items found.</div>';
+        pane.innerHTML = `${renderSourceStripHtml('items')}<div class="detail-header"><div><strong style="font-size:1.15rem;">Items (${items.length})</strong></div></div><div class="section">${cardsHtml}</div>`;
         return;
       }
 
@@ -3073,262 +2202,120 @@
       const { newMons, moddedMons, flat } = getOrderedMons();
       const listEl = document.getElementById('monList');
       listEl.innerHTML = '';
-
-      if (flat.length === 0) {
-        listEl.innerHTML = '<div class="mon-item">No Pokémon loaded.</div>';
-        return;
-      }
-
-      if (!SELECTED_ID || !flat.some(([id]) => id === SELECTED_ID)) {
-        SELECTED_ID = flat[0][0];
-      }
+      if (flat.length === 0) { listEl.innerHTML = '<div class="mon-item">No Pokémon loaded.</div>'; return; }
+      if (!SELECTED_ID || !flat.some(([id]) => id === SELECTED_ID)) SELECTED_ID = flat[0][0];
 
       const appendGroup = (title, items) => {
         if (!items.length) return;
-        const gh = document.createElement('div');
-        gh.className = 'group-header';
-        gh.textContent = `${title} (${items.length})`;
+        const gh = document.createElement('div'); gh.className = 'group-header'; gh.textContent = `${title} (${items.length})`;
         listEl.appendChild(gh);
-
         items.forEach(([id, mon]) => {
           const row = document.createElement('div');
           row.className = 'mon-item' + (id === SELECTED_ID ? ' active' : '');
-          const typesLabel = (mon.types || []).join('/');
-          row.innerHTML = `
-            <div class="mon-left">
-              ${renderSpriteHtml(id, mon, mon.isInherited)}
-              <div class="mon-info">
-                <div class="mon-top-row">
-                  <strong>${escHtml(mon.name)}</strong>
-                  <span class="mon-meta">${escHtml(typesLabel || (mon.isInherited ? 'Modded' : 'New'))}</span>
-                </div>
-                <div class="mon-spread">${escHtml(formatMonSpread(mon))}</div>
-                <div class="mon-abilities-sub">${escHtml(formatMonAbilitiesLine(mon))}</div>
-              </div>
-            </div>
-          `;
-          row.addEventListener('click', () => {
-            SELECTED_ID = id;
-            renderList();
-            renderDetail();
-          });
+          row.innerHTML = `<div class="mon-left">${renderSpriteHtml(id, mon, mon.isInherited)}<div class="mon-info"><div class="mon-top-row"><strong>${escHtml(mon.name)}</strong><span class="mon-meta">${escHtml((mon.types || []).join('/') || (mon.isInherited ? 'Modded' : 'New'))}</span></div><div class="mon-spread">${escHtml(formatMonSpread(mon))}</div><div class="mon-abilities-sub">${escHtml(formatMonAbilitiesLine(mon))}</div></div></div>`;
+          row.addEventListener('click', () => { SELECTED_ID = id; renderList(); renderDetail(); });
           listEl.appendChild(row);
         });
       };
-
       appendGroup('New Pokémon', newMons);
       appendGroup('Modded Pokémon', moddedMons);
-
       renderDetail();
     }
 
     function isUsefulMove(moveId, m) {
-      if (m.isNonstandard || m.isZ || m.isMax) return false;
-      if (LOW_UTILITY_MOVES.has(moveId)) return false;
-      if (m.category === 'Status') {
-        return HIGH_UTILITY_STATUS.has(moveId);
-      }
+      if (m.isNonstandard || m.isZ || m.isMax || LOW_UTILITY_MOVES.has(moveId)) return false;
+      if (m.category === 'Status') return HIGH_UTILITY_STATUS.has(moveId);
       const bp = Number(m.basePower) || 0;
       return bp >= 60 || bp === 0 || Boolean(m.multihit) || ((m.priority || 0) > 0 && bp >= 40);
     }
 
     function getMoveDetails(moveId, addedSet, removedSet, monTypesSet) {
-      const modM = MOD_MOVES[moveId];
-      const baseM = BASE_MOVES[moveId];
-      const m = Object.assign({}, baseM || {}, modM || {});
-      const isStab = Boolean(m.type && monTypesSet.has(m.type));
-      const isUseful = isUsefulMove(moveId, m);
-
-      let sortBucket = 3;
-      if (isStab && isUseful) sortBucket = 0;
-      else if (!isStab && isUseful) sortBucket = 1;
-      else if (isStab && !isUseful) sortBucket = 2;
-
+      const modM = MOD_MOVES[moveId], baseM = BASE_MOVES[moveId], m = Object.assign({}, baseM || {}, modM || {});
+      const isStab = Boolean(m.type && monTypesSet.has(m.type)), isUseful = isUsefulMove(moveId, m);
+      const sortBucket = (isStab && isUseful) ? 0 : (!isStab && isUseful) ? 1 : (isStab && !isUseful) ? 2 : 3;
       return {
-        id: moveId,
-        name: m.name || moveId,
-        type: m.type || '?',
-        category: m.category || 'Status',
-        basePower: m.basePower ?? '—',
-        accuracy: m.accuracy === true ? '—' : (m.accuracy ?? '—'),
-        pp: m.pp ?? '—',
-        descText: pickEffectFirstDescription(m),
-        isCustom: Boolean(modM && !baseM),
-        isModded: Boolean(modM),
-        isAdded: addedSet.has(moveId),
-        isRemoved: removedSet.has(moveId),
-        sourceLabel: modM?.sourceLabel || '',
-        sortBucket
+        id: moveId, name: m.name || moveId, type: m.type || '?', category: m.category || 'Status',
+        basePower: m.basePower ?? '—', accuracy: m.accuracy === true ? '—' : (m.accuracy ?? '—'), pp: m.pp ?? '—',
+        descText: pickEffectFirstDescription(m), isCustom: Boolean(modM && !baseM), isModded: Boolean(modM),
+        isAdded: addedSet.has(moveId), isRemoved: removedSet.has(moveId), sourceLabel: modM?.sourceLabel || '', sortBucket
       };
     }
 
     function getAbilityDetails(abilityNameOrId) {
-      const id = toId(abilityNameOrId);
-      const modA = MOD_ABILITIES[id];
-      const baseA = BASE_ABILITIES[id];
-      const a = Object.assign({}, baseA || {}, modA || {});
-      return {
-        id,
-        name: a.name || abilityNameOrId,
-        descText: pickEffectFirstDescription(a),
-        isCustom: Boolean(modA && !baseA),
-        isModded: Boolean(modA),
-        sourceLabel: modA?.sourceLabel || (baseA ? 'Base Showdown' : '')
-      };
+      const id = toId(abilityNameOrId), modA = MOD_ABILITIES[id], baseA = BASE_ABILITIES[id], a = Object.assign({}, baseA || {}, modA || {});
+      return { id, name: a.name || abilityNameOrId, descText: pickEffectFirstDescription(a), isCustom: Boolean(modA && !baseA), isModded: Boolean(modA), sourceLabel: modA?.sourceLabel || (baseA ? 'Base Showdown' : '') };
     }
 
     function formatCommaMoves(moveList) {
       if (!moveList.length) return '<span class="desc-text">None</span>';
-      return moveList
-        .sort((a, b) => (a.sortBucket - b.sortBucket) || a.name.localeCompare(b.name))
-        .map(m => {
-          if (m.isRemoved) return `<span class="move-removed">${escHtml(m.name)}</span>`;
-          if (m.isAdded) return `<span class="move-added">${escHtml(m.name)}</span>`;
-          return escHtml(m.name);
-        })
-        .join(', ');
+      return moveList.sort((a, b) => (a.sortBucket - b.sortBucket) || a.name.localeCompare(b.name)).map(m =>
+        m.isRemoved ? `<span class="move-removed">${escHtml(m.name)}</span>` : m.isAdded ? `<span class="move-added">${escHtml(m.name)}</span>` : escHtml(m.name)
+      ).join(', ');
     }
 
     function formatDiffBadge(diff) {
       if (typeof diff !== 'number' || diff === 0) return '';
-      if (diff > 0) return `<span class="diff-pos">+${diff}</span>`;
-      return `<span class="diff-neg">${diff}</span>`;
+      return diff > 0 ? `<span class="diff-pos">+${diff}</span>` : `<span class="diff-neg">${diff}</span>`;
     }
 
     function renderStatRow(label, val, origVal) {
-      const numVal = typeof val === 'number' ? val : 0;
-      const pct = Math.min(100, Math.max(4, Math.round((numVal / 200) * 100)));
+      const pct = Math.min(100, Math.max(4, Math.round(((typeof val === 'number' ? val : 0) / 200) * 100)));
       const diff = (typeof val === 'number' && typeof origVal === 'number') ? (val - origVal) : 0;
-
-      return `
-        <tr>
-          <td class="stat-label">${label}</td>
-          <td class="stat-num">${val ?? '?'}</td>
-          <td class="stat-diff">${formatDiffBadge(diff)}</td>
-          <td class="stat-bar-cell">
-            <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:${pct}%;"></div></div>
-          </td>
-        </tr>
-      `;
+      return `<tr><td class="stat-label">${label}</td><td class="stat-num">${val ?? '?'}</td><td class="stat-diff">${formatDiffBadge(diff)}</td><td class="stat-bar-cell"><div class="stat-bar-bg"><div class="stat-bar-fill" style="width:${pct}%;"></div></div></td></tr>`;
     }
 
     function renderDetail() {
-      const pane = document.getElementById('detailPane');
-      const mon = MOD_DEX[SELECTED_ID];
-      if (!mon) {
-        pane.innerHTML = '';
-        return;
-      }
-
-      const s = mon.baseStats || { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 };
-      const orig = mon.origStats;
+      const pane = document.getElementById('detailPane'), mon = MOD_DEX[SELECTED_ID];
+      if (!mon) { pane.innerHTML = ''; return; }
+      const s = mon.baseStats || { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 }, orig = mon.origStats;
       const bst = (s.hp || 0) + (s.atk || 0) + (s.def || 0) + (s.spa || 0) + (s.spd || 0) + (s.spe || 0);
       const origBst = orig ? ((orig.hp || 0) + (orig.atk || 0) + (orig.def || 0) + (orig.spa || 0) + (orig.spd || 0) + (orig.spe || 0)) : null;
       const bstDiff = origBst !== null ? (bst - origBst) : 0;
-
-      const typesHtml = (mon.types || []).length
-        ? mon.types.map(t => `<span class="type-pill">${escHtml(t)}</span>`).join('')
-        : '';
-
-      const weightHtml = mon.weight
-        ? `<span class="weight-badge">(${escHtml(mon.weight)})</span>`
-        : '';
+      const typesHtml = (mon.types || []).map(t => `<span class="type-pill">${escHtml(t)}</span>`).join('');
+      const weightHtml = mon.weight ? `<span class="weight-badge">(${escHtml(mon.weight)})</span>` : '';
 
       const monTypesSet = new Set(mon.types || []);
       const abilitySlots = Object.values(mon.abilities || {}).map(getAbilityDetails);
       const { activeIds, addedIds, removedIds } = getLearnsetDiff(SELECTED_ID);
       const moveDetailsList = activeIds.map(mId => getMoveDetails(mId, addedIds, removedIds, monTypesSet));
       const customMovesInSet = moveDetailsList.filter(m => !m.isRemoved && (m.isCustom || m.isModded));
-
       const physicalMoves = moveDetailsList.filter(m => m.category === 'Physical');
       const specialMoves = moveDetailsList.filter(m => m.category === 'Special');
       const statusMoves = moveDetailsList.filter(m => m.category !== 'Physical' && m.category !== 'Special');
 
-      const abilitiesHtml = abilitySlots.length
-        ? abilitySlots.map(a => `
-            <div class="entry-row">
-              <strong>${escHtml(a.name)}</strong>${a.isCustom ? '<span class="custom-badge">Custom</span>' : (a.isModded ? '<span class="custom-badge">Modded</span>' : '')}${a.sourceLabel ? `<span class="inline-source-tag">${escHtml(a.sourceLabel)}</span>` : ''}
-              ${a.descText ? `<div class="desc-text" style="margin-top:2px;">${escHtml(a.descText)}</div>` : ''}
-            </div>
-          `).join('')
-        : '<div class="desc-text">No abilities mapped.</div>';
+      const abilitiesHtml = abilitySlots.length ? abilitySlots.map(a => `<div class="entry-row"><strong>${escHtml(a.name)}</strong>${a.isCustom ? '<span class="custom-badge">Custom</span>' : (a.isModded ? '<span class="custom-badge">Modded</span>' : '')}${a.sourceLabel ? `<span class="inline-source-tag">${escHtml(a.sourceLabel)}</span>` : ''}${a.descText ? `<div class="desc-text" style="margin-top:2px;">${escHtml(a.descText)}</div>` : ''}</div>`).join('') : '<div class="desc-text">No abilities mapped.</div>';
 
-      const customMovesSectionHtml = customMovesInSet.length
-        ? `
-          <div class="section">
-            <h2>Custom / Modded Moves (${customMovesInSet.length})</h2>
-            ${customMovesInSet.map(m => `
-              <div class="entry-row">
-                <strong>${escHtml(m.name)}</strong> (${escHtml(m.type)} · ${escHtml(m.category)} · ${escHtml(m.basePower)} BP · ${escHtml(m.accuracy)}% Acc · ${escHtml(m.pp)} PP)${m.isCustom ? '<span class="custom-badge">Custom</span>' : '<span class="custom-badge">Modded</span>'}${m.sourceLabel ? `<span class="inline-source-tag">${escHtml(m.sourceLabel)}</span>` : ''}
-                ${m.descText ? `<div class="desc-text" style="margin-top:2px;">${escHtml(m.descText)}</div>` : ''}
-              </div>
-            `).join('')}
-          </div>
-        `
-        : '';
+      const customMovesSectionHtml = customMovesInSet.length ? `<div class="section"><h2>Custom / Modded Moves (${customMovesInSet.length})</h2>${customMovesInSet.map(m => `<div class="entry-row"><strong>${escHtml(m.name)}</strong> (${escHtml(m.type)} · ${escHtml(m.category)} · ${escHtml(m.basePower)} BP · ${escHtml(m.accuracy)}% Acc · ${escHtml(m.pp)} PP)${m.isCustom ? '<span class="custom-badge">Custom</span>' : '<span class="custom-badge">Modded</span>'}${m.sourceLabel ? `<span class="inline-source-tag">${escHtml(m.sourceLabel)}</span>` : ''}${m.descText ? `<div class="desc-text" style="margin-top:2px;">${escHtml(m.descText)}</div>` : ''}</div>`).join('')}</div>` : '';
 
-      const legendHtml = mon.isInherited
-        ? `<div class="legend-note"><span class="move-added">Added move</span> · <span class="move-removed">Removed move</span></div>`
-        : '';
+      const legendHtml = mon.isInherited ? `<div class="legend-note"><span class="move-added">Added move</span> · <span class="move-removed">Removed move</span></div>` : '';
 
       pane.innerHTML = `
         ${renderSourceStripHtml('pokemon')}
         <div class="detail-header">
-          <div class="detail-title-wrap">
-            ${renderDetailSpriteHtml(SELECTED_ID, mon)}
-            <div>
-              <strong style="font-size:1.15rem;">${escHtml(mon.name)}</strong>
-              ${weightHtml}
-            </div>
-          </div>
+          <div class="detail-title-wrap">${renderDetailSpriteHtml(SELECTED_ID, mon)}<div><strong style="font-size:1.15rem;">${escHtml(mon.name)}</strong>${weightHtml}</div></div>
           <div>${typesHtml}</div>
         </div>
-
         <div class="section">
           <div class="dex-grid">
             <div class="dex-box">
               <h2>Base Stats</h2>
               <table class="stat-table">
-                ${renderStatRow('HP', s.hp, orig?.hp)}
-                ${renderStatRow('Atk', s.atk, orig?.atk)}
-                ${renderStatRow('Def', s.def, orig?.def)}
-                ${renderStatRow('SpA', s.spa, orig?.spa)}
-                ${renderStatRow('SpD', s.spd, orig?.spd)}
-                ${renderStatRow('Spe', s.spe, orig?.spe)}
-                <tr class="stat-bst-row">
-                  <td>BST</td>
-                  <td>${bst}</td>
-                  <td class="stat-diff">${formatDiffBadge(bstDiff)}</td>
-                  <td></td>
-                </tr>
+                ${renderStatRow('HP', s.hp, orig?.hp)}${renderStatRow('Atk', s.atk, orig?.atk)}${renderStatRow('Def', s.def, orig?.def)}
+                ${renderStatRow('SpA', s.spa, orig?.spa)}${renderStatRow('SpD', s.spd, orig?.spd)}${renderStatRow('Spe', s.spe, orig?.spe)}
+                <tr class="stat-bst-row"><td>BST</td><td>${bst}</td><td class="stat-diff">${formatDiffBadge(bstDiff)}</td><td></td></tr>
               </table>
               ${renderSpeedTierSection(s.spe)}
             </div>
-
-            <div class="dex-box">
-              <h2>Abilities</h2>
-              ${abilitiesHtml}
-            </div>
+            <div class="dex-box"><h2>Abilities</h2>${abilitiesHtml}</div>
           </div>
         </div>
-
         ${customMovesSectionHtml}
-
         <div class="section">
           <h2>Moves (${moveDetailsList.length - removedIds.size})</h2>
           ${legendHtml}
-          <div class="cat-block">
-            ${renderCategoryHeader('Physical', physicalMoves.filter(m => !m.isRemoved).length)}
-            <div class="moves-line">${formatCommaMoves(physicalMoves)}</div>
-          </div>
-          <div class="cat-block">
-            ${renderCategoryHeader('Special', specialMoves.filter(m => !m.isRemoved).length)}
-            <div class="moves-line">${formatCommaMoves(specialMoves)}</div>
-          </div>
-          <div class="cat-block">
-            ${renderCategoryHeader('Status', statusMoves.filter(m => !m.isRemoved).length)}
-            <div class="moves-line">${formatCommaMoves(statusMoves)}</div>
-          </div>
+          <div class="cat-block">${renderCategoryHeader('Physical', physicalMoves.filter(m => !m.isRemoved).length)}<div class="moves-line">${formatCommaMoves(physicalMoves)}</div></div>
+          <div class="cat-block">${renderCategoryHeader('Special', specialMoves.filter(m => !m.isRemoved).length)}<div class="moves-line">${formatCommaMoves(specialMoves)}</div></div>
+          <div class="cat-block">${renderCategoryHeader('Status', statusMoves.filter(m => !m.isRemoved).length)}<div class="moves-line">${formatCommaMoves(statusMoves)}</div></div>
         </div>
       `;
     }
@@ -3351,33 +2338,29 @@
     document.getElementById('scopeSelect').addEventListener('change', renderView);
     document.getElementById('searchInput').addEventListener('input', renderView);
 
-    const setMode = targetMode => {
-      ACTIVE_MODE = targetMode;
-      renderView();
-    };
+    const setMode = targetMode => { ACTIVE_MODE = targetMode; renderView(); };
     document.getElementById('btnPokemon').addEventListener('click', () => setMode('pokemon'));
     document.getElementById('btnCustomMoves').addEventListener('click', () => setMode('moves'));
     document.getElementById('btnAbilities').addEventListener('click', () => setMode('abilities'));
     document.getElementById('btnItems').addEventListener('click', () => setMode('items'));
+    document.getElementById('btnTeambuilder').addEventListener('click', () => setMode('teambuilder'));
 
     document.getElementById('btnCodeFormats').addEventListener('click', () => setMode('code_formats'));
     document.getElementById('btnCodeFormatsData').addEventListener('click', () => setMode('code_formats_data'));
     document.getElementById('btnCodePokedex').addEventListener('click', () => setMode('code_pokedex'));
-    document.getElementById('btnCodeMoves').addEventListener('click', () => setMode('code_moves'));
     document.getElementById('btnCodeItems').addEventListener('click', () => setMode('code_items'));
     document.getElementById('btnCodeLearnsets').addEventListener('click', () => setMode('code_learnsets'));
     document.getElementById('btnCodeScripts').addEventListener('click', () => setMode('code_scripts'));
     document.getElementById('btnCodeAbilities').addEventListener('click', () => setMode('code_abilities'));
+    document.getElementById('btnCodeMoves').addEventListener('click', () => setMode('code_moves'));
 
-    document.getElementById('togglePasteBtn').addEventListener('click', () => {
-      document.getElementById('pasteDrawer').classList.toggle('open');
-    });
+    document.getElementById('togglePasteBtn').addEventListener('click', () => document.getElementById('pasteDrawer').classList.toggle('open'));
     document.getElementById('parsePasteBtn').addEventListener('click', handlePasteImport);
 
     ensureBuiltinPresetsSeeded();
     refreshComboDropdown();
     syncModeButtons();
-    ensureBaseShowdownData();
+    ensureBaseShowdownData().then(refreshTeambuilderDatalists);
   </script>
 </body>
 </html>
