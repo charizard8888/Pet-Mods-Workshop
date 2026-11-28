@@ -561,8 +561,6 @@
       color: #d6deeb;
       font-size: 0.72rem;
     }
-
-    /* EV Panel matching Showdown screenshot 2 */
     .ps-evs-panel {
       margin-top: 10px;
       background: #1b1e24;
@@ -732,7 +730,7 @@
     <button id="btnTeambuilder" type="button">Teambuilder</button>
     <div class="toolbar-right">
       <label class="url-label">Mod Base URL:
-        <input type="text" id="repoUrl" class="url-input" placeholder="https://github.com/owner/repo/tree/main/data/mods/modname" value="https://github.com/scoopapa/DH2/tree/main/data/mods/worldbuilding">
+        <input type="text" id="repoUrl" class="url-input" placeholder="https://github.com/owner/repo/tree/main/data/mods/modname" value="https://github.com/owner/repo/tree/main/data/mods/worldbuilding">
       </label>
       <button id="loadBtn" type="button">Load Mod Data</button>
       <button id="togglePasteTsBtn" type="button">Paste Raw .ts</button>
@@ -762,7 +760,7 @@
   <!-- Raw TypeScript Paste Drawer -->
   <div class="drawer-box" id="pasteTsDrawer">
     <div class="drawer-header">
-      <span>Paste raw TypeScript code from <code>pokedex.ts</code>, <code>moves.ts</code>, <code>abilities.ts</code>, <code>items.ts</code>, or <code>learnsets.ts</code>:</span>
+      <span>Paste raw TypeScript code from <code>pokedex.ts</code>, <code>moves.ts</code>, <code>abilities.ts</code>, <code>items.ts</code>, <code>learnsets.ts</code>, or <code>scripts.ts</code>:</span>
       <div class="drawer-actions">
         <label>File Hint:
           <select id="pasteFileHint">
@@ -772,13 +770,14 @@
             <option value="abilities">abilities.ts</option>
             <option value="items">items.ts</option>
             <option value="learnsets">learnsets.ts</option>
+            <option value="scripts">scripts.ts</option>
           </select>
         </label>
         <button id="parseRawTsBtn" type="button">Parse Raw Mod Code</button>
         <button id="closePasteTsBtn" type="button">Close</button>
       </div>
     </div>
-    <textarea id="pasteTsArea" placeholder="Paste export const Pokedex / Moves / Abilities / Items / Learnsets TypeScript blocks here..."></textarea>
+    <textarea id="pasteTsArea" placeholder="Paste export const Pokedex / Moves / Abilities / Items / Learnsets / Scripts TypeScript blocks here..."></textarea>
   </div>
 
   <div class="status" id="statusBar">Loading base Showdown reference and mod data...</div>
@@ -852,6 +851,7 @@
     let MOD_ABILITIES = {};
     let MOD_ITEMS = {};
     let MOD_LEARNSETS = {};
+    let MOD_SCRIPTS = {};
     let LOAD_ORDER_COUNTER = 0;
 
     let BASE_DEX = {};
@@ -861,7 +861,7 @@
     let BASE_ITEMS = {};
     let BASE_LOADED = false;
 
-    let ACTIVE_MODE = 'pokemon'; // 'pokemon' | 'moves' | 'abilities' | 'items' | 'teambuilder'
+    let ACTIVE_MODE = 'pokemon';
     let SELECTED_ID = null;
 
     function createEmptySlot() {
@@ -890,7 +890,6 @@
       return String(str || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
     }
 
-    // Strict priority: shortDesc first, then desc — never effect or raw code fields
     function pickShortDescThenDesc(obj) {
       if (!obj) return '';
       if (typeof obj.shortDesc === 'string' && obj.shortDesc.trim()) return obj.shortDesc.trim();
@@ -1017,7 +1016,7 @@
       refreshTeambuilderDatalists();
     }
 
-    // ==================== TYPESCRIPT MOD PARSER ====================
+    // ==================== FLEXIBLE TYPESCRIPT OPENING LINE & BLOCK PARSER ====================
     function stripTsComments(code) {
       let out = '';
       let i = 0;
@@ -1095,6 +1094,57 @@
       return cleaned;
     }
 
+    function normalizeExportCategory(rawName) {
+      const low = String(rawName || '').toLowerCase();
+      if (low === 'pokedex' || low === 'speciesdata' || low === 'moddedpokedex') return 'Pokedex';
+      if (low === 'moves' || low === 'movedata' || low === 'moddedmoves') return 'Moves';
+      if (low === 'abilities' || low === 'abilitydata' || low === 'moddedabilities') return 'Abilities';
+      if (low === 'items' || low === 'itemdata' || low === 'moddeditems') return 'Items';
+      if (low === 'learnsets' || low === 'learnsetdata' || low === 'moddedlearnsets') return 'Learnsets';
+      if (low === 'scripts' || low === 'moddedscripts') return 'Scripts';
+      return rawName;
+    }
+
+    // Matches any Showdown / Pet Mod opening export line:
+    // export const Pokedex: {[k: string]: ModdedSpeciesData} = {
+    // export const Pokedex: import('../../../sim/dex-species').SpeciesDataTable = {
+    // export const Pokedex: {[speciesid: string]: SpeciesData} = {
+    // export const Moves: {[k: string]: ModdedMoveData} = {
+    // export const Moves: {[moveid: string]: MoveData} = {
+    // export const Abilities: {[k: string]: ModdedAbilityData} = {
+    // export const Items: {[k: string]: ModdedItemData} = {
+    // export const Learnsets: {[k: string]: ModdedLearnsetData} = {
+    // export const Scripts: ModdedBattleScriptsData = {
+    // Also supports `export let` / `export var` / `const` / `Record<string, ...>` / `Partial<Record<...>>`
+    function parseExportedTsBlocks(rawTsText) {
+      const noComments = stripTsComments(rawTsText);
+      const exportNamesPattern = '(Pokedex|Moves|Abilities|Items|Learnsets|Scripts|ModdedPokedex|ModdedMoves|ModdedAbilities|ModdedItems|ModdedLearnsets|ModdedScripts)';
+      const openingRegex = new RegExp(
+        `(?:export\\s+)?(?:const|let|var)\\s+${exportNamesPattern}\\s*(?::\\s*(?:[^{=;]|\\{[^{}]*\\}|\\([^()]*\\))+)?=\\s*\\{`,
+        'g'
+      );
+
+      const found = {};
+      let m;
+      while ((m = openingRegex.exec(noComments)) !== null) {
+        const canonicalName = normalizeExportCategory(m[1]);
+        const braceStart = noComments.indexOf('{', m.index + m[0].length - 1);
+        if (braceStart === -1) continue;
+        const blockStr = extractBalancedBraces(noComments, braceStart);
+        if (!blockStr) continue;
+        try {
+          const sanitized = sanitizeObjectLiteralToEval(blockStr);
+          const evaluated = (new Function(`return (${sanitized});`))();
+          if (evaluated && typeof evaluated === 'object') {
+            found[canonicalName] = Object.assign(found[canonicalName] || {}, evaluated);
+          }
+        } catch (_) {
+          found[canonicalName] = Object.assign(found[canonicalName] || {}, fallbackParseEntries(blockStr));
+        }
+      }
+      return found;
+    }
+
     function fallbackParseEntries(blockStr) {
       const inner = blockStr.slice(1, -1);
       const entries = {};
@@ -1151,30 +1201,6 @@
         entries[key] = obj;
       }
       return entries;
-    }
-
-    function parseExportedTsBlocks(rawTsText) {
-      const noComments = stripTsComments(rawTsText);
-      const exportRegex = /export\s+const\s+(Pokedex|Moves|Abilities|Items|Learnsets)\s*(?::[^=]+)?=\s*\{/g;
-      const found = {};
-      let m;
-      while ((m = exportRegex.exec(noComments)) !== null) {
-        const exportName = m[1];
-        const braceStart = noComments.indexOf('{', m.index);
-        if (braceStart === -1) continue;
-        const blockStr = extractBalancedBraces(noComments, braceStart);
-        if (!blockStr) continue;
-        try {
-          const sanitized = sanitizeObjectLiteralToEval(blockStr);
-          const evaluated = (new Function(`return (${sanitized});`))();
-          if (evaluated && typeof evaluated === 'object') {
-            found[exportName] = Object.assign(found[exportName] || {}, evaluated);
-          }
-        } catch (_) {
-          found[exportName] = Object.assign(found[exportName] || {}, fallbackParseEntries(blockStr));
-        }
-      }
-      return found;
     }
 
     function ingestParsedTsBlocks(blocks) {
@@ -1286,6 +1312,10 @@
           }
         }
       }
+
+      if (blocks.Scripts) {
+        MOD_SCRIPTS = Object.assign(MOD_SCRIPTS, blocks.Scripts);
+      }
     }
 
     function resetModState() {
@@ -1294,6 +1324,7 @@
       MOD_ABILITIES = {};
       MOD_ITEMS = {};
       MOD_LEARNSETS = {};
+      MOD_SCRIPTS = {};
       LOAD_ORDER_COUNTER = 0;
       SELECTED_ID = null;
     }
@@ -1321,11 +1352,11 @@
         return;
       }
 
-      statusBar.textContent = 'Loading base Showdown reference and fetching pokedex.ts, moves.ts, abilities.ts, items.ts, learnsets.ts...';
+      statusBar.textContent = 'Loading base Showdown reference and fetching pokedex.ts, moves.ts, abilities.ts, items.ts, learnsets.ts, scripts.ts...';
       await ensureBaseShowdownData();
       resetModState();
 
-      const files = ['pokedex.ts', 'moves.ts', 'abilities.ts', 'items.ts', 'learnsets.ts'];
+      const files = ['pokedex.ts', 'moves.ts', 'abilities.ts', 'items.ts', 'learnsets.ts', 'scripts.ts'];
       const loadedFiles = [];
 
       await Promise.all(files.map(async fileName => {
@@ -1375,7 +1406,8 @@
           moves: 'Moves',
           abilities: 'Abilities',
           items: 'Items',
-          learnsets: 'Learnsets'
+          learnsets: 'Learnsets',
+          scripts: 'Scripts'
         };
         const wrapped = `export const ${exportMap[hint]} = ${code.trim().replace(/;$/, '')};`;
         blocks = parseExportedTsBlocks(wrapped);
@@ -2014,7 +2046,6 @@
       return Object.assign({}, BASE_MOVES, MOD_MOVES);
     }
 
-    // Modded/New Pokémon appear FIRST in the Teambuilder dropdown, followed by base Pokémon
     function refreshTeambuilderDatalists() {
       const moddedNames = Object.values(MOD_DEX)
         .map(m => m?.name)
@@ -2323,7 +2354,6 @@
           </div>
 
           <div class="ps-set-card">
-            <!-- Col 1: Nickname, Sprite, Pokémon -->
             <div class="ps-col">
               <div>
                 <label class="ps-lbl">Nickname</label>
@@ -2338,7 +2368,6 @@
               </div>
             </div>
 
-            <!-- Col 2: Details, Types, Item & Ability -->
             <div class="ps-col">
               <div>
                 <label class="ps-lbl">Details</label>
@@ -2391,7 +2420,6 @@
               </div>
             </div>
 
-            <!-- Col 3: Moves -->
             <div class="ps-col">
               <div class="ps-moves-col">
                 <label class="ps-lbl">Moves</label>
@@ -2401,7 +2429,6 @@
               </div>
             </div>
 
-            <!-- Col 4: Mini Stats -->
             <div class="ps-col">
               <div class="ps-mini-stats">
                 <div class="ps-mini-stats-hdr">
@@ -2413,7 +2440,6 @@
             </div>
           </div>
 
-          <!-- EVs Panel matching screenshot 2 -->
           <div class="ps-evs-panel">
             <div class="ps-evs-banner">EVs</div>
             <div class="ps-ev-top-controls">
@@ -2463,7 +2489,6 @@
             </div>
           </div>
 
-          <!-- Import / Export Team Drawer -->
           <div class="ps-import-export-box ${TB_IMPORT_EXPORT_OPEN ? 'open' : ''}" id="psImportExportBox">
             <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">
               <strong style="color:#ffcc66; font-family:monospace;">Team Export / Import (Pokémon Showdown Format)</strong>
@@ -2477,7 +2502,6 @@
         </div>
       `;
 
-      // Bind Teambuilder events
       pane.querySelectorAll('.ps-tb-slot-tab').forEach(btn => {
         btn.addEventListener('click', () => {
           ACTIVE_TB_SLOT = Number(btn.dataset.slotIdx);
