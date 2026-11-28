@@ -141,6 +141,18 @@
       gap: 8px;
       align-items: center;
     }
+    .nav-break {
+      flex-basis: 100%;
+      height: 0;
+      border-top: 1px solid #2a2a2a;
+      margin: 2px 0;
+    }
+    .code-row-label {
+      font-size: 0.82rem;
+      font-weight: bold;
+      color: #8ab4f8;
+      margin-right: 2px;
+    }
     label {
       font-size: 0.82rem;
       color: #ccc;
@@ -148,7 +160,7 @@
       align-items: center;
       gap: 4px;
     }
-    input[type="text"], select, textarea {
+    input[type="text"], input[type="number"], select, textarea {
       background: #1e1e1e;
       color: #fff;
       border: 1px solid #444;
@@ -178,6 +190,12 @@
       background: #25382a;
       border-color: #6fcf8b;
       color: #8ce3a4;
+      font-weight: bold;
+    }
+    button.code-btn-active {
+      background: #1e2d3f;
+      border-color: #8ab4f8;
+      color: #a8c7fa;
       font-weight: bold;
     }
     .paste-drawer {
@@ -540,6 +558,65 @@
       color: #999;
       margin-bottom: 8px;
     }
+    .code-gen-controls {
+      background: #151515;
+      border: 1px solid #2c3542;
+      padding: 10px 12px;
+      margin: 10px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      align-items: center;
+    }
+    .code-gen-controls input[type="text"] {
+      width: 180px;
+      font-size: 0.82rem;
+      padding: 4px 7px;
+    }
+    .code-gen-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin: 8px 0;
+    }
+    .code-output-box {
+      width: 100%;
+      height: 390px;
+      background: #101216;
+      color: #d8e6f8;
+      border: 1px solid #3a4659;
+      padding: 10px;
+      font-family: monospace;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      resize: vertical;
+      box-sizing: border-box;
+      tab-size: 2;
+    }
+    .code-output-small {
+      width: 100%;
+      height: 62px;
+      background: #101216;
+      color: #d8e6f8;
+      border: 1px solid #3a4659;
+      padding: 8px 10px;
+      font-family: monospace;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      resize: vertical;
+      box-sizing: border-box;
+    }
+    .code-sub-label {
+      font-size: 0.82rem;
+      font-weight: bold;
+      color: #ffcc66;
+      margin: 12px 0 6px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
   </style>
 </head>
 <body>
@@ -654,6 +731,18 @@
     <button id="btnCustomMoves" type="button">Custom Moves</button>
     <button id="btnAbilities" type="button">Abilities</button>
     <button id="btnItems" type="button">Items</button>
+
+    <div class="nav-break"></div>
+
+    <span class="code-row-label">Code</span>
+    <button id="btnCodeFormats" type="button">formats.ts</button>
+    <button id="btnCodeFormatsData" type="button">formats-data.ts</button>
+    <button id="btnCodePokedex" type="button">pokedex.ts</button>
+    <button id="btnCodeMoves" type="button">moves.ts</button>
+    <button id="btnCodeItems" type="button">items.ts</button>
+    <button id="btnCodeLearnsets" type="button">learnsets.ts</button>
+    <button id="btnCodeScripts" type="button">scripts.ts</button>
+    <button id="btnCodeAbilities" type="button">abilities.ts</button>
   </div>
 
   <div class="paste-drawer" id="pasteDrawer">
@@ -679,7 +768,7 @@
 
   <div class="layout" id="mainLayout">
     <div class="mon-list" id="monList"></div>
-    <div class="detail-pane" id="detailPane">Load a Pet Mod Google Sheet or paste spreadsheet rows to inspect Pokémon, stats, abilities, moves, and items.</div>
+    <div class="detail-pane" id="detailPane">Load a Pet Mod Google Sheet or paste spreadsheet rows to inspect Pokémon, stats, abilities, moves, and items, or generate Showdown <code>.ts</code> code.</div>
   </div>
 
   <script>
@@ -867,6 +956,14 @@
       'bide', 'rage', 'frustration', 'return', 'captivate', 'confide', 'secretpower', 'naturalgift', 'hiddenpower', 'round', 'echoedvoice', 'snore', 'sleeptalk', 'swagger', 'attract', 'bestow', 'fling', 'present', 'constrict', 'tackle', 'scratch', 'pound', 'cut', 'rocksmash', 'strength'
     ]);
 
+    const KNOWN_MOVE_FLAGS = new Set([
+      'allyanim', 'bite', 'bullet', 'bypasssub', 'cantusetwice', 'charge', 'contact', 'dance', 'defrost',
+      'distance', 'failcopycat', 'failencore', 'failinstruct', 'failmefirst', 'failmimic', 'futuremove',
+      'gravity', 'heal', 'metronome', 'mirror', 'mustpressure', 'noassist', 'nonsky', 'noparentalbond',
+      'nosketch', 'nosleeptalk', 'pledgecombo', 'powder', 'protect', 'pulse', 'punch', 'recharge',
+      'reflectable', 'slicing', 'snatch', 'sound', 'wind'
+    ]);
+
     let MOD_DEX = {};
     let MOD_MOVES = {};
     let MOD_ABILITIES = {};
@@ -894,12 +991,56 @@
     let ACTIVE_MODE = 'pokemon';
     let SELECTED_ID = null;
 
+    const CODE_STATE = {
+      pokedexStartDex: '750001',
+      pokedexDefaultWeight: '50',
+      pokedexCode: '',
+
+      itemsDefaultFling: '30',
+      itemsCode: '',
+
+      learnsetsDefaultSource: '9L1',
+      learnsetsCode: '',
+
+      scriptsDefaultSource: '9L1',
+      scriptsCode: '',
+
+      abilitiesCode: '',
+      movesCode: '',
+
+      formatsDataTier: 'PetMod',
+      formatsDataDoublesTier: 'DPetMod',
+      formatsDataCode: '',
+
+      formatsFolderName: 'mods_folder_name_here',
+      formatsModName: 'Pet Mod Name',
+      formatsTierName: 'Tier Name',
+      formatsCode: '',
+      formatsImportLine: ''
+    };
+
     function escHtml(str) {
       return String(str ?? '')
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;');
+    }
+
+    function escapeTsDoubleQuotes(str) {
+      return String(str ?? '')
+        .replace(/\\/g, '\\\\')
+        .replace(/"/g, '\\"')
+        .replace(/\r?\n/g, ' ')
+        .trim();
+    }
+
+    function escapeTsSingleQuotes(str) {
+      return String(str ?? '')
+        .replace(/\\/g, '\\\\')
+        .replace(/'/g, "\\'")
+        .replace(/\r?\n/g, ' ')
+        .trim();
     }
 
     function valOf(id) {
@@ -1271,7 +1412,21 @@
         items: 'btnItems'
       };
       Object.entries(map).forEach(([mode, btnId]) => {
-        document.getElementById(btnId).classList.toggle('mode-active', ACTIVE_MODE === mode);
+        document.getElementById(btnId)?.classList.toggle('mode-active', ACTIVE_MODE === mode);
+      });
+
+      const codeMap = {
+        code_formats: 'btnCodeFormats',
+        code_formats_data: 'btnCodeFormatsData',
+        code_pokedex: 'btnCodePokedex',
+        code_moves: 'btnCodeMoves',
+        code_items: 'btnCodeItems',
+        code_learnsets: 'btnCodeLearnsets',
+        code_scripts: 'btnCodeScripts',
+        code_abilities: 'btnCodeAbilities'
+      };
+      Object.entries(codeMap).forEach(([mode, btnId]) => {
+        document.getElementById(btnId)?.classList.toggle('code-btn-active', ACTIVE_MODE === mode);
       });
 
       const isPokemonMode = ACTIVE_MODE === 'pokemon';
@@ -1504,6 +1659,12 @@
         .filter(s => s && s !== '-' && s.toLowerCase() !== 'none' && s.toLowerCase() !== 'n/a');
     }
 
+    function parseNumericWeight(rawW) {
+      if (!rawW) return null;
+      const m = String(rawW).match(/(\d+(?:\.\d+)?)/);
+      return m ? Number(m[1]) : null;
+    }
+
     function parseStatsFromRow(row, tabLabel, strictManual = false) {
       const hpR = resolveField(row, strictManual ? [valOf('hdr_hp')] : [valOf('hdr_hp'), 'HP'], !strictManual);
       const atkR = resolveField(row, strictManual ? [valOf('hdr_atk')] : [valOf('hdr_atk'), 'Atk', 'Attack'], !strictManual);
@@ -1684,6 +1845,7 @@
 
         const weightR = resolveField(row, strictManual ? [valOf('hdr_weight')] : [valOf('hdr_weight'), 'Weight', 'Weight (kg)', 'Weightkg'], !strictManual);
         if (weightR.value && weightR.source) recordFieldSource('pokemon', 'Weight', tabLabel, weightR.source);
+        const explicitWeightKg = parseNumericWeight(weightR.value);
         const weightVal = weightR.value || (baseMatch?.weightkg ? `${baseMatch.weightkg} kg` : '');
 
         const baseStats = baseMatch?.baseStats
@@ -1712,6 +1874,7 @@
           name: rawName,
           sprite: spriteR.value || MOD_DEX[id]?.sprite || '',
           weight: weightVal || MOD_DEX[id]?.weight || '',
+          explicitWeightKg: explicitWeightKg !== null ? explicitWeightKg : (MOD_DEX[id]?.explicitWeightKg ?? null),
           types: parsedTypes.length ? parsedTypes : (baseMatch?.types || []),
           baseStats,
           origStats: baseMatch?.baseStats || null,
@@ -1902,11 +2065,15 @@
         if (effR.source) recordFieldSource('items', 'Effect', tabLabel, effR.source);
         if (flingR.source) recordFieldSource('items', 'Fling Power', tabLabel, flingR.source);
 
+        const flingNumMatch = String(flingR.value || '').match(/\d+/);
+        const explicitFlingPower = flingNumMatch ? Number(flingNumMatch[0]) : null;
+
         MOD_ITEMS[id] = {
           ...baseI,
           id,
           name: nameR.value,
           effect: effR.value,
+          explicitFlingPower,
           flingPower: flingR.value || (strictManual ? '' : (baseI.fling ? baseI.fling.basePower : '')),
           sourceLabel: `${tabLabel} → ${effR.source || nameR.source}`
         };
@@ -2204,11 +2371,572 @@
       }
       return matched;
     }
+    // ==================== TYPESCRIPT CODE GENERATORS ====================
+    function generatePokedexTsCode() {
+      let dexNum = parseInt(CODE_STATE.pokedexStartDex, 10);
+      if (isNaN(dexNum)) dexNum = 750001;
 
+      const parsedWeight = parseFloat(CODE_STATE.pokedexDefaultWeight);
+      const fallbackWeight = !isNaN(parsedWeight) && parsedWeight > 0 ? parsedWeight : 50;
+
+      const sortedEntries = Object.entries(MOD_DEX).sort((a, b) => (a[1].sheetOrder ?? 0) - (b[1].sheetOrder ?? 0));
+      const lines = ['export const Pokedex: {[k: string]: ModdedSpeciesData} = {'];
+
+      sortedEntries.forEach(([id, mon]) => {
+        const baseMatch = BASE_DEX[mon.baseId || id] || null;
+        lines.push(`\t${id}: {`);
+
+        if (mon.isInherited && baseMatch) {
+          lines.push(`\t\tinherit: true,`);
+
+          const baseTypes = baseMatch.types || [];
+          const curTypes = mon.types || [];
+          if (curTypes.length && JSON.stringify(curTypes) !== JSON.stringify(baseTypes)) {
+            lines.push(`\t\ttypes: [${curTypes.map(t => `"${escapeTsDoubleQuotes(t)}"`).join(', ')}],`);
+          }
+
+          const s = mon.baseStats || {};
+          const bs = baseMatch.baseStats || {};
+          if (
+            s.hp !== bs.hp || s.atk !== bs.atk || s.def !== bs.def ||
+            s.spa !== bs.spa || s.spd !== bs.spd || s.spe !== bs.spe
+          ) {
+            lines.push(`\t\tbaseStats: {hp: ${s.hp ?? bs.hp}, atk: ${s.atk ?? bs.atk}, def: ${s.def ?? bs.def}, spa: ${s.spa ?? bs.spa}, spd: ${s.spd ?? bs.spd}, spe: ${s.spe ?? bs.spe}},`);
+          }
+
+          const curAbils = mon.abilities || {};
+          const baseAbils = baseMatch.abilities || {};
+          if (JSON.stringify(curAbils) !== JSON.stringify(baseAbils) && Object.keys(curAbils).length > 0) {
+            const abilParts = [];
+            if (curAbils['0']) abilParts.push(`0: "${escapeTsDoubleQuotes(curAbils['0'])}"`);
+            if (curAbils['1']) abilParts.push(`1: "${escapeTsDoubleQuotes(curAbils['1'])}"`);
+            if (curAbils['H']) abilParts.push(`H: "${escapeTsDoubleQuotes(curAbils['H'])}"`);
+            if (abilParts.length) {
+              lines.push(`\t\tabilities: {${abilParts.join(', ')}},`);
+            }
+          }
+
+          if (mon.explicitWeightKg !== null && mon.explicitWeightKg !== baseMatch.weightkg) {
+            lines.push(`\t\tweightkg: ${mon.explicitWeightKg},`);
+          }
+        } else {
+          lines.push(`\t\tnum: ${dexNum++},`);
+          lines.push(`\t\tname: "${escapeTsDoubleQuotes(mon.name)}",`);
+          const typesArr = (mon.types && mon.types.length) ? mon.types : ['Normal'];
+          lines.push(`\t\ttypes: [${typesArr.map(t => `"${escapeTsDoubleQuotes(t)}"`).join(', ')}],`);
+          const s = mon.baseStats || {};
+          lines.push(`\t\tbaseStats: {hp: ${s.hp || 50}, atk: ${s.atk || 50}, def: ${s.def || 50}, spa: ${s.spa || 50}, spd: ${s.spd || 50}, spe: ${s.spe || 50}},`);
+          const curAbils = mon.abilities || {};
+          const abilParts = [];
+          if (curAbils['0']) abilParts.push(`0: "${escapeTsDoubleQuotes(curAbils['0'])}"`);
+          if (curAbils['1']) abilParts.push(`1: "${escapeTsDoubleQuotes(curAbils['1'])}"`);
+          if (curAbils['H']) abilParts.push(`H: "${escapeTsDoubleQuotes(curAbils['H'])}"`);
+          lines.push(`\t\tabilities: {${abilParts.join(', ')}},`);
+          const wVal = mon.explicitWeightKg !== null ? mon.explicitWeightKg : fallbackWeight;
+          lines.push(`\t\tweightkg: ${wVal},`);
+        }
+
+        lines.push(`\t},`);
+      });
+
+      lines.push('};');
+      return lines.join('\n');
+    }
+
+    function generateItemsTsCode() {
+      const parsedFling = parseInt(CODE_STATE.itemsDefaultFling, 10);
+      const fallbackFling = !isNaN(parsedFling) && parsedFling >= 0 ? parsedFling : 30;
+
+      const lines = ['export const Items: {[k: string]: ModdedItemData} = {'];
+
+      Object.entries(MOD_ITEMS).forEach(([id, it]) => {
+        const baseI = BASE_ITEMS[id] || null;
+        const shortDesc = pickEffectFirstDescription(it);
+        const flingBp = it.explicitFlingPower !== null && it.explicitFlingPower !== undefined
+          ? it.explicitFlingPower
+          : (baseI?.fling?.basePower ?? fallbackFling);
+
+        lines.push(`\t${id}: {`);
+        if (baseI) {
+          lines.push(`\t\tinherit: true,`);
+          if (it.name && it.name !== baseI.name) {
+            lines.push(`\t\tname: "${escapeTsDoubleQuotes(it.name)}",`);
+          }
+          if (it.explicitFlingPower !== null && it.explicitFlingPower !== baseI.fling?.basePower) {
+            lines.push(`\t\tfling: {`);
+            lines.push(`\t\t\tbasePower: ${flingBp},`);
+            lines.push(`\t\t},`);
+          }
+          if (shortDesc) {
+            lines.push(`\t\tshortDesc: "${escapeTsDoubleQuotes(shortDesc)}",`);
+          }
+        } else {
+          lines.push(`\t\tname: "${escapeTsDoubleQuotes(it.name)}",`);
+          lines.push(`\t\tfling: {`);
+          lines.push(`\t\t\tbasePower: ${flingBp},`);
+          lines.push(`\t\t},`);
+          if (shortDesc) {
+            lines.push(`\t\tshortDesc: "${escapeTsDoubleQuotes(shortDesc)}",`);
+          }
+        }
+        lines.push(`\t},`);
+      });
+
+      lines.push('};');
+      return lines.join('\n');
+    }
+
+    function generateAbilitiesTsCode() {
+      const lines = ['export const Abilities: {[k: string]: ModdedAbilityData} = {'];
+
+      Object.entries(MOD_ABILITIES).forEach(([id, a]) => {
+        const baseA = BASE_ABILITIES[id] || null;
+        const shortDesc = pickEffectFirstDescription(a);
+        lines.push(`\t${id}: {`);
+        if (baseA) {
+          lines.push(`\t\tinherit: true,`);
+          if (a.name && a.name !== baseA.name) {
+            lines.push(`\t\tname: "${escapeTsDoubleQuotes(a.name)}",`);
+          }
+        } else {
+          lines.push(`\t\tname: "${escapeTsDoubleQuotes(a.name)}",`);
+        }
+        if (shortDesc) {
+          lines.push(`\t\tshortDesc: "${escapeTsDoubleQuotes(shortDesc)}",`);
+        }
+        lines.push(`\t\tflags: {},`);
+        lines.push(`\t},`);
+      });
+
+      lines.push('};');
+      return lines.join('\n');
+    }
+
+    function buildMoveFlagsObjectString(move) {
+      const catLower = String(move.category || '').trim().toLowerCase();
+      const rawFlagsStr = String(move.flags || '').trim();
+      const flagsObj = {};
+
+      if (catLower === 'physical') {
+        flagsObj.contact = 1;
+      }
+      flagsObj.protect = 1;
+      flagsObj.mirror = 1;
+      flagsObj.metronome = 1;
+
+      if (rawFlagsStr) {
+        const lowerRaw = rawFlagsStr.toLowerCase();
+        if (lowerRaw.includes('non-contact') || lowerRaw.includes('noncontact') || lowerRaw.includes('no contact')) {
+          delete flagsObj.contact;
+        }
+        rawFlagsStr
+          .split(/[,;/|]+/)
+          .map(s => s.trim().toLowerCase().replace(/[^a-z0-9]/g, ''))
+          .filter(Boolean)
+          .forEach(tok => {
+            if (KNOWN_MOVE_FLAGS.has(tok)) {
+              flagsObj[tok] = 1;
+            }
+          });
+      }
+
+      const orderedKeys = Object.keys(flagsObj);
+      return `{${orderedKeys.map(k => `${k}: ${flagsObj[k]}`).join(', ')}}`;
+    }
+
+    function parseMoveAccuracyForCode(accVal) {
+      if (accVal === true) return 'true';
+      const str = String(accVal ?? '').trim().toLowerCase();
+      if (!str || str === '—' || str === '-' || str === '--' || str === 'true' || str.includes('never') || str.includes('always')) {
+        return 'true';
+      }
+      const m = str.match(/\d+/);
+      return m ? String(Number(m[0])) : '100';
+    }
+
+    function parseNumericOrDefault(val, fallback) {
+      const m = String(val ?? '').trim().match(/-?\d+/);
+      return m ? Number(m[0]) : fallback;
+    }
+
+    function generateMovesTsCode() {
+      const lines = ['export const Moves: {[k: string]: ModdedMoveData} = {'];
+
+      Object.entries(MOD_MOVES).forEach(([id, m]) => {
+        const cleanType = (m.type && m.type !== '?') ? m.type.trim() : 'Normal';
+        const cleanCat = m.category ? m.category.trim() : 'Status';
+        const bpNum = cleanCat.toLowerCase() === 'status' ? 0 : parseNumericOrDefault(m.basePower, 0);
+        const accCode = parseMoveAccuracyForCode(m.accuracy);
+        const ppNum = parseNumericOrDefault(m.pp, 10);
+        const prioNum = parseNumericOrDefault(m.priority, 0);
+        const shortDesc = pickEffectFirstDescription(m);
+        const flagsStr = buildMoveFlagsObjectString(m);
+        const targetVal = (m.target && String(m.target).trim() && String(m.target).trim() !== '-')
+          ? String(m.target).trim()
+          : 'normal';
+
+        lines.push(`\t${id}: {`);
+        lines.push(`\t\tname: "${escapeTsDoubleQuotes(m.name)}",`);
+        lines.push(`\t\ttype: "${escapeTsDoubleQuotes(cleanType)}",`);
+        lines.push(`\t\tcategory: "${escapeTsDoubleQuotes(cleanCat)}",`);
+        lines.push(`\t\tbasePower: ${bpNum},`);
+        lines.push(`\t\taccuracy: ${accCode},`);
+        lines.push(`\t\tpp: ${ppNum},`);
+        lines.push(`\t\tshortDesc: "${escapeTsDoubleQuotes(shortDesc)}",`);
+        lines.push(`\t\tpriority: ${prioNum},`);
+        lines.push(`\t\tflags: ${flagsStr},`);
+        lines.push(`\t\t/*onPrepareHit(target, pokemon, move) {`);
+        lines.push(`\t\t\tthis.attrLastMove('[still]');`);
+        lines.push(`\t\t\tthis.add('-anim', pokemon, "", target);`);
+        lines.push(`\t\t},*/`);
+        lines.push(`\t\tsecondary: null,`);
+        lines.push(`\t\ttarget: "${escapeTsDoubleQuotes(targetVal)}",`);
+        lines.push(`\t},`);
+      });
+
+      lines.push('};');
+      return lines.join('\n');
+    }
+
+    function generateLearnsetsTsCode() {
+      const learnTag = (CODE_STATE.learnsetsDefaultSource || '9L1').trim() || '9L1';
+      const sortedEntries = Object.entries(MOD_DEX).sort((a, b) => (a[1].sheetOrder ?? 0) - (b[1].sheetOrder ?? 0));
+      const lines = ['export const Learnsets: {[k: string]: ModdedLearnsetData} = {'];
+
+      sortedEntries.forEach(([id, mon]) => {
+        if (mon.isInherited) return;
+        const diff = getLearnsetDiff(id);
+        const pool = diff.activeIds.filter(mId => !diff.removedIds.has(mId)).sort();
+        lines.push(`\t${id}: {`);
+        lines.push(`\t\tlearnset: {`);
+        pool.forEach(mId => {
+          lines.push(`\t\t\t${mId}: ["${escapeTsDoubleQuotes(learnTag)}"],`);
+        });
+        lines.push(`\t\t},`);
+        lines.push(`\t},`);
+      });
+
+      lines.push('};');
+      return lines.join('\n');
+    }
+
+    function generateScriptsTsCode() {
+      const learnTag = (CODE_STATE.scriptsDefaultSource || CODE_STATE.learnsetsDefaultSource || '9L1').trim() || '9L1';
+      const lines = [
+        'export const Scripts: ModdedBattleScriptsData = {',
+        '\tgen: 9,',
+        '\tinit() {'
+      ];
+
+      const monIdsToCheck = new Set([
+        ...Object.keys(MOD_DEX),
+        ...Object.keys(MOD_ADDED_MOVES),
+        ...Object.keys(MOD_REMOVED_MOVES)
+      ]);
+
+      const orderedIds = [...monIdsToCheck].sort((a, b) => {
+        const oa = MOD_DEX[a]?.sheetOrder ?? 999999;
+        const ob = MOD_DEX[b]?.sheetOrder ?? 999999;
+        return oa - ob;
+      });
+
+      let anyEdits = false;
+      orderedIds.forEach(id => {
+        const mon = MOD_DEX[id];
+        if (mon && !mon.isInherited) return;
+        const added = [...(MOD_ADDED_MOVES[id] || [])].sort();
+        const removed = [...(MOD_REMOVED_MOVES[id] || [])].sort();
+        if (!added.length && !removed.length) return;
+
+        anyEdits = true;
+        const targetId = mon?.baseId || id;
+        const displayName = mon?.name || BASE_DEX[targetId]?.name || BASE_DEX[id]?.name || id;
+
+        lines.push(`\t\t// ${displayName}`);
+        added.forEach(mId => {
+          lines.push(`\t\tthis.modData('Learnsets', '${escapeTsSingleQuotes(targetId)}').learnset.${mId} = ['${escapeTsSingleQuotes(learnTag)}'];`);
+        });
+        removed.forEach(mId => {
+          lines.push(`\t\tdelete this.modData('Learnsets', '${escapeTsSingleQuotes(targetId)}').learnset.${mId};`);
+        });
+        lines.push('');
+      });
+
+      if (!anyEdits) {
+        lines.push('\t\t// No learnset additions or removals found for existing Pokémon.');
+      }
+
+      lines.push('\t},');
+      lines.push('};');
+      return lines.join('\n');
+    }
+
+    function generateFormatsDataTsCode() {
+      const tierVal = (CODE_STATE.formatsDataTier || 'PetMod').trim() || 'PetMod';
+      const doublesTierVal = (CODE_STATE.formatsDataDoublesTier || 'DPetMod').trim() || 'DPetMod';
+      const sortedEntries = Object.entries(MOD_DEX).sort((a, b) => (a[1].sheetOrder ?? 0) - (b[1].sheetOrder ?? 0));
+
+      const lines = ['export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {'];
+      sortedEntries.forEach(([id]) => {
+        lines.push(`\t${id}: {`);
+        lines.push(`\t\ttier: "${escapeTsDoubleQuotes(tierVal)}",`);
+        lines.push(`\t\tdoublesTier: "${escapeTsDoubleQuotes(doublesTierVal)}",`);
+        lines.push(`\t},`);
+      });
+      lines.push('};');
+      return lines.join('\n');
+    }
+
+    function generateFormatsTsCode() {
+      const folderName = (CODE_STATE.formatsFolderName || 'mods_folder_name_here').trim() || 'mods_folder_name_here';
+      const modTitle = (CODE_STATE.formatsModName || 'Pet Mod Name').trim() || 'Pet Mod Name';
+      const tierName = (CODE_STATE.formatsTierName || CODE_STATE.formatsDataTier || 'Tier Name').trim() || 'Tier Name';
+      const sheetLink = valOf('sheetUrl') || 'PasteLinkHere';
+
+      return [
+        "import { FormatData } from '../../../sim/dex-formats';",
+        '',
+        'export const Formats: FormatData[] = [',
+        '\t{',
+        `\t\tname: "[Gen 9] ${escapeTsDoubleQuotes(modTitle)}",`,
+        `\t\tmod: '${escapeTsSingleQuotes(folderName)}',`,
+        '\t\tdesc: "A format where DESCRIBE!",',
+        '\t\tthreads: [',
+        `\t\t\t\`&bullet; <a href= "${escapeTsDoubleQuotes(sheetLink)}"> Pet Mod Spreadsheet /Links</a>\`,`,
+        '\t\t],',
+        "\t\truleset: ['Standard NatDex', 'Terastal Clause', 'Data Mod', 'Mega Data Mod', 'Species Clause', 'Sleep Clause Mod', 'Evasion Clause', 'OHKO Clause'],",
+        '\t\tbanlist: [',
+        "\t\t\t'Arena Trap', 'Shadow Tag', 'Moody', 'King\\'s Rock', 'Quick Claw', 'Razor Fang',",
+        "\t\t\t'Shed Tail', 'Baton Pass', 'Assist', 'Last Respects', 'Prismatic Omega Petal'",
+        '\t\t],',
+        "\t\tteambuilderFormat: 'National Dex',",
+        '\t\tonValidateTeam(team, format) {',
+        '\t\t\tlet speciesTable = {};',
+        `\t\t\tlet allowedTiers = ['${escapeTsSingleQuotes(tierName)}'];`,
+        '\t\t\tfor (const set of team) {',
+        '\t\t\t\tlet template = this.dex.species.get(set.species);',
+        '\t\t\t\tif (!allowedTiers.includes(template.tier)) {',
+        "\t\t\t\t\treturn [set.species + ' is not a legal species in this Pet Mod!'];",
+        '\t\t\t\t}',
+        '\t\t\t}',
+        '\t\t},',
+        '\t},',
+        '];'
+      ].join('\n');
+    }
+
+    function generateFormatsImportLine() {
+      const folderName = (CODE_STATE.formatsFolderName || 'mods_folder_name_here').trim() || 'mods_folder_name_here';
+      const modTitle = (CODE_STATE.formatsModName || '').trim();
+      const pascalFrom = str =>
+        String(str || '')
+          .replace(/[^a-zA-Z0-9]+/g, ' ')
+          .trim()
+          .split(/\s+/)
+          .filter(Boolean)
+          .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+          .join('');
+      const aliasSuffix = pascalFrom(modTitle && modTitle !== 'Pet Mod Name' ? modTitle : folderName) || 'PetMod';
+      const aliasIdent = `gen9${aliasSuffix}`;
+      const paddedAlias = aliasIdent.length < 19 ? aliasIdent.padEnd(19, ' ') : aliasIdent;
+      return `import { Formats as ${paddedAlias} } from '../data/mods/${escapeTsSingleQuotes(folderName)}/formats';`;
+    }
+
+    function renderCodeGeneratorView(pane, fileType) {
+      let title = '';
+      let controlsHtml = '';
+      let currentCode = '';
+      let extraBoxHtml = '';
+
+      if (fileType === 'pokedex') {
+        title = 'Code: pokedex.ts';
+        if (!CODE_STATE.pokedexCode) CODE_STATE.pokedexCode = generatePokedexTsCode();
+        currentCode = CODE_STATE.pokedexCode;
+        controlsHtml = `
+          <label>Starting Dex Number:
+            <input type="text" id="cgPokedexDexNum" value="${escHtml(CODE_STATE.pokedexStartDex)}" placeholder="750001">
+          </label>
+          <label>Default Weight (kg) if not in sheet:
+            <input type="text" id="cgPokedexWeight" value="${escHtml(CODE_STATE.pokedexDefaultWeight)}" placeholder="50">
+          </label>
+        `;
+      } else if (fileType === 'items') {
+        title = 'Code: items.ts';
+        if (!CODE_STATE.itemsCode) CODE_STATE.itemsCode = generateItemsTsCode();
+        currentCode = CODE_STATE.itemsCode;
+        controlsHtml = `
+          <label>Default Fling Base Power if not in sheet:
+            <input type="text" id="cgItemsFling" value="${escHtml(CODE_STATE.itemsDefaultFling)}" placeholder="30">
+          </label>
+        `;
+      } else if (fileType === 'learnsets') {
+        title = 'Code: learnsets.ts';
+        if (!CODE_STATE.learnsetsCode) CODE_STATE.learnsetsCode = generateLearnsetsTsCode();
+        currentCode = CODE_STATE.learnsetsCode;
+        controlsHtml = `
+          <label>Default Learning Source:
+            <input type="text" id="cgLearnsetsSource" value="${escHtml(CODE_STATE.learnsetsDefaultSource)}" placeholder="9L1">
+          </label>
+        `;
+      } else if (fileType === 'scripts') {
+        title = 'Code: scripts.ts';
+        if (!CODE_STATE.scriptsCode) CODE_STATE.scriptsCode = generateScriptsTsCode();
+        currentCode = CODE_STATE.scriptsCode;
+        controlsHtml = `
+          <label>Default Added Move Source:
+            <input type="text" id="cgScriptsSource" value="${escHtml(CODE_STATE.scriptsDefaultSource)}" placeholder="9L1">
+          </label>
+        `;
+      } else if (fileType === 'abilities') {
+        title = 'Code: abilities.ts';
+        if (!CODE_STATE.abilitiesCode) CODE_STATE.abilitiesCode = generateAbilitiesTsCode();
+        currentCode = CODE_STATE.abilitiesCode;
+      } else if (fileType === 'moves') {
+        title = 'Code: moves.ts';
+        if (!CODE_STATE.movesCode) CODE_STATE.movesCode = generateMovesTsCode();
+        currentCode = CODE_STATE.movesCode;
+      } else if (fileType === 'formats_data') {
+        title = 'Code: formats-data.ts';
+        if (!CODE_STATE.formatsDataCode) CODE_STATE.formatsDataCode = generateFormatsDataTsCode();
+        currentCode = CODE_STATE.formatsDataCode;
+        controlsHtml = `
+          <label>Tier Name:
+            <input type="text" id="cgFormatsDataTier" value="${escHtml(CODE_STATE.formatsDataTier)}" placeholder="PetMod">
+          </label>
+          <label>Doubles Tier Name:
+            <input type="text" id="cgFormatsDataDoublesTier" value="${escHtml(CODE_STATE.formatsDataDoublesTier)}" placeholder="DPetMod">
+          </label>
+        `;
+      } else if (fileType === 'formats') {
+        title = 'Code: formats.ts';
+        if (!CODE_STATE.formatsCode) CODE_STATE.formatsCode = generateFormatsTsCode();
+        if (!CODE_STATE.formatsImportLine) CODE_STATE.formatsImportLine = generateFormatsImportLine();
+        currentCode = CODE_STATE.formatsCode;
+        controlsHtml = `
+          <label>Mods Folder Name:
+            <input type="text" id="cgFormatsFolder" value="${escHtml(CODE_STATE.formatsFolderName)}" placeholder="mods_folder_name_here">
+          </label>
+          <label>Pet Mod Name:
+            <input type="text" id="cgFormatsModName" value="${escHtml(CODE_STATE.formatsModName)}" placeholder="Pet Mod Name">
+          </label>
+          <label>Allowed Tier Name:
+            <input type="text" id="cgFormatsTierName" value="${escHtml(CODE_STATE.formatsTierName)}" placeholder="Tier Name">
+          </label>
+        `;
+        extraBoxHtml = `
+          <div class="code-sub-label">
+            <span>config/formats.ts Import Line:</span>
+            <button type="button" id="cgCopyImportLineBtn">Click to Copy Import Line</button>
+          </div>
+          <textarea id="cgImportLineBox" class="code-output-small" spellcheck="false">${escHtml(CODE_STATE.formatsImportLine)}</textarea>
+        `;
+      }
+
+      pane.innerHTML = `
+        <div class="detail-header">
+          <div><strong style="font-size:1.15rem;">${title}</strong></div>
+        </div>
+
+        ${controlsHtml ? `<div class="code-gen-controls">${controlsHtml}</div>` : ''}
+
+        <div class="code-gen-actions">
+          <button type="button" id="cgGenerateBtn">Generate</button>
+          <button type="button" id="cgCopyBtn">Click to Copy</button>
+        </div>
+
+        <textarea id="cgOutputBox" class="code-output-box" spellcheck="false">${escHtml(currentCode)}</textarea>
+        ${extraBoxHtml}
+      `;
+
+      const outBox = document.getElementById('cgOutputBox');
+      const importBox = document.getElementById('cgImportLineBox');
+
+      outBox.addEventListener('input', () => {
+        if (fileType === 'pokedex') CODE_STATE.pokedexCode = outBox.value;
+        else if (fileType === 'items') CODE_STATE.itemsCode = outBox.value;
+        else if (fileType === 'learnsets') CODE_STATE.learnsetsCode = outBox.value;
+        else if (fileType === 'scripts') CODE_STATE.scriptsCode = outBox.value;
+        else if (fileType === 'abilities') CODE_STATE.abilitiesCode = outBox.value;
+        else if (fileType === 'moves') CODE_STATE.movesCode = outBox.value;
+        else if (fileType === 'formats_data') CODE_STATE.formatsDataCode = outBox.value;
+        else if (fileType === 'formats') CODE_STATE.formatsCode = outBox.value;
+      });
+
+      if (importBox) {
+        importBox.addEventListener('input', () => {
+          CODE_STATE.formatsImportLine = importBox.value;
+        });
+      }
+
+      document.getElementById('cgGenerateBtn').addEventListener('click', () => {
+        const displayFileName = fileType === 'formats_data' ? 'formats-data.ts' : `${fileType}.ts`;
+        if (fileType === 'pokedex') {
+          CODE_STATE.pokedexStartDex = document.getElementById('cgPokedexDexNum').value.trim() || '750001';
+          CODE_STATE.pokedexDefaultWeight = document.getElementById('cgPokedexWeight').value.trim() || '50';
+          CODE_STATE.pokedexCode = generatePokedexTsCode();
+          outBox.value = CODE_STATE.pokedexCode;
+        } else if (fileType === 'items') {
+          CODE_STATE.itemsDefaultFling = document.getElementById('cgItemsFling').value.trim() || '30';
+          CODE_STATE.itemsCode = generateItemsTsCode();
+          outBox.value = CODE_STATE.itemsCode;
+        } else if (fileType === 'learnsets') {
+          CODE_STATE.learnsetsDefaultSource = document.getElementById('cgLearnsetsSource').value.trim() || '9L1';
+          CODE_STATE.learnsetsCode = generateLearnsetsTsCode();
+          outBox.value = CODE_STATE.learnsetsCode;
+        } else if (fileType === 'scripts') {
+          CODE_STATE.scriptsDefaultSource = document.getElementById('cgScriptsSource').value.trim() || '9L1';
+          CODE_STATE.scriptsCode = generateScriptsTsCode();
+          outBox.value = CODE_STATE.scriptsCode;
+        } else if (fileType === 'abilities') {
+          CODE_STATE.abilitiesCode = generateAbilitiesTsCode();
+          outBox.value = CODE_STATE.abilitiesCode;
+        } else if (fileType === 'moves') {
+          CODE_STATE.movesCode = generateMovesTsCode();
+          outBox.value = CODE_STATE.movesCode;
+        } else if (fileType === 'formats_data') {
+          CODE_STATE.formatsDataTier = document.getElementById('cgFormatsDataTier').value.trim() || 'PetMod';
+          CODE_STATE.formatsDataDoublesTier = document.getElementById('cgFormatsDataDoublesTier').value.trim() || 'DPetMod';
+          CODE_STATE.formatsDataCode = generateFormatsDataTsCode();
+          outBox.value = CODE_STATE.formatsDataCode;
+        } else if (fileType === 'formats') {
+          CODE_STATE.formatsFolderName = document.getElementById('cgFormatsFolder').value.trim() || 'mods_folder_name_here';
+          CODE_STATE.formatsModName = document.getElementById('cgFormatsModName').value.trim() || 'Pet Mod Name';
+          CODE_STATE.formatsTierName = document.getElementById('cgFormatsTierName').value.trim() || 'Tier Name';
+          CODE_STATE.formatsCode = generateFormatsTsCode();
+          CODE_STATE.formatsImportLine = generateFormatsImportLine();
+          outBox.value = CODE_STATE.formatsCode;
+          if (importBox) importBox.value = CODE_STATE.formatsImportLine;
+        }
+        document.getElementById('statusBar').textContent = `Generated ${displayFileName} code.`;
+      });
+
+      document.getElementById('cgCopyBtn').addEventListener('click', () => {
+        const displayFileName = fileType === 'formats_data' ? 'formats-data.ts' : `${fileType}.ts`;
+        outBox.select();
+        navigator.clipboard?.writeText(outBox.value);
+        document.getElementById('statusBar').textContent = `Copied ${displayFileName} code to clipboard.`;
+      });
+
+      document.getElementById('cgCopyImportLineBtn')?.addEventListener('click', () => {
+        if (!importBox) return;
+        importBox.select();
+        navigator.clipboard?.writeText(importBox.value);
+        document.getElementById('statusBar').textContent = 'Copied formats.ts import line to clipboard.';
+      });
+    }
+
+    // ==================== MAIN VIEW RENDERING ====================
     function renderView() {
       syncModeButtons();
       const q = document.getElementById('searchInput').value.trim().toLowerCase();
       const pane = document.getElementById('detailPane');
+
+      if (ACTIVE_MODE.startsWith('code_')) {
+        const fileType = ACTIVE_MODE.replace('code_', '');
+        renderCodeGeneratorView(pane, fileType);
+        return;
+      }
+
       const allMoves = getCustomMovesList();
 
       if (ACTIVE_MODE === 'moves') {
@@ -2605,6 +3333,7 @@
       `;
     }
 
+    // ==================== EVENT LISTENERS ====================
     document.getElementById('initialLoadBtn').addEventListener('click', () => runSheetLoad(false));
     document.getElementById('topInitialLoadBtn').addEventListener('click', () => runSheetLoad(false));
     document.getElementById('footerInitialLoadBtn').addEventListener('click', () => runSheetLoad(false));
@@ -2630,6 +3359,15 @@
     document.getElementById('btnCustomMoves').addEventListener('click', () => setMode('moves'));
     document.getElementById('btnAbilities').addEventListener('click', () => setMode('abilities'));
     document.getElementById('btnItems').addEventListener('click', () => setMode('items'));
+
+    document.getElementById('btnCodeFormats').addEventListener('click', () => setMode('code_formats'));
+    document.getElementById('btnCodeFormatsData').addEventListener('click', () => setMode('code_formats_data'));
+    document.getElementById('btnCodePokedex').addEventListener('click', () => setMode('code_pokedex'));
+    document.getElementById('btnCodeMoves').addEventListener('click', () => setMode('code_moves'));
+    document.getElementById('btnCodeItems').addEventListener('click', () => setMode('code_items'));
+    document.getElementById('btnCodeLearnsets').addEventListener('click', () => setMode('code_learnsets'));
+    document.getElementById('btnCodeScripts').addEventListener('click', () => setMode('code_scripts'));
+    document.getElementById('btnCodeAbilities').addEventListener('click', () => setMode('code_abilities'));
 
     document.getElementById('togglePasteBtn').addEventListener('click', () => {
       document.getElementById('pasteDrawer').classList.toggle('open');
