@@ -116,31 +116,43 @@
       padding: 6px 8px;
       font-size: 0.72rem;
     }
+.tb-compact-evs-outer {
+      width: 60%;
+      min-width: 165px;
+      margin-left: auto;
+    }
+    .tb-compact-evs {
+      background: #1c2026;
+      border: 1px solid #474e5c;
+      border-radius: 3px;
+      padding: 5px 6px;
+      font-size: 0.68rem;
+    }
     .tb-compact-evs-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 6px;
-      margin-bottom: 4px;
+      gap: 4px;
+      margin-bottom: 3px;
       color: #b8c2d1;
-      font-size: 0.69rem;
+      font-size: 0.66rem;
     }
     .tb-compact-ev-row {
       display: grid;
-      grid-template-columns: 30px 44px 1fr 34px;
+      grid-template-columns: 24px 34px 1fr 26px;
       align-items: center;
-      gap: 5px;
-      margin: 2px 0;
+      gap: 3px;
+      margin: 1.5px 0;
     }
     .tb-compact-ev-lbl {
       color: #cbd5e1;
       font-weight: bold;
-      font-size: 0.7rem;
+      font-size: 0.66rem;
     }
     .tb-compact-ev-inp {
-      width: 44px;
-      padding: 1px 3px;
-      font-size: 0.7rem;
+      width: 34px;
+      padding: 1px 2px;
+      font-size: 0.66rem;
       background: #12151a;
       color: #fff;
       border: 1px solid #4f5868;
@@ -149,6 +161,7 @@
     }
     .tb-compact-ev-slider {
       width: 100%;
+      min-width: 42px;
       margin: 0;
       accent-color: #77d4fc;
       cursor: pointer;
@@ -157,22 +170,50 @@
       text-align: right;
       color: #fff;
       font-weight: bold;
-      font-size: 0.72rem;
+      font-size: 0.68rem;
     }
     .tb-compact-ev-foot {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 6px;
-      margin-top: 5px;
-      padding-top: 4px;
+      gap: 4px;
+      margin-top: 4px;
+      padding-top: 3px;
       border-top: 1px solid #2e3440;
       flex-wrap: wrap;
     }
     .tb-compact-ev-foot select {
-      padding: 2px 4px;
-      font-size: 0.7rem;
-      max-width: 145px;
+      padding: 1px 3px;
+      font-size: 0.66rem;
+      max-width: 100%;
+    }
+    .tb-equip-row {
+      display: grid;
+      grid-template-columns: 1.45fr 1fr;
+      gap: 6px;
+    }
+    .tb-right-side-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 145px;
+      gap: 8px;
+      align-items: start;
+    }
+    @media (max-width: 640px) {
+      .tb-right-side-grid { grid-template-columns: 1fr; }
+    }
+    .tb-speed-side-card {
+      background: #1c2026;
+      border: 1px solid #474e5c;
+      border-radius: 3px;
+      padding: 6px 8px;
+      font-size: 0.72rem;
+    }
+    .tb-speed-side-card .speed-tier-box {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+      font-size: 0.72rem;
+      line-height: 1.4;
     }
     .tb-picker-wrap {
       margin-top: 10px;
@@ -198,10 +239,65 @@
       .tb-picker-grid { grid-template-columns: 1fr; }
     }
     .tb-picker-list {
-      max-height: 520px;
+      max-height: 560px;
     }
     .tb-picker-detail {
-      min-height: 300px;
+      min-height: 320px;
+    }
+    .tb-mon-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      font-family: Verdana, sans-serif;
+    }
+    .tb-mon-table th {
+      text-align: left;
+      padding: 5px 6px;
+      background: #232730;
+      color: #c7d4e6;
+      border-bottom: 1px solid #3c4352;
+      font-size: 0.73rem;
+    }
+    .tb-mon-table td {
+      padding: 6px 6px;
+      border-bottom: 1px solid #252932;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+    .tb-mon-table tr:hover td {
+      background: #20252e;
+    }
+    .tb-mon-table tr.active td {
+      background: #293229;
+    }
+    .tb-item-card {
+      padding: 7px 9px;
+      margin: 4px 0;
+      background: #151515;
+      border: 1px solid #2c2c2c;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 0.82rem;
+    }
+    .tb-item-card:hover {
+      background: #1f232b;
+      border-color: #4a5568;
+    }
+    .tb-item-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .tb-section-banner {
+      background: #262b34;
+      border: 1px solid #3e4656;
+      color: #ffcf70;
+      font-weight: bold;
+      font-size: 0.82rem;
+      padding: 4px 8px;
+      margin: 10px 0 6px 0;
     }
     .tb-moves-table {
       width: 100%;
@@ -233,18 +329,6 @@
     .tb-move-name-btn:hover {
       color: #77b5fe;
       text-decoration: underline;
-    }
-    .tb-compact-abilities .entry-row {
-      margin: 4px 0;
-      padding: 4px 7px;
-      font-size: 0.78rem;
-      line-height: 1.35;
-    }
-    .tb-compact-abilities .entry-row {
-      margin: 4px 0;
-      padding: 4px 7px;
-      font-size: 0.78rem;
-      line-height: 1.35;
     }
     .tb-move-line-row {
       display: flex;
@@ -2181,93 +2265,259 @@
       return { modEntries, baseEntries, flat: [...modEntries, ...baseEntries] };
     }
 
-function renderTbDexPreview(monId) {
+let TB_ACTIVE_FOCUS = 'pokemon'; // 'pokemon' | 'item' | 'ability' | 'moves'
+    let TB_PREVIEW_MON_ID = '';
+
+    function renderTbDexPreview(monId) {
       const previewEl = document.getElementById('tbDexPreviewPane');
       if (!previewEl) return;
       const allDex = getAllMergedDex();
-      const mon = allDex[monId];
-      if (!mon) {
-        previewEl.innerHTML = '<div class="desc-text">Select or search a Pokémon to view its learnable moves, speed tiers, and abilities.</div>';
+      const slot = TEAM_SLOTS[ACTIVE_TB_SLOT];
+      const targetId = monId || slot.speciesId || TB_PREVIEW_MON_ID || '';
+      const mon = targetId ? allDex[targetId] : null;
+      const qRaw = String(document.getElementById('psSpeciesInp')?.value || '').trim().toLowerCase();
+
+      // 1) POKEMON FOCUS: show Pokémon list/table like image_235801.png
+      if (TB_ACTIVE_FOCUS === 'pokemon') {
+        const { modEntries, baseEntries } = getTbOrderedPool(qRaw);
+        const allRows = [
+          ...modEntries.map(x => ({ ...x, tierLbl: x.mon.isInherited ? 'Modded' : 'New' })),
+          ...baseEntries.map(x => ({ ...x, tierLbl: 'OU' }))
+        ];
+
+        const tableRowsHtml = allRows.length
+          ? allRows.map(item => {
+              const s = item.mon.baseStats || {};
+              const vals = [s.hp, s.atk, s.def, s.spa, s.spd, s.spe];
+              const bst = vals.every(v => typeof v === 'number') ? vals.reduce((a, b) => a + b, 0) : '—';
+              const typesHtml = (item.mon.types || []).map(t => `<span class="type-pill" style="padding:1px 5px;font-size:0.7rem;">${escHtml(t)}</span>`).join('');
+              const abilsList = Object.values(item.mon.abilities || {}).filter(Boolean);
+              const abil1 = abilsList[0] || '—';
+              const abil2 = abilsList[1] || abilsList[2] || '';
+              const activeCls = item.id === (slot.speciesId || targetId) ? 'active' : '';
+
+              return `
+                <tr class="${activeCls}" data-pick-mon="${escHtml(item.id)}">
+                  <td style="width:42px;color:#ffcf70;font-weight:bold;">${escHtml(item.tierLbl)}</td>
+                  <td>
+                    <div class="st-mon-cell">
+                      ${renderSpriteHtml(item.id, item.mon, Boolean(item.mon.isInherited || item.isModded))}
+                      <strong>${escHtml(item.mon.name)}</strong>
+                    </div>
+                  </td>
+                  <td>${typesHtml}</td>
+                  <td>
+                    <div>${escHtml(abil1)}</div>
+                    ${abil2 ? `<div class="desc-text" style="font-size:0.72rem;">${escHtml(abil2)}</div>` : ''}
+                  </td>
+                  <td style="text-align:right;white-space:nowrap;font-size:0.74rem;">
+                    <span class="desc-text">HP Atk Def SpA SpD Spe BST</span><br>
+                    <strong>${s.hp ?? '—'} ${s.atk ?? '—'} ${s.def ?? '—'} ${s.spa ?? '—'} ${s.spd ?? '—'} ${s.spe ?? '—'} <span style="color:#ffcf70;">${bst}</span></strong>
+                  </td>
+                </tr>
+              `;
+            }).join('')
+          : '<tr><td colspan="5" class="desc-text">No matching Pokémon found.</td></tr>';
+
+        previewEl.innerHTML = `
+          <div class="tb-section-banner">Pokémon (${allRows.length})</div>
+          <table class="tb-mon-table">
+            <thead>
+              <tr>
+                <th>Tier</th>
+                <th>Name</th>
+                <th>Types</th>
+                <th>Abilities</th>
+                <th style="text-align:right;">Base Stats</th>
+              </tr>
+            </thead>
+            <tbody>${tableRowsHtml}</tbody>
+          </table>
+        `;
+
+        previewEl.querySelectorAll('tr[data-pick-mon]').forEach(tr => {
+          tr.addEventListener('click', () => {
+            const pickId = tr.dataset.pickMon;
+            if (!pickId || !allDex[pickId]) return;
+            TB_PREVIEW_MON_ID = pickId;
+            slot.speciesId = pickId;
+            slot.nickname = allDex[pickId].name;
+            const abils = Object.values(allDex[pickId].abilities || {}).filter(Boolean);
+            slot.ability = abils[0] || '';
+            slot.teraType = allDex[pickId].types?.[0] || 'Normal';
+            renderTeambuilderPane();
+          });
+        });
         return;
       }
 
-      const s = mon.baseStats || { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 };
-      const monTypesSet = new Set(mon.types || []);
-      const abilitySlots = Object.values(mon.abilities || {}).map(getAbilityDetails);
+      // 2) ITEM FOCUS: Custom items -> Modded items -> Rest of the items (image_23587d.jpg)
+      if (TB_ACTIVE_FOCUS === 'item') {
+        const itemQ = String(slot.item || '').trim().toLowerCase();
+        const mergedItems = Object.assign({}, BASE_ITEMS, MOD_ITEMS);
+        const customItems = [];
+        const moddedItems = [];
+        const restItems = [];
 
-      const hasSheetDiff = Boolean(MOD_DEX[monId]);
+        Object.entries(mergedItems).forEach(([id, it]) => {
+          if (!it || !it.name) return;
+          const desc = pickEffectFirstDescription(it);
+          if (itemQ && !it.name.toLowerCase().includes(itemQ) && !desc.toLowerCase().includes(itemQ)) return;
+          const modEntry = MOD_ITEMS[id];
+          const entry = {
+            id,
+            name: it.name,
+            desc,
+            badge: modEntry ? (modEntry.isInherited ? 'Modded Item' : 'Custom Item') : ''
+          };
+          if (modEntry && !modEntry.isInherited) customItems.push(entry);
+          else if (modEntry && modEntry.isInherited) moddedItems.push(entry);
+          else restItems.push(entry);
+        });
+
+        const renderItemGroup = (bannerTitle, list) => {
+          if (!list.length) return '';
+          const cards = list.map(entry => {
+            const slug = getMinispriteSlug(entry.name, entry.id);
+            const iconUrl = `https://play.pokemonshowdown.com/sprites/itemicons/${slug}.png`;
+            return `
+              <div class="tb-item-card" data-pick-item="${escHtml(entry.name)}">
+                <div class="tb-item-card-top">
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <img src="${iconUrl}" alt="${escHtml(entry.name)}" style="height:20px;width:20px;object-fit:contain;" loading="lazy" onerror="this.style.display='none';">
+                    <strong>${escHtml(entry.name)}</strong>
+                    ${entry.badge ? `<span class="custom-badge">${escHtml(entry.badge)}</span>` : ''}
+                  </div>
+                  <div class="desc-text" style="flex:1 1 320px;">${escHtml(entry.desc)}</div>
+                </div>
+              </div>
+            `;
+          }).join('');
+          return `<div class="tb-section-banner">${bannerTitle} (${list.length})</div>${cards}`;
+        };
+
+        previewEl.innerHTML =
+          renderItemGroup('Custom Items', customItems) +
+          renderItemGroup('Modded Items', moddedItems) +
+          renderItemGroup('Items', restItems) ||
+          '<div class="desc-text">No matching items found.</div>';
+
+        previewEl.querySelectorAll('[data-pick-item]').forEach(card => {
+          card.addEventListener('click', () => {
+            slot.item = card.dataset.pickItem;
+            renderTeambuilderPane();
+          });
+        });
+        return;
+      }
+
+      // 3) ABILITY FOCUS: show abilities & descriptions (image_2358fe.png)
+      if (TB_ACTIVE_FOCUS === 'ability') {
+        const abilEntries = [];
+        if (mon && mon.abilities) {
+          Object.entries(mon.abilities).forEach(([k, abilName]) => {
+            if (!abilName) return;
+            const det = getAbilityDetails(abilName);
+            abilEntries.push({
+              ...det,
+              slotLabel: k === 'H' ? 'Hidden Ability' : `Ability ${Number(k) + 1}`
+            });
+          });
+        }
+        const extraModAbils = Object.values(MOD_ABILITIES)
+          .filter(a => !abilEntries.some(x => toId(x.name) === toId(a.name)))
+          .map(a => ({ ...getAbilityDetails(a.name), slotLabel: a.isInherited ? 'Modded Ability' : 'Custom Ability' }));
+
+        const renderAbilRows = list => list.map(a => `
+          <div class="tb-item-card" data-pick-ability="${escHtml(a.name)}">
+            <div class="tb-item-card-top">
+              <div>
+                <strong>${escHtml(a.name)}</strong>
+                ${a.isCustom ? '<span class="custom-badge">Custom</span>' : (a.isModded ? '<span class="custom-badge">Modded</span>' : '')}
+              </div>
+              <div class="desc-text" style="flex:1 1 340px;">${escHtml(a.descText || 'No description.')}</div>
+            </div>
+          </div>
+        `).join('');
+
+        previewEl.innerHTML = `
+          <div class="tb-section-banner">${mon ? `${escHtml(mon.name)} Abilities` : 'Abilities'}</div>
+          ${abilEntries.length ? renderAbilRows(abilEntries) : '<div class="desc-text">No abilities on selected Pokémon.</div>'}
+          ${extraModAbils.length ? `<div class="tb-section-banner">Custom / Modded Abilities (${extraModAbils.length})</div>${renderAbilRows(extraModAbils)}` : ''}
+        `;
+
+        previewEl.querySelectorAll('[data-pick-ability]').forEach(card => {
+          card.addEventListener('click', () => {
+            slot.ability = card.dataset.pickAbility;
+            renderTeambuilderPane();
+          });
+        });
+        return;
+      }
+
+      // 4) MOVES FOCUS: Custom -> Modded -> Newly learnt -> STAB useful -> Useful -> STAB less useful -> Less useful (image_235c04.jpg)
+      const monTypesSet = new Set(mon?.types || []);
+      const hasSheetDiff = Boolean(targetId && MOD_DEX[targetId]);
       const { activeIds, addedIds, removedIds } = hasSheetDiff
-        ? getLearnsetDiff(monId)
+        ? getLearnsetDiff(targetId)
         : {
-            activeIds: Object.keys(BASE_LEARNSETS[monId]?.learnset || {}),
+            activeIds: targetId ? Object.keys(BASE_LEARNSETS[targetId]?.learnset || MOD_MOVES) : Object.keys(MOD_MOVES),
             addedIds: new Set(),
             removedIds: new Set()
           };
 
-      const learnableMoves = activeIds
+      const rankedMoves = activeIds
         .filter(mId => !removedIds.has(mId))
-        .map(mId => getMoveDetails(mId, addedIds, removedIds, monTypesSet))
-        .sort((a, b) => (a.sortBucket - b.sortBucket) || a.name.localeCompare(b.name));
+        .map(mId => {
+          const det = getMoveDetails(mId, addedIds, removedIds, monTypesSet);
+          const rawM = Object.assign({}, BASE_MOVES[mId] || {}, MOD_MOVES[mId] || {});
+          const rank = getMoveRank(mId, rawM, addedIds, monTypesSet);
+          return { ...det, rank };
+        })
+        .sort((a, b) => (a.rank - b.rank) || a.name.localeCompare(b.name));
 
-      const moveRowsHtml = learnableMoves.length
-        ? learnableMoves.map(m => {
-            const nameCls = m.isAdded ? 'tb-move-name-btn move-added' : 'tb-move-name-btn';
+      const moveRowsHtml = rankedMoves.length
+        ? rankedMoves.map(m => {
             const bpClean = String(m.basePower ?? '—').replace(/\s*bp$/i, '') || '—';
             const accClean = String(m.accuracy ?? '—').replace(/%\s*acc$/i, '').replace(/%$/, '') || '—';
             const ppClean = String(m.pp ?? '—').replace(/\s*pp$/i, '') || '—';
+            const rankTag = m.rank === 0
+              ? '<span class="custom-badge">Custom</span>'
+              : m.rank === 1
+                ? '<span class="custom-badge">Modded</span>'
+                : m.rank === 2
+                  ? '<span class="custom-badge">New Learnt</span>'
+                  : '';
             return `
               <tr>
-                <td style="width:155px;"><span class="${nameCls}" data-move-name="${escHtml(m.name)}">${escHtml(m.name)}</span></td>
-                <td style="width:42px; text-align:center;">${renderTypeIconHtml(m.type)}</td>
-                <td style="width:36px; text-align:center;">${renderCategoryIconHtml(m.category)}</td>
-                <td style="width:42px; text-align:right; color:#ffcf70;">${escHtml(bpClean)}</td>
-                <td style="width:46px; text-align:right; color:#c8d6e8;">${escHtml(accClean === '—' ? '—' : `${accClean}%`)}</td>
-                <td style="width:36px; text-align:right; color:#bbb;">${escHtml(ppClean)}</td>
+                <td style="width:165px;"><span class="tb-move-name-btn" data-move-name="${escHtml(m.name)}">${escHtml(m.name)}</span>${rankTag}</td>
+                <td style="width:44px;text-align:center;">${renderTypeIconHtml(m.type)}</td>
+                <td style="width:36px;text-align:center;">${renderCategoryIconHtml(m.category)}</td>
+                <td style="width:52px;text-align:right;color:#ffcf70;"><span class="desc-text" style="font-size:0.68rem;">Pow</span><br>${escHtml(bpClean)}</td>
+                <td style="width:56px;text-align:right;color:#c8d6e8;"><span class="desc-text" style="font-size:0.68rem;">Acc</span><br>${escHtml(accClean === '—' ? '—' : `${accClean}%`)}</td>
+                <td style="width:38px;text-align:right;color:#bbb;"><span class="desc-text" style="font-size:0.68rem;">PP</span><br>${escHtml(ppClean)}</td>
                 <td class="desc-text">${escHtml(m.descText || '')}</td>
               </tr>
             `;
           }).join('')
-        : '<tr><td colspan="7" class="desc-text">No learnable moves listed.</td></tr>';
-
-      const abilitiesHtml = abilitySlots.length
-        ? abilitySlots.map(a => `
-            <div class="entry-row">
-              <strong>${escHtml(a.name)}</strong>${a.isCustom ? '<span class="custom-badge">Custom</span>' : (a.isModded ? '<span class="custom-badge">Modded</span>' : '')}
-              ${a.descText ? `<div class="desc-text" style="margin-top:2px;">${escHtml(a.descText)}</div>` : ''}
-            </div>
-          `).join('')
-        : '<div class="desc-text">No abilities listed.</div>';
+        : '<tr><td colspan="7" class="desc-text">No moves available.</td></tr>';
 
       previewEl.innerHTML = `
-        <div class="dex-box" style="padding: 8px 10px;">
-          <h2 style="font-size:0.9rem; margin-bottom:6px;">Moves (${learnableMoves.length})</h2>
-          <table class="tb-moves-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th style="text-align:center;">Type</th>
-                <th style="text-align:center;">Cat</th>
-                <th style="text-align:right;">Pow</th>
-                <th style="text-align:right;">Acc</th>
-                <th style="text-align:right;">PP</th>
-                <th>Effect</th>
-              </tr>
-            </thead>
-            <tbody>${moveRowsHtml}</tbody>
-          </table>
-        </div>
-
-        <div class="section">
-          <div class="dex-grid" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 10px;">
-            <div class="dex-box" style="padding: 8px 10px;">
-              ${renderSpeedTierSection(s.spe)}
-            </div>
-            <div class="dex-box tb-compact-abilities" style="padding: 8px 10px;">
-              <h2 style="font-size:0.88rem; margin-bottom:6px;">Abilities</h2>
-              ${abilitiesHtml}
-            </div>
-          </div>
-        </div>
+        <div class="tb-section-banner">Moves (${rankedMoves.length})</div>
+        <table class="tb-moves-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th style="text-align:center;">Type</th>
+              <th style="text-align:center;">Cat</th>
+              <th style="text-align:right;">Pow</th>
+              <th style="text-align:right;">Acc</th>
+              <th style="text-align:right;">PP</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>${moveRowsHtml}</tbody>
+        </table>
       `;
 
       previewEl.querySelectorAll('.tb-move-name-btn').forEach(btn => {
@@ -2275,8 +2525,7 @@ function renderTbDexPreview(monId) {
           const mvName = btn.dataset.moveName;
           if (!mvName) return;
           const emptyIdx = slot.moves.findIndex(v => !v || !v.trim());
-          const targetIdx = emptyIdx !== -1 ? emptyIdx : 0;
-          slot.moves[targetIdx] = mvName;
+          slot.moves[emptyIdx !== -1 ? emptyIdx : 0] = mvName;
           renderTeambuilderPane();
         });
       });
@@ -2365,7 +2614,7 @@ function renderTbDexPreview(monId) {
                 </div>
               </div>
               <div class="ps-mid-row"><div>${typesIconsHtml}</div></div>
-              <div class="ps-equip-grid" style="grid-template-columns: 1fr 1fr;">
+              <div class="tb-equip-row">
                 <div><label class="ps-lbl">Item</label><input type="text" id="psItemInp" class="ps-inp" list="tbItemOptions" value="${escHtml(slot.item)}" placeholder="Item"></div>
                 <div><label class="ps-lbl">Ability</label><select id="psAbilitySel" class="ps-sel">${abilityOptions.map(a => `<option value="${escHtml(a)}" ${slot.ability === a ? 'selected' : ''}>${escHtml(a)}</option>`).join('')}</select></div>
               </div>
@@ -2379,21 +2628,26 @@ function renderTbDexPreview(monId) {
             </div>
 
             <div class="ps-col">
-              <div class="tb-compact-evs">
-                <div class="tb-compact-evs-top">
-                  <strong style="color:#d6deeb;">EVs</strong>
-                  <span>Left: <strong id="tbCompactEvLeft" style="color:#fff;">${evRemaining}</strong></span>
-                </div>
-                ${compactEvRowsHtml}
-                <div class="tb-compact-ev-foot">
-                  <select id="psNatureSel" class="ps-sel">${natureOptionsHtml}</select>
-                  <select id="psIvPresetSel" class="ps-sel">
-                    <option value="">IVs</option>
-                    <option value="31all">31 All</option>
-                    <option value="0atk">0 Atk</option>
-                    <option value="0spe">0 Spe</option>
-                    <option value="0atkspe">0 Atk/Spe</option>
-                  </select>
+              <div class="tb-right-side-grid">
+                <div class="tb-speed-side-card">${renderSpeedTierSection(baseStats.spe)}</div>
+                <div class="tb-compact-evs-outer">
+                  <div class="tb-compact-evs">
+                    <div class="tb-compact-evs-top">
+                      <strong style="color:#d6deeb;">EVs</strong>
+                      <span>Left: <strong id="tbCompactEvLeft" style="color:#fff;">${evRemaining}</strong></span>
+                    </div>
+                    ${compactEvRowsHtml}
+                    <div class="tb-compact-ev-foot">
+                      <select id="psNatureSel" class="ps-sel">${natureOptionsHtml}</select>
+                      <select id="psIvPresetSel" class="ps-sel">
+                        <option value="">IVs</option>
+                        <option value="31all">31 All</option>
+                        <option value="0atk">0 Atk</option>
+                        <option value="0spe">0 Spe</option>
+                        <option value="0atkspe">0 Atk/Spe</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2408,9 +2662,6 @@ function renderTbDexPreview(monId) {
           </div>
 
           <div class="tb-picker-wrap">
-            <div class="tb-picker-bar">
-              <span class="desc-text" style="font-family:monospace;">Type in <strong>Pokémon</strong> to filter, or click any Pokémon on the left to load it into Slot ${ACTIVE_TB_SLOT + 1}. Click any move name on the right to add it to a move slot.</span>
-            </div>
             <div class="tb-picker-grid">
               <div class="mon-list tb-picker-list" id="tbDexPickerList"></div>
               <div class="detail-pane tb-picker-detail" id="tbDexPreviewPane"></div>
@@ -2421,6 +2672,7 @@ function renderTbDexPreview(monId) {
 
       const selectMonIntoSlot = monId => {
         if (!allDex[monId]) return;
+        TB_PREVIEW_MON_ID = monId;
         slot.speciesId = monId;
         slot.nickname = allDex[monId].name;
         const abils = Object.values(allDex[monId].abilities || {}).filter(Boolean);
@@ -2444,7 +2696,7 @@ function renderTbDexPreview(monId) {
 
         const activePreviewId = (slot.speciesId && flat.some(x => x.id === slot.speciesId))
           ? slot.speciesId
-          : flat[0].id;
+          : ((TB_PREVIEW_MON_ID && flat.some(x => x.id === TB_PREVIEW_MON_ID)) ? TB_PREVIEW_MON_ID : flat[0].id);
 
         const addGroup = (title, items) => {
           if (!items.length) return;
@@ -2481,14 +2733,23 @@ function renderTbDexPreview(monId) {
 
       renderTbPickerList('');
 
-      pane.querySelectorAll('.ps-tb-slot-tab').forEach(btn => btn.addEventListener('click', () => { ACTIVE_TB_SLOT = Number(btn.dataset.slotIdx); renderTeambuilderPane(); }));
+      pane.querySelectorAll('.ps-tb-slot-tab').forEach(btn => btn.addEventListener('click', () => {
+        ACTIVE_TB_SLOT = Number(btn.dataset.slotIdx);
+        TB_ACTIVE_FOCUS = 'pokemon';
+        renderTeambuilderPane();
+      }));
       document.getElementById('psCopySlotBtn').addEventListener('click', () => { navigator.clipboard?.writeText(generateShowdownTeamExport()); document.getElementById('statusBar').textContent = 'Copied team text to clipboard.'; });
       document.getElementById('psImportExportToggleBtn').addEventListener('click', () => { TB_IMPORT_EXPORT_OPEN = !TB_IMPORT_EXPORT_OPEN; renderTeambuilderPane(); });
       document.getElementById('psMoveSlotBtn').addEventListener('click', () => { const n = (ACTIVE_TB_SLOT + 1) % 6; const t = TEAM_SLOTS[ACTIVE_TB_SLOT]; TEAM_SLOTS[ACTIVE_TB_SLOT] = TEAM_SLOTS[n]; TEAM_SLOTS[n] = t; ACTIVE_TB_SLOT = n; renderTeambuilderPane(); });
       document.getElementById('psDeleteSlotBtn').addEventListener('click', () => { TEAM_SLOTS[ACTIVE_TB_SLOT] = createEmptyTbSlot(); renderTeambuilderPane(); });
 
       const psSpeciesEl = document.getElementById('psSpeciesInp');
+      psSpeciesEl.addEventListener('focus', () => {
+        TB_ACTIVE_FOCUS = 'pokemon';
+        renderTbDexPreview(slot.speciesId || TB_PREVIEW_MON_ID || '');
+      });
       psSpeciesEl.addEventListener('input', e => {
+        TB_ACTIVE_FOCUS = 'pokemon';
         const rawVal = e.target.value;
         renderTbPickerList(rawVal);
         const enteredId = toId(rawVal);
@@ -2502,15 +2763,52 @@ function renderTbDexPreview(monId) {
         else if (!e.target.value.trim()) { slot.speciesId = ''; slot.nickname = ''; slot.ability = ''; renderTeambuilderPane(); }
       });
 
+      const psItemEl = document.getElementById('psItemInp');
+      psItemEl.addEventListener('focus', () => {
+        TB_ACTIVE_FOCUS = 'item';
+        renderTbDexPreview(slot.speciesId || TB_PREVIEW_MON_ID || '');
+      });
+      psItemEl.addEventListener('input', e => {
+        slot.item = e.target.value;
+        TB_ACTIVE_FOCUS = 'item';
+        renderTbDexPreview(slot.speciesId || TB_PREVIEW_MON_ID || '');
+        const ta = document.getElementById('psTeamTextArea');
+        if (ta) ta.value = generateShowdownTeamExport();
+      });
+
+      const psAbilityEl = document.getElementById('psAbilitySel');
+      psAbilityEl.addEventListener('focus', () => {
+        TB_ACTIVE_FOCUS = 'ability';
+        renderTbDexPreview(slot.speciesId || TB_PREVIEW_MON_ID || '');
+      });
+      psAbilityEl.addEventListener('change', e => {
+        slot.ability = e.target.value;
+        TB_ACTIVE_FOCUS = 'ability';
+        renderTbDexPreview(slot.speciesId || TB_PREVIEW_MON_ID || '');
+        const ta = document.getElementById('psTeamTextArea');
+        if (ta) ta.value = generateShowdownTeamExport();
+      });
+
+      pane.querySelectorAll('.ps-move-inp').forEach(inp => {
+        inp.addEventListener('focus', () => {
+          TB_ACTIVE_FOCUS = 'moves';
+          renderTbDexPreview(slot.speciesId || TB_PREVIEW_MON_ID || '');
+        });
+        inp.addEventListener('input', e => {
+          slot.moves[Number(inp.dataset.moveIdx)] = e.target.value;
+          TB_ACTIVE_FOCUS = 'moves';
+          renderTbDexPreview(slot.speciesId || TB_PREVIEW_MON_ID || '');
+          const ta = document.getElementById('psTeamTextArea');
+          if (ta) ta.value = generateShowdownTeamExport();
+        });
+      });
+
       document.getElementById('psNicknameInp').addEventListener('input', e => { slot.nickname = e.target.value; const ta = document.getElementById('psTeamTextArea'); if (ta) ta.value = generateShowdownTeamExport(); });
       document.getElementById('psLevelInp').addEventListener('input', e => { slot.level = Math.min(100, Math.max(1, Number(e.target.value) || 100)); renderTeambuilderPane(); });
       document.getElementById('psGenderSel').addEventListener('change', e => { slot.gender = e.target.value; });
       document.getElementById('psHappyInp').addEventListener('input', e => { slot.happiness = Math.min(255, Math.max(0, Number(e.target.value) || 0)); });
       document.getElementById('psShinySel').addEventListener('change', e => { slot.shiny = e.target.value; });
       document.getElementById('psTeraSel').addEventListener('change', e => { slot.teraType = e.target.value; });
-      document.getElementById('psItemInp').addEventListener('input', e => { slot.item = e.target.value; const ta = document.getElementById('psTeamTextArea'); if (ta) ta.value = generateShowdownTeamExport(); });
-      document.getElementById('psAbilitySel').addEventListener('change', e => { slot.ability = e.target.value; const ta = document.getElementById('psTeamTextArea'); if (ta) ta.value = generateShowdownTeamExport(); });
-      pane.querySelectorAll('.ps-move-inp').forEach(inp => inp.addEventListener('input', e => { slot.moves[Number(inp.dataset.moveIdx)] = e.target.value; const ta = document.getElementById('psTeamTextArea'); if (ta) ta.value = generateShowdownTeamExport(); }));
 
       const applyEvChange = (statKey, rawVal) => {
         const str = String(rawVal || '').trim();
@@ -2543,6 +2841,7 @@ function renderTbDexPreview(monId) {
       document.getElementById('psCopyFullTeamBtn')?.addEventListener('click', () => { const ta = document.getElementById('psTeamTextArea'); ta.select(); navigator.clipboard?.writeText(ta.value); document.getElementById('statusBar').textContent = 'Copied full team text to clipboard.'; });
       document.getElementById('psApplyImportBtn')?.addEventListener('click', () => { parseShowdownTeamImport(document.getElementById('psTeamTextArea').value); renderTeambuilderPane(); document.getElementById('statusBar').textContent = 'Imported team text into Teambuilder.'; });
     }
+//```[cite: 6, 7, 8, 9]
     // ==================== SPEED TIERS ====================
     let SPEED_TIER_VIEW = 'combined'; // 'table' | 'combined'
 
@@ -2743,11 +3042,28 @@ const rowsHtml = benchmarks.map(b => `
       renderDetail();
     }
 
-    function isUsefulMove(moveId, m) {
+function isUsefulMove(moveId, m) {
       if (m.isNonstandard || m.isZ || m.isMax || LOW_UTILITY_MOVES.has(moveId)) return false;
       if (m.category === 'Status') return HIGH_UTILITY_STATUS.has(moveId);
       const bp = Number(m.basePower) || 0;
       return bp >= 60 || bp === 0 || Boolean(m.multihit) || ((m.priority || 0) > 0 && bp >= 40);
+    }
+
+    // Order: Custom moves -> Modded moves -> Newly learnt moves in this mod -> STAB useful -> Useful -> STAB less useful -> Less useful
+    function getMoveRank(moveId, m, addedSet, monTypesSet) {
+      const isCustomMove = Boolean(MOD_MOVES[moveId] && !MOD_MOVES[moveId].isInherited);
+      const isModdedMove = Boolean(MOD_MOVES[moveId] && MOD_MOVES[moveId].isInherited);
+      const isNewlyLearnt = addedSet.has(moveId);
+      const isStab = Boolean(m.type && monTypesSet.has(m.type));
+      const useful = isUsefulMove(moveId, m);
+
+      if (isCustomMove) return 0;
+      if (isModdedMove) return 1;
+      if (isNewlyLearnt) return 2;
+      if (isStab && useful) return 3;
+      if (useful) return 4;
+      if (isStab) return 5;
+      return 6;
     }
 
     function getMoveDetails(moveId, addedSet, removedSet, monTypesSet) {
